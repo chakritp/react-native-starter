@@ -1,0 +1,123 @@
+{
+  "terms": {
+    "appStore": {
+      "android": "Google Play Store",
+      "ios": "App Store"
+    },
+    "brand": "Typescript Starter"
+  },
+  "actions": {
+    "accept": "Accept",
+    "applyFilters": "Apply filters",
+    "cancel": "Cancel",
+    "change": "Change",
+    "clear": "Clear",
+    "continue": "Continue",
+    "createAccount": "Create account",
+    "done": "Done",
+    "go": "Go",
+    "goBack": "Go back",
+    "next": "Next",
+    "ok": "Ok",
+    "save": "Save",
+    "search": "Search",
+    "signIn": "Sign in",
+    "signOut": "Sign out",
+    "signUp": "Sign up",
+    "submit": "Submit",
+    "tryAgain": "Try again",
+    "update": "Update"
+  },
+  "messages": {
+    "api": {
+      "common": {
+        "default": "Request could not be completed at this time.",
+        "check_scan_failed": "We were unable to read your check. Please take new photos.",
+        "too_many_requests": "Request limit reached",
+        "unauthorized_device": "Your device is unauthorized.",
+        "user_already_exists": "A user already exists with this phone number.",
+        "verification_token_expired": "Verification code expired. Please request a new code.",
+        "verfication_code_invalid": "Verification code is incorrect. Please try again.",
+        "0": "Looks like you aren't online. Please check your network settings.",
+        "400": "Validation failed. Please review your entries.",
+        "401": "Invalid credentials.",
+        "403": "This request is not permitted.",
+        "404": "We couldn't find what you're looking for.",
+        "500": "An unexpected error occurred."
+      }
+    },
+    "noResults": "No Results",
+    "requestFailed": "Request could not be completed at this time.",
+    "validation": {
+      "default": "%{label} is invalid",
+      "postalCode": "Postal code is invalid"
+    }
+  },
+  "forms": {
+    "common": {
+      "fields": {
+        "birthdate": {
+          "label": "Birthdate"
+        },
+        "email": {
+          "label": "Email address"
+        },
+        "firstName": {
+          "label": "First name"
+        },
+        "lastName": {
+          "label": "Last name"
+        },
+        "phoneNumber": {
+          "label": "Phone number",
+          "placeholder": "Enter phone number"
+        }
+      },
+      "info": {
+        "maxLength": "Max %{maxLength} characters"
+      }
+    },
+    "signIn": {
+      "noAccount": "Don't have an account?"
+    },
+    "signUp": {
+      "hasAccount": "Already have an account?"
+    }
+  },
+  "screens": {
+    "appUpdateRequired": {
+      "title": "App Upgrade Required",
+      "subtitle": "We've made some changes that require the latest version of the app.\n\nPlease go to the %{store} and install %{brand} again.",
+      "goToAppStore": "Go to the %{store}" 
+    },
+    "login": {
+      "title": "Log In"
+    },
+    "signUp": {
+      "title": "Sign Up",
+      "agreeTerms": [
+        "By signing up, you agree to our\n",
+        "Terms of Service",
+        " and ",
+        "Privacy Policy"
+      ]
+    },
+    "signIn": {
+      "title": "Sign In"
+    },
+    "verifyCode": {
+      "title": "Verify Code"
+    },
+    "settings": {
+      "title": "Settings",
+      "account": {
+        "title": "Account"
+      },
+      "help": {
+        "title": "Help",
+        "tos": "Terms of Service",
+        "privacyPolicy": "Privacy Policy"
+      }
+    }
+  }
+}
