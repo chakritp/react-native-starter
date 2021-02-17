@@ -1,37 +1,39 @@
-import PropTypes from 'prop-types'
-import React from 'react'
-import { StyleSheet } from 'react-native'
-import { useTheme } from 'theme'
+import React, { ReactNode } from 'react'
+import { StyleProp, StyleSheet, ViewStyle } from 'react-native'
+import { ThemeColor, useTheme } from 'theme'
 import { Transition } from './Transition'
 
-export const Overlay = ({ bgColor = 'containerBg', style, ...props }) => {
+export interface OverlayProps {
+  style?: StyleProp<ViewStyle>
+  bgColor?: ThemeColor | string
+  transitionDuration?: number
+  show?: boolean
+  children?: ReactNode
+}
+
+export const Overlay = ({
+  style,
+  bgColor = 'containerBg',
+  transitionDuration,
+  show = false,
+  children
+}: OverlayProps) => {
   const theme = useTheme()
   return (
     <Transition
       style={[
         styles.container,
-        { backgroundColor: theme.colors[bgColor] || bgColor },
+        { backgroundColor: theme.colors[bgColor as ThemeColor] || bgColor },
         style
       ]}
       property="opacity"
-      duration={props.transitionDuration}
+      duration={transitionDuration}
       snapshotChildren
       hideWhen="out"
-      in={props.show}>
-      {props.children}
+      in={show}>
+      {children}
     </Transition>
   )
-}
-
-Overlay.propTypes = {
-  bgColor: PropTypes.string,
-  transitionDuration: PropTypes.number,
-  show: PropTypes.bool,
-  children: PropTypes.any
-}
-
-Overlay.defaultProps = {
-  show: false
 }
 
 const styles = StyleSheet.create({

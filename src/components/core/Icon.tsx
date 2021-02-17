@@ -2,7 +2,7 @@ import React from 'react'
 import { StyleProp, TextStyle, TouchableOpacity } from 'react-native'
 import { IconProps as $IconProps } from 'react-native-vector-icons/Icon'
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons'
-import { ThemeColorKey, ThemeSizeKey, useTheme } from 'theme'
+import { ThemeColor, ThemeSize, useTheme } from 'theme'
 
 enum IconType {
   MATERIAL = 'material'
@@ -16,8 +16,8 @@ const HIT_SLOP = { top: 10, left: 10, bottom: 10, right: 10 }
 
 export interface IconProps extends Omit<$IconProps, 'size' | 'color'> {
   type?: IconType,
-  color?: ThemeColorKey | string
-  size?: ThemeSizeKey | number
+  color?: ThemeColor | string
+  size?: ThemeSize | number
 }
 
 export const Icon = ({
@@ -33,7 +33,7 @@ export const Icon = ({
 
   const baseStyle: StyleProp<TextStyle> = { lineHeight: size }
   if (color) {
-    baseStyle.color = theme.colors[color as ThemeColorKey] || color as string
+    baseStyle.color = theme.colors[color as ThemeColor] || color as string
   }
 
   const IconComponent = ICON_COMPONENTS[type]

@@ -1,25 +1,38 @@
-import PropTypes from 'prop-types'
-import React, { PureComponent } from 'react'
-import { Animated } from 'react-native'
+import React, { PureComponent, ReactElement, ReactNode } from 'react'
+import { Animated, StyleProp, ViewStyle } from 'react-native'
 import { call } from 'utils/language'
 
-export class Transition extends PureComponent {
-  static propTypes = {
-    style: PropTypes.any,
-    property: PropTypes.string,
-    transform: PropTypes.object,
-    from: PropTypes.any.isRequired,
-    to: PropTypes.any.isRequired,
-    duration: PropTypes.number.isRequired,
-    animateOnMount: PropTypes.bool,
-    in: PropTypes.bool,
-    snapshotChildren: PropTypes.bool,
-    hideWhen: PropTypes.oneOf(['in', 'out']),
-    useNativeDriver: PropTypes.bool,
-    children: PropTypes.any,
-    onTransitionBegin: PropTypes.func,
-    onTransitionEnd: PropTypes.func
-  }
+type TransformDirection = 'in' | 'out'
+
+export interface TransitionProps {
+  style?: StyleProp<ViewStyle>
+  property: keyof Animated.WithAnimatedObject<ViewStyle>
+  transform?: { [key: string]: number[] }
+  from?: number
+  to?: number
+  duration?: number
+  animateOnMount?: boolean
+  in?: boolean
+  snapshotChildren?: boolean
+  hideWhen?: TransformDirection
+  useNativeDriver?: boolean
+  children?: ReactNode
+  onTransitionBegin?: (direction: TransformDirection) => void
+  onTransitionEnd?: (direction: TransformDirection) => void
+}
+
+type DefaultProps = Required<Pick<TransitionProps, 'from' | 'to' | 'duration' | 'animateOnMount' | 'in' | 'useNativeDriver'>>
+
+type PropsInternal = TransitionProps & DefaultProps
+
+interface TransitionState {
+  animatedValue: Animated.Value
+  childrenSnapshot?: ReactElement
+  finished: boolean
+}
+
+export class Transition extends PureComponent<TransitionProps, TransitionState> {
+  unmounted: boolean = false
 
   static defaultProps = {
     from: 0,
@@ -30,7 +43,7 @@ export class Transition extends PureComponent {
     useNativeDriver: true
   }
 
-  constructor(props) {
+  constructor(props: PropsInternal) {
     super(props)
     const { in: _in, from, to, animateOnMount } = props
     this.state = {
@@ -41,7 +54,7 @@ export class Transition extends PureComponent {
 
   componentDidMount() {
     if (this.props.animateOnMount) {
-      this.animate()
+      this.animate(this.props as PropsInternal)
     }
   }
 
@@ -49,7 +62,7 @@ export class Transition extends PureComponent {
     this.unmounted = true
   }
 
-  UNSAFE_componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps: PropsInternal) {
     if (nextProps.in !== this.props.in) {
       this.animate(nextProps)
     }
@@ -59,19 +72,19 @@ export class Transition extends PureComponent {
     return props.animateOnMount || props.in ? 'in' : 'out'
   }
 
-  animate(props = this.props) {
+  animate(props: PropsInternal) {
     const { from, to, duration, useNativeDriver, snapshotChildren } = props
     const { animatedValue, finished } = this.state
     const direction = this.getDirection(props)
-    const nextState = { finished: false }
+    const nextState: Partial<TransitionState> = { finished: false }
 
     if (direction === 'in') {
-      nextState.childrenSnapshot = null
+      nextState.childrenSnapshot = undefined
     } else if (snapshotChildren) {
       nextState.childrenSnapshot = call(this.props.children)
     }
 
-    this.setState(nextState, () => {
+    this.setState<never>(nextState, () => {
       const { onTransitionBegin } = this.props
       if (finished && onTransitionBegin) {
         onTransitionBegin(direction)
@@ -93,14 +106,14 @@ export class Transition extends PureComponent {
   }
 
   render() {
-    const { style, children, property, transform, from, to, hideWhen } = this.props
+    const { style, children, property, transform, from, to, hideWhen } = this.props as PropsInternal
     const { animatedValue, finished } = this.state
 
     if (finished && hideWhen === this.getDirection()) {
       return null
     }
 
-    const animatedStyle = {}
+    const animatedStyle: any = {}
 
     if (property) {
       animatedStyle[property] = animatedValue
@@ -112,7 +125,7 @@ export class Transition extends PureComponent {
           inputRange: [from, to],
           outputRange: transform[key]
         })
-      }))
+      })) as any
     }
   
     return (

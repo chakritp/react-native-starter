@@ -1,78 +1,86 @@
-import PropTypes from 'prop-types'
-import React, { PureComponent } from 'react'
+import React, { ReactNode, PureComponent } from 'react'
 import {
   View,
   TouchableOpacity,
   ActivityIndicator,
-  Animated
+  Animated,
+  StyleProp,
+  ViewStyle,
+  TextStyle,
+  FlexAlignType,
+  TouchableWithoutFeedbackProps
 } from 'react-native'
+import { IconProp, renderIcon } from 'helpers/ui'
+import { ThemeContextProps, ButtonVariant, createThemedStyleSheet, withTheme } from 'theme'
 import { Text } from './Text'
-import { createThemedStyleSheet, withTheme } from 'theme'
-import { renderIcon } from 'helpers/ui'
 
 const INDICATOR_TRANSITION_DURATION = 500
 
-class ButtonBase extends PureComponent {
-  static propTypes = {
-    variant: PropTypes.string,
-    style: PropTypes.any,
-    contentStyle: PropTypes.any,
-    titleStyle: PropTypes.any,
-    titleContainerStyle: PropTypes.any,
-    size: PropTypes.string,
-    rounded: PropTypes.bool,
-    outline: PropTypes.bool,
-    transparent: PropTypes.bool,
-    align: PropTypes.string,
-    icon: PropTypes.any,
-    iconRight: PropTypes.bool,
-    title: PropTypes.string,
-    interactive: PropTypes.bool,
-    disabled: PropTypes.bool,
-    loading: PropTypes.bool,
-    accessible: PropTypes.bool,
-    accessibilityLabel: PropTypes.string,
-    onPress: PropTypes.func
-  }
+export interface ButtonProps {
+  variant?: ButtonVariant
+  style?: StyleProp<ViewStyle>
+  contentStyle?: StyleProp<ViewStyle>
+  titleContainerStyle?: StyleProp<ViewStyle>
+  titleStyle?: StyleProp<TextStyle>
+  size?: 's' | 'm' | 'l'
+  rounded?: boolean
+  outline?: boolean
+  transparent?: boolean
+  align?: FlexAlignType
+  icon?: IconProp,
+  iconPlacement?: 'left' | 'right'
+  title?: string
+  interactive?: boolean
+  disabled?: boolean
+  loading?: boolean
+  accessible?: boolean
+  accessibilityLabel?: string
+  children?: ReactNode
+  onPress?: TouchableWithoutFeedbackProps['onPress']
+}
 
-  static defaultProps = {
-    interactive: true,
-    accessible: true
-  }
+interface ButtonPropsInternal extends ButtonProps, ThemeContextProps {}
 
-  constructor(props) {
+interface ButtonState {
+  indicatorTransition: boolean
+  indicatorOpacity: Animated.Value
+  contentOpacity: Animated.Value
+}
+
+class ButtonBase extends PureComponent<ButtonPropsInternal, ButtonState> {
+  constructor(props: ButtonPropsInternal) {
     super(props)
     const { loading } = props
 
     this.state = {
       indicatorTransition: false,
       indicatorOpacity: new Animated.Value(loading ? 1 : 0),
-      textOpacity: new Animated.Value(loading ? 0 : 1),
+      contentOpacity: new Animated.Value(loading ? 0 : 1),
     }
   }
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate(prevProps: ButtonPropsInternal) {
     const { loading } = this.props
     if (loading !== prevProps.loading) {
-      const { textOpacity, indicatorOpacity } = this.state
+      const { contentOpacity, indicatorOpacity } = this.state
       if (loading) {
-        this.startIndicatorTransition(indicatorOpacity, textOpacity)
+        this.startIndicatorTransition(indicatorOpacity, contentOpacity)
       } else {
-        this.startIndicatorTransition(textOpacity, indicatorOpacity)
+        this.startIndicatorTransition(contentOpacity, indicatorOpacity)
       }
     }
   }
 
-  startIndicatorTransition(first, second) {
+  startIndicatorTransition(first: Animated.Value, second: Animated.Value) {
     Animated.parallel([
       Animated.timing(first, {
         toValue: 1,
-        INDICATOR_TRANSITION_DURATION,
+        duration: INDICATOR_TRANSITION_DURATION,
         useNativeDriver: true
       }),
       Animated.timing(second, {
         toValue: 0,
-        INDICATOR_TRANSITION_DURATION,
+        duration: INDICATOR_TRANSITION_DURATION,
         useNativeDriver: true
       }),
     ]).start(({ finished }) => {
@@ -100,15 +108,16 @@ class ButtonBase extends PureComponent {
       align,
       title,
       icon,
-      iconRight,
+      iconPlacement = 'left',
       disabled,
       loading,
-      interactive,
-      accessible,
-      accessibilityLabel = title
+      interactive = true,
+      accessible = true,
+      accessibilityLabel = title,
+      children
     } = props
 
-    const { indicatorTransition, indicatorOpacity, textOpacity } = this.state
+    const { indicatorTransition, indicatorOpacity, contentOpacity } = this.state
 
     const styles = getStyles(themedStyles)
     let { bgColor, textColor, outlineColor, radius } = theme.buttonVariants[variant]
@@ -119,9 +128,9 @@ class ButtonBase extends PureComponent {
 
     if (icon) {
       icon = renderIcon(icon, {
-        style: title != null && { [iconRight ? 'marginLeft' : 'marginRight']: size === 's' ? 4 : 6 },
+        style: title != null && { [iconPlacement === 'left' ? 'marginRight' : 'marginLeft']: size === 's' ? 4 : 6 },
         color: textColor,
-        size: size === 's' ? theme.fontSizes.s : size === 'l' ? theme.fontSizes.xl : theme.fontSizes.l
+        size: size === 's' ? theme.fontSizes.xs : size === 'l' ? theme.fontSizes.l : theme.fontSizes.m
       })
     }
 
@@ -141,9 +150,9 @@ class ButtonBase extends PureComponent {
           styles.titleContainer,
           titleContainerStyle,
           disabled && styles.disabled,
-          { opacity: textOpacity }
+          { opacity: contentOpacity }
         ]}>
-          {!iconRight && icon}
+          {iconPlacement === 'left' && icon}
 
           {title != null && (
             <Text
@@ -158,7 +167,9 @@ class ButtonBase extends PureComponent {
             </Text>
           )}
 
-          {iconRight && icon}
+          {iconPlacement === 'right' && icon}
+
+          {children}
         </Animated.View>
 
         <Animated.View style={[styles.loadingIndicator, { opacity: indicatorOpacity }]}>
@@ -197,14 +208,14 @@ const themedStyles = createThemedStyleSheet(theme => ({
     justifyContent: 'center',
     minWidth: theme.sizes.m,
     height: theme.sizes.m,
-    paddingHorizontal: 24,
+    paddingHorizontal: 20,
     borderWidth: 2,
     borderRadius: theme.radii.m
   },
   contentLarge: {
     minWidth: theme.sizes.l,
     height: theme.sizes.l,
-    paddingHorizontal: 28
+    paddingHorizontal: 24
   },
   contentSmall: {
     minWidth: theme.sizes.s,

@@ -12,23 +12,50 @@ import { SearchInput } from './form/SearchInput'
 // Android support.
 UIManager.setLayoutAnimationEnabledExperimental && UIManager.setLayoutAnimationEnabledExperimental(true)
 
-export class SearchBar extends Component {
+export interface SearchBarProps {
+  cancelButtonTitle?: string
+  showCancel?: boolean
+  onClear: () => void
+  onCancel: () => void
+  onFocus: () => void
+  onBlur: () => void
+  onChangeText: (text: string) => void
+}
+
+interface SearchBarState {
+  hasFocus: boolean
+  cancelButtonWidth: number | null
+}
+
+export class SearchBar extends Component<SearchBarProps, SearchBarState> {
+  input?: { focus: () => void, blur: () => void }
+  
+  static defaultProps = {
+    cancelButtonTitle: t('actions.cancel'),
+    showCancel: false,
+    onClear: () => {},
+    onCancel: () => {},
+    onFocus: () => {},
+    onBlur: () => {},
+    onChangeText: () => {}
+  }
+
   state = {
     hasFocus: false,
-    cancelButtonWidth: null
+    cancelButtonWidth: 0
   }
 
   focus = () => {
-    this.input.focus()
+    this.input!.focus()
   }
 
   blur = () => {
-    this.input.blur()
+    this.input!.blur()
   }
 
   cancel = () => {
     if (this.props.showCancel) {
-      UIManager.configureNextLayoutAnimation && LayoutAnimation.easeInEaseOut()
+      UIManager.setLayoutAnimationEnabledExperimental && LayoutAnimation.easeInEaseOut()
       this.setState({ hasFocus: false })
     }
 
@@ -40,13 +67,13 @@ export class SearchBar extends Component {
 
   onFocus = () => {
     this.props.onFocus()
-    UIManager.configureNextLayoutAnimation && LayoutAnimation.easeInEaseOut()
+    UIManager.setLayoutAnimationEnabledExperimental && LayoutAnimation.easeInEaseOut()
     this.setState({ hasFocus: true })
   }
 
   onBlur = () => {
     this.props.onBlur()
-    UIManager.configureNextLayoutAnimation && LayoutAnimation.easeInEaseOut()
+    UIManager.setLayoutAnimationEnabledExperimental && LayoutAnimation.easeInEaseOut()
 
     if (!this.props.showCancel) {
       this.setState({
@@ -55,7 +82,7 @@ export class SearchBar extends Component {
     }
   }
 
-  onChangeText = text => {
+  onChangeText = (text: string) => {
     this.props.onChangeText(text)
   }
 
@@ -93,7 +120,7 @@ export class SearchBar extends Component {
             style={[
               styles.cancelButtonContainer,
               {
-                opacity: this.state.cancelButtonWidth === null ? 0 : 1,
+                opacity: this.state.cancelButtonWidth === 0 ? 0 : 1,
                 right: hasFocus ? 0 : -this.state.cancelButtonWidth,
               },
             ]}
@@ -111,16 +138,6 @@ export class SearchBar extends Component {
       </View>
     )
   }
-}
-
-SearchBar.defaultProps = {
-  cancelButtonTitle: t('actions.cancel'),
-  showCancel: false,
-  onClear: () => null,
-  onCancel: () => null,
-  onFocus: () => null,
-  onBlur: () => null,
-  onChangeText: () => null
 }
 
 const styles = StyleSheet.create({

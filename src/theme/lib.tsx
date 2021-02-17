@@ -1,11 +1,13 @@
-import React, { ComponentType, ReactNode, createContext, useContext, forwardRef } from 'react'
+import React, { ComponentType, ReactNode, createContext, useContext, forwardRef, ElementType } from 'react'
 import { StyleSheet, ViewStyle, TextStyle, ImageStyle } from 'react-native'
+import { Subtract } from 'utility-types'
 import defaultTheme from './default'
 
 export type Theme = typeof defaultTheme
-export type ThemeColorKey = keyof Theme['colors']
-export type ThemeFontKey = keyof Theme['fonts']
-export type ThemeSizeKey = 'xxl' | 'xl' | 'l' | 'm' | 's' | 'xs' | 'xxs'
+export type ThemeColor = keyof Theme['colors']
+export type ThemeFont = keyof Theme['fonts']
+export type ThemeSize = 'xxl' | 'xl' | 'l' | 'm' | 's' | 'xs' | 'xxs'
+export type ButtonVariant = keyof Theme['buttonVariants']
 
 type NamedStyles<T> = { [P in keyof T]: ViewStyle | TextStyle | ImageStyle }
 //  <T extends NamedStyles<T> | NamedStyles<any>>(styles: T | NamedStyles<T>
@@ -26,12 +28,15 @@ export function createThemedStyleSheet<T>(callback: ThemedStyleSheet<T>) {
   }
 }
 
-export interface ThemeContextValue {
-  theme?: Theme
-  getStyles?: <T>(themedStyleSheet: ThemedStyleSheet<T>) => NamedStyles<T>,
+export interface ThemeContextProps {
+  theme: Theme
+  getStyles: <T>(themedStyleSheet: ThemedStyleSheet<T>) => NamedStyles<T>,
 }
 
-export const ThemeContext = createContext<ThemeContextValue>({})
+export const ThemeContext = createContext<ThemeContextProps>({
+  theme: defaultTheme,
+  getStyles: themedStyleSheet => themedStyleSheet(defaultTheme)
+})
 
 export function ThemeProvider({ theme, children }: { theme: Theme, children?: ReactNode }) {
   return (
@@ -45,18 +50,20 @@ export function ThemeProvider({ theme, children }: { theme: Theme, children?: Re
 }
 
 export function useTheme() {
-  return useContext(ThemeContext).theme!
+  return useContext(ThemeContext).theme
 }
 
 export function useStyles<T>(themedStyleSheet: ThemedStyleSheet<T>) {
-  return useContext(ThemeContext).getStyles!(themedStyleSheet)
+  return useContext(ThemeContext).getStyles(themedStyleSheet)
 }
 
-export function withTheme(WrappedComponent: any) {
-  const ThemedComponent = forwardRef((props, ref: any) => (
+export function withTheme<T extends ThemeContextProps>(WrappedComponent: ComponentType<T>) {
+  type WithoutTheme = Subtract<T, ThemeContextProps>
+
+  const ThemedComponent = forwardRef<WithoutTheme, WithoutTheme>((props, ref) => (
     <ThemeContext.Consumer>
       {context => {
-        return <WrappedComponent ref={ref} {...context} {...props} />
+        return <WrappedComponent ref={ref} {...context} {...props as T} />
       }}
     </ThemeContext.Consumer>
   ))

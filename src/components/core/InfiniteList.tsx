@@ -1,22 +1,30 @@
-import noop from 'lodash'
-import React, { forwardRef, useEffect, useRef, useState } from 'react'
+import React, { Ref, ReactElement, forwardRef, useEffect, useRef, useState } from 'react'
 import { View, ActivityIndicator } from 'react-native'
 import { createThemedStyleSheet, useStyles } from 'theme'
-import { FlatList } from './lists'
+import { FlatList, FlatListProps, FlatListElement } from './lists'
 
-export const InfiniteList = forwardRef(({
-  loading,
-  refreshing = loading,
-  data,
-  offset,
-  total,
-  canLoadMore = total === undefined || (data && data.length < total),
-  onEndReachedThreshold,
-  onEndReached,
-  onLoadMore,
-  ...props
-}, ref) => {
-  const list = useRef()
+export interface InfiniteListProps<T> extends FlatListProps<T> {
+  offset?: number
+  total?: number
+  canLoadMore?: boolean
+  onLoadMore?: (...args: any[]) => any
+}
+
+export const InfiniteList = forwardRef(<T, >(props: InfiniteListProps<T>, ref: any) => {
+  const {
+    loading = false,
+    refreshing = loading,
+    data,
+    offset,
+    total,
+    canLoadMore = total === undefined || (data && data.length < total),
+    onEndReachedThreshold = 0.5,
+    onEndReached,
+    onLoadMore,
+    ...listProps
+  } = props
+
+  const list = useRef<FlatListElement | null>(null)
 
   useEffect(() => {
     if (list.current && offset === 0) {
@@ -24,14 +32,14 @@ export const InfiniteList = forwardRef(({
     }
   }, [offset])
 
-  const [onEndReachedCalledDuringScroll, setOnEndReachedCalledDuringScroll] = useState()
+  const [onEndReachedCalledDuringScroll, setOnEndReachedCalledDuringScroll] = useState(false)
   const [counter, setCounter] = useState(1)
 
   return (
-    <FlatList
+    <FlatList<T>
       ref={el => {
         list.current = el
-        ref && ref(el)
+        if (ref) ref(el)
       }}
       ListFooterComponent={<ListFooter data={data} loading={loading} />}
       loading={loading}
@@ -39,28 +47,21 @@ export const InfiniteList = forwardRef(({
       data={data}
       extraData={counter}
       onEndReachedThreshold={onEndReachedThreshold}
-      onEndReached={() => {
+      onEndReached={({ distanceFromEnd }) => {
         if (loading || refreshing) return
         if (onEndReachedCalledDuringScroll === false) {
           setOnEndReachedCalledDuringScroll(true)
-          onEndReached()
-          if (canLoadMore) onLoadMore()
+          if (onEndReached) onEndReached({ distanceFromEnd })
+          if (canLoadMore && onLoadMore) onLoadMore()
         }
       }}
       onScrollBeginDrag={() => setOnEndReachedCalledDuringScroll(false)}
       onMomentumScrollEnd={() => setCounter(counter + 1)}
-      {...props} />
+      {...listProps} />
   )
-})
+}) as <T>(p: InfiniteListProps<T> & { ref?: Ref<FlatListElement> }) => ReactElement
 
-InfiniteList.defaultProps = {
-  refreshing: false,
-  onEndReachedThreshold: 0.5,
-  onEndReached: noop,
-  onLoadMore: noop
-}
-
-const ListFooter = ({ data, loading }) => {
+const ListFooter = ({ data, loading }: { data: any, loading: boolean }) => {
   const styles = useStyles(themedStyles)
 
   return (

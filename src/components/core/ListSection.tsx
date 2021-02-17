@@ -1,9 +1,25 @@
-import React from 'react'
-import { View, StyleSheet } from 'react-native'
-import { createThemedStyleSheet, useStyles } from 'theme'
+import React, { ReactNode } from 'react'
+import { View, StyleSheet, StyleProp, TextStyle, ViewStyle } from 'react-native'
 import { Text } from './Text'
+import { createThemedStyleSheet, useStyles } from 'theme'
 
-export const ListSection = ({ style, title, titleStyle, topSpacing, bottomSpacing, children }) => {
+export interface ListSectionProps {
+  style?: StyleProp<ViewStyle>
+  titleStyle?: StyleProp<TextStyle>
+  title?: string
+  topSpacing?: boolean
+  bottomSpacing?: boolean
+  children?: ReactNode
+}
+
+export const ListSection = ({
+  style,
+  title,
+  titleStyle,
+  topSpacing,
+  bottomSpacing,
+  children
+} : ListSectionProps) => {
   const styles = useStyles(themedStyles)
   return (
     <View style={[

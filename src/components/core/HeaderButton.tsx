@@ -1,7 +1,7 @@
 import React from 'react'
-import { Button } from './Button'
+import { Button, ButtonProps } from './Button'
 
-export const HeaderButton = (props) => {
+export const HeaderButton = (props: ButtonProps) => {
   return (
     <Button
       size="s"

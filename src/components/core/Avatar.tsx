@@ -1,21 +1,32 @@
-import React from 'react'
-import { View, StyleSheet } from 'react-native'
-import { useTheme } from 'theme'
-import { renderIcon } from 'helpers/ui'
-import ImageLoader from './ImageLoader'
+import React, { ReactNode } from 'react'
+import { View, StyleSheet, StyleProp, ViewStyle, ImageStyle, ImageProps } from 'react-native'
+import { IconProp, renderIcon } from 'helpers/ui'
+import { ThemeSize, useTheme } from 'theme'
+import { ImageLoader } from './ImageLoader'
 
-export default function Avatar({
+export interface AvatarProps {
+  style?: StyleProp<ViewStyle>
+  imageContainerStyle?: StyleProp<ViewStyle>
+  imageStyle?: StyleProp<ImageStyle>
+  size?: ThemeSize | number,
+  rounded?: boolean,
+  icon?: IconProp,
+  source?: ImageProps['source'],
+  children?: ReactNode
+}
+
+export function Avatar({
   style,
   imageContainerStyle,
   imageStyle,
-  size,
+  size = 'm',
   rounded,
   icon,
   source,
   children
-}) {
+} : AvatarProps) {
   const theme = useTheme()
-  const width = theme.sizes[size]
+  const width = typeof size === 'string' ? theme.sizes[size] : size
 
   let placeholderContent
 
@@ -42,8 +53,4 @@ export default function Avatar({
       )}
     </View>
   )
-}
-
-Avatar.defaultProps = {
-  size: 'm'
 }

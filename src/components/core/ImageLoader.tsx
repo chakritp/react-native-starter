@@ -1,25 +1,39 @@
-import noop from 'lodash/noop'
-import React, { PureComponent } from 'react'
+import React, { ComponentType, PureComponent, ReactNode } from 'react'
 import {
   Animated,
   Image,
   StyleSheet,
+  StyleProp,
+  ViewStyle,
   View,
   Platform,
+  ImageProps,
+  ImageStyle,
+  NativeSyntheticEvent,
+  ImageLoadEventData
 } from 'react-native'
-import { createThemedStyleSheet, withTheme } from 'theme'
+import { ThemeContextProps, createThemedStyleSheet, withTheme } from 'theme'
 
-class ImageLoaderBase extends PureComponent {
-  static defaultProps = {
-    ImageComponent: Image,
-    onLoad: noop
-  }
+export interface ImageLoaderProps extends Omit<ImageProps, 'style' | 'source'> {
+  style?: StyleProp<ViewStyle>
+  imageStyle?: StyleProp<ImageStyle>
+  placeholderStyle?: StyleProp<ViewStyle>
+  placeholderContent?: ReactNode
+  ImageComponent?: ComponentType<ImageProps>
+  source?: ImageProps['source']
+  children?: ReactNode
+}
 
+interface ImageLoaderState {
+  placeholderOpacity: Animated.Value
+}
+
+class ImageLoaderBase extends PureComponent<ImageLoaderProps & ThemeContextProps, ImageLoaderState> {
   state = {
     placeholderOpacity: new Animated.Value(1),
   }
 
-  onLoad = () => {
+  onLoad = (ev: NativeSyntheticEvent<ImageLoadEventData>) => {
     const minimumWait = 100
     const staggerNonce = 200 * Math.random()
 
@@ -34,7 +48,9 @@ class ImageLoaderBase extends PureComponent {
       Platform.OS === 'android' ? 0 : Math.floor(minimumWait + staggerNonce)
     )
 
-    this.props.onLoad()
+    if (this.props.onLoad) {
+      this.props.onLoad(ev)
+    }
   }
 
   render() {
@@ -44,22 +60,27 @@ class ImageLoaderBase extends PureComponent {
       placeholderContent,
       style,
       imageStyle,
-      ImageComponent,
+      ImageComponent = Image,
+      source,
       children,
       ...imageProps
     } = this.props
     const styles = getStyles(themedStyles)
-    const hasImage = !!imageProps.source
+    const hasImage = !!source
 
     return (
       <View
         accessibilityIgnoresInvertColors={true}
         style={[styles.container, style]}>
-        <ImageComponent
-          {...imageProps}
-          onLoad={this.onLoad}
-          style={[StyleSheet.absoluteFill, imageStyle]} />
 
+        {source && (
+          <ImageComponent
+            {...imageProps}
+            source={source}
+            onLoad={this.onLoad}
+            style={[StyleSheet.absoluteFill, imageStyle]} />
+        )}
+        
         <Animated.View
           pointerEvents={hasImage ? 'none' : 'auto'}
           accessibilityElementsHidden={hasImage}

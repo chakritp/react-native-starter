@@ -1,16 +1,42 @@
 import noop from 'lodash/identity'
 import React, { useRef, useState } from 'react'
-import { View, KeyboardAvoidingView, Platform } from 'react-native'
+import { View, KeyboardAvoidingView, Platform, StyleProp, ViewStyle } from 'react-native'
 import { createThemedStyleSheet, useStyles } from 'theme'
-import { Container } from './layout'
-import { InfiniteList } from './InfiniteList'
+import { Container, ContainerProps } from './layout'
+import { InfiniteListProps, InfiniteList } from './InfiniteList'
 import { LoadingOverlay } from './LoadingOverlay'
-import { ListItem } from './ListItem'
-import { SearchBar } from './SearchBar'
+import { ListItem, ListItemProps } from './ListItem'
+import { SearchBar, SearchBarProps } from './SearchBar'
+import { FlatListElement } from './lists'
 
-export const SelectionList = ({
-  safe = 'bottom',
+const defaultKeyExtractor = (item: any) => `${item.value}`
+const defaultItemPropsExtractor = (item: any) => ({ title: item.label })
+
+export interface SelectionListProps<T> extends SearchBarProps, Pick<Omit<InfiniteListProps<T>, 'onLoadMore' | 'onRefresh'>,
+  'total' |
+  'loading' |
+  'refreshing' |
+  'canLoadMore' |
+  'keyExtractor' |
+  'itemSeparator' |
+  'emptyText'
+> {
+  style?: StyleProp<ViewStyle>
+  safe?: ContainerProps['safe']
+  searchBar?: boolean
+  placeholder?: string
+  items?: T[]
+  itemPropsExtractor?: (item: T) => ListItemProps
+  onLoad?: (query: string) => void
+  onLoadMore?: (query: string) => void
+  onRefresh?: (query: string) => void
+  onSelect?: (item: T) => void
+  onDone?: () => void
+}
+
+export const SelectionList = <T, >({
   style,
+  safe = 'bottom',
   searchBar,
   itemSeparator = true,
   placeholder,
@@ -19,18 +45,18 @@ export const SelectionList = ({
   items,
   total,
   canLoadMore,
-  keyExtractor,
-  itemPropsExtractor,
   emptyText,
-  onLoad,
+  keyExtractor = defaultKeyExtractor,
+  itemPropsExtractor = defaultItemPropsExtractor,
   onLoadMore,
   onRefresh,
-  onSelect,
-  onDone,
-  ...props
-}) => {
+  onLoad = noop,
+  onSelect = noop,
+  onDone = noop,
+  ...searchBarProps
+}: SelectionListProps<T>) => {
   const styles = useStyles(themedStyles)
-  const list = useRef()
+  const list = useRef<FlatListElement | null>(null)
   const [query, setQuery] = useState('')
   const done = () => {
     setQuery('')
@@ -53,7 +79,7 @@ export const SelectionList = ({
             }
           }}
           onCancel={done}
-          {...props} />
+          {...searchBarProps} />
       )}
 
       <KeyboardAvoidingView style={{ flex: 1 }} behavior="padding" enabled>
@@ -87,13 +113,6 @@ export const SelectionList = ({
       </KeyboardAvoidingView>
     </Container>
   )
-}
-
-SelectionList.defaultProps = {
-  itemPropsExtractor: item => ({ title: item.label }),
-  keyExtractor: item => `${item.value}`,
-  onSelect: noop,
-  onDone: noop
 }
 
 const themedStyles = createThemedStyleSheet(theme => ({

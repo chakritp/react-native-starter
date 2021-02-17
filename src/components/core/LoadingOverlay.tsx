@@ -1,21 +1,25 @@
 import React from 'react'
 import { View, ActivityIndicator } from 'react-native'
-import { Overlay } from './Overlay'
-import { useTheme } from 'theme'
+import { Overlay, OverlayProps } from './Overlay'
+import { ThemeColor, useTheme } from 'theme'
 import { Text } from './Text'
+
+export interface LoadingOverlayProps extends OverlayProps {
+  contentColor?: ThemeColor | string
+  text?: string
+}
 
 export const LoadingOverlay = ({
   contentColor = 'text',
   text,
-  show,
   children,
   ...props
-}) => {
+}: LoadingOverlayProps) => {
   const theme = useTheme()
-  contentColor = theme.colors[contentColor] || contentColor
+  contentColor = theme.colors[contentColor as ThemeColor] || contentColor
 
   return (
-    <Overlay show={show} {...props}>
+    <Overlay {...props}>
       <ActivityIndicator size="large" color={contentColor} />
       {(text || children) && (
         <View style={{ marginTop: theme.spacing.l }}>

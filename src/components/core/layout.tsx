@@ -15,10 +15,10 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import { useHeaderHeight } from '@react-navigation/stack'
 import { createThemedStyleSheet, useStyles, useTheme } from 'theme'
 import { IconProp, renderIcon } from 'helpers/ui'
-import { Theme, ThemeSizeKey } from 'theme'
+import { Theme, ThemeSize } from 'theme'
 import { Text } from './Text'
 
-type PaddingProp = ThemeSizeKey | number | boolean
+type PaddingProp = ThemeSize | number | boolean
 
 interface PaddingProps {
   padding?: PaddingProp
@@ -29,7 +29,7 @@ interface PaddingProps {
 export interface ContainerProps extends PaddingProps, ViewProps {
   center?: boolean
   keyboard?: boolean
-  safe?: SafeAreaContentProps['safe']
+  safe?: SafeAreaProps['safe']
   children?: ReactNode
 }
 
@@ -64,7 +64,7 @@ export const Container = ({
         style
       ]}
       {...props}>
-      {safe ? <SafeAreaContent safe={safe}>{children}</SafeAreaContent> : children}
+      {safe ? <SafeArea safe={safe}>{children}</SafeArea> : children}
     </View>
   )
 }
@@ -124,7 +124,7 @@ export const ScrollContainer = ({
           }} />
       )}
       {...props}>
-      {safe ? <SafeAreaContent safe={safe}>{children}</SafeAreaContent> : children}
+      {safe ? <SafeArea safe={safe}>{children}</SafeArea> : children}
     </ScrollView>
   )
 }
@@ -167,12 +167,12 @@ export const Heading = ({ style, icon, title, subtitle, children }: HeadingProps
   )
 }
 
-export interface SafeAreaContentProps {
+export interface SafeAreaProps {
   safe?: boolean | 'top' | 'bottom'
   children?: ReactNode
 }
 
-const SafeAreaContent = ({ safe = true, children }: SafeAreaContentProps) => {
+export const SafeArea = ({ safe = true, children }: SafeAreaProps) => {
   const insets = useSafeAreaInsets()
   const containerStyle: any = { flex: 1 }
   
@@ -228,7 +228,7 @@ function getPaddingStyle(theme: Theme, props: PaddingProps) {
     if (value === true) {
       style[key] = theme.spacing.l
     } else if (value) {
-      style[key] = typeof value === 'string' ? theme.spacing[value as ThemeSizeKey] : theme
+      style[key] = typeof value === 'string' ? theme.spacing[value as ThemeSize] : theme
     }
   }
 

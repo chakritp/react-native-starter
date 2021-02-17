@@ -1,4 +1,4 @@
-import React, { ReactNode, useEffect, useMemo, useRef } from 'react'
+import React, { ReactElement, useEffect, useMemo, useRef } from 'react'
 import { NavigationState } from '@react-navigation/native'
 import { mockApi, mockLocalStorage } from 'mocks'
 import { Root as $Root } from 'screens/Root'
@@ -103,7 +103,7 @@ export function createSignedInDecorator() {
   }
 }
 
-export const SignedInDecorator = (props: { children: ReactNode }) => {
+export const SignedInDecorator = (props: { children: ReactElement }) => {
   useMocks(({ localStorage }) => {
     localStorage.set('/appStore/deviceId', 'test-device-id')
     localStorage.set('/authStore/accessToken', 'test-token')

@@ -1,4 +1,4 @@
 export default {
-  body: 'Roboto',
-  heading: 'Roboto'
+  body: 'Work Sans',
+  heading: 'Work Sans'
 }

@@ -1,18 +1,37 @@
-import React, { forwardRef, useEffect, useRef } from 'react'
-import { View, FlatList as $FlatList, RefreshControl, StyleSheet } from 'react-native'
-import { createThemedStyleSheet, useStyles, useTheme } from 'theme'
+import React, { Ref, ReactElement, forwardRef, useEffect, useRef } from 'react'
+import {
+  View,
+  FlatList as $FlatList,
+  RefreshControl,
+  StyleSheet,
+  StyleProp,
+  ViewStyle,
+  FlatListProps as $FlatListProps
+} from 'react-native'
 import { t } from 'helpers/i18n'
+import { createThemedStyleSheet, useStyles, useTheme } from 'theme'
 import { Text } from './Text'
 
-export const List = ({
+const defaultKeyExtractor = (item: any) => `${item.id}`
+
+export interface ListProps<T> {
+  style?: StyleProp<ViewStyle>
+  data?: T[]
+  emptyText?: string
+  keyExtractor?: (item: T) => string | undefined,
+  renderItem: ({ item }: { item: T }) => ReactElement | null,
+  itemSeparator?: boolean
+}
+
+export const List = <T, >({
   style,
   data,
   emptyText,
-  keyExtractor,
+  keyExtractor = defaultKeyExtractor,
   renderItem,
   itemSeparator,
-}) => {
-  const length = data.length
+}: ListProps<T>) => {
+  const length = data?.length
   return (
     <View style={style}>
       {data ? (
@@ -27,7 +46,7 @@ export const List = ({
               </View>
             ))
           ) : (
-            <ListEmpty text={emptyText} />
+            <ListEmpty text={emptyText || t('messages.noResults')} />
           )}
         </>
       ) : null}
@@ -35,54 +54,55 @@ export const List = ({
   )
 }
 
-List.defaultProps = {
-  keyExtractor: item => `${item.id}`,
-  emptyText: t('messages.noResults'),
+export interface FlatListProps<T> extends $FlatListProps<T> {
+  emptyText?: string
+  itemSeparator?: boolean
+  loading?: boolean
 }
 
-export const FlatList = forwardRef(({
-  data,
-  emptyText,
-  itemSeparator,
-  loading,
-  refreshing,
-  onRefresh,
-  ...props
-}, ref) => {
+export const FlatList = forwardRef(<T, >(props: FlatListProps<T>, ref: any) => {
+  const {
+    data,
+    emptyText,
+    itemSeparator,
+    loading,
+    refreshing,
+    onRefresh,
+    ...listProps
+  } = props
+
   const theme = useTheme()
   const refreshRef = useRef(false)
 
   useEffect(() => {
     if (!refreshing) {
-      refreshRef.refreshing = false
+      refreshRef.current = false
     }
   }, [refreshing])
   
   return (
     <$FlatList
       ref={ref}
+      keyboardShouldPersistTaps="always"
       ItemSeparatorComponent={itemSeparator ? ItemSeparator : undefined}
-      ListEmptyComponent={data && !loading ? <ListEmpty text={emptyText} /> : null}
-      refreshControl={onRefresh && (
+      ListEmptyComponent={data && !loading ? <ListEmpty text={emptyText || t('messages.noResults')} /> : null}
+      refreshControl={onRefresh ? (
         <RefreshControl
-          refreshing={refreshRef.current && refreshing}
+          refreshing={refreshRef.current && !!refreshing}
           tintColor={theme.colors.textMuted}
           onRefresh={() => {
             refreshRef.current = true
             onRefresh()
           }} />
-      )}
+      ) : undefined}
       data={data}
-      {...props} />
+      {...listProps} />
   )
-})
+}) as <T>(p: FlatListProps<T> & { ref?: Ref<$FlatList> }) => ReactElement
 
-FlatList.defaultProps = {
-  ...List.defaultProps,
-  keyboardShouldPersistTaps: 'always'
-}
+export type FlatListElement = $FlatList
 
-export const ListEmpty = ({ text }) => {
+export const ListEmpty = ({ text }: { text: string }) => {
   const styles = useStyles(themedStyles)
   return (
     <View style={styles.listEmptyContainer}>
@@ -91,7 +111,7 @@ export const ListEmpty = ({ text }) => {
   )
 }
 
-export const ItemSeparator = ({ highlighted }) => {
+export const ItemSeparator = () => {
   const styles = useStyles(themedStyles)
   return <View style={styles.itemSeparator} />
 }

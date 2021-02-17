@@ -15,22 +15,25 @@ const SIZE_VALUES = {
   [WindowSize.L]: 4
 }
 
-const { width, height } = Dimensions.get('window')
-
-const size = height <= 580
-  ? height <= 480 ? WindowSize.XS : WindowSize.S
-  : height <= 720 ? WindowSize.M : WindowSize.L
-
 const window = {
-  width,
-  height,
   statusBarOffset: Platform.OS === 'android' || DeviceInfo.hasNotch() ? 0 : 20,
-  size,
+  get width() {
+    return Dimensions.get('window').width
+  },
+  get height() {
+    return Dimensions.get('window').height
+  },
+  get size() {
+    const { height } = window
+    return height <= 580
+      ? height <= 480 ? WindowSize.XS : WindowSize.S
+      : height <= 720 ? WindowSize.M : WindowSize.L
+  },
   sizeUp(fromSize: WindowSize) {
-    return SIZE_VALUES[size] >= SIZE_VALUES[fromSize]
+    return SIZE_VALUES[window.size] >= SIZE_VALUES[fromSize]
   },
   sizeDown(fromSize: WindowSize) {
-    return SIZE_VALUES[size] <= SIZE_VALUES[fromSize]
+    return SIZE_VALUES[window.size] <= SIZE_VALUES[fromSize]
   }
 }
 

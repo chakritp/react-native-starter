@@ -1,19 +1,29 @@
-import React, { isValidElement } from 'react'
-import { View } from 'react-native'
-import { createThemedStyleSheet, useStyles, useTheme } from 'theme'
+import React, { isValidElement, ReactNode } from 'react'
+import { StyleProp, TextStyle, View, ViewStyle } from 'react-native'
+import { ThemeColor, ThemeSize, createThemedStyleSheet, useStyles, useTheme } from 'theme'
 import { Text } from './Text'
+
+export interface BadgeProps {
+  style?: StyleProp<ViewStyle>,
+  textStyle?: StyleProp<TextStyle>
+  color?: ThemeColor | string
+  textColor?: ThemeColor | string
+  size?: ThemeSize | number
+  children?: ReactNode
+}
 
 export const Badge = ({
   style,
   textStyle,
   color,
   textColor = 'textInverse',
-  size,
+  size: _size = 's',
   children
-}) => {
+} : BadgeProps) => {
   const theme = useTheme()
   const styles = useStyles(themedStyles)
-  const height = Math.round(theme.fontSizes[size] * (children ? 1.5 : 0.65))
+  const size = typeof _size === 'string' ? theme.fontSizes[_size] : _size 
+  const height = Math.round(size * (children ? 1.5 : 0.65))
 
   return (
     <View style={[
@@ -23,7 +33,7 @@ export const Badge = ({
         minWidth: height,
         borderRadius: height / 2,
         paddingHorizontal: children ? height / 4 : 0,
-        backgroundColor: theme.colors[color] || color
+        backgroundColor: theme.colors[color as ThemeColor] || color
       },
       style
     ]}>
@@ -31,7 +41,7 @@ export const Badge = ({
         <Text
           style={[
             styles.text,
-            { fontSize: theme.fontSizes[size] },
+            { fontSize: typeof size === 'string' ? theme.fontSizes[size] : size },
             textStyle
           ]}
           color={textColor}>

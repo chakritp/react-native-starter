@@ -1,11 +1,11 @@
 import React, { ReactNode } from 'react'
 import { StyleProp, Text as RNText, TextProps as $TextProps, TextStyle } from 'react-native'
-import { ThemeColorKey, ThemeFontKey, ThemeSizeKey, useTheme } from 'theme'
+import { ThemeColor, ThemeFont, ThemeSize, useTheme } from 'theme'
 
 export interface TextProps extends $TextProps {
-  font?: ThemeFontKey | string
-  size?: ThemeSizeKey | number
-  color?: ThemeColorKey | string
+  font?: ThemeFont | string
+  size?: ThemeSize | number
+  color?: ThemeColor | string
   align?: 'left' | 'center' | 'right'
   children?: ReactNode
 }
@@ -21,7 +21,7 @@ const TextBase = ({ style, font, size, color, align, ...props }: TextProps) => {
     baseStyle.fontSize = typeof size === 'string' ? theme.fontSizes[size] : size
   }
   if (color) {
-    baseStyle.color = theme.colors[color as ThemeColorKey] || color
+    baseStyle.color = theme.colors[color as ThemeColor] || color
   }
   if (align) {
     baseStyle.textAlign = align

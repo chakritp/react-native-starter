@@ -1,4 +1,3 @@
-import noop from 'lodash'
 import React, { useContext, useEffect, useMemo, useRef, useState } from 'react'
 import { View, Keyboard, TouchableOpacity } from 'react-native'
 import { NavigationContext } from '@react-navigation/native'
@@ -7,32 +6,55 @@ import { Text } from './Text'
 import { Transition } from './Transition'
 import { createThemedStyleSheet, useStyles, useTheme } from 'theme'
 
+export enum ToastType {
+  INFO = 'info',
+  SUCCESS = 'success',
+  WARNING = 'warning',
+  DANGER = 'danger'
+}
+
+export interface ToastConfig {
+  type?: ToastType
+  text: string
+  hideDelay?: number
+  onHide?: () => void
+}
+
+interface ToastController {
+  show: (config: ToastConfig) => void
+  hide: () => void
+}
+
 export const Toast = ({ offset = 0 }) => {
   const navigation = useContext(NavigationContext)
   const [focused, setFocused] = useState(navigation ? navigation.isFocused : true)
   const [keyboardOffset, setKeyboardOffset] = useState(0)
-  const [config, setConfig] = useState()
+  const [config, setConfig] = useState<ToastConfig | null>(null)
   const nextKeyboardOffsetRef = useRef(0)
-  const dismissTimer = useRef()
-  const dismissCallback = useRef(noop)
+  const dismissTimer = useRef<NodeJS.Timeout | undefined>()
+  const dismissCallback = useRef<ToastConfig['onHide'] | null>()
 
-  const instance = useMemo(() => ({
-    show(config) {
+  const controller = useMemo<ToastController>(() => ({
+    show(config: ToastConfig) {
       setConfig(config)
-      clearTimeout(dismissTimer.current)
+      if (dismissTimer.current !== undefined) {
+        clearTimeout(dismissTimer.current)
+      }
       dismissCallback.current = config.onHide
-      dismissTimer.current = setTimeout(instance.hide, config.hideDelay || 2000)
+      dismissTimer.current = setTimeout(controller.hide, config.hideDelay || 2000)
     },
     hide() {
       if (dismissCallback.current) dismissCallback.current()
-      dismissCallback.current = noop
+      dismissCallback.current = null
       setConfig(null)
-      clearTimeout(dismissTimer.current)
+      if (dismissTimer.current !== undefined) {
+        clearTimeout(dismissTimer.current)
+      }
     }
   }), [])
 
   useEffect(() => {
-    const subscriptions = []
+    const subscriptions: any[] = []
 
     if (navigation) {
       subscriptions.push(navigation.addListener('focus', () => {
@@ -44,8 +66,6 @@ export const Toast = ({ offset = 0 }) => {
       }))
     }
 
-    // TODO: We might want to remove keyboard offset management since
-    // forms dismiss the keyboard on submission by default.
     subscriptions.push(Keyboard.addListener('keyboardDidShow', e => {
       nextKeyboardOffsetRef.current = e.endCoordinates.height
     }))
@@ -58,11 +78,11 @@ export const Toast = ({ offset = 0 }) => {
 
   useEffect(() => {
     if (focused) {
-      Toast._registerContainer(instance)
+      Toast._registerController(controller)
     } else {
-      Toast._unregisterContainer(instance)
+      Toast._unregisterController(controller)
     }
-    return () => Toast._unregisterContainer(instance)
+    return () => Toast._unregisterController(controller)
   }, [focused])
 
   const modal = (
@@ -75,7 +95,7 @@ export const Toast = ({ offset = 0 }) => {
       onTransitionBegin={() => {
         setKeyboardOffset(nextKeyboardOffsetRef.current)
       }}>
-      {() => <ToastModal {...config} onDismiss={instance.hide} />}
+      {() => config ? <ToastModal {...config} onDismiss={controller.hide} /> : null}
     </Transition>
   )
 
@@ -98,44 +118,44 @@ export const Toast = ({ offset = 0 }) => {
 
 Toast.TAB_BAR_OFFSET = 48
 
-Toast._containers = []
+Toast._controllers = [] as ToastController[]
 
-Toast.show = config => {
+Toast.show = (config: ToastConfig) => {
   config = normalizeConfig(config)
-  Toast._getActiveContainer().show({ ...config })
+  Toast._getActiveController().show({ ...config })
 }
 
-Toast.info = config => Toast.show(normalizeConfig(config, { type: 'info' }))
+Toast.info = (config: ToastConfig) => Toast.show(normalizeConfig(config, { type: ToastType.INFO }))
 
-Toast.success = config => Toast.show(normalizeConfig(config, { type: 'success', hideDelay: 800 }))
+Toast.success = (config: ToastConfig) => Toast.show(normalizeConfig(config, { type: ToastType.SUCCESS, hideDelay: 800 }))
 
-Toast.warning = config => Toast.show(normalizeConfig(config, { type: 'warning' }))
+Toast.warning = (config: ToastConfig) => Toast.show(normalizeConfig(config, { type: ToastType.WARNING }))
 
-Toast.danger = config => Toast.show(normalizeConfig(config, { type: 'danger' }))
+Toast.danger = (config: ToastConfig) => Toast.show(normalizeConfig(config, { type: ToastType.DANGER }))
 
 Toast.hide = () => {
-  const container = Toast._getActiveContainer()
-  if (container) container.hide()
+  const controller = Toast._getActiveController()
+  if (controller) controller.hide()
 }
 
-Toast.handleNavigationStateChange = (navState) => {
+Toast.handleNavigationStateChange = (_navState: object) => {
   Toast.hide()
 }
 
-Toast._registerContainer = function(container) {
-  this._containers.push(container)
+Toast._registerController = function(controller: ToastController) {
+  this._controllers.push(controller)
 }
 
-Toast._unregisterContainer = function(container) {
-  const idx = this._containers.indexOf(container)
-  if (idx > -1) this._containers.splice(idx, 1)
+Toast._unregisterController = function(controller: ToastController) {
+  const idx = this._controllers.indexOf(controller)
+  if (idx > -1) this._controllers.splice(idx, 1)
 }
 
-Toast._getActiveContainer = function() {
-  return this._containers[this._containers.length - 1]
+Toast._getActiveController = function() {
+  return this._controllers[this._controllers.length - 1]
 }
 
-const ToastModal = ({ type = 'info', text, onDismiss }) => {
+const ToastModal = ({ type = ToastType.INFO, text, onDismiss }: { type?: ToastType, text: string, onDismiss?: () => void }) => {
   const theme = useTheme()
   const styles = useStyles(themedStyles)
   return (
@@ -157,9 +177,9 @@ const themedStyles = createThemedStyleSheet(theme => ({
   }
 }))
 
-function normalizeConfig(config, defaults) {
+function normalizeConfig(config: ToastConfig | string, defaults?: Partial<ToastConfig>) {
   if (typeof config === 'string') {
-    config = { text: config }
+    config = { text: config } as ToastConfig
   }
   return defaults ? { ...defaults, ...config } : config
 }

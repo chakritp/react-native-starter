@@ -86,11 +86,13 @@ export default {
       bgColor: palette.blue500,
       textColor: palette.white,
       outlineColor: 'transparent',
+      radius: null
     },
     secondary: {
       bgColor: 'transparent',
       textColor: palette.blue500,
       outlineColor: palette.blue500,
+      radius: null
     },
     listFooter: {
       bgColor: palette.white,
