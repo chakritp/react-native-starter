@@ -120,18 +120,18 @@ Toast.TAB_BAR_OFFSET = 48
 
 Toast._controllers = [] as ToastController[]
 
-Toast.show = (config: ToastConfig) => {
+Toast.show = (config: ToastConfig | string) => {
   config = normalizeConfig(config)
   Toast._getActiveController().show({ ...config })
 }
 
-Toast.info = (config: ToastConfig) => Toast.show(normalizeConfig(config, { type: ToastType.INFO }))
+Toast.info = (config: ToastConfig | string) => Toast.show(normalizeConfig(config, { type: ToastType.INFO }))
 
-Toast.success = (config: ToastConfig) => Toast.show(normalizeConfig(config, { type: ToastType.SUCCESS, hideDelay: 800 }))
+Toast.success = (config: ToastConfig | string) => Toast.show(normalizeConfig(config, { type: ToastType.SUCCESS, hideDelay: 800 }))
 
-Toast.warning = (config: ToastConfig) => Toast.show(normalizeConfig(config, { type: ToastType.WARNING }))
+Toast.warning = (config: ToastConfig | string) => Toast.show(normalizeConfig(config, { type: ToastType.WARNING }))
 
-Toast.danger = (config: ToastConfig) => Toast.show(normalizeConfig(config, { type: ToastType.DANGER }))
+Toast.danger = (config: ToastConfig | string) => Toast.show(normalizeConfig(config, { type: ToastType.DANGER }))
 
 Toast.hide = () => {
   const controller = Toast._getActiveController()

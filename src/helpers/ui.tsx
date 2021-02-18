@@ -25,14 +25,16 @@ export function renderIcon(
   return icon
 }
 
-export function showAlert(options: {
+export interface ShowAlertOptions {
   title?: string
   message?: string
   onDismiss?: () => void
   defaultAction?: Partial<AlertButton>
   actions?: AlertButton[]
   extraActions?: AlertButton[]
-} = {}) {
+}
+
+export function showAlert(options: ShowAlertOptions = {}) {
   let {
     title = '',
     message,

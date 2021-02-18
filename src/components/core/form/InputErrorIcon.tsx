@@ -1,14 +1,12 @@
 import React from 'react'
-import { useTheme } from 'theme'
-import { Icon } from '../Icon'
+import { Icon, IconProps } from '../Icon'
 
-export const InputErrorIcon = ({ size, ...props }) => {
-  const theme = useTheme()
+export const InputErrorIcon = ({ size = 'l', ...props }: Omit<IconProps, 'name'>) => {
   return (
     <Icon
       name="error"
       color="danger"
-      size={size || theme.fontSizes.l}
+      size={size}
       {...props} />
   )
 }

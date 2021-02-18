@@ -81,6 +81,7 @@ export default {
     s: 4,
     xs: 3
   },
+  keyboardAppearance: 'light',
   buttonVariants: {
     primary: {
       bgColor: palette.blue500,

@@ -2,8 +2,9 @@ import upperFirst from 'lodash/upperFirst'
 import moment from 'moment'
 import { I18nManager } from 'react-native'
 import * as RNLocalize from 'react-native-localize'
-import i18n from 'i18n-js'
+import { FieldError } from 'react-hook-form'
 import { ValidationError } from 'yup'
+import i18n from 'i18n-js'
 
 const locales = {
   en: () => require('locales/en.json')
@@ -41,7 +42,7 @@ export const toPercentage = i18n.toPercentage.bind(i18n)
 export const toHumanSize = i18n.toHumanSize.bind(i18n)
 
 export function useTranslate(baseScope: string) {
-  return (scope: string, options?: object) => t(`${baseScope}.${scope}`, {
+  return (scope: string, options?: i18n.TranslateOptions) => t(`${baseScope}.${scope}`, {
     defaults: [{ scope }],
     ...options
   })
@@ -76,7 +77,7 @@ export function apiErrorMessage(error: any, options: { scope?: string } = {}) {
 }
 
 export function validationMessage(
-  error: ValidationError,
+  error: ValidationError | FieldError,
   options: { form?: string, field?: string, label?: string } = {}
 ) {
   if (error.message) {
@@ -137,7 +138,7 @@ export function formFieldLabel(field: string, options: { form?: string } = {}) {
   })
 }
 
-export function translateForm(form: string, scope: string, options: object) {
+export function translateForm(form: string, scope: string, options?: i18n.TranslateOptions) {
   return t(`forms.${form}.${scope}`, {
     defaults: [
       { scope: `forms.common.${scope}` },

@@ -1,16 +1,46 @@
 
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef } from 'react'
 import { Keyboard } from 'react-native'
-import { useForm as useReactHookForm } from 'react-hook-form'
+import {
+  FieldName,
+  FieldValues,
+  UseFormOptions as $UseFormOptions,
+  UseFormMethods as $UseFormMethods,
+  SubmitHandler,
+  FieldError,
+  useForm as $useForm,
+  useFormContext as $useFormContext,
+} from 'react-hook-form'
 import { useNavigation } from '@react-navigation/native'
 import { yupResolver } from '@hookform/resolvers/yup'
+import { AnyObjectSchema } from 'yup'
+import i18n from 'i18n-js'
+import { ApiNetworkError, ApiServerError } from 'lib/api'
 import { translateForm, validationMessage } from 'helpers/i18n'
-import { useBackHandler, useErrorAlert } from '../hooks'
+import { UseErrorAlertOptions, useBackHandler, useErrorAlert } from '../hooks'
 import { Toast } from '../Toast'
 
-export function useForm(options = {}) {
+export interface UseFormOptions<TFieldValues extends FieldValues = FieldValues, TContext extends object = object> extends $UseFormOptions<TFieldValues, TContext> {
+  name?: string
+  schema?: AnyObjectSchema
+  showValidationError?: (error: FieldError, field: string) => void
+  onSubmit?: SubmitHandler<TFieldValues>
+  onSuccess?: () => void
+} 
+
+export interface UseFormMethods<TFieldValues extends FieldValues = FieldValues> extends $UseFormMethods<TFieldValues> {
+  defaultValues: UseFormOptions<TFieldValues>['defaultValues']
+  submitError?: Error | ApiNetworkError | ApiServerError
+  translate: (scope: string, options?: i18n.TranslateOptions) => string
+  submit: () => void
+  showValidationError?: UseFormOptions['showValidationError']
+}
+
+export function useForm<TFieldValues extends FieldValues = FieldValues, TContext extends object = object>(
+  options: UseFormOptions<TFieldValues, TContext>
+) {
   const {
-    name,
+    name = 'common',
     schema,
     showValidationError,
     onSubmit,
@@ -19,9 +49,9 @@ export function useForm(options = {}) {
   } = options
 
   const _defaultValues = useMemo(() => formOptions.defaultValues, [])
-  const submitErrorRef = useRef()
-  const onSubmitRef = useRef()
-  const onSuccessRef = useRef()
+  const submitErrorRef = useRef<Error | ApiNetworkError | ApiServerError>()
+  const onSubmitRef = useRef<UseFormOptions<TFieldValues, TContext>['onSubmit']>()
+  const onSuccessRef = useRef<UseFormOptions<TFieldValues, TContext>['onSuccess']>()
 
   onSubmitRef.current = onSubmit
   onSuccessRef.current = onSuccess
@@ -31,12 +61,12 @@ export function useForm(options = {}) {
   }
 
   // Add a scoped translation helper to props.
-  const translate = useCallback((...args) => translateForm(name, ...args), [name])
+  const translate = useCallback((scope: string, options?: i18n.TranslateOptions) => translateForm(name, scope, options), [name])
 
-  const form = useReactHookForm(formOptions)
+  const form = $useForm(formOptions) as UseFormMethods<TFieldValues>
   form.defaultValues = _defaultValues
 
-  const defaultShowValidationError = useCallback((error, field) => {
+  const defaultShowValidationError = useCallback((error: FieldError, field: string) => {
     Toast.danger(validationMessage(error, { form: name, field }))
   }, [name])
 
@@ -68,7 +98,7 @@ export function useForm(options = {}) {
         if (error.code === 'invalid_request' && error.parameters) {
           for (const fieldName of Object.keys(error.parameters)) {
             const message = error.parameters[fieldName][0]
-            form.setError(fieldName, { message })
+            form.setError(fieldName as FieldName<TFieldValues>, { message })
           }
         }
       } else if (onSuccessRef.current) {
@@ -82,7 +112,7 @@ export function useForm(options = {}) {
     if (errors && _showValidationError) {
       const field = Object.keys(errors)[0]
       if (field) {
-        _showValidationError(errors[field], field)
+        _showValidationError(errors[field] as FieldError, field)
       }
     }
   }, [form.errors, form.formState.isSubmitting, _showValidationError])
@@ -97,7 +127,7 @@ export function useForm(options = {}) {
   }
 }
 
-export function useFormErrorAlert(form, options) {
+export function useFormErrorAlert(form: UseFormMethods, options: UseErrorAlertOptions) {
   return useErrorAlert({
     error: form.submitError,
     ignoreValidationError: true,
@@ -105,7 +135,7 @@ export function useFormErrorAlert(form, options) {
   })
 }
 
-export function useFormScreen(options) {
+export function useFormScreen(options: UseFormOptions) {
   const form = useForm(options)
   const { isSubmitting } = form.formState
   const navigation = useNavigation()
@@ -121,3 +151,6 @@ export function useFormScreen(options) {
 
   return form
 }
+
+export const useFormContext = $useFormContext as <TFieldValues extends Record<string, any>>() => UseFormMethods<TFieldValues>
+

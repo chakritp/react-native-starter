@@ -17,7 +17,7 @@ export function useFocus(callback: (...args: any[]) => any, deps: any[]) {
   return useFocusEffect(useCallback(callback, deps))
 }
 
-export function useBackHandler(onBack: (...args: any[]) => any | boolean) {
+export function useBackHandler(onBack: boolean | ((...args: any[]) => any)) {
   return useFocus(() => {
     if (onBack) {
       const backHandler = BackHandler.addEventListener('hardwareBackPress', () => {
@@ -29,13 +29,15 @@ export function useBackHandler(onBack: (...args: any[]) => any | boolean) {
   }, [onBack])
 }
 
-export function useErrorAlert(options: {
+export interface UseErrorAlertOptions {
   error?: Error | ApiNetworkError | ApiServerError
   ignoreValidationError?: boolean
   ignoreUnauthorized?: boolean
   scope?: string
-  onError?: (error: Error | ApiNetworkError | ApiServerError) => string | boolean | undefined,
-} = {}) {
+  onError?: (error: Error | ApiNetworkError | ApiServerError) => string | boolean | undefined
+}
+
+export function useErrorAlert(options: UseErrorAlertOptions = {}) {
   const {
     error,
     ignoreValidationError,
