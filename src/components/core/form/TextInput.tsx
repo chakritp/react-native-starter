@@ -1,100 +1,19 @@
-import React, { forwardRef, useCallback, useRef } from 'react'
-import { View, TextInput as RNTextInput, Platform } from 'react-native'
+import React, { forwardRef } from 'react'
+import {
+  View,
+  TextInput as $TextInput,
+  TextInputProps as $TextInputProps,
+  Platform,
+  StyleProp,
+  ViewStyle,
+  TextStyle,
+  NativeMethods
+} from 'react-native'
 import { createThemedStyleSheet, useStyles, useTheme } from 'theme'
-import { renderIcon } from 'helpers/ui'
-import { InputContainer } from './common'
+import { IconProp, renderIcon } from 'helpers/ui'
 import { InputErrorIcon } from './InputErrorIcon'
 
-export const TextInput = forwardRef(({
-  type,
-  style,
-  inputContainerStyle,
-  inputStyle,
-  labelStyle,
-  labelTextStyle,
-  inline,
-  center,
-  label,
-  placeholder,
-  leftIcon,
-  rightIcon,
-  disabled,
-  editable = !disabled,
-  autoCorrect,
-  keyboardType = autoCorrect === false && Platform.OS === 'android' ? 'visible-password' : undefined,
-  hasError,
-  onShowError,
-  Input = RNTextInput,
-  children,
-  ...props
-}, ref) => {
-  const inputRef = useRef()
-  const styles = useStyles(themedStyles)
-  const theme = useTheme()
-
-  const defaultInputProps = defaultInputPropsByType[type]
-
-  const onInputRef = useCallback(el => {
-    inputRef.current = el
-    if (typeof ref === 'function') {
-      ref(el)
-    } else if (ref) {
-      ref.current = el
-    }
-  }, [ref])
-
-  if (leftIcon) {
-    leftIcon = renderIcon(leftIcon, { color: theme.colors.textMuted, size: theme.fontSizes.l })
-  }
-
-  if (hasError) {
-    rightIcon = <InputErrorIcon onPress={onShowError} />
-  } else if (rightIcon) {
-    rightIcon = renderIcon(rightIcon, { color: theme.colors.textMuted, size: theme.fontSizes.l })
-  }
-
-  return (
-    <InputContainer
-      style={style}
-      labelStyle={labelStyle}
-      labelTextStyle={labelTextStyle}
-      inline={inline}
-      label={label}
-      disabled={disabled}
-      onLabelPress={() => inputRef.current.focus()}>
-      <View style={[styles.inputContainer, inline && { flex: 1 }, inputContainerStyle]}>
-        <Input
-          ref={onInputRef}
-          style={[
-            styles.input,
-            inline && styles.inline,
-            center && { textAlign: 'center' },
-            leftIcon && !center && { paddingLeft: (inline ? theme.sizes.m - theme.spacing.m : theme.sizes.m) - 5 },
-            rightIcon && !center && { paddingRight: (inline ? theme.sizes.m - theme.spacing.m : theme.sizes.m) - 5 },
-            disabled && styles.disabled,
-            inputStyle
-          ]}
-          placeholderTextColor={theme.colors.placeholder}
-          placeholder={placeholder}
-          editable={editable}
-          autoCorrect={autoCorrect}
-          keyboardType={keyboardType}
-          accessible
-          accessibilityLabel={typeof label === 'string' ? label : placeholder}
-          keyboardAppearance={theme.keyboardAppearance}
-          {...defaultInputProps}
-          {...props} />
-
-        {leftIcon && <View style={[styles.leftIconContainer, inline && { left: 0 }, center && { position: 'absolute' }]}>{leftIcon}</View>}
-        {rightIcon && <View style={[styles.rightIconContainer, inline && { right: 0 }, center && { position: 'absolute' }]}>{rightIcon}</View>}
-      </View>
-
-      {children}
-    </InputContainer>
-  )
-})
-
-const defaultInputPropsByType = {
+const DEFAULT_INPUT_PROPS: { [key: string]: Partial<$TextInputProps> } = {
   email: {
     keyboardType: 'email-address',
     textContentType: 'emailAddress',
@@ -108,6 +27,83 @@ const defaultInputPropsByType = {
     autoCorrect: false
   }
 }
+
+export interface TextInputProps extends Omit<$TextInputProps, 'style'> {
+  type?: keyof typeof DEFAULT_INPUT_PROPS
+  style?: StyleProp<ViewStyle>
+  inputStyle?: StyleProp<TextStyle>
+  inline?: boolean
+  center?: boolean
+  leftIcon?: IconProp
+  rightIcon?: IconProp
+  disabled?: boolean
+  hasError?: boolean
+  Input?: typeof $TextInput
+  onShowError?: () => void
+}
+
+export const TextInput = forwardRef<NativeMethods, TextInputProps>(({
+  type,
+  style,
+  inputStyle,
+  inline,
+  center,
+  placeholder,
+  leftIcon,
+  rightIcon,
+  disabled,
+  editable = !disabled,
+  autoCorrect,
+  keyboardType = autoCorrect === false && Platform.OS === 'android' ? 'visible-password' : undefined,
+  hasError,
+  Input = $TextInput,
+  onShowError,
+  ...props
+}: TextInputProps, ref: any) => {
+  const styles = useStyles(themedStyles)
+  const theme = useTheme()
+
+  const defaultInputProps = type ? DEFAULT_INPUT_PROPS[type] : undefined
+
+  if (leftIcon) {
+    leftIcon = renderIcon(leftIcon, { color: theme.colors.textMuted, size: theme.fontSizes.l })
+  }
+
+  if (hasError) {
+    rightIcon = <InputErrorIcon onPress={onShowError} />
+  } else if (rightIcon) {
+    rightIcon = renderIcon(rightIcon, { color: theme.colors.textMuted, size: theme.fontSizes.l })
+  }
+
+  return (
+    <View style={[styles.inputContainer, inline && { flex: 1 }, style]}>
+      <Input
+        ref={ref}
+        style={[
+          styles.input,
+          inline && styles.inline,
+          center && { textAlign: 'center' },
+          leftIcon && !center ? { paddingLeft: (inline ? theme.sizes.m - theme.spacing.m : theme.sizes.m) - 5 } : null,
+          rightIcon && !center ? { paddingRight: (inline ? theme.sizes.m - theme.spacing.m : theme.sizes.m) - 5 } : null,
+          disabled && styles.disabled,
+          inputStyle
+        ]}
+        placeholderTextColor={theme.colors.placeholder}
+        placeholder={placeholder}
+        editable={editable}
+        autoCorrect={autoCorrect}
+        keyboardType={keyboardType}
+        accessible
+        accessibilityLabel={placeholder}
+        keyboardAppearance={theme.keyboardAppearance as TextInputProps['keyboardAppearance']}
+        {...defaultInputProps}
+        {...props} />
+
+      {leftIcon && <View style={[styles.leftIconContainer, inline && { left: 0 }, center && { position: 'absolute' }]}>{leftIcon}</View>}
+      {rightIcon && <View style={[styles.rightIconContainer, inline && { right: 0 }, center && { position: 'absolute' }]}>{rightIcon}</View>}
+    </View>
+  )
+})
 
 const themedStyles = createThemedStyleSheet(theme => ({
   container: {

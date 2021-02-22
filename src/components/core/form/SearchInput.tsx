@@ -1,13 +1,14 @@
 import React, { forwardRef } from 'react'
+import { TextInput as $TextInput } from 'react-native'
 import { createThemedStyleSheet, useStyles } from 'theme'
 import { t } from 'helpers/i18n'
-import { AutocompleteInput } from './AutocompleteInput'
+import { AutocompleteInput, AutocompleteInputProps } from './AutocompleteInput'
 
-export const SearchInput = forwardRef(({
+export const SearchInput = forwardRef<typeof $TextInput, AutocompleteInputProps>(({
   inputStyle,
   placeholder = t('actions.search'),
   ...props
-}, ref) => {
+}: AutocompleteInputProps, ref: any) => {
   const styles = useStyles(themedStyles)
 
   return (

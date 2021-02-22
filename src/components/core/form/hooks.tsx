@@ -135,7 +135,9 @@ export function useFormErrorAlert(form: UseFormMethods, options: UseErrorAlertOp
   })
 }
 
-export function useFormScreen(options: UseFormOptions) {
+export function useFormScreen<TFieldValues extends FieldValues = FieldValues, TContext extends object = object>(
+  options: UseFormOptions<UseFormOptions<TFieldValues, TContext>>
+) {
   const form = useForm(options)
   const { isSubmitting } = form.formState
   const navigation = useNavigation()

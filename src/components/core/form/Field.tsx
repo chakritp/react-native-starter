@@ -11,9 +11,8 @@ import { useFormContext } from './hooks'
 
 export interface FieldProps<TFieldValues extends FieldValues = FieldValues> {
   name: FieldName<TFieldValues>
-  as?: undefined
   render: (field: ControllerRenderProps<TFieldValues>, state: InputState) => React.ReactElement
-  onShowError: (error: FieldError, name: FieldName<TFieldValues>) => void
+  onShowError?: (error: FieldError, name: FieldName<TFieldValues>) => void
 }
 
 export const Field = <TFieldValues, >({
@@ -26,10 +25,10 @@ export const Field = <TFieldValues, >({
   const error = errors[name] as FieldError
 
   const _onShowError = useCallback(() => {
-    if (onShowError !== undefined) {
+    if (onShowError) {
       onShowError(error, name)
-    } else {
-      showValidationError && showValidationError(error, name)
+    } else if (showValidationError) {
+      showValidationError(error, name)
     }
   }, [onShowError, showValidationError, error])
 
