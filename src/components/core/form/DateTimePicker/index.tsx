@@ -9,7 +9,7 @@ import PlatformDateTimePicker from './DateTimePicker'
 export interface DateTimePickerProps extends Partial<DateTimePickerBaseProps> {
   style?: StyleProp<ViewStyle>
   titleStyle?: StyleProp<TextStyle>
-  inline?: boolean
+  embedded?: boolean
   disabled?: boolean
   format?: string
   placeholder?: string
@@ -18,7 +18,7 @@ export interface DateTimePickerProps extends Partial<DateTimePickerBaseProps> {
 export const DateTimePicker = ({
   style,
   titleStyle,
-  inline,
+  embedded,
   disabled,
   mode = 'date',
   format = 'll',
@@ -37,7 +37,7 @@ export const DateTimePicker = ({
       <PickerButton
         style={style}
         titleStyle={titleStyle}
-        inline={inline}
+        embedded={embedded}
         placeholder={placeholder}
         value={value ? moment(value).format(format) : ''}
         disabled={disabled}

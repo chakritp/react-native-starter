@@ -14,7 +14,7 @@ export interface PickerBaseProps extends $PickerProps {
 }
 
 export interface PlatformPickerProps extends PickerBaseProps {
-  inline?: boolean
+  embedded?: boolean
   selectedItem?: PickerItem
   disabled?: boolean
   placeholder?: string

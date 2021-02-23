@@ -8,7 +8,7 @@ const PROMPT_VALUE = '@@Picker.PROMPT_VALUE'
 
 export default function PickerIOS({
   style,
-  inline,
+  embedded,
   placeholder,
   prompt,
   items,
@@ -31,7 +31,7 @@ export default function PickerIOS({
     <>
       <PickerButton
         style={style}
-        inline={inline}
+        embedded={embedded}
         placeholder={placeholder}
         value={selectedItem && selectedItem.label}
         disabled={disabled}

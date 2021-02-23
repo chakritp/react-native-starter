@@ -5,7 +5,7 @@ import { renderIcon } from 'helpers/ui'
 import { Button, ButtonProps } from '../Button'
 
 interface PickerButtonProps extends ButtonProps {
-  inline?: boolean
+  embedded?: boolean
   placeholder?: string
   value?: any
 }
@@ -13,7 +13,7 @@ interface PickerButtonProps extends ButtonProps {
 export function PickerButton({
   style,
   titleStyle,
-  inline,
+  embedded,
   placeholder,
   value,
   disabled,
@@ -25,15 +25,14 @@ export function PickerButton({
   const styles = useStyles(themedStyles)
   const hasValue = value != null && value !== ''
 
-  if (!inline && !icon) {
+  if (icon === undefined && !embedded) {
     icon = "arrow-drop-down"
   }
 
   return (
     <Button
-      transparent
-      style={style}
-      contentStyle={[styles.content, inline && styles.contentInline]}
+      style={[{ flex: 1 }, style]}
+      contentStyle={[styles.content, embedded && styles.contentEmbedded]}
       titleContainerStyle={[styles.titleContainer, icon ? { paddingRight: theme.spacing.m } : null]}
       titleStyle={[hasValue ? styles.value : styles.placeholder, titleStyle]}
       title={hasValue ? String(value) : placeholder}
@@ -45,7 +44,7 @@ export function PickerButton({
       }) : undefined}
       icon={icon && (
         <View style={styles.iconContainer}>
-          {renderIcon(icon, { style: { lineHeight: theme.fontSizes.l * 0.84 }, size: theme.fontSizes.l, color: 'placeholder' })}
+          {renderIcon(icon, { size: theme.fontSizes.l, color: 'placeholder' })}
         </View>
       )}
       {...props} />
@@ -59,11 +58,11 @@ const themedStyles = createThemedStyleSheet(theme => ({
     backgroundColor: theme.colors.inputBg,
     borderRadius: theme.radii.m
   },
-  contentInline: {
+  contentEmbedded: {
     paddingHorizontal: 0,
     backgroundColor: 'transparent',
-    borderWidth: 0,
-    borderRadius: 0
+    borderColor: 'transparent',
+    borderWidth: 0
   },
   titleContainer: {
     justifyContent: 'flex-start',

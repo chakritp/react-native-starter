@@ -231,15 +231,15 @@ const themedStyles = createThemedStyleSheet(theme => ({
   title: {
     ...theme.fonts.headerRegular,
     fontSize: theme.fontSizes.s,
-    lineHeight: theme.fontSizes.s
+    lineHeight: theme.fontSizes.s * 1.2
   },
   titleSmall: {
     fontSize: theme.fontSizes.xs,
-    lineHeight: theme.fontSizes.xs
+    lineHeight: theme.fontSizes.xs * 1.2
   },
   titleLarge: {
     fontSize: theme.fontSizes.m,
-    lineHeight: theme.fontSizes.m
+    lineHeight: theme.fontSizes.m * 1.2
   },
   loadingIndicator: {
     position: 'absolute'

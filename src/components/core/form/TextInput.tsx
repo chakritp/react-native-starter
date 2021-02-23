@@ -32,7 +32,7 @@ export interface TextInputProps extends Omit<$TextInputProps, 'style'> {
   type?: keyof typeof DEFAULT_INPUT_PROPS
   style?: StyleProp<ViewStyle>
   inputStyle?: StyleProp<TextStyle>
-  inline?: boolean
+  embedded?: boolean
   center?: boolean
   leftIcon?: IconProp
   rightIcon?: IconProp
@@ -46,7 +46,7 @@ export const TextInput = forwardRef<NativeMethods, TextInputProps>(({
   type,
   style,
   inputStyle,
-  inline,
+  embedded,
   center,
   placeholder,
   leftIcon,
@@ -81,10 +81,10 @@ export const TextInput = forwardRef<NativeMethods, TextInputProps>(({
         ref={ref}
         style={[
           styles.input,
-          inline && styles.inline,
+          embedded && styles.embedded,
           center && { textAlign: 'center' },
-          leftIcon && !center ? { paddingLeft: (inline ? theme.sizes.m - theme.spacing.m : theme.sizes.m) - 5 } : null,
-          rightIcon && !center ? { paddingRight: (inline ? theme.sizes.m - theme.spacing.m : theme.sizes.m) - 5 } : null,
+          leftIcon && !center ? { paddingLeft: (embedded ? theme.sizes.m - theme.spacing.m : theme.sizes.m) - 5 } : null,
+          rightIcon && !center ? { paddingRight: (embedded ? theme.sizes.m - theme.spacing.m : theme.sizes.m) - 5 } : null,
           disabled && styles.disabled,
           inputStyle
         ]}
@@ -99,8 +99,8 @@ export const TextInput = forwardRef<NativeMethods, TextInputProps>(({
         {...defaultInputProps}
         {...props} />
 
-      {leftIcon && <View style={[styles.leftIconContainer, inline && { left: 0 }, center && { position: 'absolute' }]}>{leftIcon}</View>}
-      {rightIcon && <View style={[styles.rightIconContainer, inline && { right: 0 }, center && { position: 'absolute' }]}>{rightIcon}</View>}
+      {leftIcon && <View style={[styles.leftIconContainer, embedded && { left: 0 }, center && { position: 'absolute' }]}>{leftIcon}</View>}
+      {rightIcon && <View style={[styles.rightIconContainer, embedded && { right: 0 }, center && { position: 'absolute' }]}>{rightIcon}</View>}
     </View>
   )
 })
@@ -122,8 +122,7 @@ const themedStyles = createThemedStyleSheet(theme => ({
     borderWidth: 1,
     borderRadius: theme.radii.m
   },
-  inline: {
-    flex: 1,
+  embedded: {
     backgroundColor: 'transparent',
     borderRadius: 0,
     borderWidth: 0,

@@ -10,6 +10,7 @@ import {
   TextInput,
   Switch,
   Picker,
+  DateTimePicker,
   AutocompletePicker,
   LocalAutocompletePicker,
   useForm,
@@ -24,6 +25,8 @@ const defaultValues = {
   textInput1: '',
   textInput2: '',
   picker: null,
+  datePicker: null,
+  timePicker: null,
   autocompletePicker: null,
   localAutocompletePicker: null,
   switch: false
@@ -95,10 +98,10 @@ export default () => {
             <InputGroup label="TextInput" info="Info">
               <TextInput
                 {...props}
-                disabled={disabled}
                 placeholder="Placeholder"
                 autoFocus
                 returnKeyType="done"
+                disabled={disabled}
                 onChangeText={onChange}
                 onSubmitEditing={() => lastNameRef.current?.focus()} />
             </InputGroup>
@@ -111,10 +114,10 @@ export default () => {
               <TextInput
                 {...props}
                 type="password"
-                disabled={disabled}
                 ref={lastNameRef}
                 autoFocus
                 returnKeyType="done"
+                disabled={disabled}
                 onChangeText={onChange} />
             </InputGroup>
           )} />
@@ -133,18 +136,43 @@ export default () => {
           )} />
 
         <Field<FormValues>
+          name="datePicker"
+          render={props => (
+            <InputGroup label="DateTimePicker (date)">
+              <DateTimePicker
+                {...props}
+                format="MM/DD/Y"
+                placeholder="--/--/----"
+                disabled={disabled} />
+            </InputGroup>
+          )} />
+
+        <Field<FormValues>
+          name="timePicker"
+          render={props => (
+            <InputGroup label="DateTimePicker (time)">
+              <DateTimePicker
+                {...props}
+                mode="time"
+                disabled={disabled}
+                format="hh:mm:ss A"
+                placeholder="--:--:--" />
+            </InputGroup>
+          )} />
+
+        <Field<FormValues>
           name="autocompletePicker"
           render={props => (
             <InputGroup label="AutocompletePicker">
               <AutocompletePicker<AutocompleteItem, number>
                 {...props}
-                disabled={disabled}
                 placeholder="Search"
                 clearable
                 loading={autocompleteState.loading}
                 itemLabelExtractor={item => item.name}
                 itemPropsExtractor={item => ({ title: item.name, subtitle: item.description })}
                 items={autocompleteState.items}
+                disabled={disabled}
                 onOpen={() => !autocompleteState.items && resetAutocompleteItems()}
                 onLoad={loadAutocompleteItems}
                 onLoadMore={loadMoreAutocompleteItems} />
@@ -157,11 +185,11 @@ export default () => {
             <InputGroup label="LocalAutocompletePicker">
               <LocalAutocompletePicker
                 {...props}
-                disabled={disabled}
                 placeholder="Search"
                 clearable
                 loading={autocompleteState.loading}
                 itemLabelExtractor={item => item.name}
+                disabled={disabled}
                 items={[
                   { id: 1, name: 'Austin' },
                   { id: 2, name: 'Los Angeles' },

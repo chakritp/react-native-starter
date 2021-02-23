@@ -1,4 +1,4 @@
-import React, { ComponentType, isValidElement, ReactNode } from 'react'
+import React, { isValidElement, ReactNode } from 'react'
 import {
   ViewProps,
   View,
@@ -54,80 +54,81 @@ export const ListItem = ({
   const theme = useTheme()
   const styles = useStyles(themedStyles)
 
-  let Wrapper: ComponentType
-  let wrapperProps
-  
-  if (onPress || onLongPress) {
-    Wrapper = TouchableHighlight
-    wrapperProps = {
-      accessible: true,
-      accessibilityRole: 'menuitem',
-      underlayColor: theme.colors.listItemHighlightBg,
-      onPress: onPress,
-      onLongPress: onLongPress
-    }
-  } else {
-    Wrapper = View
-  }
+  const content = (
+    <View style={[styles.container, style]}>
+      {(leftIcon || leftContent) && (
+        <View style={styles.leftContainer}>
+          {leftIcon && (
+            <View style={[styles.leftContentContainer, styles.leftIconContainer, leftContentContainerStyle]}>
+              {renderIcon(leftIcon, { size: theme.fontSizes.xl, style: styles.icon })}
+            </View>
+          )}
+          {leftContent && (
+            <View style={[styles.leftContentContainer, leftContentContainerStyle]}>
+              {leftContent}
+            </View>
+          )}
+        </View>
+      )}
 
-  return (
-    <Wrapper {...wrapperProps}>
-      <View style={[styles.container, style]}>
-        {(leftIcon || leftContent) && (
-          <View style={styles.leftContainer}>
-            {leftIcon && (
-              <View style={[styles.leftContentContainer, styles.leftIconContainer, leftContentContainerStyle]}>
-                {renderIcon(leftIcon, { size: theme.fontSizes.xl, style: styles.icon })}
-              </View>
-            )}
-            {leftContent && (
-              <View style={[styles.leftContentContainer, leftContentContainerStyle]}>
-                {leftContent}
-              </View>
-            )}
+      <View
+        style={[
+          styles.innerContainer,
+          topDivider && { borderTopWidth: StyleSheet.hairlineWidth },
+          bottomDivider && { borderBottomWidth: StyleSheet.hairlineWidth },
+        ]}>
+        {(title || subtitle) && (
+          <View style={[styles.titleContainer, titleContainerStyle]}>
+            {title && (isValidElement(title) ? title : <Text.P3 style={[styles.title, titleStyle]}>{title}</Text.P3>)}
+            {subtitle && (isValidElement(subtitle) ? subtitle : <Text.P4 style={[styles.subtitle, subtitleStyle]}>{subtitle}</Text.P4>)}
           </View>
         )}
 
-        <View
-          style={[
-            styles.innerContainer,
-            style,
-            topDivider && { borderTopWidth: StyleSheet.hairlineWidth },
-            bottomDivider && { borderBottomWidth: StyleSheet.hairlineWidth },
-          ]}>
-          {(title || subtitle) && (
-            <View style={[styles.titleContainer, titleContainerStyle]}>
-              {title && (isValidElement(title) ? title : <Text.P3 style={[styles.title, titleStyle]}>{title}</Text.P3>)}
-              {subtitle && (isValidElement(subtitle) ? subtitle : <Text.P4 style={[styles.subtitle, subtitleStyle]}>{subtitle}</Text.P4>)}
+        {children}
+
+        <View style={styles.rightContainer}>
+          {rightContent && (
+            <View style={styles.rightContentContainer}>
+              {rightContent}
             </View>
           )}
 
-          {children}
+          {rightIcon && (
+            <View style={styles.rightContentContainer}>
+              {renderIcon(rightIcon, { size: theme.fontSizes.l, style: styles.icon })}
+            </View>
+          )}
 
-          <View style={styles.rightContainer}>
-            {rightContent && (
-              <View style={styles.rightContentContainer}>
-                {rightContent}
-              </View>
-            )}
-
-            {rightIcon && (
-              <View style={styles.rightContentContainer}>
-                {renderIcon(rightIcon, { size: theme.fontSizes.l, style: styles.icon })}
-              </View>
-            )}
-
-            {chevron && (
-              <View style={styles.rightContentContainer}>
-                {renderIcon(chevron, { name: 'chevron-right', size: theme.fontSizes.l, style: styles.icon })}
-              </View>
-            )}
-          </View>
+          {chevron && (
+            <View style={styles.rightContentContainer}>
+              {renderIcon(chevron, { name: 'chevron-right', size: theme.fontSizes.l, style: styles.icon })}
+            </View>
+          )}
         </View>
       </View>
-    </Wrapper>
+    </View>
   )
+
+  if (onPress || onLongPress) {
+    return (
+      <TouchableHighlight
+        accessible
+        accessibilityRole="menuitem"
+        underlayColor={theme.colors.listItemHighlightBg}
+        onPress={onPress}
+        onLongPress={onLongPress}
+      >
+        {content}
+      </TouchableHighlight>
+    )
+  }
+
+  return content
 }
+
+export const InputListItem = (props: ListItemProps) => (
+  <ListItem titleContainerStyle={{ width: '33%' }} {...props} />
+)
 
 const themedStyles = createThemedStyleSheet(theme => ({
   container: {

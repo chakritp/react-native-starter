@@ -16,7 +16,7 @@ export interface PickerProps extends Omit<PlatformPickerProps, 'items'> {
 export const Picker = ({
   style,
   itemStyle,
-  inline,
+  embedded,
   items = [],
   value,
   disabled,
@@ -29,9 +29,9 @@ export const Picker = ({
   }, [items, value])
 
   return (
-    <View style={[styles.container, style]}>
+    <View style={[styles.container, embedded && styles.embedded, style]}>
       <PlatformPicker
-        inline={inline}
+        embedded={embedded}
         items={items}
         selectedItem={selectedItem}
         selectedValue={value || undefined}
@@ -47,9 +47,13 @@ export const Picker = ({
 
 const themedStyles = createThemedStyleSheet(theme => ({
   container: {
+    flex: 1,
     justifyContent: 'center',
     backgroundColor: theme.colors.inputBg,
     borderRadius: theme.radii.m
+  },
+  embedded: {
+    backgroundColor: 'transparent'
   },
   item: {
     ...theme.fonts.bodyRegular,

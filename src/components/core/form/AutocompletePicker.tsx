@@ -6,7 +6,7 @@ import { SelectionList, SelectionListProps } from '../SelectionList'
 
 export interface AutocompletePickerProps<T, P> extends Omit<SelectionListProps<T>, 'itemPropsExtractor'> {
   style?: StyleProp<ViewStyle>
-  inline?: boolean
+  embedded?: boolean
   placeholder?: string
   clearable?: boolean
   disabled?: boolean
@@ -21,7 +21,7 @@ export interface AutocompletePickerProps<T, P> extends Omit<SelectionListProps<T
 
 export const AutocompletePicker = <T, P>({
   style,
-  inline,
+  embedded,
   placeholder,
   itemLabelExtractor,
   itemValueExtractor,
@@ -58,7 +58,7 @@ export const AutocompletePicker = <T, P>({
     <>
       <PickerButton
         style={style}
-        inline={inline}
+        embedded={embedded}
         placeholder={placeholder}
         value={selectedItem && itemLabelExtractor(selectedItem)}
         disabled={disabled}
