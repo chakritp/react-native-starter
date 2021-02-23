@@ -9,7 +9,7 @@ export interface BadgeProps {
   color?: ThemeColor | string
   textColor?: ThemeColor | string
   size?: ThemeSize | number
-  children?: ReactNode
+  children?: string | ReactNode
 }
 
 export const Badge = ({

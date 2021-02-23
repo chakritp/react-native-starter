@@ -76,7 +76,7 @@ export const TextInput = forwardRef<NativeMethods, TextInputProps>(({
   }
 
   return (
-    <View style={[styles.inputContainer, inline && { flex: 1 }, style]}>
+    <View style={[styles.container, style]}>
       <Input
         ref={ref}
         style={[
@@ -108,13 +108,6 @@ export const TextInput = forwardRef<NativeMethods, TextInputProps>(({
 const themedStyles = createThemedStyleSheet(theme => ({
   container: {
     flex: 1
-  },
-  containerInline: {
-    flexDirection: 'row',
-    alignItems: 'center'
-  },
-  inputContainer: {
-    width: '100%'
   },
   input: {
     flex: 0,

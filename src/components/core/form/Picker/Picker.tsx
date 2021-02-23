@@ -1,12 +1,13 @@
 import React, { useMemo, useState } from 'react'
-import { View } from 'react-native'
 import { useTheme } from 'theme'
-import { ButtonInput, ModalInput } from '../common'
-import PickerBase from './PickerBase'
+import { PickerButton } from '../PickerButton'
+import { ModalInput } from '../ModalInput'
+import { PickerBase, PlatformPickerProps } from './common'
 
 const PROMPT_VALUE = '@@Picker.PROMPT_VALUE'
 
 export default function PickerIOS({
+  style,
   inline,
   placeholder,
   prompt,
@@ -15,7 +16,7 @@ export default function PickerIOS({
   disabled,
   onValueChange = () => {},
   ...props
-}) {
+}: PlatformPickerProps) {
   const theme = useTheme()
   const _items = useMemo(() => {
     if (prompt) {
@@ -27,8 +28,9 @@ export default function PickerIOS({
   const close = () => setOpen(false)
 
   return (
-    <View>
-      <ButtonInput
+    <>
+      <PickerButton
+        style={style}
         inline={inline}
         placeholder={placeholder}
         value={selectedItem && selectedItem.label}
@@ -49,6 +51,6 @@ export default function PickerIOS({
           items={_items}
           {...props} />
       </ModalInput>
-    </View>
+    </>
   )
 }

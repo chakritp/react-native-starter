@@ -1,4 +1,4 @@
-import noop from 'lodash/identity'
+import noop from 'lodash/noop'
 import React, { useRef, useState } from 'react'
 import { View, KeyboardAvoidingView, Platform, StyleProp, ViewStyle } from 'react-native'
 import { createThemedStyleSheet, useStyles } from 'theme'
@@ -9,10 +9,7 @@ import { ListItem, ListItemProps } from './ListItem'
 import { SearchBar, SearchBarProps } from './SearchBar'
 import { FlatListElement } from './lists'
 
-const defaultKeyExtractor = (item: any) => `${item.value}`
-const defaultItemPropsExtractor = (item: any) => ({ title: item.label })
-
-export interface SelectionListProps<T> extends SearchBarProps, Pick<Omit<InfiniteListProps<T>, 'onLoadMore' | 'onRefresh'>,
+export interface SelectionListProps<T> extends Omit<SearchBarProps, 'value' | 'onChange' | 'onChangeText'>, Pick<Omit<InfiniteListProps<T>, 'onLoadMore' | 'onRefresh'>,
   'total' |
   'loading' |
   'refreshing' |
@@ -26,7 +23,7 @@ export interface SelectionListProps<T> extends SearchBarProps, Pick<Omit<Infinit
   searchBar?: boolean
   placeholder?: string
   items?: T[]
-  itemPropsExtractor?: (item: T) => ListItemProps
+  itemPropsExtractor: (item: T) => ListItemProps
   onLoad?: (query: string) => void
   onLoadMore?: (query: string) => void
   onRefresh?: (query: string) => void
@@ -46,8 +43,8 @@ export const SelectionList = <T, >({
   total,
   canLoadMore,
   emptyText,
-  keyExtractor = defaultKeyExtractor,
-  itemPropsExtractor = defaultItemPropsExtractor,
+  keyExtractor,
+  itemPropsExtractor,
   onLoadMore,
   onRefresh,
   onLoad = noop,
@@ -75,7 +72,7 @@ export const SelectionList = <T, >({
           onSubmit={query => {
             onLoad(query)
             if (items) {
-              list.current.scrollToOffset({ offset: 0 })
+              list.current!.scrollToOffset({ offset: 0 })
             }
           }}
           onCancel={done}
@@ -98,7 +95,7 @@ export const SelectionList = <T, >({
             keyExtractor={keyExtractor}
             renderItem={({ item }) => (
               <ListItem
-                {...itemPropsExtractor(item)}
+                {...itemPropsExtractor!(item)}
                 onPress={() => {
                   done()
                   onSelect(item)
@@ -113,6 +110,10 @@ export const SelectionList = <T, >({
       </KeyboardAvoidingView>
     </Container>
   )
+}
+
+SelectionList.defaultProps = {
+  keyExtractor: (item: any) => `${item.id}`
 }
 
 const themedStyles = createThemedStyleSheet(theme => ({

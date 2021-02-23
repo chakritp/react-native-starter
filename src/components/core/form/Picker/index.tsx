@@ -1,57 +1,52 @@
 import React, { useMemo } from 'react'
-import { View } from 'react-native'
+import { StyleProp, View, ViewStyle } from 'react-native'
 import PlatformPicker from './Picker'
 import { createThemedStyleSheet, useStyles } from 'theme'
-import { InputContainer } from '../common'
+import { PlatformPickerProps, PickerItem as _PickerItem } from './common'
+
+export type PickerItem = _PickerItem
+
+export interface PickerProps extends Omit<PlatformPickerProps, 'items'> {
+  style?: StyleProp<ViewStyle>
+  items?: _PickerItem[]
+  value?: number | string | null
+  onChange?: PlatformPickerProps['onValueChange']
+}
 
 export const Picker = ({
   style,
-  inputStyle,
   itemStyle,
-  labelStyle,
-  labelTextStyle,
   inline,
-  label,
   items = [],
   value,
   disabled,
   onChange,
   ...props
-}) => {
+}: PickerProps) => {
   const styles = useStyles(themedStyles)
   const selectedItem = useMemo(() => {
     return items.find(item => item.value === value)
   }, [items, value])
 
   return (
-    <InputContainer
-      style={style}
-      labelStyle={labelStyle}
-      labelTextStyle={labelTextStyle}
-      inline={inline}
-      label={label}
-      disabled={disabled}>
-
-      <View style={[styles.input, inputStyle]}>
-        <PlatformPicker
-          inline={inline}
-          items={items}
-          selectedItem={selectedItem}
-          selectedValue={value}
-          itemStyle={[styles.item, itemStyle]}
-          disabled={disabled}
-          accessible
-          accessibilityRole="spinbutton"
-          accessibilityLabel={typeof label === 'string' ? label : undefined}
-          onValueChange={onChange}
-          {...props} />
-      </View>
-    </InputContainer>
+    <View style={[styles.container, style]}>
+      <PlatformPicker
+        inline={inline}
+        items={items}
+        selectedItem={selectedItem}
+        selectedValue={value || undefined}
+        itemStyle={[styles.item, itemStyle]}
+        disabled={disabled}
+        accessible
+        accessibilityRole="spinbutton"
+        onValueChange={onChange}
+        {...props} />
+    </View>
   )
 }
 
 const themedStyles = createThemedStyleSheet(theme => ({
-  input: {
+  container: {
     justifyContent: 'center',
     backgroundColor: theme.colors.inputBg,
     borderRadius: theme.radii.m

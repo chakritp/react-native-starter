@@ -111,7 +111,7 @@ export function useForm<TFieldValues extends FieldValues = FieldValues, TContext
     const { errors } = form
     if (errors && _showValidationError) {
       const field = Object.keys(errors)[0]
-      if (field) {
+      if (field && errors[field]) {
         _showValidationError(errors[field] as FieldError, field)
       }
     }

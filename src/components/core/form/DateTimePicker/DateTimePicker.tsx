@@ -1,28 +1,30 @@
+import noop from 'lodash/noop'
 import React from 'react'
 import { View } from 'react-native'
 import DateTimePicker from '@react-native-community/datetimepicker'
 import { createThemedStyleSheet, useStyles } from 'theme'
-import { Button } from 'components/core'
-import { ModalInput } from '../common'
 import { t } from 'helpers/i18n'
+import { Button } from '../../Button'
+import { ModalInput } from '../ModalInput'
+import { DateTimePickerBaseProps } from './common'
 
-export const PlatformDateTimePicker = ({
+export default function PlatformDateTimePicker({
   defaultValue,
   value,
   open,
-  close,
-  onChange,
+  onClose = noop,
+  onChange = noop,
   ...props
-}) => {
+}: DateTimePickerBaseProps) {
   const styles = useStyles(themedStyles)
 
   return (
     <ModalInput
       visible={open}
-      onClose={close}>
+      onClose={onClose}>
       <DateTimePicker
-        value={value || defaultValue}
-        onChange={(_ev, value) => onChange(value)}
+        value={value || defaultValue!}
+        onChange={(_ev, value) => onChange(value || null)}
         {...props} />
       
       <View style={styles.footer}>
@@ -33,7 +35,7 @@ export const PlatformDateTimePicker = ({
           title={t('actions.clear')} 
           onPress={() => {
             onChange(null)
-            close()
+            onClose()
           }} />
 
         <Button
@@ -42,9 +44,9 @@ export const PlatformDateTimePicker = ({
           title={t('actions.done')} 
           onPress={() => {
             if (!value) {
-              onChange(defaultValue)
+              onChange(defaultValue!)
             }
-            close()
+            onClose()
           }} />
       </View>
     </ModalInput>

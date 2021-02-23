@@ -3,23 +3,25 @@ import {
   LayoutAnimation,
   UIManager,
   View,
-  StyleSheet
+  StyleSheet,
+  NativeMethods
 } from 'react-native'
 import { t } from 'helpers/i18n'
 import { Button } from './Button'
+import { AutocompleteInputProps } from './form/AutocompleteInput'
 import { SearchInput } from './form/SearchInput'
 
 // Android support.
 UIManager.setLayoutAnimationEnabledExperimental && UIManager.setLayoutAnimationEnabledExperimental(true)
 
-export interface SearchBarProps {
+export interface SearchBarProps extends AutocompleteInputProps {
   cancelButtonTitle?: string
   showCancel?: boolean
-  onClear: () => void
-  onCancel: () => void
-  onFocus: () => void
-  onBlur: () => void
-  onChangeText: (text: string) => void
+  onClear?: () => void
+  onCancel?: () => void
+  onFocus?: () => void
+  onBlur?: () => void
+  onChangeText?: AutocompleteInputProps['onChangeText']
 }
 
 interface SearchBarState {
@@ -28,7 +30,7 @@ interface SearchBarState {
 }
 
 export class SearchBar extends Component<SearchBarProps, SearchBarState> {
-  input?: { focus: () => void, blur: () => void }
+  input: NativeMethods | null = null
   
   static defaultProps = {
     cancelButtonTitle: t('actions.cancel'),
@@ -61,18 +63,18 @@ export class SearchBar extends Component<SearchBarProps, SearchBarState> {
 
     setTimeout(() => {
       this.blur()
-      this.props.onCancel()
+      this.props.onCancel!()
     }, 0)
   }
 
   onFocus = () => {
-    this.props.onFocus()
+    this.props.onFocus!()
     UIManager.setLayoutAnimationEnabledExperimental && LayoutAnimation.easeInEaseOut()
     this.setState({ hasFocus: true })
   }
 
   onBlur = () => {
-    this.props.onBlur()
+    this.props.onBlur!()
     UIManager.setLayoutAnimationEnabledExperimental && LayoutAnimation.easeInEaseOut()
 
     if (!this.props.showCancel) {
@@ -83,7 +85,7 @@ export class SearchBar extends Component<SearchBarProps, SearchBarState> {
   }
 
   onChangeText = (text: string) => {
-    this.props.onChangeText(text)
+    this.props.onChangeText!(text)
   }
 
   render() {

@@ -1,22 +1,29 @@
 import React, { useCallback, useState } from 'react'
-import { AutocompletePicker } from './AutocompletePicker'
+import { AutocompletePicker, AutocompletePickerProps } from './AutocompletePicker'
 
-export const LocalAutocompletePicker = ({
+export interface LocalAutocompletePickerProps<T, P> extends AutocompletePickerProps<T, P> {
+  itemSearchStringExtractor?: (item: T) => string
+}
+
+export const LocalAutocompletePicker = <T, P>({
   value,
+  itemLabelExtractor,
+  itemSearchStringExtractor = itemLabelExtractor,
   items = [],
   ...props
-}) => {
+}: LocalAutocompletePickerProps<T, P>) => {
   const [filteredItems, setFilteredItems] = useState(items)
 
   const onLoad = useCallback(query => {
+    const queryLc = query.toLowerCase()
     setFilteredItems(items.filter(item => {
-      if (item.value && ~item.value.toLowerCase().indexOf(query)) return true
-      if (item.label && ~item.label.toLowerCase().indexOf(query)) return true
+      return itemSearchStringExtractor(item).toLowerCase().indexOf(queryLc) > -1
     }))
   }, [items])
 
   return (
     <AutocompletePicker
+      itemLabelExtractor={itemLabelExtractor}
       items={filteredItems}
       value={value}
       submitDelay={0}

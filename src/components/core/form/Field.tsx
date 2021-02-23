@@ -25,10 +25,12 @@ export const Field = <TFieldValues, >({
   const error = errors[name] as FieldError
 
   const _onShowError = useCallback(() => {
-    if (onShowError) {
-      onShowError(error, name)
-    } else if (showValidationError) {
-      showValidationError(error, name)
+    if (error) {
+      if (onShowError) {
+        onShowError(error, name)
+      } else if (showValidationError) {
+        showValidationError(error, name)
+      }
     }
   }, [onShowError, showValidationError, error])
 

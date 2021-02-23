@@ -1,31 +1,47 @@
-import noop from 'lodash/identity'
+import noop from 'lodash/noop'
 import React, { useCallback, useMemo, useState } from 'react'
-import { Modal } from 'react-native'
-import { InputContainer, ButtonInput } from './common'
-import { SelectionList } from '../SelectionList'
+import { Modal, StyleProp, ViewStyle } from 'react-native'
+import { PickerButton } from './PickerButton'
+import { SelectionList, SelectionListProps } from '../SelectionList'
 
-export const AutocompletePicker = ({
+export interface AutocompletePickerProps<T, P> extends Omit<SelectionListProps<T>, 'itemPropsExtractor'> {
+  style?: StyleProp<ViewStyle>
+  inline?: boolean
+  placeholder?: string
+  clearable?: boolean
+  disabled?: boolean
+  hasError?: boolean
+  itemLabelExtractor: (item: T) => string
+  itemValueExtractor?: (item: T) => any
+  itemPropsExtractor?: SelectionListProps<T>['itemPropsExtractor']
+  value?: P
+  onOpen?: () => void
+  onChange?: (value: P | null) => void
+}
+
+export const AutocompletePicker = <T, P>({
   style,
-  labelStyle,
-  labelTextStyle,
-  inputStyle,
   inline,
-  label,
   placeholder,
+  itemLabelExtractor,
+  itemValueExtractor,
+  itemPropsExtractor = (item: T) => {
+    return { title: itemLabelExtractor(item) }
+  },
   items = [],
   value,
   clearable,
   disabled,
   hasError: _hasError,
-  onOpen,
-  onLoad,
-  onChange,
+  onOpen = noop,
+  onLoad = noop,
+  onChange = noop,
   ...props
-}) => {
+}: AutocompletePickerProps<T, P>) => {
   const [open, setOpen] = useState(false)
 
   const selectedItem = useMemo(() => {
-    return items.find(item => item.value === value)
+    return items.find(item => itemValueExtractor!(item) === value)
   }, [items, value])
 
   const handleOpen = useCallback(() => {
@@ -39,20 +55,12 @@ export const AutocompletePicker = ({
   }
 
   return (
-    <InputContainer
-      style={style}
-      labelStyle={labelStyle}
-      labelTextStyle={labelTextStyle}
-      inline={inline}
-      label={label}
-      disabled={disabled}
-      onLabelPress={handleOpen}
-    >
-      <ButtonInput
-        style={inputStyle}
+    <>
+      <PickerButton
+        style={style}
         inline={inline}
         placeholder={placeholder}
-        value={selectedItem && selectedItem.label}
+        value={selectedItem && itemLabelExtractor(selectedItem)}
         disabled={disabled}
         icon={!!(value && clearable) && {
           name: 'clear',
@@ -67,17 +75,17 @@ export const AutocompletePicker = ({
         <SelectionList
           safe="top"
           searchBar
+          itemPropsExtractor={itemPropsExtractor}
           items={items}
-          onSelect={item => onChange(item.value)}
+          onSelect={item => onChange(itemValueExtractor!(item))}
           onDone={close}
           onLoad={onLoad}
           {...props} />
       </Modal>
-    </InputContainer>
+    </>
   )
 }
 
 AutocompletePicker.defaultProps = {
-  onOpen: noop,
-  onValueChange: noop
+  itemValueExtractor: (item: any) => item.id
 }

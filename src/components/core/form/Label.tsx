@@ -1,60 +1,49 @@
-import React, { isValidElement } from 'react'
-import { View, TouchableOpacity } from 'react-native'
+import React, { isValidElement, ReactNode } from 'react'
+import { StyleProp, TextStyle, View, ViewStyle } from 'react-native'
 import { createThemedStyleSheet, useStyles } from 'theme'
-import { Text } from '../Text'
+import { Text, TextProps } from '../Text'
 
-export function Label({ style, textStyle, inline, disabled, children, onPress, ...props }) {
+export interface LabelProps extends TextProps {
+  style?: StyleProp<ViewStyle>
+  textStyle?: StyleProp<TextStyle>
+  inline?: boolean
+  children?: ReactNode
+}
+
+export function Label({ style, textStyle, inline, children, ...textProps }: LabelProps) {
   const styles = useStyles(themedStyles)
-  const containerStyle = [
-    styles.labelContainer,
-    inline && styles.labelContainerInline,
-    disabled && styles.disabled,
-    style
-  ]
-  const content = isValidElement(children) ? children : (
-    <Text
-      style={[
-        styles.labelText,
-        inline && styles.labelTextInline,
-        textStyle
-      ]}
-      color="label"
-      {...props}>
-      {children}
-    </Text>
+
+  return (
+    <View style={[styles.container, style]}>
+      {isValidElement(children) ? children : (
+        <Text
+          style={[
+            styles.text,
+            inline && styles.textInline,
+            textStyle
+          ]}
+          color="label"
+          {...textProps}
+        >
+          {children}
+        </Text>
+      )}
+    </View>
   )
-
-  if (!disabled && onPress) {
-    return (
-      <TouchableOpacity
-        style={containerStyle}
-        activeOpacity={disabled ? 1 : 0.8}
-        onPress={onPress}
-        {...props}>
-        {content}
-      </TouchableOpacity>
-    )
-  }
-
-  return <View style={containerStyle} {...props}>{content}</View>
 }
 
 const themedStyles = createThemedStyleSheet(theme => ({
-  labelContainer: {
+  container: {
     flexDirection: 'row',
     width: 'auto',
     marginRight: theme.spacing.m
   },
-  labelContainerInline: {
-    width: 120,
-  },
-  labelText: {
+  text: {
     ...theme.fonts.bodyMedium,
     marginBottom: theme.spacing.s,
     fontSize: theme.fontSizes.s
   },
-  labelTextInline: {
-    ...theme.fonts.bodyRegular,
+  textInline: {
     marginBottom: 0
   }
 }))

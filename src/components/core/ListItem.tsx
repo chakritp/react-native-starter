@@ -18,8 +18,8 @@ export interface ListItemProps extends ViewProps {
   titleContainerStyle?: StyleProp<ViewStyle>
   titleStyle?: StyleProp<TextStyle>
   subtitleStyle?: StyleProp<TextStyle>
-  title?: string
-  subtitle?: string
+  title?: string | ReactNode
+  subtitle?: string | ReactNode
   leftContent?: ReactNode
   leftIcon?: IconProp
   rightContent?: ReactNode

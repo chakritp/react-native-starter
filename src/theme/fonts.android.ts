@@ -1,3 +1,4 @@
+import { TextStyle } from 'react-native'
 import fontFamilies from './fontFamilies'
 
 export default {
@@ -19,4 +20,4 @@ export default {
   headingBold: {
     fontFamily: `${fontFamilies.heading}-Bold`
   }
-}
+} as { [key: string]: TextStyle }

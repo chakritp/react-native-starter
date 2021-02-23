@@ -1,16 +1,17 @@
 import React from 'react'
 import { createThemedStyleSheet, useStyles, useTheme } from 'theme'
-import PickerBase from './PickerBase'
+import { PickerBase, PlatformPickerProps } from './common'
 
 const PLACEHOLDER_VALUE = '@@Picker.PLACEHOLDER_VALUE'
 
 export default function PickerAndroid({
-  placeholder,
+  style,
   items,
+  placeholder,
   selectedItem,
   onValueChange = () => {},
   ...props
-}) {
+}: PlatformPickerProps) {
   const styles = useStyles(themedStyles)
   const theme = useTheme()
   
@@ -20,7 +21,7 @@ export default function PickerAndroid({
 
   return (
     <PickerBase
-      style={styles.container}
+      style={[styles.container, style]}
       dropdownIconColor={theme.colors.inputText}
       items={items}
       onValueChange={(value, index) => value !== PLACEHOLDER_VALUE && onValueChange(value, index)}

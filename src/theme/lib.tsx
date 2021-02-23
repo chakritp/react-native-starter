@@ -1,4 +1,4 @@
-import React, { ComponentType, ReactNode, createContext, useContext, forwardRef, ElementType } from 'react'
+import React, { ComponentType, ReactNode, createContext, useContext, forwardRef } from 'react'
 import { StyleSheet, ViewStyle, TextStyle, ImageStyle } from 'react-native'
 import { Subtract } from 'utility-types'
 import defaultTheme from './default'

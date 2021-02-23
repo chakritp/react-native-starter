@@ -1,40 +1,42 @@
 import React, { useState } from 'react'
+import { StyleProp, ViewStyle, TextStyle } from 'react-native'
 import moment from 'moment'
 import { useTheme } from 'theme'
-import { InputContainer, ButtonInput } from '../common'
-import { PlatformDateTimePicker } from './DateTimePicker'
+import { PickerButton } from '../PickerButton'
+import { DateTimePickerBaseProps } from './common'
+import PlatformDateTimePicker from './DateTimePicker'
+
+export interface DateTimePickerProps extends Partial<DateTimePickerBaseProps> {
+  style?: StyleProp<ViewStyle>
+  titleStyle?: StyleProp<TextStyle>
+  inline?: boolean
+  disabled?: boolean
+  format?: string
+  placeholder?: string
+}
 
 export const DateTimePicker = ({
   style,
-  labelStyle,
-  labelTextStyle,
-  inputStyle,
+  titleStyle,
   inline,
-  label,
+  disabled,
   mode = 'date',
   format = 'll',
   placeholder,
   defaultValue = moment().startOf('day').toDate(),
   value,
-  disabled,
   onChange = () => {},
   ...props
-}) => {
+}: DateTimePickerProps) => {
   const theme = useTheme()
   const [open, setOpen] = useState(false)
   const close = () => setOpen(false)
 
   return (
-    <InputContainer
-      style={style}
-      labelStyle={labelStyle}
-      labelTextStyle={labelTextStyle}
-      inline={inline}
-      label={label}
-      disabled={disabled}>
-
-      <ButtonInput
-        titleStyle={inputStyle}
+    <>
+      <PickerButton
+        style={style}
+        titleStyle={titleStyle}
         inline={inline}
         placeholder={placeholder}
         value={value ? moment(value).format(format) : ''}
@@ -42,16 +44,16 @@ export const DateTimePicker = ({
         onPress={() => setOpen(true)} />
 
       <PlatformDateTimePicker
+        style={{ backgroundColor: theme.colors.modalInputContent }}
         display="spinner"
         textColor={theme.colors.inputText}
-        style={{ backgroundColor: theme.colors.modalInputContent }}
         mode={mode}
         defaultValue={defaultValue}
         value={value}
         open={open}
-        close={close}
+        onClose={close}
         onChange={onChange}
         {...props} />
-    </InputContainer>
+    </>
   )
 }
