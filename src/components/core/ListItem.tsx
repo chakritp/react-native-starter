@@ -1,19 +1,18 @@
 import React, { isValidElement, ReactNode } from 'react'
 import {
-  ViewProps,
   View,
-  TouchableWithoutFeedbackProps,
-  TouchableHighlight,
   StyleSheet,
   StyleProp,
   ViewStyle,
   TextStyle
 } from 'react-native'
-import { createThemedStyleSheet, useStyles, useTheme } from 'theme'
+import { useTheme } from '@shopify/restyle'
 import { IconProp, renderIcon } from 'helpers/ui'
+import { Theme } from 'theme'
+import { Box, BoxProps, TouchableHighlight, TouchableHighlightProps } from './common'
 import { Text } from './Text'
 
-export interface ListItemProps extends ViewProps {
+export interface ListItemProps extends BoxProps {
   leftContentContainerStyle?: StyleProp<ViewStyle>
   titleContainerStyle?: StyleProp<ViewStyle>
   titleStyle?: StyleProp<TextStyle>
@@ -24,12 +23,13 @@ export interface ListItemProps extends ViewProps {
   leftIcon?: IconProp
   rightContent?: ReactNode
   rightIcon?: IconProp
-  chevron?: boolean
+  chevron?: boolean | IconProp
   topDivider?: boolean
   bottomDivider?: boolean
+  accessibilityLabel?: string
   children?: ReactNode
-  onPress?: TouchableWithoutFeedbackProps['onPress']
-  onLongPress?: TouchableWithoutFeedbackProps['onLongPress']
+  onPress?: TouchableHighlightProps['onPress']
+  onLongPress?: TouchableHighlightProps['onLongPress']
 }
 
 export const ListItem = ({
@@ -47,20 +47,22 @@ export const ListItem = ({
   chevron,
   topDivider,
   bottomDivider,
+  accessibilityLabel,
   children,
   onPress,
-  onLongPress
+  onLongPress,
+  ...props
 }: ListItemProps) => {
-  const theme = useTheme()
+  const theme = useTheme<Theme>()
   const styles = useStyles(themedStyles)
 
   const content = (
-    <View style={[styles.container, style]}>
+    <Box style={[styles.container, style]} {...props}>
       {(leftIcon || leftContent) && (
         <View style={styles.leftContainer}>
           {leftIcon && (
             <View style={[styles.leftContentContainer, styles.leftIconContainer, leftContentContainerStyle]}>
-              {renderIcon(leftIcon, { size: theme.fontSizes.xl, style: styles.icon })}
+              {renderIcon(leftIcon, { size: 'xl', style: styles.icon })}
             </View>
           )}
           {leftContent && (
@@ -79,8 +81,8 @@ export const ListItem = ({
         ]}>
         {(title || subtitle) && (
           <View style={[styles.titleContainer, titleContainerStyle]}>
-            {title && (isValidElement(title) ? title : <Text.P3 style={[styles.title, titleStyle]}>{title}</Text.P3>)}
-            {subtitle && (isValidElement(subtitle) ? subtitle : <Text.P4 style={[styles.subtitle, subtitleStyle]}>{subtitle}</Text.P4>)}
+            {title && (isValidElement(title) ? title : <Text variant="p3" style={[styles.title, titleStyle]}>{title}</Text>)}
+            {subtitle && (isValidElement(subtitle) ? subtitle : <Text variant="p4" style={[styles.subtitle, subtitleStyle]}>{subtitle}</Text>)}
           </View>
         )}
 
@@ -95,18 +97,18 @@ export const ListItem = ({
 
           {rightIcon && (
             <View style={styles.rightContentContainer}>
-              {renderIcon(rightIcon, { size: theme.fontSizes.l, style: styles.icon })}
+              {renderIcon(rightIcon, { size: 'l', style: styles.icon })}
             </View>
           )}
 
           {chevron && (
             <View style={styles.rightContentContainer}>
-              {renderIcon(chevron, { name: 'chevron-right', size: theme.fontSizes.l, style: styles.icon })}
+              {renderIcon(chevron, { name: 'chevron-right', size: 'l', style: styles.icon })}
             </View>
           )}
         </View>
       </View>
-    </View>
+    </Box>
   )
 
   if (onPress || onLongPress) {
@@ -114,7 +116,8 @@ export const ListItem = ({
       <TouchableHighlight
         accessible
         accessibilityRole="menuitem"
-        underlayColor={theme.colors.listItemHighlightBg}
+        accessibilityLabel={accessibilityLabel}
+        underlayColor="mainBackgroundMedium"
         onPress={onPress}
         onLongPress={onLongPress}
       >
@@ -135,7 +138,7 @@ const themedStyles = createThemedStyleSheet(theme => ({
     flexDirection: 'row',
     alignItems: 'center',
     paddingLeft: theme.spacing.l,
-    backgroundColor: theme.colors.listItemBg
+    backgroundColor: theme.colors.mainBackgroundHeavy
   },
   innerContainer: {
     flex: 1,
@@ -143,7 +146,7 @@ const themedStyles = createThemedStyleSheet(theme => ({
     alignItems: 'center',
     minHeight: 46,
     paddingRight: theme.spacing.s,
-    borderColor: theme.colors.borderLight
+    borderColor: theme.colors.mainBorderMuted
   },
   leftContainer: {
     flexDirection: 'row',
@@ -185,6 +188,6 @@ const themedStyles = createThemedStyleSheet(theme => ({
     paddingLeft: theme.spacing.m,
   },
   icon: {
-    color: theme.colors.textMuted
+    color: theme.colors.mainForegroundMuted
   }
 }))

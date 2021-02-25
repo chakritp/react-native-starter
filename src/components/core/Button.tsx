@@ -1,16 +1,15 @@
 import React, { useLayoutEffect, useMemo, useState, useRef } from 'react'
 import {
-  ActivityIndicator,
   Animated,
   StyleProp,
   ViewStyle,
   TextStyle
 } from 'react-native'
-import { useRestyle, useTheme } from '@shopify/restyle'
-import { baseTextRestyleFunctions, useVariant } from 'lib/restyle'
+import { useTheme } from '@shopify/restyle'
+import { useVariant } from 'lib/restyle'
 import { IconProp, renderIcon } from 'helpers/ui'
 import { Theme } from 'theme'
-import { BoxProps, TouchableOpacity, TouchableOpacityProps } from './common'
+import { BoxProps, TouchableOpacity, TouchableOpacityProps, ActivityIndicator } from './common'
 import { Text } from './Text'
 
 const INDICATOR_TRANSITION_DURATION = 500
@@ -96,19 +95,15 @@ export const Button = ({
 
   const {
     foregroundColor
-  } = variantProps
-
-  const { style: baseContentStyle } = useRestyle(baseTextRestyleFunctions, {
-    color: foregroundColor
-  }) as any
+  } = variantProps as { foregroundColor: keyof Theme['colors'] }
 
   if (icon) {
     icon = renderIcon(icon, {
       style: [
-        baseContentStyle,
         title != null && { [iconPlacement === 'left' ? 'marginRight' : 'marginLeft']: size === 's' ? 4 : 6 }
       ],
-      size: size === 's' ? 'xs' : size === 'l' ? 'l' : 'm'
+      size: size === 's' ? 'xs' : size === 'l' ? 'l' : 'm',
+      color: foregroundColor
     })
   }
 
@@ -147,7 +142,8 @@ export const Button = ({
           <Text
             font="headingRegular"
             variant={size === 's' ? 'p4' : size === 'l' ? 'p2' : 'p3'}
-            style={[baseContentStyle, titleStyle]}
+            color={foregroundColor}
+            style={titleStyle}
             numberOfLines={1}>
             {title}
           </Text>
@@ -160,7 +156,7 @@ export const Button = ({
 
       <Animated.View style={{ position: 'absolute', paddingTop: 2, opacity: indicatorOpacity }}>
         {(indicatorTransition || loading) && (
-          <ActivityIndicator size={size === 's' ? 'small' : 'large'} color={baseContentStyle[0].color} />
+          <ActivityIndicator size={size === 's' ? 'small' : 'large'} color={foregroundColor} />
         )}
       </Animated.View>
     </TouchableOpacity>

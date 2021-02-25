@@ -2,20 +2,21 @@ import { useMemo } from 'react'
 import {
   BaseTheme,
   SafeVariants,
-  color,
-  opacity,
-  spacing,
-  typography,
-  textShadow,
-  visible,
   ColorProps,
   OpacityProps,
   SpacingProps,
   TextShadowProps,
   TypographyProps,
   VisibleProps,
+  SpacingShorthandProps,
+  color,
+  opacity,
+  spacing,
+  typography,
+  textShadow,
+  visible,
   spacingShorthand,
-  SpacingShorthandProps
+  useTheme,
 } from '@shopify/restyle'
 
 export type BaseTextProps<Theme extends BaseTheme> = ColorProps<Theme> &
@@ -50,3 +51,9 @@ export const useVariant = <
       : variantProps
   }, [variantObj, variantName])
 }
+
+export const useThemedStyles = <Theme extends BaseTheme>(factory: ) => {
+  const theme = useTheme<Theme>()
+}
+
+export const createThemedStyles = 

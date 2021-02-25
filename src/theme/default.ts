@@ -26,14 +26,14 @@ export default createTheme({
     mainBackgroundMedium: palette.gray200,
     mainBackgroundMuted: palette.gray100,
     mainBackgroundSoft: palette.gray50,
-    mainBorderHeavy: palette.gray400,
-    mainBorderMedium: palette.gray300,
-    mainBorderMuted: palette.gray200,
     mainForegroundHeavy: palette.black,
     mainForegroundRegular: palette.gray600,
     mainForegroundMedium: palette.gray500,
     mainForegroundMuted: palette.gray400,
     mainForegroundSoft: palette.gray300,
+    mainBorderHeavy: palette.gray400,
+    mainBorderMedium: palette.gray300,
+    mainBorderMuted: palette.gray200,
 
     // Highlights
     attentionRegular: palette.yellow400,

@@ -1,6 +1,5 @@
 import React, { Ref, ReactElement, forwardRef, useEffect, useRef, useState } from 'react'
-import { View, ActivityIndicator } from 'react-native'
-import { createThemedStyleSheet, useStyles } from 'theme'
+import { Box, ActivityIndicator } from './common'
 import { FlatList, FlatListProps, FlatListElement } from './lists'
 
 export interface InfiniteListProps<T> extends FlatListProps<T> {
@@ -62,24 +61,11 @@ export const InfiniteList = forwardRef(<T, >(props: InfiniteListProps<T>, ref: a
 }) as <T>(p: InfiniteListProps<T> & { ref?: Ref<FlatListElement> }) => ReactElement
 
 const ListFooter = ({ data, loading }: { data: any, loading: boolean }) => {
-  const styles = useStyles(themedStyles)
-
   return (
-    <View style={styles.listFooter}>
+    <Box alignItems="center" justifyContent="center" p="l">
       {data && data.length && loading ? (
-        <ActivityIndicator style={styles.activityIndicator} animating size="large" />
+        <ActivityIndicator p="xl" animating size="large" />
       ) : null}
-    </View>
+    </Box>
   )
 }
-
-const themedStyles = createThemedStyleSheet(theme => ({
-  listFooter: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: theme.spacing.l
-  },
-  activityIndicator: {
-    padding: theme.spacing.xl
-  }
-}))
