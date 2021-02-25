@@ -2,7 +2,7 @@ import React, { isValidElement, ReactNode } from 'react'
 import { StyleProp, TextStyle, ViewStyle } from 'react-native'
 import { useTheme } from '@shopify/restyle'
 import { Theme, ThemeSize } from 'theme'
-import { Box, BoxProps } from './Box'
+import { Box, BoxProps } from './common'
 import { Text, TextProps } from './Text'
 
 export interface BadgeProps extends BoxProps {

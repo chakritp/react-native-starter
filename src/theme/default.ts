@@ -19,6 +19,8 @@ export default createTheme({
     // General
     white: palette.white,
     transparent: 'transparent',
+    brandPrimaryRegular: palette.blue500,
+    brandPrimaryInverse: palette.white,
     mainBackgroundHeavy: palette.white,
     mainBackgroundRegular: palette.white,
     mainBackgroundMedium: palette.gray200,
@@ -32,9 +34,6 @@ export default createTheme({
     mainForegroundMedium: palette.gray500,
     mainForegroundMuted: palette.gray400,
     mainForegroundSoft: palette.gray300,
-    
-    // Specialized
-    link: palette.blue500,
 
     // Highlights
     attentionRegular: palette.yellow400,
@@ -51,7 +50,10 @@ export default createTheme({
     warningHeavy: palette.orange500,
     dangerRegular: palette.red500,
     dangerMuted: palette.red300,
-    dangerHeavy: palette.red500
+    dangerHeavy: palette.red500,
+
+    // Specialized
+    link: palette.blue500
   },
   breakpoints: {
     phone: 0,
@@ -68,7 +70,9 @@ export default createTheme({
     xs: 4,
     s: 6,
     m: 10,
-    l: 16,
+    xm: 12,
+    xxm: 16,
+    l: 20,
     xl: 24,
     xxl: 36,
     xxxl: 64
@@ -89,7 +93,8 @@ export default createTheme({
     xs: 3,
     s: 4,
     m: 6,
-    l: 10
+    l: 10,
+    xl: 16
   },
   textVariants: {
     h1: {
@@ -181,6 +186,27 @@ export default createTheme({
       fontSize: fontSizes.xxs,
       lineHeight: fontSizes.xxs * 1.2,
       color: 'mainForegroundRegular'
+    }
+  },
+  buttonVariants: {
+    defaults: {
+      borderRadius: 'm'
+    },
+    primary: {
+      backgroundColor: 'brandPrimaryRegular',
+      foregroundColor: 'brandPrimaryInverse',
+      borderColor: 'transparent'
+    },
+    secondary: {
+      backgroundColor: 'transparent',
+      foregroundColor: 'brandPrimaryRegular',
+      borderColor: 'brandPrimaryRegular'
+    },
+    listFooter: {
+      backgroundColor: 'mainBackgroundRegular',
+      foregroundColor: 'brandPrimaryRegular',
+      borderColor: 'mainBackgroundRegular',
+      borderRadius: 'none'
     }
   },
   toastVariants: {

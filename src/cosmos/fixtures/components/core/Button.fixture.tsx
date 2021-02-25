@@ -1,34 +1,35 @@
 import React from 'react'
-import { View } from 'react-native'
 import { useValue } from 'react-cosmos/fixture'
+import { useTheme } from '@shopify/restyle'
 import { Label } from 'cosmos/ui'
-import { ScrollContainer, ButtonProps, Button as $Button } from 'components/core'
-import { ButtonVariant, useTheme } from 'theme'
+import { Box, ScrollContainer, ButtonProps, Button as $Button } from 'components/core'
+import { Theme } from 'theme'
 
 export default () => {
   const theme = useTheme()
-  const variants = Object.keys(theme.buttonVariants) as ButtonVariant[] 
+  const variants = Object.keys(theme.buttonVariants).filter(v => v !== 'defaults')
   const [title] = useValue('title', { defaultValue: "Bump" })
+  const [loading] = useValue('loading', { defaultValue: false })
 
   return (
     <ScrollContainer
       safe="top"
-      padding
+      contentPadding="m"
       contentContainerStyle={{ alignItems: 'center', justifyContent: 'space-around' }}
     >
-      <ButtonSizeRow title={title} />
-      <ButtonSizeRow title={title} outline rounded={false} />
-      <ButtonSizeRow title={title} outline />
-      <ButtonSizeRow title={title} icon="add" />
-      <ButtonSizeRow title={title} icon="add" iconPlacement="right" />
+      <ButtonSizeRow title={title} loading={loading} />
+      <ButtonSizeRow title={title} rounded loading={loading} />
+      <ButtonSizeRow title={title} icon="add" loading={loading} />
+      <ButtonSizeRow title={title} icon="add" iconPlacement="right" loading={loading} />
       <ButtonSizeRow title={title} loading />
-      <ButtonSizeRow title={title} disabled />
+      <ButtonSizeRow title={title} disabled loading={loading} />
 
       {variants.map(variant => (
         <ButtonVariantRow
           key={variant}
           label={variant}
-          variant={variant}
+          variant={variant as keyof Omit<Theme['buttonVariants'], 'defaults'>}
+          loading={loading}
           title={title} />
       ))}
     </ScrollContainer>
@@ -36,24 +37,24 @@ export default () => {
 }
 
 const Button = (props: ButtonProps) => (
-  <$Button style={{ margin: 4 }} onPress={() => {}} {...props} />
+  <$Button m="xs" onPress={() => {}} {...props} />
 )
 
 const ButtonSizeRow = (buttonProps: ButtonProps) => (
-  <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-around' }}>
+  <Box flexDirection="row" alignItems="center" justifyContent="space-around">
     <Button size="s" {...buttonProps} />
     <Button {...buttonProps} />
     <Button size="l" {...buttonProps} />
-  </View>
+  </Box>
 )
 
 const ButtonVariantRow = ({ label, ...buttonProps }: { label: string } & ButtonProps) => (
-  <View>
+  <>
     <Label>{label}</Label>
-    <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-around', marginBottom: 5 }}>
+    <Box flexDirection="row" alignItems="center" justifyContent="space-around" marginBottom="xs">
       <Button {...buttonProps} />
       <Button outline {...buttonProps} />
       <Button disabled {...buttonProps} />
-    </View>
-  </View>
+    </Box>
+  </>
 )

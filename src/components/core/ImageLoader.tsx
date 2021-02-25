@@ -12,7 +12,7 @@ import {
   NativeSyntheticEvent,
   ImageLoadEventData
 } from 'react-native'
-import { Box, BoxProps } from './Box'
+import { Box, BoxProps } from './common'
 
 export interface ImageLoaderProps extends BoxProps, Omit<ImageProps,
   'style' |

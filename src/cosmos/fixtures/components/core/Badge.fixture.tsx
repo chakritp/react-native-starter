@@ -1,31 +1,31 @@
 import React from 'react'
-import { View } from 'react-native'
 import { useValue } from 'react-cosmos/fixture'
-import { ScrollContainer, Badge } from 'components/core'
+import { Box, ScrollContainer, Badge } from 'components/core'
+import { Theme } from 'theme'
 
 export default () => {
   const [text] = useValue('text', { defaultValue: '1024' })
 
   return (
     <ScrollContainer safe="top">
-      <Row color="danger" />
-      <Row color="info" text={text} />
-      <Row color="success" text={text} />
-      <Row color="attention" text={text} />
-      <Row color="warning" text={text} />
-      <Row color="danger" text={text} />
+      <Row color="dangerHeavy" />
+      <Row color="infoRegular" text={text} />
+      <Row color="successRegular" text={text} />
+      <Row color="attentionRegular" text={text} />
+      <Row color="warningRegular" text={text} />
+      <Row color="dangerRegular" text={text} />
     </ScrollContainer>
   )
 }
 
-const Row = ({ text, ...props }: { text?: string, color: string }) => {
+const Row = ({ text, ...props }: { text?: string, color: keyof Theme['colors'] }) => {
   return (
-    <View style={{ flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-evenly', margin: 8 }}>
+    <Box flexDirection="row" flexWrap="wrap" alignItems="center" justifyContent="space-evenly" margin="m">
       <Badge size="xxs" {...props}>{text}</Badge>
       <Badge size="xs" {...props}>{text}</Badge>
       <Badge size="s" {...props}>{text}</Badge>
       <Badge size="m" {...props}>{text}</Badge>
       <Badge size="l" {...props}>{text}</Badge>
-    </View>
+    </Box>
   )
 }

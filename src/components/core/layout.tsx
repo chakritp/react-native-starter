@@ -20,7 +20,7 @@ import {
 } from '@shopify/restyle'
 import { IconProp, renderIcon } from 'helpers/ui'
 import { Theme } from 'theme'
-import { Box, BoxProps } from './Box'
+import { Box, BoxProps } from './common'
 import { Text } from './Text'
 
 export interface ContainerProps extends BoxProps {
