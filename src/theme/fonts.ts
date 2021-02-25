@@ -1,4 +1,3 @@
-import { TextStyle } from 'react-native'
 import fontFamilies from './fontFamilies'
 
 export default {
@@ -34,4 +33,4 @@ export default {
     fontFamily: fontFamilies.heading,
     fontWeight: '700'
   }
-} as { [key: string]: TextStyle }
+}

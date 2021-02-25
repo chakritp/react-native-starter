@@ -1,12 +1,10 @@
 import React from 'react'
 import { View, Platform, Linking } from 'react-native'
 import DeviceInfo from 'react-native-device-info'
-import { createThemedStyleSheet, useStyles } from 'theme'
 import { Container, Heading, Button } from 'components/core'
 import { useTranslate } from 'helpers/i18n'
 
 export const AppUpgradeRequiredNotice = () => {
-  const styles = useStyles(themedStyles)
   const t = useTranslate('screens.appUpdateRequired')
 
   const goToAppStore = () => {
@@ -19,7 +17,11 @@ export const AppUpgradeRequiredNotice = () => {
   
   return (
     <Container
-      style={styles.container}
+      height="100%"
+      justifyContent="center"
+      padding="xxl"
+      paddingBottom="xxxl"
+      backgroundColor="mainBackgroundRegular"
     >
       <View>
         <Heading
@@ -40,14 +42,3 @@ export const AppUpgradeRequiredNotice = () => {
     </Container>
   )
 }
-
-const themedStyles = createThemedStyleSheet(theme => ({
-  container: {
-    flex: 1,
-    height: '100%',
-    justifyContent: 'center',
-    padding: theme.spacing.xxl,
-    paddingBottom: theme.spacing.xxl * 2,
-    backgroundColor: theme.colors.containerBg,
-  }
-}))

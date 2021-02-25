@@ -1,105 +1,203 @@
+import { createTheme } from '@shopify/restyle'
 import fonts from './fonts'
 import palette from './palette'
 
-export default {
+const fontSizes = {
+  xxs: 14,
+  xs: 16,
+  s: 18,
+  m: 20,
+  l: 26,
+  xl: 32,
+  xxl: 48
+}
+
+export default createTheme({
+  dark: false,
+  keyboardAppearance: 'light',
   colors: {
-    borderHeavy: palette.gray400,
-    borderMedium: palette.gray300,
-    borderLight: palette.gray200,
-    containerBg: palette.white,
-    containerMutedBg: palette.gray50,
-    inputBg: palette.white,
-    inputBorder: palette.gray300,
-    inputText: palette.gray600,
-    label: palette.gray500,
-    link: palette.blue500,
-    listItemBg: palette.white,
-    listItemHighlightBg: palette.gray200,
-    listItemIcon: palette.gray200,
-    modalInputContent: palette.white,
-    placeholder: palette.gray300,
-    navBg: palette.blue500,
-    navBorder: 'rgba(0, 0, 0, 0)',
-    navTint: palette.white,
-    navTintMuted: palette.gray200,
-    navPrimary: palette.white,
-    searchInputBg: palette.gray100,
-    text: palette.gray600,
-    textInverse: palette.white,
-    textMuted: palette.gray400,
-    textLight: palette.gray300,
+    // General
     white: palette.white,
-  
-    // Statuses
-    attention: palette.yellow400,
+    transparent: 'transparent',
+    mainBackgroundHeavy: palette.white,
+    mainBackgroundRegular: palette.white,
+    mainBackgroundMedium: palette.gray200,
+    mainBackgroundMuted: palette.gray100,
+    mainBackgroundSoft: palette.gray50,
+    mainBorderHeavy: palette.gray400,
+    mainBorderMedium: palette.gray300,
+    mainBorderMuted: palette.gray200,
+    mainForegroundHeavy: palette.black,
+    mainForegroundRegular: palette.gray600,
+    mainForegroundMedium: palette.gray500,
+    mainForegroundMuted: palette.gray400,
+    mainForegroundSoft: palette.gray300,
+    
+    // Specialized
+    link: palette.blue500,
+
+    // Highlights
+    attentionRegular: palette.yellow400,
     attentionMuted: palette.yellow300,
     attentionHeavy: palette.yellow500,
-    info: palette.blue500,
+    infoRegular: palette.blue500,
     infoMuted: palette.blue200,
     infoHeavy: palette.blue500,
-    success: palette.green400,
+    successRegular: palette.green400,
     successMuted: palette.green200,
     successHeavy: palette.green500,
-    warning: palette.orange400,
+    warningRegular: palette.orange400,
     warningMuted: palette.orange300,
     warningHeavy: palette.orange500,
-    danger: palette.red500,
+    dangerRegular: palette.red500,
     dangerMuted: palette.red300,
     dangerHeavy: palette.red500
   },
-  fonts,
-  fontSizes: {
-    xxl: 48,
-    xl: 32,
-    l: 26,
-    m: 20,
-    s: 18,
-    xs: 16,
-    xxs: 14,
+  breakpoints: {
+    phone: 0,
+    longPhone: {
+      width: 0,
+      height: 812
+    },
+    tablet: 768,
+    largeTablet: 1024,
   },
   spacing: {
-    xxl: 36,
-    xl: 24,
-    l: 16,
-    m: 10,
-    s: 6,
+    none: 0,
+    xxs: 2,
     xs: 4,
-    xxs: 2
+    s: 6,
+    m: 10,
+    l: 16,
+    xl: 24,
+    xxl: 36,
+    xxxl: 64
   },
   sizes: {
-    xxl: 100,
-    xl: 80,
-    l: 56,
-    m: 44,
-    s: 32,
+    xxs: 16,
     xs: 24,
-    xxs: 16
+    s: 32,
+    m: 44,
+    l: 56,
+    xl: 80,
+    xxl: 100
   },
-  radii: {
-    l: 10,
-    m: 6,
+  fonts,
+  fontSizes,
+  borderRadii: {
+    none: 0,
+    xs: 3,
     s: 4,
-    xs: 3
+    m: 6,
+    l: 10
   },
-  keyboardAppearance: 'light',
-  buttonVariants: {
-    primary: {
-      bgColor: palette.blue500,
-      textColor: palette.white,
-      outlineColor: 'transparent',
-      radius: null
+  textVariants: {
+    h1: {
+      ...fonts.headingMedium,
+      fontSize: fontSizes.xl,
+      lineHeight: fontSizes.xl * 1.2,
+      color: 'mainForegroundRegular'
     },
-    secondary: {
-      bgColor: 'transparent',
-      textColor: palette.blue500,
-      outlineColor: palette.blue500,
-      radius: null
+    h2: {
+      ...fonts.headingMedium,
+      fontSize: fontSizes.l,
+      lineHeight: fontSizes.l * 1.2,
+      color: 'mainForegroundRegular'
     },
-    listFooter: {
-      bgColor: palette.white,
-      textColor: palette.blue500,
-      outlineColor: palette.white,
-      radius: 0
+    h3: {
+      ...fonts.headingMedium,
+      fontSize: fontSizes.m,
+      lineHeight: fontSizes.m * 1.2,
+      color: 'mainForegroundRegular'
+    },
+    h4: {
+      ...fonts.headingMedium,
+      fontSize: fontSizes.s,
+      lineHeight: fontSizes.s * 1.2,
+      color: 'mainForegroundRegular'
+    },
+    h5: {
+      ...fonts.headingMedium,
+      fontSize: fontSizes.xs,
+      lineHeight: fontSizes.xs * 1.2,
+      color: 'mainForegroundRegular'
+    },
+    h6: {
+      ...fonts.headingMedium,
+      fontSize: fontSizes.xxs,
+      lineHeight: fontSizes.xxs * 1.2,
+      color: 'mainForegroundRegular'
+    },
+    s1: {
+      ...fonts.headingRegular,
+      fontSize: fontSizes.l,
+      lineHeight: fontSizes.l * 1.2,
+      color: 'mainForegroundRegular'
+    },
+    s2: {
+      ...fonts.headingRegular,
+      fontSize: fontSizes.m,
+      lineHeight: fontSizes.m * 1.2,
+      color: 'mainForegroundRegular'
+    },
+    s3: {
+      ...fonts.headingRegular,
+      fontSize: fontSizes.s,
+      lineHeight: fontSizes.s * 1.2,
+      color: 'mainForegroundRegular'
+    },
+    p1: {
+      ...fonts.bodyRegular,
+      fontSize: fontSizes.l,
+      lineHeight: fontSizes.l * 1.2,
+      color: 'mainForegroundRegular'
+    },
+    p2: {
+      ...fonts.bodyRegular,
+      fontSize: fontSizes.m,
+      lineHeight: fontSizes.m * 1.2,
+      color: 'mainForegroundRegular'
+    },
+    p3: {
+      ...fonts.bodyRegular,
+      fontSize: fontSizes.s,
+      lineHeight: fontSizes.s * 1.2,
+      color: 'mainForegroundRegular'
+    },
+    p4: {
+      ...fonts.bodyRegular,
+      fontSize: fontSizes.xs,
+      lineHeight: fontSizes.xs * 1.2,
+      color: 'mainForegroundRegular'
+    },
+    c1: {
+      ...fonts.bodyLight,
+      fontSize: fontSizes.xs,
+      lineHeight: fontSizes.xs * 1.2,
+      color: 'mainForegroundRegular'
+    },
+    c2: {
+      ...fonts.bodyLight,
+      fontSize: fontSizes.xxs,
+      lineHeight: fontSizes.xxs * 1.2,
+      color: 'mainForegroundRegular'
+    }
+  },
+  toastVariants: {
+    defaults: {
+      textColor: 'white'
+    },
+    info: {
+      backgroundColor: 'infoRegular'
+    },
+    success: {
+      backgroundColor: 'successRegular'
+    },
+    warning: {
+      backgroundColor: 'warningRegular'
+    },
+    danger: {
+      backgroundColor: 'dangerRegular'
     }
   }
-}
+})

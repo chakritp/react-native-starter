@@ -2,19 +2,14 @@ import React, { useContext, useEffect, useMemo, useRef, useState } from 'react'
 import { View, Keyboard, TouchableOpacity } from 'react-native'
 import { NavigationContext } from '@react-navigation/native'
 import { SafeAreaView } from 'react-native-safe-area-context'
+import { boxRestyleFunctions, color, useRestyle, useTheme } from '@shopify/restyle'
+import { useVariant } from 'lib/restyle'
 import { Text } from './Text' 
 import { Transition } from './Transition'
-import { createThemedStyleSheet, useStyles, useTheme } from 'theme'
-
-export enum ToastType {
-  INFO = 'info',
-  SUCCESS = 'success',
-  WARNING = 'warning',
-  DANGER = 'danger'
-}
+import { Theme } from 'theme'
 
 export interface ToastConfig {
-  type?: ToastType
+  variant?: 'info' | 'success' | 'warning' | 'danger'
   text: string
   hideDelay?: number
   onHide?: () => void
@@ -125,13 +120,13 @@ Toast.show = (config: ToastConfig | string) => {
   Toast._getActiveController().show({ ...config })
 }
 
-Toast.info = (config: ToastConfig | string) => Toast.show(normalizeConfig(config, { type: ToastType.INFO }))
+Toast.info = (config: ToastConfig | string) => Toast.show(normalizeConfig(config, { variant: 'info' }))
 
-Toast.success = (config: ToastConfig | string) => Toast.show(normalizeConfig(config, { type: ToastType.SUCCESS, hideDelay: 800 }))
+Toast.success = (config: ToastConfig | string) => Toast.show(normalizeConfig(config, { variant: 'success', hideDelay: 800 }))
 
-Toast.warning = (config: ToastConfig | string) => Toast.show(normalizeConfig(config, { type: ToastType.WARNING }))
+Toast.warning = (config: ToastConfig | string) => Toast.show(normalizeConfig(config, { variant: 'warning' }))
 
-Toast.danger = (config: ToastConfig | string) => Toast.show(normalizeConfig(config, { type: ToastType.DANGER }))
+Toast.danger = (config: ToastConfig | string) => Toast.show(normalizeConfig(config, { variant: 'danger' }))
 
 Toast.hide = () => {
   const controller = Toast._getActiveController()
@@ -155,27 +150,33 @@ Toast._getActiveController = function() {
   return this._controllers[this._controllers.length - 1]
 }
 
-const ToastModal = ({ type = ToastType.INFO, text, onDismiss }: { type?: ToastType, text: string, onDismiss?: () => void }) => {
-  const theme = useTheme()
-  const styles = useStyles(themedStyles)
+interface ToastModalProps {
+  variant?: ToastConfig['variant']
+  text: string
+  onDismiss?: () => void
+}
+
+const ToastModal = ({ variant = 'info', text, onDismiss }: ToastModalProps) => {
+  const theme = useTheme<Theme>()
+  const { backgroundColor, textColor } = useVariant(theme, 'toastVariants', variant)
+  const containerProps = useRestyle(boxRestyleFunctions, {
+    margin: 'l',
+    padding: 'm',
+    borderRadius: 'm',
+    backgroundColor
+  })
+  const textProps = useRestyle([color], { color: textColor })
+
   return (
     <TouchableOpacity
-      style={[styles.modal, { backgroundColor: theme.colors[type] }]}
+      {...containerProps}
       activeOpacity={1}
-      onPress={onDismiss}>
-      <Text.P4 align="center" color="white">{text}</Text.P4>
+      onPress={onDismiss}
+    >
+      <Text variant="p4" textAlign="center" {...textProps}>{text}</Text>
     </TouchableOpacity>
   )
 }
-
-const themedStyles = createThemedStyleSheet(theme => ({
-  modal: {
-    margin: theme.spacing.l,
-    padding: theme.spacing.m,
-    borderRadius: theme.radii.m,
-    backgroundColor: theme.colors.info
-  }
-}))
 
 function normalizeConfig(config: ToastConfig | string, defaults?: Partial<ToastConfig>) {
   if (typeof config === 'string') {

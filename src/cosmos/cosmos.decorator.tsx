@@ -2,11 +2,11 @@ import jest from 'jest-mock'
 import React, { ReactNode, useEffect } from 'react'
 import { View } from 'react-native'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
-import { ThemeProvider } from 'theme'
-import { factory } from 'factories'
-import { defaultTheme as theme } from 'theme'
-import { useMocks } from 'cosmos/helpers'
+import { ThemeProvider } from '@shopify/restyle'
 import { Toast } from 'components/core'
+import { factory } from 'factories'
+import { defaultTheme } from 'theme'
+import { useMocks } from 'cosmos/helpers'
 
 export default ({ children } : { children: ReactNode }) => {
   factory.cleanUp()
@@ -19,7 +19,7 @@ export default ({ children } : { children: ReactNode }) => {
 
   return (
     <SafeAreaProvider>
-      <ThemeProvider theme={theme}>
+      <ThemeProvider theme={defaultTheme}>
         <View style={{ flex: 1, backgroundColor: '#eee' }}>
           {children}
         </View>

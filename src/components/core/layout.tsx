@@ -8,78 +8,73 @@ import {
   RefreshControl,
   StyleSheet,
   ViewProps,
-  StyleProp,
-  ViewStyle
 } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import { useHeaderHeight } from '@react-navigation/stack'
-import { createThemedStyleSheet, useStyles, useTheme } from 'theme'
+import {
+  spacing,
+  backgroundColor,
+  boxRestyleFunctions,
+  useRestyle,
+  useTheme
+} from '@shopify/restyle'
 import { IconProp, renderIcon } from 'helpers/ui'
-import { Theme, ThemeSize } from 'theme'
+import { Theme } from 'theme'
+import { Box, BoxProps } from './Box'
 import { Text } from './Text'
 
-type PaddingProp = ThemeSize | number | boolean
-
-interface PaddingProps {
-  padding?: PaddingProp
-  paddingHorizontal?: PaddingProp
-  paddingVertical?: PaddingProp
-}
-
-export interface ContainerProps extends PaddingProps, ViewProps {
+export interface ContainerProps extends BoxProps {
   center?: boolean
   keyboard?: boolean
   safe?: SafeAreaProps['safe']
-  children?: ReactNode
 }
 
 export const Container = ({
   style,
-  padding,
-  paddingHorizontal,
-  paddingVertical,
   center,
   keyboard,
   safe,
   children,
   ...props
 }: ContainerProps) => {
-  const theme = useTheme()
-  const paddingStyle = getPaddingStyle(theme, { padding, paddingHorizontal, paddingVertical })
 
   if (keyboard) {
     children = (
-      <View style={staticStyles.keyboardContainer}>
+      <View style={{ marginBottom: Math.round(Dimensions.get('window').height * 0.33) }}>
         {children}
       </View>
     )
   }
 
   return (
-    <View
+    <Box
+      flex={1}
       style={[
-        staticStyles.container,
-        paddingStyle,
-        center ? staticStyles.center : null,
+        center ? styles.center : null,
         style
       ]}
       {...props}>
       {safe ? <SafeArea safe={safe}>{children}</SafeArea> : children}
-    </View>
+    </Box>
   )
 }
 
 export interface ScrollContainerProps extends ContainerProps, ScrollViewProps {
+  contentPadding?: BoxProps['padding']
+  contentPaddingHorizontal?: BoxProps['paddingHorizontal']
+  contentPaddingVertical?: BoxProps['paddingVertical']
+  contentBackgroundColor?: BoxProps['backgroundColor']
   refreshing?: boolean
   onRefresh?: () => void
 }
 
 export const ScrollContainer = ({
-  style,
   contentContainerStyle,
-  padding,
-  paddingHorizontal,
-  paddingVertical,
+  contentPadding,
+  contentPaddingHorizontal,
+  contentPaddingVertical,
+  contentBackgroundColor,
+  flex = 1,
   center,
   keyboard,
   safe,
@@ -88,9 +83,17 @@ export const ScrollContainer = ({
   children,
   ...props
 }: ScrollContainerProps) => {
-  const theme = useTheme()
   const refreshRef = useRef(false)
-  const paddingStyle = getPaddingStyle(theme, { padding, paddingHorizontal, paddingVertical })
+  const theme = useTheme<Theme>()
+
+  const containerProps = useRestyle(boxRestyleFunctions, { ...props, flex })
+
+  const { style: baseContentContainerStyle } = useRestyle([spacing, backgroundColor], {
+    padding: contentPadding,
+    paddingHorizontal: contentPaddingHorizontal,
+    paddingVertical: contentPaddingVertical,
+    backgroundColor: contentBackgroundColor,
+  }) as { style: ScrollContainerProps['contentContainerStyle'] }
 
   useEffect(() => {
     if (!refreshing) {
@@ -100,7 +103,7 @@ export const ScrollContainer = ({
 
   if (keyboard) {
     children = (
-      <View style={staticStyles.keyboardContainer}>
+      <View style={{ marginBottom: Math.round(Dimensions.get('window').height * 0.33) }}>
         {children}
       </View>
     )
@@ -108,22 +111,21 @@ export const ScrollContainer = ({
 
   return (
     <ScrollView
-      style={[staticStyles.container, style]}
+      {...containerProps}
       contentContainerStyle={[
-        paddingStyle,
-        center && staticStyles.center,
+        baseContentContainerStyle,
+        center ? styles.center : null,
         contentContainerStyle
       ]}
       refreshControl={onRefresh && (
         <RefreshControl
           refreshing={refreshRef.current && refreshing!}
-          tintColor={theme.colors.textMuted}
+          tintColor={theme.colors.mainForegroundMuted}
           onRefresh={() => {
             refreshRef.current = true
             onRefresh()
           }} />
-      )}
-      {...props}>
+      )}>
       {safe ? <SafeArea safe={safe}>{children}</SafeArea> : children}
     </ScrollView>
   )
@@ -134,7 +136,7 @@ export const KeyboardAvoidingContainer = ({ style, ...props }: ViewProps) => {
   return (
     <KeyboardAvoidingView
       style={[
-        staticStyles.container,
+        styles.container,
         style
       ]}
       keyboardVerticalOffset={headerHeight}
@@ -143,27 +145,27 @@ export const KeyboardAvoidingContainer = ({ style, ...props }: ViewProps) => {
   )
 }
 
-export interface HeadingProps {
-  style?: StyleProp<ViewStyle>
+export interface HeadingProps extends BoxProps {
   icon?: IconProp
   title?: string
   subtitle?: string
   children?: ReactNode
 }
 
-export const Heading = ({ style, icon, title, subtitle, children }: HeadingProps) => {
-  const styles = useStyles(themedStyles)
+export const Heading = ({ icon, title, subtitle, children, ...props }: HeadingProps) => {
+  const theme = useTheme<Theme>()
+
   return (
-    <View style={[styles.heading, style]}>
+    <Box mb="xxl" {...props}>
       {icon && (
-        <View style={styles.headingIconContainer}>
+        <Box mb="xl">
           {renderIcon(icon, { size: 84 })}
-        </View>
+        </Box>
       )}
-      {title ? <Text.H1 style={styles.headingTitle}>{title}</Text.H1> : null}
-      {subtitle ? <Text.S3 style={styles.headingSubtitle}>{subtitle}</Text.S3> : null}
+      {title ? <Text variant="h1" textAlign="center">{title}</Text> : null}
+      {subtitle ? <Text variant="s3" textAlign="center" mt="l" lineHeight={theme.spacing.xl}>{subtitle}</Text> : null}
       {children}
-    </View>
+    </Box>
   )
 }
 
@@ -190,47 +192,12 @@ export const SafeArea = ({ safe = true, children }: SafeAreaProps) => {
   )
 }
 
-const staticStyles = StyleSheet.create({
+const styles = StyleSheet.create({
   container: {
     flex: 1
-  },
-  keyboardContainer: {
-    marginBottom: Math.round(Dimensions.get('window').height * 0.33)
   },
   center: {
     flexGrow: 1,
     justifyContent: 'center'
   }
 })
-
-const themedStyles = createThemedStyleSheet(theme => ({
-  heading: {
-    alignItems: 'center',
-    marginBottom: theme.spacing.xxl
-  },
-  headingIconContainer: {
-    marginBottom: theme.spacing.xl
-  },
-  headingTitle: {
-    textAlign: 'center'
-  },
-  headingSubtitle: {
-    textAlign: 'center',
-    marginTop: theme.spacing.l,
-    lineHeight: theme.spacing.l * 1.7,
-  }
-}))
-
-function getPaddingStyle(theme: Theme, props: PaddingProps) {
-  const style: any = {}
-
-  for (let [key, value] of Object.entries(props)) {
-    if (value === true) {
-      style[key] = theme.spacing.l
-    } else if (value) {
-      style[key] = typeof value === 'string' ? theme.spacing[value as ThemeSize] : theme
-    }
-  }
-
-  return style as StyleProp<ViewStyle>
-}

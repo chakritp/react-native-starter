@@ -1,17 +1,15 @@
 import React from 'react'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
 import { StoreProvider } from 'lib/mst'
-import { Root } from 'screens/Root'
+// import { Root } from 'screens/Root'
+import { Test } from 'Test'
 import { RootStore } from 'stores'
 
-const rootStore = RootStore.create()
 
 export const App = () => {
   return (
-    <StoreProvider value={rootStore}>
-      <SafeAreaProvider>
-        <Root />
-      </SafeAreaProvider>
-    </StoreProvider>
+    <SafeAreaProvider>
+      <Test />
+    </SafeAreaProvider>
   )
 }

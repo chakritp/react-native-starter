@@ -1,4 +1,4 @@
-import React, { ComponentType, PureComponent, ReactNode } from 'react'
+import React, { ReactNode, useCallback, useMemo } from 'react'
 import {
   Animated,
   Image,
@@ -12,34 +12,56 @@ import {
   NativeSyntheticEvent,
   ImageLoadEventData
 } from 'react-native'
-import { ThemeContextProps, createThemedStyleSheet, withTheme } from 'theme'
+import { Box, BoxProps } from './Box'
 
-export interface ImageLoaderProps extends Omit<ImageProps, 'style' | 'source'> {
+export interface ImageLoaderProps extends BoxProps, Omit<ImageProps,
+  'style' |
+  'source' |
+  'borderRadius' |
+  'borderTopLeftRadius' |
+  'borderTopRightRadius' |
+  'borderBottomLeftRadius' |
+  'borderBottomRightRadius' |
+  'width' |
+  'height'
+> {
   style?: StyleProp<ViewStyle>
   imageStyle?: StyleProp<ImageStyle>
   placeholderStyle?: StyleProp<ViewStyle>
   placeholderContent?: ReactNode
-  ImageComponent?: ComponentType<ImageProps>
+  ImageComponent?: typeof Image
   source?: ImageProps['source']
   children?: ReactNode
 }
 
-interface ImageLoaderState {
-  placeholderOpacity: Animated.Value
-}
+export const ImageLoader = ({
+  placeholderStyle,
+  placeholderContent,
+  style,
+  imageStyle,
+  ImageComponent = Image,
+  onError,
+  onLoad,
+  onLoadEnd,
+  onLoadStart,
+  progressiveRenderingEnabled,
+  resizeMode,
+  resizeMethod,
+  source,
+  loadingIndicatorSource,
+  defaultSource,
+  children
+}: ImageLoaderProps) => {
+  const placeholderOpacity = useMemo(() => new Animated.Value(1), [])
+  const hasImage = !!source
 
-class ImageLoaderBase extends PureComponent<ImageLoaderProps & ThemeContextProps, ImageLoaderState> {
-  state = {
-    placeholderOpacity: new Animated.Value(1),
-  }
-
-  onLoad = (ev: NativeSyntheticEvent<ImageLoadEventData>) => {
+  const onImageLoad = useCallback((ev: NativeSyntheticEvent<ImageLoadEventData>) => {
     const minimumWait = 100
     const staggerNonce = 200 * Math.random()
 
     setTimeout(
       () => {
-        Animated.timing(this.state.placeholderOpacity, {
+        Animated.timing(placeholderOpacity, {
           toValue: 0,
           duration: 300,
           useNativeDriver: true
@@ -48,76 +70,57 @@ class ImageLoaderBase extends PureComponent<ImageLoaderProps & ThemeContextProps
       Platform.OS === 'android' ? 0 : Math.floor(minimumWait + staggerNonce)
     )
 
-    if (this.props.onLoad) {
-      this.props.onLoad(ev)
+    if (onLoad) {
+      onLoad(ev)
     }
-  }
+  }, [placeholderOpacity, onLoad])
 
-  render() {
-    const {
-      getStyles,
-      placeholderStyle,
-      placeholderContent,
-      style,
-      imageStyle,
-      ImageComponent = Image,
-      source,
-      children,
-      ...imageProps
-    } = this.props
-    const styles = getStyles(themedStyles)
-    const hasImage = !!source
-
-    return (
-      <View
-        accessibilityIgnoresInvertColors={true}
-        style={[styles.container, style]}>
-
-        {source && (
-          <ImageComponent
-            {...imageProps}
-            source={source}
-            onLoad={this.onLoad}
-            style={[StyleSheet.absoluteFill, imageStyle]} />
-        )}
-        
-        <Animated.View
-          pointerEvents={hasImage ? 'none' : 'auto'}
-          accessibilityElementsHidden={hasImage}
-          importantForAccessibility={hasImage ? 'no-hide-descendants' : 'yes'}
+  return (
+    <Box
+      style={style}
+      backgroundColor="transparent"
+      position="relative"
+      overflow="hidden"
+      accessibilityIgnoresInvertColors
+    >
+      {source && (
+        <ImageComponent
+          onError={onError}
+          onLoad={onImageLoad}
+          onLoadEnd={onLoadEnd}
+          onLoadStart={onLoadStart}
+          progressiveRenderingEnabled={progressiveRenderingEnabled}
+          resizeMode={resizeMode}
+          resizeMethod={resizeMethod}
+          source={source}
+          loadingIndicatorSource={loadingIndicatorSource}
+          defaultSource={defaultSource}
+          style={[StyleSheet.absoluteFill, imageStyle]} />
+      )}
+      
+      <Animated.View
+        pointerEvents={hasImage ? 'none' : 'auto'}
+        accessibilityElementsHidden={hasImage}
+        importantForAccessibility={hasImage ? 'no-hide-descendants' : 'yes'}
+        style={[
+          StyleSheet.absoluteFill,
+          { opacity: hasImage ? placeholderOpacity : 1 }
+        ]}>
+        <Box
+          alignItems="center"
+          justifyContent="center"
+          width="100%"
+          height="100%"
+          backgroundColor="mainForegroundSoft"
           style={[
-            StyleSheet.absoluteFill,
-            { opacity: hasImage ? this.state.placeholderOpacity : 1 }
+            style,
+            placeholderStyle,
           ]}>
-          <View
-            style={[
-              style,
-              styles.placeholder,
-              placeholderStyle,
-            ]}>
-            {placeholderContent}
-          </View>
-        </Animated.View>
+          {placeholderContent}
+        </Box>
+      </Animated.View>
 
-        <View style={style}>{children}</View>
-      </View>
-    )
-  }
+      <View style={style}>{children}</View>
+    </Box>
+  )
 }
-
-const themedStyles = createThemedStyleSheet(theme => ({
-  container: {
-    backgroundColor: 'transparent',
-    position: 'relative',
-    overflow: 'hidden'
-  },
-  placeholder: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: '100%',
-    height: '100%',
-    backgroundColor: theme.colors.placeholder
-  },
-}))
-
-export const ImageLoader = withTheme(ImageLoaderBase)

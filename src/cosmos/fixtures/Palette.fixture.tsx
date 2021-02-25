@@ -19,7 +19,7 @@ export default () => {
   }, {})
 
   return (
-    <ScrollContainer safe padding>
+    <ScrollContainer safe padding="l">
       {Object.keys(hues).map(hue => (
         <View key={hue}>
           <Text>{hue}</Text>
@@ -27,7 +27,7 @@ export default () => {
             {hues[hue].levels.map(({ name, color }) => (
               <View key={name} style={styles.cell}>
                 <View style={[styles.swatch, { backgroundColor: color }]} />
-                {name ? <Text.C2>{name}</Text.C2> : null}
+                {name ? <Text variant="c2">{name}</Text> : null}
               </View>
             ))}
           </View>

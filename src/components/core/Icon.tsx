@@ -1,8 +1,10 @@
 import React from 'react'
-import { StyleProp, TextStyle, TouchableOpacity } from 'react-native'
+import { TouchableOpacity } from 'react-native'
 import { IconProps as $IconProps } from 'react-native-vector-icons/Icon'
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons'
-import { ThemeColor, ThemeSize, useTheme } from 'theme'
+import { useRestyle, useTheme } from '@shopify/restyle'
+import { BaseTextProps, baseTextRestyleFunctions } from 'lib/restyle'
+import { Theme, ThemeSize } from 'theme'
 
 enum IconType {
   MATERIAL = 'material'
@@ -14,34 +16,32 @@ const ICON_COMPONENTS = {
 
 const HIT_SLOP = { top: 10, left: 10, bottom: 10, right: 10 }
 
-export interface IconProps extends Omit<$IconProps, 'size' | 'color'> {
+export interface IconProps extends BaseTextProps<Theme>, Omit<$IconProps, 'size' | 'color'> {
   type?: IconType,
-  color?: ThemeColor | string
   size?: ThemeSize | number
 }
 
 export const Icon = ({
   type = IconType.MATERIAL,
+  name,
   size: _size = 24,
-  color = 'text',
-  style,
   onPress,
   ...props
 } : IconProps) => {
-  const theme = useTheme()
-  let size = typeof _size === 'string' ? theme.fontSizes[_size] : _size
-
-  const baseStyle: StyleProp<TextStyle> = { lineHeight: size }
-  if (color) {
-    baseStyle.color = theme.colors[color as ThemeColor] || color as string
+  if (!props.color) {
+    props.color = 'mainForegroundRegular'
   }
+
+  const theme = useTheme<Theme>()
+  const iconProps = useRestyle(baseTextRestyleFunctions, props)
+  let size = typeof _size === 'string' ? theme.fontSizes[_size] : _size
 
   const IconComponent = ICON_COMPONENTS[type]
   const icon = (
     <IconComponent
-      style={[baseStyle, style]}
+      name={name}
       size={size}
-      {...props} />
+      {...iconProps} />
   )
 
   if (onPress) {

@@ -1,24 +1,67 @@
-import React from 'react'
+import React, { ComponentPropsWithRef } from 'react'
 import { StyleSheet } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
-import { createStackNavigator as $createStackNavigator } from '@react-navigation/stack'
-import { createThemedStyleSheet, useStyles } from 'theme'
+import {
+  StackNavigationOptions as $StackNavigationOptions,
+  createStackNavigator as $createStackNavigator
+} from '@react-navigation/stack'
+import { boxRestyleFunctions, BoxProps, useRestyle, useTheme } from '@shopify/restyle'
+import { BaseTextProps, baseTextRestyleFunctions } from 'lib/restyle'
+import { Theme } from 'theme'
 import { HeaderButton } from 'components/core'
 
-export const createStackNavigator = (...args) => {
-  const Stack = $createStackNavigator(...args)
-  const { Navigator: StackNavigator } = Stack
+export interface StackNavigationOptions extends $StackNavigationOptions {
+  headerStyleProps?: BoxProps<Theme>
+  headerTitleStyleProps?: BaseTextProps<Theme>
+  cardStyleProps?: BoxProps<Theme>
+}
 
-  const Navigator = ({ screenOptions = {}, ...props }) => {
-    const styles = useStyles(themedStyles)
-    const { headerStyle, headerTitleStyle, cardStyle, ...options } = screenOptions
+export const createStackNavigator = () => {
+  const { Navigator: StackNavigator, Screen } = $createStackNavigator()
+
+  type Props = Omit<ComponentPropsWithRef<typeof StackNavigator>, 'screenOptions'> & {
+    screenOptions: StackNavigationOptions
+  }
+
+  const Navigator = ({ screenOptions = {}, ...props }: Props) => {
+    const theme = useTheme<Theme>()
+
+    const {
+      headerStyleProps,
+      headerTitleStyleProps,
+      cardStyleProps,
+      headerStyle,
+      headerTitleStyle,
+      cardStyle,
+      ...options
+    } = screenOptions
+
+    const defaultHeaderTitleStyleProps = {
+      ...theme.fonts.headingMedium,
+      fontSize: theme.fontSizes.m
+    }
+
+    const { style: baseHeaderStyle } = useRestyle(boxRestyleFunctions, {
+      ...defaultHeaderStyleProps,
+      ...headerStyleProps
+    }) as any
+
+    const { style: baseHeaderTitleStyle } = useRestyle(baseTextRestyleFunctions, {
+      ...defaultHeaderTitleStyleProps,
+      ...headerTitleStyleProps
+    }) as any
+
+    const { style: baseCardStyle } = useRestyle(boxRestyleFunctions, {
+      ...defaultCardStyleProps,
+      ...cardStyleProps
+    }) as any
 
     return (
       <StackNavigator
         screenOptions={{
-          headerStyle: [styles.header, headerStyle],
-          headerTitleStyle: [styles.headerTitle, headerTitleStyle],
-          cardStyle: [styles.card, cardStyle],
+          headerStyle: [baseHeaderStyle, headerStyle],
+          headerTitleStyle: [baseHeaderTitleStyle, headerTitleStyle],
+          cardStyle: [baseCardStyle, cardStyle],
           headerBackTitleVisible: false,
           headerTitle: undefined,
           ...options
@@ -27,8 +70,18 @@ export const createStackNavigator = (...args) => {
     )
   }
 
-  Stack.Navigator = Navigator
-  return Stack
+  return { Navigator, Screen }
+}
+
+const defaultHeaderStyleProps: BoxProps<Theme> = {
+  elevation: 0,
+  shadowOpacity: 0,
+  borderBottomColor: 'mainBorderMuted',
+  borderBottomWidth: StyleSheet.hairlineWidth
+}
+
+const defaultCardStyleProps: BoxProps<Theme> = {
+  backgroundColor: 'mainBackgroundRegular'
 }
 
 export const SettingsHeaderButton = () => {
@@ -41,19 +94,3 @@ export const SettingsHeaderButton = () => {
       onPress={() => navigation.navigate('Settings')} />
   )
 }
-
-const themedStyles = createThemedStyleSheet(theme => ({
-  header: {
-    elevation: 0,
-    shadowOpacity: 0,
-    borderBottomColor: theme.colors.navBorder,
-    borderBottomWidth: StyleSheet.hairlineWidth
-  },
-  headerTitle: {
-    ...theme.fonts.headingMedium,
-    fontSize: theme.fontSizes.m
-  },
-  card: {
-    backgroundColor: theme.colors.containerBg
-  }
-}))

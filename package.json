@@ -28,6 +28,7 @@
     "@react-native-picker/picker": "^1.9.8",
     "@react-navigation/native": "^5.8.10",
     "@react-navigation/stack": "^5.12.8",
+    "@shopify/restyle": "^1.4.0",
     "@types/humps": "^2.0.0",
     "buffer": "^6.0.3",
     "event-emitter": "^0.3.5",

@@ -1,13 +1,15 @@
 import React, { isValidElement, ReactNode } from 'react'
-import { StyleProp, TextStyle, View, ViewStyle } from 'react-native'
-import { ThemeColor, ThemeSize, createThemedStyleSheet, useStyles, useTheme } from 'theme'
-import { Text } from './Text'
+import { StyleProp, TextStyle, ViewStyle } from 'react-native'
+import { useTheme } from '@shopify/restyle'
+import { Theme, ThemeSize } from 'theme'
+import { Box, BoxProps } from './Box'
+import { Text, TextProps } from './Text'
 
-export interface BadgeProps {
+export interface BadgeProps extends BoxProps {
   style?: StyleProp<ViewStyle>,
   textStyle?: StyleProp<TextStyle>
-  color?: ThemeColor | string
-  textColor?: ThemeColor | string
+  color?: TextProps['color']
+  textColor?: TextProps['color']
   size?: ThemeSize | number
   children?: string | ReactNode
 }
@@ -16,31 +18,35 @@ export const Badge = ({
   style,
   textStyle,
   color,
-  textColor = 'textInverse',
+  textColor = 'white',
   size: _size = 's',
-  children
+  children,
+  ...props
 } : BadgeProps) => {
-  const theme = useTheme()
-  const styles = useStyles(themedStyles)
+  const theme = useTheme<Theme>()
   const size = typeof _size === 'string' ? theme.fontSizes[_size] : _size 
   const height = Math.round(size * (children ? 1.5 : 0.65))
 
   return (
-    <View style={[
-      styles.container,
-      {
-        height,
-        minWidth: height,
-        borderRadius: height / 2,
-        paddingHorizontal: children ? height / 4 : 0,
-        backgroundColor: theme.colors[color as ThemeColor] || color
-      },
-      style
-    ]}>
+    <Box
+      alignItems="center"
+      justifyContent="center"
+      backgroundColor={color}
+      style={[
+        {
+          height,
+          minWidth: height,
+          borderRadius: height / 2,
+          paddingHorizontal: children ? height / 4 : 0
+        },
+        style
+      ]}
+      {...props}
+    >
       {!isValidElement(children) ? (
         <Text
+          font="bodyMedium"
           style={[
-            styles.text,
             { fontSize: typeof size === 'string' ? theme.fontSizes[size] : size },
             textStyle
           ]}
@@ -48,7 +54,7 @@ export const Badge = ({
           {children}
         </Text>
       ) : children}
-    </View>
+    </Box>
   )
 }
 
@@ -56,13 +62,3 @@ Badge.defaultProps = {
   size: 's',
   color: 'textMuted'
 }
-
-const themedStyles = createThemedStyleSheet(theme => ({
-  container: {
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
-  text: {
-    ...theme.fonts.bodyMedium
-  }
-}))
