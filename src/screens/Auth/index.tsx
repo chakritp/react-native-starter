@@ -1,7 +1,7 @@
 import React from 'react'
 import { observer } from 'mobx-react-lite'
 import { useStore } from 'lib/mst'
-import { createStackNavigator } from 'components/navigation'
+import { createStackNavigator } from 'components/core'
 import { Landing } from './Landing'
 import { SignUp } from './SignUp'
 import { SignIn } from './SignIn'

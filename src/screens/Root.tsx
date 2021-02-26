@@ -5,8 +5,7 @@ import { NavigationContainer, NavigationState, DefaultTheme as NavTheme } from '
 import { ThemeProvider } from '@shopify/restyle'
 import { observer } from 'mobx-react-lite'
 import { useStore, mergeSnapshot, useMSTFastRefresh } from 'lib/mst'
-import { Toast } from 'components/core'
-import { createStackNavigator } from 'components/navigation'
+import { Toast, createStackNavigator } from 'components/core'
 import { AppUpgradeRequiredNotice } from 'components/AppUpgradeRequiredNotice'
 import { api, rootNavigation } from 'services'
 import { defaultTheme } from 'theme'
@@ -29,7 +28,7 @@ export const Root = observer((props: {
       background: theme.colors.mainBackgroundRegular,
       card: theme.colors.mainBackgroundRegular,
       text: theme.colors.mainForegroundRegular,
-      border: theme.colors.mainBorderMedium
+      border: theme.colors.mainBorderRegular
     }
   }), [theme])
   const [initialized, setInitialized] = useState(false)

@@ -33,7 +33,7 @@ export default createTheme({
     mainForegroundMuted: palette.gray400,
     mainForegroundSoft: palette.gray300,
     mainBorderHeavy: palette.gray400,
-    mainBorderMedium: palette.gray300,
+    mainBorderRegular: palette.gray300,
     mainBorderMuted: palette.gray200,
 
     // Highlights

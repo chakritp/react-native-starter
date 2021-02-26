@@ -43,9 +43,9 @@ export const RootStore = types
       localStorageSyncManager.startSync(self)
 
       if (__DEV__) {
-        onAction(self, call => {
+        disposers.push(onAction(self, call => {
           console.log(`Action ${call.path}/${call.name}: `, call.args)
-        })
+        }))
       }
 
       return () => {
