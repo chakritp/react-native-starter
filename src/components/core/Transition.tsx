@@ -1,5 +1,5 @@
-import React, { PureComponent, ReactElement, ReactNode } from 'react'
-import { Animated, StyleProp, ViewStyle } from 'react-native'
+import React, { PureComponent, ReactElement } from 'react'
+import { Animated, ViewStyle } from 'react-native'
 import { call } from 'utils/language'
 import { AnimatedBox, BoxProps } from './common'
 

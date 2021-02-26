@@ -89,6 +89,9 @@ export const Toast = ({ offset = 0 }) => {
       in={!!config}
       onTransitionBegin={() => {
         setKeyboardOffset(nextKeyboardOffsetRef.current)
+      }}
+      onTransitionEnd={direction => {
+        if (direction === 'out') controller.hide()
       }}>
       {() => config ? <ToastModal {...config} onDismiss={controller.hide} /> : null}
     </Transition>
