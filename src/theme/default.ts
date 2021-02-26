@@ -63,6 +63,11 @@ export default createTheme({
     modalInputBackground: palette.white,
 
     // Nav
+    navBackgroundRegular: palette.white,
+    navBorderRegular: palette.gray200,
+    navTintRegular: palette.white,
+    navTintMuted: palette.gray200,
+    navPrimary: palette.white,
 
     // Other
     link: palette.blue500

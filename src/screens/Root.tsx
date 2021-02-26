@@ -1,14 +1,14 @@
 import React, { useCallback, useEffect, useLayoutEffect, useMemo, useState } from 'react'
 import { Modal } from 'react-native'
 import SplashScreen from 'react-native-splash-screen'
-import { NavigationContainer, NavigationState, DefaultTheme as NavTheme } from '@react-navigation/native'
+import { NavigationContainer, NavigationState } from '@react-navigation/native'
 import { ThemeProvider } from '@shopify/restyle'
 import { observer } from 'mobx-react-lite'
 import { useStore, mergeSnapshot, useMSTFastRefresh } from 'lib/mst'
 import { Toast, createStackNavigator } from 'components/core'
 import { AppUpgradeRequiredNotice } from 'components/AppUpgradeRequiredNotice'
 import { api, rootNavigation } from 'services'
-import { defaultTheme } from 'theme'
+import { defaultTheme, createNavigationTheme } from 'theme'
 import { Auth } from './Auth'
 import { Main } from './Main'
 
@@ -20,17 +20,7 @@ export const Root = observer((props: {
 }) => {
   const { snapshot, initialNavigationState } = props
   const theme = defaultTheme
-  const navigationTheme = useMemo(() => ({
-    dark: theme.dark,
-    colors: {
-      ...NavTheme.colors,
-      primary: theme.colors.mainBackgroundRegular,
-      background: theme.colors.mainBackgroundRegular,
-      card: theme.colors.mainBackgroundRegular,
-      text: theme.colors.mainForegroundRegular,
-      border: theme.colors.mainBorderRegular
-    }
-  }), [theme])
+  const navigationTheme = useMemo(() => createNavigationTheme(theme), [theme])
   const [initialized, setInitialized] = useState(false)
   const [appUpgradeRequired, setAppUpgradeRequired] = useState(false)
   const rootStore = useStore()

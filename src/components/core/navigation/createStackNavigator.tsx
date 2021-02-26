@@ -1,4 +1,4 @@
-import React, { ComponentPropsWithRef } from 'react'
+import React from 'react'
 import { StyleSheet } from 'react-native'
 import {
   StackNavigationOptions,
@@ -43,7 +43,7 @@ const themedStyles = createThemedStyles((theme: Theme) => ({
   header: {
     elevation: 0,
     shadowOpacity: 0,
-    borderBottomColor: theme.colors.mainBorderMuted,
+    borderBottomColor: theme.colors.navBorderRegular,
     borderBottomWidth: StyleSheet.hairlineWidth
   },
   headerTitle: {
