@@ -19,7 +19,7 @@ export const createStackNavigator = () => {
   const { Navigator: StackNavigator, Screen } = $createStackNavigator()
 
   type Props = Omit<ComponentPropsWithRef<typeof StackNavigator>, 'screenOptions'> & {
-    screenOptions: StackNavigationOptions
+    screenOptions?: StackNavigationOptions
   }
 
   const Navigator = ({ screenOptions = {}, ...props }: Props) => {
@@ -54,7 +54,7 @@ export const createStackNavigator = () => {
       ...defaultCardStyleProps,
       ...cardStyleProps
     }) as any
-
+    console.log(baseHeaderStyle)
     return (
       <StackNavigator
         screenOptions={{

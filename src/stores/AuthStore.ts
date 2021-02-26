@@ -20,6 +20,9 @@ export const AuthStore = types
     return {
       get authenticated() {
         return !!self.accessToken
+      },
+      get hasRegistered() {
+        return self.deviceRegistered || self.user 
       }
     }
   })

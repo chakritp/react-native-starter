@@ -10,8 +10,8 @@ import { createStackNavigator } from 'components/navigation'
 import { AppUpgradeRequiredNotice } from 'components/AppUpgradeRequiredNotice'
 import { api, rootNavigation } from 'services'
 import { defaultTheme } from 'theme'
-// import { Auth } from './Auth'
-// import { Main } from './Main'
+import { Auth } from './Auth'
+import { Main } from './Main'
 
 const Stack = createStackNavigator()
 
@@ -109,19 +109,17 @@ export const Root = observer((props: {
           theme={navigationTheme}
           initialState={initialNavigationState} 
           onStateChange={onNavigationStateChange}>
-          {/* <Stack.Navigator>
+          <Stack.Navigator>
             {authenticated ? (
               <Stack.Screen name="Main" component={Main} options={{
-                headerShown: false,
-                cardStyle: { backgroundColor: darkTheme.colors.containerBg }
+                headerShown: false
               }} />
             ) : (
               <Stack.Screen name="Auth" component={Auth} options={{
-                headerShown: false,
-                cardStyle: { backgroundColor: darkTheme.colors.containerBg }
+                headerShown: false
               }} />
             )}
-          </Stack.Navigator> */}
+          </Stack.Navigator>
         </NavigationContainer>
       )}
 
