@@ -31,6 +31,7 @@ export function PickerButton({
       flex={1}
       paddingLeft="m"
       paddingRight={icon ? 'xs' : 'm'}
+      borderWidth={1}
       style={[embedded && styles.containerEmbedded, style]}
       contentContainerStyle={styles.contentContainer}
       titleStyle={[!hasValue && styles.placeholder, titleStyle]}

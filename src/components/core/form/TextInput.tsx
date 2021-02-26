@@ -120,7 +120,7 @@ const themedStyles = createThemedStyles((theme: Theme) => ({
     ...theme.fonts.bodyRegular,
     fontSize: theme.fontSizes.s,
     backgroundColor: theme.colors.inputBackgroundRegular,
-    borderColor: theme.colors.inputForegroundSoft,
+    borderColor: theme.colors.inputBorderRegular,
     borderWidth: 1,
     borderRadius: theme.borderRadii.m
   },

@@ -235,9 +235,9 @@ export default () => {
           )} />
 
         <InputGroup inline label="Inline Group">
-          <TextInput leftIcon="date-range" />
+          <TextInput leftIcon="date-range" disabled={disabled} />
           <Text variant="s2">{'  /  '}</Text>
-          <TextInput leftIcon="date-range" />
+          <TextInput leftIcon="date-range" disabled={disabled} />
         </InputGroup>
 
         <Button
