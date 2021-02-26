@@ -1,7 +1,7 @@
 import React from 'react'
 import { useValue } from 'react-cosmos/fixture'
 import { Box, ScrollContainer, Badge } from 'components/core'
-import { Theme } from 'theme'
+import { ThemeColor } from 'theme'
 
 export default () => {
   const [text] = useValue('text', { defaultValue: '1024' })
@@ -18,7 +18,7 @@ export default () => {
   )
 }
 
-const Row = ({ text, ...props }: { text?: string, color: keyof Theme['colors'] }) => {
+const Row = ({ text, ...props }: { text?: string, color: ThemeColor }) => {
   return (
     <Box flexDirection="row" flexWrap="wrap" alignItems="center" justifyContent="space-evenly" margin="m">
       <Badge size="xxs" {...props}>{text}</Badge>

@@ -7,7 +7,7 @@ import {
   ModalProps
 } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import { createThemedStyleSheet, useStyles } from 'theme'
+import { Box } from '../common'
 
 interface ModalInputProps extends ModalProps {
   children?: ReactNode
@@ -19,8 +19,6 @@ export function ModalInput({
   onClose = () => {},
   ...props
 }: ModalInputProps) {
-  const styles = useStyles(themedStyles)
-
   return (
     <Modal
       animationType="slide"
@@ -28,27 +26,17 @@ export function ModalInput({
       onRequestClose={onClose}
       {...props}
     >
-      <View style={styles.modalInputOverlay}>
+      <Box flex={1}>
         <TouchableWithoutFeedback onPress={onClose}>
           <View style={StyleSheet.absoluteFill} />
         </TouchableWithoutFeedback>
         
-        <View style={styles.modalInputContent}>
+        <Box mt="auto" bg="modalInputBackground">
           <SafeAreaView>
             {children}
           </SafeAreaView>
-        </View>
-      </View>
+        </Box>
+      </Box>
     </Modal>
   )
 }
-
-const themedStyles = createThemedStyleSheet(theme => ({
-  modalInputOverlay: {
-    flex: 1
-  },
-  modalInputContent: {
-    marginTop: 'auto',
-    backgroundColor: theme.colors.modalInputContent
-  }
-}))

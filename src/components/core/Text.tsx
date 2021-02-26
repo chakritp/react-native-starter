@@ -6,7 +6,7 @@ import {
   LayoutProps,
   PositionProps,
   TextProps as $TextProps,
-  textRestyleFunctions,
+  textRestyleFunctions as $textRestyleFunctions,
   createRestyleComponent,
   useTheme
 } from '@shopify/restyle'
@@ -16,17 +16,17 @@ type Props = ComponentProps<typeof $Text> & { children?: ReactNode }
 
 type BaseTextProps = $TextProps<Theme, true> & LayoutProps<Theme> & PositionProps<Theme>
 
-const restyleFunctions = [
-  ...textRestyleFunctions,
+export const textRestyleFunctions = [
+  ...$textRestyleFunctions,
   layout,
   position
-]
+] as []
 
 const BaseText = createRestyleComponent<
   BaseTextProps & Omit<Props, keyof BaseTextProps>,
   Theme
 >(
-  restyleFunctions as [],
+  textRestyleFunctions as [],
   $Text,
 )
 

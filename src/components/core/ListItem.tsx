@@ -6,9 +6,9 @@ import {
   ViewStyle,
   TextStyle
 } from 'react-native'
-import { useTheme } from '@shopify/restyle'
+import { createThemedStyles, useThemedStyles } from 'lib/restyle'
 import { IconProp, renderIcon } from 'helpers/ui'
-import { Theme } from 'theme'
+import { Theme, ThemeColor, ThemeSize } from 'theme'
 import { Box, BoxProps, TouchableHighlight, TouchableHighlightProps } from './common'
 import { Text } from './Text'
 
@@ -53,8 +53,7 @@ export const ListItem = ({
   onLongPress,
   ...props
 }: ListItemProps) => {
-  const theme = useTheme<Theme>()
-  const styles = useStyles(themedStyles)
+  const styles = useThemedStyles(themedStyles)
 
   const content = (
     <Box style={[styles.container, style]} {...props}>
@@ -62,7 +61,7 @@ export const ListItem = ({
         <View style={styles.leftContainer}>
           {leftIcon && (
             <View style={[styles.leftContentContainer, styles.leftIconContainer, leftContentContainerStyle]}>
-              {renderIcon(leftIcon, { size: 'xl', style: styles.icon })}
+              {renderIcon(leftIcon, { ...defaultIconProps, size: 'xl' })}
             </View>
           )}
           {leftContent && (
@@ -97,13 +96,13 @@ export const ListItem = ({
 
           {rightIcon && (
             <View style={styles.rightContentContainer}>
-              {renderIcon(rightIcon, { size: 'l', style: styles.icon })}
+              {renderIcon(rightIcon, defaultIconProps)}
             </View>
           )}
 
           {chevron && (
             <View style={styles.rightContentContainer}>
-              {renderIcon(chevron, { name: 'chevron-right', size: 'l', style: styles.icon })}
+              {renderIcon(chevron as any, { ...defaultIconProps, name: 'chevron-right' })}
             </View>
           )}
         </View>
@@ -133,7 +132,12 @@ export const InputListItem = (props: ListItemProps) => (
   <ListItem titleContainerStyle={{ width: '33%' }} {...props} />
 )
 
-const themedStyles = createThemedStyleSheet(theme => ({
+const defaultIconProps = {
+  size: 'l' as ThemeSize,
+  color: 'mainForegroundMuted' as ThemeColor
+}
+
+const themedStyles = createThemedStyles((theme: Theme) => ({
   container: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -169,11 +173,11 @@ const themedStyles = createThemedStyleSheet(theme => ({
     paddingVertical: 8,
   },
   title: {
-    color: theme.colors.text
+    color: theme.colors.mainForegroundRegular
   },
   subtitle: {
     marginTop: theme.spacing.xxs,
-    color: theme.colors.textMuted
+    color: theme.colors.mainForegroundMuted
   },
   rightContainer: {
     flexDirection: 'row',
@@ -186,8 +190,5 @@ const themedStyles = createThemedStyleSheet(theme => ({
     justifyContent: 'center',
     minWidth: 34,
     paddingLeft: theme.spacing.m,
-  },
-  icon: {
-    color: theme.colors.mainForegroundMuted
   }
 }))

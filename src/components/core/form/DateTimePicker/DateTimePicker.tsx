@@ -1,9 +1,8 @@
 import noop from 'lodash/noop'
 import React from 'react'
-import { View } from 'react-native'
 import DateTimePicker from '@react-native-community/datetimepicker'
-import { createThemedStyleSheet, useStyles } from 'theme'
 import { t } from 'helpers/i18n'
+import { Box } from '../../common'
 import { Button } from '../../Button'
 import { ModalInput } from '../ModalInput'
 import { DateTimePickerBaseProps } from './common'
@@ -16,8 +15,6 @@ export default function PlatformDateTimePicker({
   onChange = noop,
   ...props
 }: DateTimePickerBaseProps) {
-  const styles = useStyles(themedStyles)
-
   return (
     <ModalInput
       visible={open}
@@ -27,10 +24,11 @@ export default function PlatformDateTimePicker({
         onChange={(_ev, value) => onChange(value || null)}
         {...props} />
       
-      <View style={styles.footer}>
+      <Box flexDirection="row" justifyContent="center">
         <Button
-          style={styles.footerButton}
           variant="secondary"
+          mx="l"
+          width={120}
           size="s"
           title={t('actions.clear')} 
           onPress={() => {
@@ -39,7 +37,8 @@ export default function PlatformDateTimePicker({
           }} />
 
         <Button
-          style={styles.footerButton}
+          mx="l"
+          width={120}
           size="s"
           title={t('actions.done')} 
           onPress={() => {
@@ -48,18 +47,7 @@ export default function PlatformDateTimePicker({
             }
             onClose()
           }} />
-      </View>
+      </Box>
     </ModalInput>
   )
 }
-
-const themedStyles = createThemedStyleSheet(theme => ({
-  footer: {
-    flexDirection: 'row',
-    justifyContent: 'center'
-  },
-  footerButton: {
-    width: 120,
-    marginHorizontal: theme.spacing.l
-  }
-}))

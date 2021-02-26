@@ -93,6 +93,14 @@
 		<string>WorkSans-SemiBoldItalic.ttf</string>
 		<string>WorkSans-Thin.ttf</string>
 		<string>WorkSans-ThinItalic.ttf</string>
+		<string>SFProDisplay-Black.ttf</string>
+		<string>SFProDisplay-Bold.ttf</string>
+		<string>SFProDisplay-Heavy.ttf</string>
+		<string>SFProDisplay-Light.ttf</string>
+		<string>SFProDisplay-Medium.ttf</string>
+		<string>SFProDisplay-Regular.ttf</string>
+		<string>SFProDisplay-SemiBold.ttf</string>
+		<string>SFProDisplay-Thin.ttf</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>

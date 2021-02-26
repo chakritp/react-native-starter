@@ -17,7 +17,7 @@ export interface BadgeProps extends BoxProps {
 export const Badge = ({
   style,
   textStyle,
-  color,
+  color = 'mainForegroundMuted',
   textColor = 'white',
   size: _size = 's',
   children,
@@ -56,9 +56,4 @@ export const Badge = ({
       ) : children}
     </Box>
   )
-}
-
-Badge.defaultProps = {
-  size: 's',
-  color: 'textMuted'
 }

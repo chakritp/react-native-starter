@@ -1,6 +1,11 @@
+import { TextStyle } from 'react-native'
 import fontFamilies from './fontFamilies'
 
-export default {
+type Fonts<T> = {
+  [P in keyof T]: { fontFamily: string, fontWeight: TextStyle['fontWeight'] }
+}
+
+const fonts = {
   bodyLight: {
     fontFamily: fontFamilies.body,
     fontWeight: '300'
@@ -34,3 +39,5 @@ export default {
     fontWeight: '700'
   }
 }
+
+export default fonts as Fonts<typeof fonts>

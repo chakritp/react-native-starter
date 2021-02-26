@@ -1,19 +1,38 @@
-import React, { forwardRef, useCallback, useMemo } from 'react'
-import { TextInput as RNTextInput, StyleSheet } from 'react-native'
-import { TextInput } from './TextInput'
+import React, {
+  ComponentType,
+  ComponentPropsWithRef,
+  Ref,
+  ReactElement,
+  forwardRef,
+  useCallback,
+  useMemo
+} from 'react'
+import { TextInput as RNTextInput, StyleSheet, NativeMethods } from 'react-native'
+import { TextInput, TextInputProps } from './TextInput'
 
-export const FormattedTextInput = forwardRef(({
-  format = value => String(value),
-  parse = text => text,
-  value,
-  onChange = () => {},
-  ...props
-}, ref) => {
-  const formattedValue = useMemo(() => format(value), [value, format])
+export interface FormattedTextInputProps<T> extends Omit<TextInputProps, 'value'> {
+  format: (value: T) => string,
+  parse: (text: string) => T,
+  value?: T | null,
+  onChangeValue?: (value: T) => void
+}
 
-  const onChangeText = useCallback(text => {
-    onChange(parse(text))
-  }, [onChange, parse])
+export const FormattedTextInput = forwardRef(<T, >(props: FormattedTextInputProps<T>, ref: any) => {
+  const {
+    format,
+    parse,
+    value,
+    onChangeText: _onChangeText,
+    onChangeValue = () => {},
+    ...inputProps
+  } = props
+
+  const formattedValue = useMemo(() => value != null ? format(value) : '', [value, format])
+
+  const onChangeText = useCallback((text: string) => {
+    if (_onChangeText) _onChangeText(text)
+    onChangeValue(parse(text))
+  }, [onChangeValue, parse])
 
   return (
     <TextInput
@@ -21,9 +40,9 @@ export const FormattedTextInput = forwardRef(({
       Input={Input}
       value={formattedValue}
       onChangeText={onChangeText}
-      {...props} />
+      {...inputProps} />
   )
-})
+}) as <T>(p: FormattedTextInputProps<T> & { ref?: Ref<NativeMethods> }) => ReactElement
 
 const Input = forwardRef(({ style, value, ...props }, ref) => (
   <>
@@ -40,7 +59,7 @@ const Input = forwardRef(({ style, value, ...props }, ref) => (
       value={value != null ? value : ''}
       {...props} />
   </>
-))
+)) as ComponentType<ComponentPropsWithRef<typeof RNTextInput>>
 
 const styles = StyleSheet.create({
   input: {

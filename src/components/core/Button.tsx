@@ -8,7 +8,7 @@ import {
 import { useTheme } from '@shopify/restyle'
 import { useVariant } from 'lib/restyle'
 import { IconProp, renderIcon } from 'helpers/ui'
-import { Theme } from 'theme'
+import { Theme, ThemeColor } from 'theme'
 import { BoxProps, TouchableOpacity, TouchableOpacityProps, ActivityIndicator } from './common'
 import { Text } from './Text'
 
@@ -21,7 +21,7 @@ export interface ButtonProps extends TouchableOpacityProps {
   size?: 's' | 'm' | 'l'
   rounded?: boolean
   outline?: boolean
-  icon?: IconProp,
+  icon?: IconProp | null,
   iconPlacement?: 'left' | 'right'
   title?: string
   interactive?: boolean
@@ -95,13 +95,10 @@ export const Button = ({
 
   const {
     foregroundColor
-  } = variantProps as { foregroundColor: keyof Theme['colors'] }
+  } = variantProps as { foregroundColor: ThemeColor }
 
   if (icon) {
     icon = renderIcon(icon, {
-      style: [
-        title != null && { [iconPlacement === 'left' ? 'marginRight' : 'marginLeft']: size === 's' ? 4 : 6 }
-      ],
       size: size === 's' ? 'xs' : size === 'l' ? 'l' : 'm',
       color: foregroundColor
     })

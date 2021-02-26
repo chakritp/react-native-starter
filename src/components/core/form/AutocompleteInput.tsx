@@ -2,6 +2,7 @@ import debounce from 'lodash/debounce'
 import noop from 'lodash/noop'
 import React, { forwardRef, useRef, useCallback } from 'react'
 import { TextInput as $TextInput } from 'react-native'
+import { IconButton } from '../IconButton'
 import { TextInput, TextInputProps } from './TextInput'
 
 export interface AutocompleteInputProps extends TextInputProps {
@@ -44,12 +45,9 @@ export const AutocompleteInput = forwardRef<typeof $TextInput, TextInputProps>((
   return (
     <TextInput
       ref={ref}
-      rightIcon={value !== '' && {
-        name: 'clear',
-        size: 's',
-        color: 'textMuted',
-        onPress: onClear
-      }}
+      rightIcon={value !== '' ? (
+        <IconButton name="clear" size="s" color="mainForegroundMuted" onPress={onClear} />
+      ) : undefined}
       accessibilityRole="search"
       autoCapitalize="none"
       autoCompleteType="off"

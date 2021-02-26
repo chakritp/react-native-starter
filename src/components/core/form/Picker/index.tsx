@@ -1,7 +1,8 @@
 import React, { useMemo } from 'react'
 import { StyleProp, View, ViewStyle } from 'react-native'
 import PlatformPicker from './Picker'
-import { createThemedStyleSheet, useStyles } from 'theme'
+import { createThemedStyles, useThemedStyles } from 'lib/restyle'
+import { Theme } from 'theme'
 import { PlatformPickerProps, PickerItem as _PickerItem } from './common'
 
 export type PickerItem = _PickerItem
@@ -23,7 +24,7 @@ export const Picker = ({
   onChange,
   ...props
 }: PickerProps) => {
-  const styles = useStyles(themedStyles)
+  const styles = useThemedStyles(themedStyles)
   const selectedItem = useMemo(() => {
     return items.find(item => item.value === value)
   }, [items, value])
@@ -45,18 +46,18 @@ export const Picker = ({
   )
 }
 
-const themedStyles = createThemedStyleSheet(theme => ({
+const themedStyles = createThemedStyles((theme: Theme) => ({
   container: {
     flex: 1,
     justifyContent: 'center',
-    backgroundColor: theme.colors.inputBg,
-    borderRadius: theme.radii.m
+    backgroundColor: theme.colors.mainBackgroundHeavy,
+    borderRadius: theme.borderRadii.m
   },
   embedded: {
     backgroundColor: 'transparent'
   },
   item: {
     ...theme.fonts.bodyRegular,
-    color: theme.colors.text
+    color: theme.colors.mainForegroundRegular
   }
 }))

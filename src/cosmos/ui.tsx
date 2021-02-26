@@ -8,7 +8,7 @@ export const Label = (props: TextProps) => (
   <Text
     variant="c2"
     font="bodyRegular"
-    marginVertical="s"
+    my="s"
     color="mainForegroundMuted"
     {...props} />
 )

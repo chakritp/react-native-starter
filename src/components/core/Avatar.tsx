@@ -1,7 +1,8 @@
 import React, { ReactNode } from 'react'
 import { View, StyleSheet, StyleProp, ViewStyle, ImageStyle, ImageProps } from 'react-native'
+import { useTheme } from '@shopify/restyle'
 import { IconProp, renderIcon } from 'helpers/ui'
-import { ThemeSize, useTheme } from 'theme'
+import { Theme, ThemeSize } from 'theme'
 import { ImageLoader } from './ImageLoader'
 
 export interface AvatarProps {
@@ -25,13 +26,13 @@ export function Avatar({
   source,
   children
 } : AvatarProps) {
-  const theme = useTheme()
+  const theme = useTheme<Theme>()
   const width = typeof size === 'string' ? theme.sizes[size] : size
 
   let placeholderContent
 
   if (icon) {
-    placeholderContent = renderIcon(icon, { size: width * 0.75, color: 'textInverse' })
+    placeholderContent = renderIcon(icon, { size: width * 0.75, color: 'white' })
   }
 
   return (

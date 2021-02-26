@@ -1,31 +1,28 @@
 import React from 'react'
-import { View, ActivityIndicator } from 'react-native'
+import { Box, ActivityIndicator } from './common'
 import { Overlay, OverlayProps } from './Overlay'
-import { ThemeColor, useTheme } from 'theme'
+import { ThemeColor } from 'theme'
 import { Text } from './Text'
 
 export interface LoadingOverlayProps extends OverlayProps {
-  contentColor?: ThemeColor | string
+  foregroundColor?: ThemeColor
   text?: string
 }
 
 export const LoadingOverlay = ({
-  contentColor = 'text',
+  foregroundColor = 'mainForegroundRegular',
   text,
   children,
   ...props
 }: LoadingOverlayProps) => {
-  const theme = useTheme()
-  contentColor = theme.colors[contentColor as ThemeColor] || contentColor
-
   return (
     <Overlay {...props}>
-      <ActivityIndicator size="large" color={contentColor} />
+      <ActivityIndicator size="large" color={foregroundColor} />
       {(text || children) && (
-        <View style={{ marginTop: theme.spacing.l }}>
-          {text && <Text.S3 color={contentColor} align="center">{text}</Text.S3>}
+        <Box mt="l">
+          {text && <Text variant="s3" color={foregroundColor} textAlign="center">{text}</Text>}
           {children}
-        </View>
+        </Box>
       )}
     </Overlay>
   )

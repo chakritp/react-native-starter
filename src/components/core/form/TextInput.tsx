@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react'
+import React, { Component, ComponentPropsWithRef, ComponentType, forwardRef } from 'react'
 import {
   View,
   TextInput as $TextInput,
@@ -9,8 +9,10 @@ import {
   TextStyle,
   NativeMethods
 } from 'react-native'
-import { createThemedStyleSheet, useStyles, useTheme } from 'theme'
+import { useTheme } from '@shopify/restyle'
+import { createThemedStyles, useThemedStyles } from 'lib/restyle'
 import { IconProp, renderIcon } from 'helpers/ui'
+import { Theme } from 'theme'
 import { InputErrorIcon } from './InputErrorIcon'
 
 const DEFAULT_INPUT_PROPS: { [key: string]: Partial<$TextInputProps> } = {
@@ -38,7 +40,7 @@ export interface TextInputProps extends Omit<$TextInputProps, 'style'> {
   rightIcon?: IconProp
   disabled?: boolean
   hasError?: boolean
-  Input?: typeof $TextInput
+  Input?: ComponentType<ComponentPropsWithRef<typeof $TextInput>>
   onShowError?: () => void
 }
 
@@ -60,19 +62,19 @@ export const TextInput = forwardRef<NativeMethods, TextInputProps>(({
   onShowError,
   ...props
 }: TextInputProps, ref: any) => {
-  const styles = useStyles(themedStyles)
-  const theme = useTheme()
+  const styles = useThemedStyles(themedStyles)
+  const theme = useTheme<Theme>()
 
   const defaultInputProps = type ? DEFAULT_INPUT_PROPS[type] : undefined
 
   if (leftIcon) {
-    leftIcon = renderIcon(leftIcon, { color: theme.colors.textMuted, size: theme.fontSizes.l })
+    leftIcon = renderIcon(leftIcon, { color: 'mainForegroundMuted', size: 'l' })
   }
 
   if (hasError) {
     rightIcon = <InputErrorIcon onPress={onShowError} />
   } else if (rightIcon) {
-    rightIcon = renderIcon(rightIcon, { color: theme.colors.textMuted, size: theme.fontSizes.l })
+    rightIcon = renderIcon(rightIcon, { color: 'mainForegroundMuted', size: 'l' })
   }
 
   return (
@@ -88,39 +90,39 @@ export const TextInput = forwardRef<NativeMethods, TextInputProps>(({
           disabled && styles.disabled,
           inputStyle
         ]}
-        placeholderTextColor={theme.colors.placeholder}
+        placeholderTextColor={theme.colors.mainForegroundSoft}
         placeholder={placeholder}
         editable={editable}
         autoCorrect={autoCorrect}
         keyboardType={keyboardType}
         accessible
         accessibilityLabel={placeholder}
-        keyboardAppearance={theme.keyboardAppearance as TextInputProps['keyboardAppearance']}
+        keyboardAppearance={theme.keyboardAppearance}
         {...defaultInputProps}
-        {...props} />
-
+        {...props}
+      />
       {leftIcon && <View style={[styles.leftIconContainer, embedded && { left: 0 }, center && { position: 'absolute' }]}>{leftIcon}</View>}
       {rightIcon && <View style={[styles.rightIconContainer, embedded && { right: 0 }, center && { position: 'absolute' }]}>{rightIcon}</View>}
     </View>
   )
 })
 
-const themedStyles = createThemedStyleSheet(theme => ({
+const themedStyles = createThemedStyles((theme: Theme) => ({
   container: {
     flex: 1
   },
   input: {
     flex: 0,
     flexDirection: 'row',
-    color: theme.colors.inputText,
+    color: theme.colors.mainForegroundRegular,
     padding: theme.spacing.m,
     minHeight: theme.sizes.m,
     ...theme.fonts.bodyRegular,
     fontSize: theme.fontSizes.s,
-    backgroundColor: theme.colors.inputBg,
-    borderColor: theme.colors.inputBorder,
+    backgroundColor: theme.colors.mainBackgroundHeavy,
+    borderColor: theme.colors.mainForegroundSoft,
     borderWidth: 1,
-    borderRadius: theme.radii.m
+    borderRadius: theme.borderRadii.m
   },
   embedded: {
     backgroundColor: 'transparent',

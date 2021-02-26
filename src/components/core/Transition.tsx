@@ -1,11 +1,11 @@
 import React, { PureComponent, ReactElement, ReactNode } from 'react'
 import { Animated, StyleProp, ViewStyle } from 'react-native'
 import { call } from 'utils/language'
+import { AnimatedBox, BoxProps } from './common'
 
 type TransformDirection = 'in' | 'out'
 
-export interface TransitionProps {
-  style?: StyleProp<ViewStyle>
+export interface TransitionProps extends BoxProps {
   property: keyof Animated.WithAnimatedObject<ViewStyle>
   transform?: { [key: string]: number[] }
   from?: number
@@ -16,7 +16,6 @@ export interface TransitionProps {
   snapshotChildren?: boolean
   hideWhen?: TransformDirection
   useNativeDriver?: boolean
-  children?: ReactNode
   onTransitionBegin?: (direction: TransformDirection) => void
   onTransitionEnd?: (direction: TransformDirection) => void
 }
@@ -106,7 +105,23 @@ export class Transition extends PureComponent<TransitionProps, TransitionState> 
   }
 
   render() {
-    const { style, children, property, transform, from, to, hideWhen } = this.props as PropsInternal
+    const {
+      style,
+      children,
+      property,
+      transform,
+      from,
+      to,
+      hideWhen,
+      duration: _1,
+      animateOnMount: _2,
+      in: _3,
+      snapshotChildren: _4,
+      useNativeDriver: _5,
+      onTransitionBegin: _6,
+      onTransitionEnd: _7,
+      ...props
+    } = this.props as PropsInternal
     const { animatedValue, finished } = this.state
 
     if (finished && hideWhen === this.getDirection()) {
@@ -129,9 +144,9 @@ export class Transition extends PureComponent<TransitionProps, TransitionState> 
     }
   
     return (
-      <Animated.View style={[style, animatedStyle]}>
+      <AnimatedBox style={[style, animatedStyle]} {...props}>
         {this.state.childrenSnapshot || call(children)}
-      </Animated.View>
+      </AnimatedBox>
     )
   }
 }

@@ -1,24 +1,24 @@
 import React, { isValidElement, ReactNode } from 'react'
-import { StyleProp, View, TextStyle, ViewStyle, ViewProps } from 'react-native'
-import { createThemedStyleSheet, useStyles } from 'theme'
+import { StyleProp, TextStyle, ViewStyle } from 'react-native'
+import { useTheme } from '@shopify/restyle'
+import { Theme } from 'theme'
+import { Box, BoxProps } from '../common'
 import { Text } from '../Text'
 import { Label } from './Label'
 
-export interface InputGroupProps extends ViewProps {
+export interface InputGroupProps extends BoxProps {
   labelStyle?: StyleProp<ViewStyle>
   labelTextStyle?: StyleProp<TextStyle>
   infoStyle?: StyleProp<ViewStyle>
   infoTextStyle?: StyleProp<TextStyle>
-  inline?: boolean
+  inline?: boolean | BoxProps
   infoPlacement?: 'left' | 'center' | 'right'
   label?: string | ReactNode
   info?: string | ReactNode
-  children?: ReactNode
 }
 
 export const InputGroup = ({
   labelStyle,
-  labelTextStyle,
   infoStyle,
   infoTextStyle,
   inline,
@@ -28,61 +28,61 @@ export const InputGroup = ({
   children,
   ...props
 }: InputGroupProps) => {
-  const styles = useStyles(themedStyles)
-  const infoPlacementStyle: StyleProp<ViewStyle> = {
-    alignItems: infoPlacement === 'center'
-      ? 'center' : infoPlacement === 'right'
-        ? 'flex-end' : 'flex-start'
-  }
+  const theme = useTheme<Theme>()
+  const infoAlign = infoPlacement === 'center' ? 'center' : infoPlacement === 'right' ? 'flex-end' : 'flex-start'
 
-  const content = (
-    <>
-      {label !== undefined && (
-        isValidElement(label) ? label : (
-          <Label style={labelStyle} textStyle={labelTextStyle} inline={inline}>{label}</Label>
-        )
-      )}
-      {children}
-    </>
+  const labelElement = label !== undefined && (
+    isValidElement(label) ? label : (
+      <Label style={labelStyle} inline={!!inline}>{label}</Label>
+    )
   )
 
   return (
-    <View {...props}>
+    <Box {...props}>
       {inline ? (
-        <View style={styles.inlineWrapper}>
-          {content}
-        </View>
-      ) : content}
+        <Box flexDirection="row" alignItems="center">
+          {labelElement}
+          {inline !== true ? (
+            <Box
+              flex={1}
+              flexDirection="row"
+              alignItems="center"
+              {...(inline !== true ? inline : undefined)}
+            >
+              {children}
+            </Box>
+          ) : children}
+        </Box>
+      ) : (
+        <>
+          {labelElement}
+          {children}
+        </>
+      )}
       
-      <View style={[styles.infoWrapper, infoPlacementStyle]}>
+      <Box minHeight={theme.spacing.l} pb="xs" alignItems={infoAlign}>
         {info !== undefined && (
-          <View style={[styles.info, infoStyle]}>
-            {isValidElement(info) ? info : <Text style={[styles.infoText, infoTextStyle]}>{info}</Text>}
-          </View>
+          <Box
+            style={infoStyle}
+            flexDirection="row"
+            alignItems="center"
+            minHeight={theme.spacing.l}
+            paddingTop="xs"
+            paddingBottom="s"
+          >
+            {isValidElement(info) ? info : (
+              <Text
+                style={infoTextStyle}
+                variant="c2"
+                font="bodyRegular"
+                color="mainForegroundMuted"
+              >
+                {info}
+              </Text>
+            )}
+          </Box>
         )}
-      </View>
-    </View>
+      </Box>
+    </Box>
   )
 }
-
-const themedStyles = createThemedStyleSheet(theme => ({
-  inlineWrapper: {
-    flexDirection: 'row',
-    alignItems: 'center'
-  },
-  infoWrapper: {
-    minHeight: theme.spacing.l,
-    paddingBottom: theme.spacing.xs
-  },
-  info: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    minHeight: theme.spacing.l,
-    paddingTop: theme.spacing.xs,
-    paddingBottom: theme.spacing.m
-  },
-  infoText: {
-    fontSize: theme.fontSizes.xxs,
-    color: theme.colors.textMuted
-  }
-}))

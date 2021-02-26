@@ -1,11 +1,11 @@
 import React from 'react'
-import { Icon, IconProps } from '../Icon'
+import { IconButton, IconButtonProps } from '../IconButton'
 
-export const InputErrorIcon = ({ size = 'l', ...props }: Omit<IconProps, 'name'>) => {
+export const InputErrorIcon = ({ size = 'l', ...props }: Omit<IconButtonProps, 'name'>) => {
   return (
-    <Icon
+    <IconButton
       name="error"
-      color="danger"
+      color="dangerRegular"
       size={size}
       {...props} />
   )

@@ -1,7 +1,7 @@
 import React from 'react'
-import { View, Platform, Linking } from 'react-native'
+import {  Platform, Linking } from 'react-native'
 import DeviceInfo from 'react-native-device-info'
-import { Container, Heading, Button } from 'components/core'
+import { Box, Container, Heading, Button } from 'components/core'
 import { useTranslate } from 'helpers/i18n'
 
 export const AppUpgradeRequiredNotice = () => {
@@ -23,9 +23,9 @@ export const AppUpgradeRequiredNotice = () => {
       paddingBottom="xxxl"
       backgroundColor="mainBackgroundRegular"
     >
-      <View>
+      <Box>
         <Heading
-          icon="warning"
+          icon={{ name: "warning", color: "warningHeavy" }}
           title={t('title')}
           subtitle={t('subtitle', {
             brand: t('terms.brand'),
@@ -38,7 +38,7 @@ export const AppUpgradeRequiredNotice = () => {
             store: t(`terms.appStore.${Platform.OS}`)
           })}
           onPress={goToAppStore} />
-      </View>
+      </Box>
     </Container>
   )
 }

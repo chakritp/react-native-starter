@@ -1,4 +1,4 @@
 export default {
-  body: 'Work Sans',
-  heading: 'Work Sans'
+  body: 'SF Pro Display',
+  heading: 'SF Pro Display'
 }

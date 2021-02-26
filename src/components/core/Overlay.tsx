@@ -1,11 +1,9 @@
 import React, { ReactNode } from 'react'
-import { StyleProp, StyleSheet, ViewStyle } from 'react-native'
-import { ThemeColor, useTheme } from 'theme'
+import { StyleSheet } from 'react-native'
+import { BoxProps } from './common'
 import { Transition } from './Transition'
 
-export interface OverlayProps {
-  style?: StyleProp<ViewStyle>
-  bgColor?: ThemeColor | string
+export interface OverlayProps extends BoxProps {
   transitionDuration?: number
   show?: boolean
   children?: ReactNode
@@ -13,19 +11,17 @@ export interface OverlayProps {
 
 export const Overlay = ({
   style,
-  bgColor = 'containerBg',
+  backgroundColor = 'mainBackgroundRegular',
   transitionDuration,
   show = false,
   children
 }: OverlayProps) => {
-  const theme = useTheme()
   return (
     <Transition
-      style={[
-        styles.container,
-        { backgroundColor: theme.colors[bgColor as ThemeColor] || bgColor },
-        style
-      ]}
+      style={[StyleSheet.absoluteFill, style]}
+      alignItems="center"
+      justifyContent="center"
+      backgroundColor={backgroundColor}
       property="opacity"
       duration={transitionDuration}
       snapshotChildren
@@ -35,11 +31,3 @@ export const Overlay = ({
     </Transition>
   )
 }
-
-const styles = StyleSheet.create({
-  container: {
-    ...StyleSheet.absoluteFillObject,
-    alignItems: 'center',
-    justifyContent: 'center'
-  }
-})

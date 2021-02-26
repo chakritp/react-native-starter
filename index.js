@@ -10,8 +10,8 @@ import { App } from './entry'
 
 if (__DEV__) {
   // Warning message patterns go here...
-  // LogBox.ignoreLogs([
-  // ])
+  LogBox.ignoreLogs([
+  ])
 }
 
 AppRegistry.registerComponent(appName, () => App)

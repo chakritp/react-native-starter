@@ -3,11 +3,13 @@ import { NativeMethods } from 'react-native'
 import * as yup from 'yup'
 import { useValue } from 'react-cosmos/fixture'
 import {
+  Text,
   ScrollContainer,
   FormProvider,
   Field,
   InputGroup,
   TextInput,
+  FormattedTextInput,
   Switch,
   Picker,
   DateTimePicker,
@@ -24,6 +26,7 @@ const schema = yup.object().shape({
 const defaultValues = {
   textInput1: '',
   textInput2: '',
+  formattedTextInput: 327450,
   picker: null,
   datePicker: null,
   timePicker: null,
@@ -90,7 +93,7 @@ export default () => {
   }, [])
   
   return (
-    <ScrollContainer safe="top" padding>
+    <ScrollContainer safe="top" contentPadding="xl" keyboardShouldPersistTaps="handled">
       <FormProvider {...form}>
         <Field<FormValues>
           name="textInput1"
@@ -98,6 +101,7 @@ export default () => {
             <InputGroup label="TextInput" info="Info">
               <TextInput
                 {...props}
+                leftIcon="lightbulb"
                 placeholder="Placeholder"
                 autoFocus
                 returnKeyType="done"
@@ -115,10 +119,21 @@ export default () => {
                 {...props}
                 type="password"
                 ref={lastNameRef}
-                autoFocus
-                returnKeyType="done"
                 disabled={disabled}
                 onChangeText={onChange} />
+            </InputGroup>
+          )} />
+
+        <Field<FormValues>
+          name="formattedTextInput"
+          render={({ onChange, ...props }) => (
+            <InputGroup label="FormattedTextInput">
+              <FormattedTextInput<number>
+                {...props}
+                format={value => `$${(value * 0.01).toFixed(2)}`}
+                parse={text => parseInt(text.replace(/\D/g, '') || '0', 10)}
+                disabled={disabled}
+                onChangeValue={onChange} />
             </InputGroup>
           )} />
 
@@ -202,13 +217,19 @@ export default () => {
         <Field<FormValues>
           name="switch"
           render={({ onChange, ...props }) => (
-            <InputGroup inline label="Switch">
+            <InputGroup inline={{ justifyContent: 'flex-end' }} label="Switch">
               <Switch
                 {...props}
                 disabled={disabled}
                 onValueChange={onChange} />
             </InputGroup>
           )} />
+
+        <InputGroup inline label="Inline Group">
+          <TextInput leftIcon="date-range" />
+          <Text variant="s2">{'  /  '}</Text>
+          <TextInput leftIcon="date-range" />
+        </InputGroup>
       </FormProvider>
     </ScrollContainer>
   )

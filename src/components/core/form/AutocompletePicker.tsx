@@ -62,10 +62,11 @@ export const AutocompletePicker = <T, P>({
         placeholder={placeholder}
         value={selectedItem && itemLabelExtractor(selectedItem)}
         disabled={disabled}
-        icon={!!(value && clearable) && {
+        icon={value && clearable ? {
+          size: 'm',
           name: 'clear',
           onPress: () => onChange(null)
-        }}
+        } : undefined}
         onPress={handleOpen} />
 
       <Modal

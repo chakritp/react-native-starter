@@ -131,8 +131,8 @@ export class SearchBar extends Component<SearchBarProps, SearchBarState> {
             }
           >
             <Button
-              transparent
-              contentStyle={styles.cancelButton}
+              variant="primaryTransparent"
+              style={styles.cancelButton}
               title={cancelButtonTitle}
               onPress={this.cancel} />
           </View>

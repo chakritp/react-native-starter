@@ -117,7 +117,8 @@ Toast._controllers = [] as ToastController[]
 
 Toast.show = (config: ToastConfig | string) => {
   config = normalizeConfig(config)
-  Toast._getActiveController().show({ ...config })
+  const controller = Toast._getActiveController()
+  if (controller) controller.show({ ...config })
 }
 
 Toast.info = (config: ToastConfig | string) => Toast.show(normalizeConfig(config, { variant: 'info' }))

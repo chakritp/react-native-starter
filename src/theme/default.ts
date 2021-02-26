@@ -1,3 +1,4 @@
+import  { TextInputProps } from 'react-native'
 import { createTheme } from '@shopify/restyle'
 import fonts from './fonts'
 import palette from './palette'
@@ -14,7 +15,7 @@ const fontSizes = {
 
 export default createTheme({
   dark: false,
-  keyboardAppearance: 'light',
+  keyboardAppearance: 'light' as TextInputProps['keyboardAppearance'],
   colors: {
     // General
     white: palette.white,
@@ -53,7 +54,8 @@ export default createTheme({
     dangerHeavy: palette.red500,
 
     // Specialized
-    link: palette.blue500
+    link: palette.blue500,
+    modalInputBackground: palette.white
   },
   breakpoints: {
     phone: 0,
@@ -65,6 +67,7 @@ export default createTheme({
     largeTablet: 1024,
   },
   spacing: {
+    auto: 'auto' as any,
     none: 0,
     xxs: 2,
     xs: 4,
@@ -196,6 +199,11 @@ export default createTheme({
       backgroundColor: 'brandPrimaryRegular',
       foregroundColor: 'brandPrimaryInverse',
       borderColor: 'transparent'
+    },
+    primaryTransparent: {
+      backgroundColor: 'transparent',
+      foregroundColor: 'brandPrimaryRegular',
+      borderColor: 'transparent',
     },
     secondary: {
       backgroundColor: 'transparent',

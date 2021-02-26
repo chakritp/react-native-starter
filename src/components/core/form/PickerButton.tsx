@@ -1,6 +1,7 @@
 import React from 'react'
 import { View, Keyboard } from 'react-native'
-import { createThemedStyleSheet, useStyles, useTheme } from 'theme'
+import { createThemedStyles, useThemedStyles } from 'lib/restyle'
+import { Theme } from 'theme'
 import { renderIcon } from 'helpers/ui'
 import { Button, ButtonProps } from '../Button'
 
@@ -17,23 +18,22 @@ export function PickerButton({
   placeholder,
   value,
   disabled,
-  icon,
+  icon = 'arrow-drop-down',
   onPress = () => {},
   ...props
 }: PickerButtonProps) {
-  const theme = useTheme()
-  const styles = useStyles(themedStyles)
+  const styles = useThemedStyles(themedStyles)
   const hasValue = value != null && value !== ''
-
-  if (icon === undefined && !embedded) {
-    icon = "arrow-drop-down"
-  }
 
   return (
     <Button
-      style={[{ flex: 1 }, style]}
-      contentStyle={[styles.content, embedded && styles.contentEmbedded]}
-      titleContainerStyle={[styles.titleContainer, icon ? { paddingRight: theme.spacing.m } : null]}
+      flex={1}
+      paddingLeft="m"
+      paddingRight={icon ? 'xs' : 'm'}
+      backgroundColor="mainBackgroundHeavy"
+      borderRadius="m"
+      style={[embedded && styles.containerEmbedded, style]}
+      contentContainerStyle={styles.contentContainer}
       titleStyle={[hasValue ? styles.value : styles.placeholder, titleStyle]}
       title={hasValue ? String(value) : placeholder}
       accessibilityLabel={placeholder}
@@ -42,44 +42,30 @@ export function PickerButton({
         Keyboard.dismiss()
         onPress(ev)
       }) : undefined}
-      icon={icon && (
-        <View style={styles.iconContainer}>
-          {renderIcon(icon, { size: theme.fontSizes.l, color: 'placeholder' })}
-        </View>
-      )}
+      icon={icon && renderIcon(icon, { size: 'l', color: 'mainForegroundSoft', position: 'absolute', right: 0 })}
+      iconPlacement="right"
       {...props} />
   )
 }
 
-const themedStyles = createThemedStyleSheet(theme => ({
-  content: {
-    alignItems: 'flex-start',
-    paddingHorizontal: theme.spacing.m,
-    backgroundColor: theme.colors.inputBg,
-    borderRadius: theme.radii.m
-  },
-  contentEmbedded: {
-    paddingHorizontal: 0,
+const themedStyles = createThemedStyles((theme: Theme) => ({
+  containerEmbedded: {
+    paddingLeft: 0,
+    paddingRight: 0,
     backgroundColor: 'transparent',
     borderColor: 'transparent',
     borderWidth: 0
   },
-  titleContainer: {
+  contentContainer: {
+    backgroundColor: 'transparent',
+    alignItems: 'flex-start',
     justifyContent: 'flex-start',
     width: '100%'
   },
   placeholder: {
-    color: theme.colors.placeholder
+    color: theme.colors.mainForegroundSoft
   },
   value: {
-    color: theme.colors.inputText
-  },
-  iconContainer: {
-    position: 'absolute',
-    top: 0,
-    right: 0,
-    bottom: 0,
-    alignItems: 'flex-end',
-    justifyContent: 'center'
+    color: theme.colors.mainForegroundRegular
   }
 }))

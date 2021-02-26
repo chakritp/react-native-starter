@@ -8,8 +8,10 @@ import {
   ViewStyle,
   FlatListProps as $FlatListProps
 } from 'react-native'
+import { useTheme } from '@shopify/restyle'
 import { t } from 'helpers/i18n'
-import { createThemedStyleSheet, useStyles, useTheme } from 'theme'
+import { Theme, ThemeColor } from 'theme'
+import { Box } from './common'
 import { Text } from './Text'
 
 const defaultKeyExtractor = (item: any) => `${item.id}`
@@ -18,8 +20,8 @@ export interface ListProps<T> {
   style?: StyleProp<ViewStyle>
   data?: T[]
   emptyText?: string
-  keyExtractor?: (item: T) => string | undefined,
-  renderItem: ({ item }: { item: T }) => ReactElement | null,
+  keyExtractor?: (item: T) => string | undefined
+  renderItem: ({ item }: { item: T }) => ReactElement | null
   itemSeparator?: boolean
 }
 
@@ -29,7 +31,7 @@ export const List = <T, >({
   emptyText,
   keyExtractor = defaultKeyExtractor,
   renderItem,
-  itemSeparator,
+  itemSeparator
 }: ListProps<T>) => {
   const length = data?.length
   return (
@@ -55,6 +57,7 @@ export const List = <T, >({
 }
 
 export interface FlatListProps<T> extends $FlatListProps<T> {
+  refreshControlColor?: ThemeColor
   emptyText?: string
   itemSeparator?: boolean
   loading?: boolean
@@ -62,6 +65,7 @@ export interface FlatListProps<T> extends $FlatListProps<T> {
 
 export const FlatList = forwardRef(<T, >(props: FlatListProps<T>, ref: any) => {
   const {
+    refreshControlColor = 'mainForegroundMuted',
     data,
     emptyText,
     itemSeparator,
@@ -71,7 +75,7 @@ export const FlatList = forwardRef(<T, >(props: FlatListProps<T>, ref: any) => {
     ...listProps
   } = props
 
-  const theme = useTheme()
+  const theme = useTheme<Theme>()
   const refreshRef = useRef(false)
 
   useEffect(() => {
@@ -89,7 +93,7 @@ export const FlatList = forwardRef(<T, >(props: FlatListProps<T>, ref: any) => {
       refreshControl={onRefresh ? (
         <RefreshControl
           refreshing={refreshRef.current && !!refreshing}
-          tintColor={theme.colors.textMuted}
+          tintColor={theme.colors[refreshControlColor]}
           onRefresh={() => {
             refreshRef.current = true
             onRefresh()
@@ -103,32 +107,18 @@ export const FlatList = forwardRef(<T, >(props: FlatListProps<T>, ref: any) => {
 export type FlatListElement = $FlatList
 
 export const ListEmpty = ({ text }: { text: string }) => {
-  const styles = useStyles(themedStyles)
   return (
-    <View style={styles.listEmptyContainer}>
-      <Text style={styles.listEmptyText}>{text}</Text>
-    </View>
+    <Box 
+      flex={1}
+      alignItems="center"
+      justifyContent="center"
+      padding="xxl"
+    >
+      <Text variant="s2" color="mainForegroundMuted">{text}</Text>
+    </Box>
   )
 }
 
 export const ItemSeparator = () => {
-  const styles = useStyles(themedStyles)
-  return <View style={styles.itemSeparator} />
+  return <Box ml="l" height={StyleSheet.hairlineWidth} bg="mainBorderMuted" />
 }
-
-const themedStyles = createThemedStyleSheet(theme => ({
-  listEmptyContainer: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: theme.spacing.xxl
-  },
-  listEmptyText: {
-    color: theme.colors.textMuted
-  },
-  itemSeparator: {
-    marginLeft: theme.spacing.l,
-    height: StyleSheet.hairlineWidth,
-    backgroundColor: theme.colors.borderLight
-  }
-}))

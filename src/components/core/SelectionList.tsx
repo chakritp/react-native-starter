@@ -1,7 +1,7 @@
 import noop from 'lodash/noop'
 import React, { useRef, useState } from 'react'
 import { View, KeyboardAvoidingView, Platform, StyleProp, ViewStyle } from 'react-native'
-import { createThemedStyleSheet, useStyles } from 'theme'
+import { ThemeColor } from 'theme'
 import { Container, ContainerProps } from './layout'
 import { InfiniteListProps, InfiniteList } from './InfiniteList'
 import { LoadingOverlay } from './LoadingOverlay'
@@ -19,6 +19,8 @@ export interface SelectionListProps<T> extends Omit<SearchBarProps, 'value' | 'o
   'emptyText'
 > {
   style?: StyleProp<ViewStyle>
+  backgroundColor?: ThemeColor
+  bg?: ThemeColor
   safe?: ContainerProps['safe']
   searchBar?: boolean
   placeholder?: string
@@ -33,6 +35,8 @@ export interface SelectionListProps<T> extends Omit<SearchBarProps, 'value' | 'o
 
 export const SelectionList = <T, >({
   style,
+  backgroundColor = "mainBackgroundMuted",
+  bg,
   safe = 'bottom',
   searchBar,
   itemSeparator = true,
@@ -52,7 +56,6 @@ export const SelectionList = <T, >({
   onDone = noop,
   ...searchBarProps
 }: SelectionListProps<T>) => {
-  const styles = useStyles(themedStyles)
   const list = useRef<FlatListElement | null>(null)
   const [query, setQuery] = useState('')
   const done = () => {
@@ -61,7 +64,7 @@ export const SelectionList = <T, >({
   }
 
   return (
-    <Container style={[styles.container, style]} safe={safe}>
+    <Container style={style} flex={1} backgroundColor={backgroundColor} bg={bg} safe={safe}>
       {searchBar && (
         <SearchBar
           autoFocus
@@ -105,7 +108,7 @@ export const SelectionList = <T, >({
             onLoadMore={onLoadMore ? () => onLoadMore(query) : undefined}
             emptyText={emptyText} />
 
-          <LoadingOverlay style={styles.loadingOverlay} show={!items && loading} />
+          <LoadingOverlay backgroundColor={backgroundColor} bg={bg} show={!items && loading} />
         </View>
       </KeyboardAvoidingView>
     </Container>
@@ -115,13 +118,3 @@ export const SelectionList = <T, >({
 SelectionList.defaultProps = {
   keyExtractor: (item: any) => `${item.id}`
 }
-
-const themedStyles = createThemedStyleSheet(theme => ({
-  container: {
-    flex: 1,
-    backgroundColor: theme.colors.containerMutedBg
-  },
-  loadingOverlay: {
-    backgroundColor: theme.colors.containerMutedBg
-  }
-}))

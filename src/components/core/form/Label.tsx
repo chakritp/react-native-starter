@@ -7,7 +7,7 @@ export interface LabelProps extends TextProps {
 
 export const Label = ({ inline, ...props }: LabelProps) => (
   <Text
-    variant="p3"
+    variant="p4"
     mb={inline ? 'none' : 's'}
     mr={inline ? 'm' : 'none'}
     font="bodyMedium"

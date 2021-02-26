@@ -1,9 +1,9 @@
-import React, { isValidElement, ReactNode } from 'react'
+import React, { isValidElement, ReactElement } from 'react'
 import { Alert, AlertButton } from 'react-native'
 import { IconProps, Icon } from 'components/core/Icon'
 import { t } from './i18n'
 
-export type IconProp = ReactNode | IconProps | string
+export type IconProp = ReactElement | IconProps | string
 
 export function renderIcon(
   icon: IconProp,

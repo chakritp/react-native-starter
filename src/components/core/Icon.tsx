@@ -3,8 +3,8 @@ import { TouchableOpacity } from 'react-native'
 import { IconProps as $IconProps } from 'react-native-vector-icons/Icon'
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons'
 import { useRestyle, useTheme } from '@shopify/restyle'
-import { BaseTextProps, baseTextRestyleFunctions } from 'lib/restyle'
-import { Theme, ThemeSize } from 'theme'
+import { Theme, ThemeColor, ThemeSize } from 'theme'
+import { TextProps, textRestyleFunctions } from './Text'
 
 enum IconType {
   MATERIAL = 'material'
@@ -16,9 +16,10 @@ const ICON_COMPONENTS = {
 
 const HIT_SLOP = { top: 10, left: 10, bottom: 10, right: 10 }
 
-export interface IconProps extends BaseTextProps<Theme>, Omit<$IconProps, 'size' | 'color'> {
+export interface IconProps extends TextProps, Omit<$IconProps, 'size' | 'color'> {
   type?: IconType,
-  size?: ThemeSize | number
+  size?: ThemeSize | number,
+  color?: ThemeColor
 }
 
 export const Icon = ({
@@ -33,7 +34,7 @@ export const Icon = ({
   }
 
   const theme = useTheme<Theme>()
-  const iconProps = useRestyle(baseTextRestyleFunctions, props)
+  const iconProps = useRestyle(textRestyleFunctions, props)
   let size = typeof _size === 'string' ? theme.fontSizes[_size] : _size
 
   const IconComponent = ICON_COMPONENTS[type]

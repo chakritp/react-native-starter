@@ -6,13 +6,12 @@ import {
   createStackNavigator as $createStackNavigator
 } from '@react-navigation/stack'
 import { boxRestyleFunctions, BoxProps, useRestyle, useTheme } from '@shopify/restyle'
-import { BaseTextProps, baseTextRestyleFunctions } from 'lib/restyle'
 import { Theme } from 'theme'
-import { HeaderButton } from 'components/core'
+import { HeaderButton, TextProps, textRestyleFunctions } from 'components/core'
 
 export interface StackNavigationOptions extends $StackNavigationOptions {
   headerStyleProps?: BoxProps<Theme>
-  headerTitleStyleProps?: BaseTextProps<Theme>
+  headerTitleStyleProps?: TextProps
   cardStyleProps?: BoxProps<Theme>
 }
 
@@ -46,7 +45,7 @@ export const createStackNavigator = () => {
       ...headerStyleProps
     }) as any
 
-    const { style: baseHeaderTitleStyle } = useRestyle(baseTextRestyleFunctions, {
+    const { style: baseHeaderTitleStyle } = useRestyle(textRestyleFunctions, {
       ...defaultHeaderTitleStyleProps,
       ...headerTitleStyleProps
     }) as any
@@ -89,7 +88,7 @@ export const SettingsHeaderButton = () => {
 
   return (
     <HeaderButton
-      contentStyle={{ paddingHorizontal: 10 }}
+      paddingHorizontal="m"
       icon={{ name: 'settings', size: 28 }}
       onPress={() => navigation.navigate('Settings')} />
   )

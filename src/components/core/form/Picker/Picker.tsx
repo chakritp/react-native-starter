@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from 'react'
-import { useTheme } from 'theme'
+import { useTheme } from '@shopify/restyle'
+import { Theme } from 'theme'
 import { PickerButton } from '../PickerButton'
 import { ModalInput } from '../ModalInput'
 import { PickerBase, PlatformPickerProps } from './common'
@@ -17,7 +18,7 @@ export default function PickerIOS({
   onValueChange = () => {},
   ...props
 }: PlatformPickerProps) {
-  const theme = useTheme()
+  const theme = useTheme<Theme>()
   const _items = useMemo(() => {
     if (prompt) {
       return [{ value: PROMPT_VALUE, label: prompt }, ...items]
@@ -47,7 +48,7 @@ export default function PickerIOS({
               onValueChange(value, index)
             }
           }}
-          style={{ backgroundColor: theme.colors.modalInputContent }}
+          style={{ backgroundColor: theme.colors.modalInputBackground }}
           items={_items}
           {...props} />
       </ModalInput>

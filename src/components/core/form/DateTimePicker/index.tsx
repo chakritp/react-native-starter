@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
 import { StyleProp, ViewStyle, TextStyle } from 'react-native'
 import moment from 'moment'
-import { useTheme } from 'theme'
+import { useTheme } from '@shopify/restyle'
 import { PickerButton } from '../PickerButton'
 import { DateTimePickerBaseProps } from './common'
 import PlatformDateTimePicker from './DateTimePicker'
+import { Theme } from 'theme'
 
 export interface DateTimePickerProps extends Partial<DateTimePickerBaseProps> {
   style?: StyleProp<ViewStyle>
@@ -28,7 +29,7 @@ export const DateTimePicker = ({
   onChange = () => {},
   ...props
 }: DateTimePickerProps) => {
-  const theme = useTheme()
+  const theme = useTheme<Theme>()
   const [open, setOpen] = useState(false)
   const close = () => setOpen(false)
 
@@ -44,9 +45,9 @@ export const DateTimePicker = ({
         onPress={() => setOpen(true)} />
 
       <PlatformDateTimePicker
-        style={{ backgroundColor: theme.colors.modalInputContent }}
+        style={{ backgroundColor: theme.colors.modalInputBackground }}
         display="spinner"
-        textColor={theme.colors.inputText}
+        textColor={theme.colors.mainForegroundRegular}
         mode={mode}
         defaultValue={defaultValue}
         value={value}

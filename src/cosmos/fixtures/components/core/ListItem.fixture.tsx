@@ -15,18 +15,18 @@ import {
 
 export default () => {
   return (
-    <ScrollContainer safe="top" padding={false}>
+    <ScrollContainer safe="top" keyboardShouldPersistTaps="handled">
       <ListSection>
         <ListItem title="Title" bottomDivider onPress={noop} />
         <ListItem title="Title" subtitle="Subtitle" chevron bottomDivider onPress={noop} />
-        <ListItem title="Title" rightIcon={{ name: 'info', color: 'info' }} bottomDivider onPress={noop}>
-          <Text.P3 color="textMuted">Children</Text.P3>
+        <ListItem title="Title" rightIcon={{ name: 'info', color: 'infoRegular' }} bottomDivider onPress={noop}>
+          <Text variant="p3" color="mainForegroundMuted">Children</Text>
         </ListItem>
         <ListItem leftIcon="perm-identity" title="Title" subtitle="Subtitle" rightIcon="check" bottomDivider onPress={noop} />
-        <ListItem leftIcon="lightbulb" title="Title" bottomDivider rightContent={
+        <ListItem leftIcon={{ name: 'lightbulb', color: 'attentionHeavy' }} title="Title" bottomDivider rightContent={
           <Switch value />
         } />
-        <InputListItem leftIcon="leaderboard" title="TextInput" bottomDivider>
+        <InputListItem leftIcon={{ name: 'leaderboard', color: 'successRegular' }} title="TextInput" bottomDivider>
           <TextInput embedded placeholder="Enter text" hasError />
         </InputListItem>
         <InputListItem leftIcon="room" title="Picker">

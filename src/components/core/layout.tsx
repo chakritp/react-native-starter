@@ -156,7 +156,7 @@ export const Heading = ({ icon, title, subtitle, children, ...props }: HeadingPr
   const theme = useTheme<Theme>()
 
   return (
-    <Box mb="xxl" {...props}>
+    <Box mb="xxl" alignItems="center" {...props}>
       {icon && (
         <Box mb="xl">
           {renderIcon(icon, { size: 84 })}

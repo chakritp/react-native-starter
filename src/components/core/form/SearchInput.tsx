@@ -1,7 +1,8 @@
 import React, { forwardRef } from 'react'
 import { NativeMethods } from 'react-native'
-import { createThemedStyleSheet, useStyles } from 'theme'
+import { createThemedStyles, useThemedStyles } from 'lib/restyle'
 import { t } from 'helpers/i18n'
+import { Theme } from 'theme'
 import { AutocompleteInput, AutocompleteInputProps } from './AutocompleteInput'
 
 export const SearchInput = forwardRef<NativeMethods, AutocompleteInputProps>(({
@@ -9,7 +10,7 @@ export const SearchInput = forwardRef<NativeMethods, AutocompleteInputProps>(({
   placeholder = t('actions.search'),
   ...props
 }: AutocompleteInputProps, ref: any) => {
-  const styles = useStyles(themedStyles)
+  const styles = useThemedStyles(themedStyles)
 
   return (
     <AutocompleteInput
@@ -21,12 +22,12 @@ export const SearchInput = forwardRef<NativeMethods, AutocompleteInputProps>(({
   )
 })
 
-const themedStyles = createThemedStyleSheet(theme => ({
+const themedStyles = createThemedStyles((theme: Theme) => ({
   input: {
     height: 38,
     minHeight: 38,
-    color: theme.colors.text,
-    backgroundColor: theme.colors.searchInputBg,
-    borderRadius: theme.radii.l
+    color: theme.colors.mainForegroundRegular,
+    backgroundColor: theme.colors.mainBackgroundMuted,
+    borderRadius: theme.borderRadii.l
   }
 }))
