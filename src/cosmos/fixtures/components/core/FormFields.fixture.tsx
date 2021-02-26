@@ -15,12 +15,13 @@ import {
   DateTimePicker,
   AutocompletePicker,
   LocalAutocompletePicker,
-  useForm,
+  Button,
+  useForm
 } from 'components/core'
 
 const schema = yup.object().shape({
-  firstName: yup.string().required(),
-  lastName: yup.string().required()
+  textInput1: yup.string().required(),
+  textInput2: yup.string().required()
 })
 
 const defaultValues = {
@@ -28,8 +29,8 @@ const defaultValues = {
   textInput2: '',
   formattedTextInput: 327450,
   picker: null,
-  datePicker: null,
-  timePicker: null,
+  datePicker: null as Date | null,
+  timePicker: null as Date | null,
   autocompletePicker: null,
   localAutocompletePicker: null,
   switch: false
@@ -85,15 +86,22 @@ export default () => {
     loadAutocompleteItems(query, autocompleteState.offset + 20)
   }
 
-  const form = useForm<FormValues>({ schema, defaultValues })
+  const form = useForm<FormValues>({
+    schema,
+    defaultValues: { ...defaultValues, timePicker: new Date() },
+    onSubmit: async (values: FormValues) => {
+      await new Promise(r => setTimeout(r, 500))
+      console.log(values)
+    }
+  })
   const lastNameRef = useRef<NativeMethods>(null)
 
   useEffect(() => {
     form.setError('textInput2', { message: 'Error message' })
   }, [])
-  
+
   return (
-    <ScrollContainer safe="top" contentPadding="xl" keyboardShouldPersistTaps="handled">
+    <ScrollContainer safe="top" contentPadding="xl" contentPaddingBottom="xxl" keyboardShouldPersistTaps="handled">
       <FormProvider {...form}>
         <Field<FormValues>
           name="textInput1"
@@ -156,6 +164,7 @@ export default () => {
             <InputGroup label="DateTimePicker (date)">
               <DateTimePicker
                 {...props}
+                clearable
                 format="MM/DD/Y"
                 placeholder="--/--/----"
                 disabled={disabled} />
@@ -170,8 +179,8 @@ export default () => {
                 {...props}
                 mode="time"
                 disabled={disabled}
-                format="hh:mm:ss A"
-                placeholder="--:--:--" />
+                format="hh:mm A"
+                placeholder="--:--" />
             </InputGroup>
           )} />
 
@@ -230,6 +239,12 @@ export default () => {
           <Text variant="s2">{'  /  '}</Text>
           <TextInput leftIcon="date-range" />
         </InputGroup>
+
+        <Button
+          title="Submit"
+          disabled={!form.formState.isDirty}
+          loading={form.formState.isSubmitting}
+          onPress={form.submit} />
       </FormProvider>
     </ScrollContainer>
   )

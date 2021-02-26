@@ -46,7 +46,7 @@ export const AutocompleteInput = forwardRef<typeof $TextInput, TextInputProps>((
     <TextInput
       ref={ref}
       rightIcon={value !== '' ? (
-        <IconButton name="clear" size="s" color="mainForegroundMuted" onPress={onClear} />
+        <IconButton name="clear" size="s" color="inputForegroundMuted" onPress={onClear} />
       ) : undefined}
       accessibilityRole="search"
       autoCapitalize="none"

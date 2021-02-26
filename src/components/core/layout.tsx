@@ -61,6 +61,10 @@ export const Container = ({
 
 export interface ScrollContainerProps extends ContainerProps, ScrollViewProps {
   contentPadding?: BoxProps['padding']
+  contentPaddingTop?: BoxProps['paddingTop']
+  contentPaddingRight?: BoxProps['paddingRight']
+  contentPaddingBottom?: BoxProps['paddingBottom']
+  contentPaddingLeft?: BoxProps['paddingLeft'] 
   contentPaddingHorizontal?: BoxProps['paddingHorizontal']
   contentPaddingVertical?: BoxProps['paddingVertical']
   contentBackgroundColor?: BoxProps['backgroundColor']
@@ -71,6 +75,10 @@ export interface ScrollContainerProps extends ContainerProps, ScrollViewProps {
 export const ScrollContainer = ({
   contentContainerStyle,
   contentPadding,
+  contentPaddingTop,
+  contentPaddingRight,
+  contentPaddingBottom,
+  contentPaddingLeft,
   contentPaddingHorizontal,
   contentPaddingVertical,
   contentBackgroundColor,
@@ -90,6 +98,10 @@ export const ScrollContainer = ({
 
   const { style: baseContentContainerStyle } = useRestyle([spacing, backgroundColor], {
     padding: contentPadding,
+    paddingTop: contentPaddingTop,
+    paddingRight: contentPaddingRight,
+    paddingBottom: contentPaddingBottom,
+    paddingLeft: contentPaddingLeft,
     paddingHorizontal: contentPaddingHorizontal,
     paddingVertical: contentPaddingVertical,
     backgroundColor: contentBackgroundColor,

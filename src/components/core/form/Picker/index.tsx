@@ -50,7 +50,7 @@ const themedStyles = createThemedStyles((theme: Theme) => ({
   container: {
     flex: 1,
     justifyContent: 'center',
-    backgroundColor: theme.colors.mainBackgroundHeavy,
+    backgroundColor: theme.colors.inputBackgroundRegular,
     borderRadius: theme.borderRadii.m
   },
   embedded: {
@@ -58,6 +58,6 @@ const themedStyles = createThemedStyles((theme: Theme) => ({
   },
   item: {
     ...theme.fonts.bodyRegular,
-    color: theme.colors.mainForegroundRegular
+    color: theme.colors.inputForegroundRegular
   }
 }))

@@ -47,7 +47,7 @@ export const DateTimePicker = ({
       <PlatformDateTimePicker
         style={{ backgroundColor: theme.colors.modalInputBackground }}
         display="spinner"
-        textColor={theme.colors.mainForegroundRegular}
+        textColor={theme.colors.inputForegroundRegular}
         mode={mode}
         defaultValue={defaultValue}
         value={value}

@@ -27,14 +27,14 @@ export default createTheme({
     mainBackgroundMedium: palette.gray200,
     mainBackgroundMuted: palette.gray100,
     mainBackgroundSoft: palette.gray50,
+    mainBorderHeavy: palette.gray400,
+    mainBorderRegular: palette.gray300,
+    mainBorderMuted: palette.gray200,
     mainForegroundHeavy: palette.black,
     mainForegroundRegular: palette.gray600,
     mainForegroundMedium: palette.gray500,
     mainForegroundMuted: palette.gray400,
     mainForegroundSoft: palette.gray300,
-    mainBorderHeavy: palette.gray400,
-    mainBorderRegular: palette.gray300,
-    mainBorderMuted: palette.gray200,
 
     // Highlights
     attentionRegular: palette.yellow400,
@@ -53,9 +53,19 @@ export default createTheme({
     dangerMuted: palette.red300,
     dangerHeavy: palette.red500,
 
-    // Specialized
-    link: palette.blue500,
-    modalInputBackground: palette.white
+    // Inputs
+    inputBackgroundRegular: palette.gray50,
+    inputBackgroundMuted: palette.gray200,
+    inputBorderRegular: palette.gray200,
+    inputForegroundRegular: palette.gray600,
+    inputForegroundMuted: palette.gray400,
+    inputForegroundSoft: palette.gray300,
+    modalInputBackground: palette.white,
+
+    // Nav
+
+    // Other
+    link: palette.blue500
   },
   breakpoints: {
     phone: 0,
@@ -69,6 +79,7 @@ export default createTheme({
   spacing: {
     auto: 'auto' as any,
     none: 0,
+    xxxs: 1,
     xxs: 2,
     xs: 4,
     s: 6,
@@ -197,24 +208,29 @@ export default createTheme({
     },
     primary: {
       backgroundColor: 'brandPrimaryRegular',
-      foregroundColor: 'brandPrimaryInverse',
-      borderColor: 'transparent'
+      borderColor: 'transparent',
+      foregroundColor: 'brandPrimaryInverse'
     },
     primaryTransparent: {
       backgroundColor: 'transparent',
-      foregroundColor: 'brandPrimaryRegular',
       borderColor: 'transparent',
+      foregroundColor: 'brandPrimaryRegular',
     },
     secondary: {
       backgroundColor: 'transparent',
-      foregroundColor: 'brandPrimaryRegular',
-      borderColor: 'brandPrimaryRegular'
+      borderColor: 'brandPrimaryRegular',
+      foregroundColor: 'brandPrimaryRegular'
     },
     listFooter: {
       backgroundColor: 'mainBackgroundRegular',
-      foregroundColor: 'brandPrimaryRegular',
       borderColor: 'mainBackgroundRegular',
+      foregroundColor: 'brandPrimaryRegular',
       borderRadius: 'none'
+    },
+    input: {
+      backgroundColor: 'inputBackgroundRegular',
+      borderColor: 'inputBorderRegular',
+      foregroundColor: 'inputForegroundRegular'
     }
   },
   toastVariants: {

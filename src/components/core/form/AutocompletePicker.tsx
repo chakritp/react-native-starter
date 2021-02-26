@@ -1,6 +1,7 @@
 import noop from 'lodash/noop'
 import React, { useCallback, useMemo, useState } from 'react'
 import { Modal, StyleProp, ViewStyle } from 'react-native'
+import { IconButton } from '../IconButton'
 import { PickerButton } from './PickerButton'
 import { SelectionList, SelectionListProps } from '../SelectionList'
 
@@ -62,11 +63,16 @@ export const AutocompletePicker = <T, P>({
         placeholder={placeholder}
         value={selectedItem && itemLabelExtractor(selectedItem)}
         disabled={disabled}
-        icon={value && clearable ? {
-          size: 'm',
-          name: 'clear',
-          onPress: () => onChange(null)
-        } : undefined}
+        icon={value && clearable ? (
+          <IconButton
+            name="clear"
+            position="absolute"
+            pt="xxxs"
+            mr="xs"
+            right={0}
+            size="m"
+            onPress={() => onChange(null)} />
+        ) : undefined}
         onPress={handleOpen} />
 
       <Modal

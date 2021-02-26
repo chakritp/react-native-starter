@@ -24,7 +24,7 @@ export default function PickerAndroid({
   return (
     <PickerBase
       style={[styles.container, style]}
-      dropdownIconColor={theme.colors.mainForegroundRegular}
+      dropdownIconColor={theme.colors.inputForegroundRegular}
       items={items}
       onValueChange={(value, index) => value !== PLACEHOLDER_VALUE && onValueChange(value, index)}
       {...props} />
@@ -34,6 +34,6 @@ export default function PickerAndroid({
 const themedStyles = createThemedStyles((theme: Theme) => ({
   container: {
     height: theme.sizes.m,
-    color: theme.colors.mainForegroundRegular
+    color: theme.colors.inputForegroundRegular
   }
 }))

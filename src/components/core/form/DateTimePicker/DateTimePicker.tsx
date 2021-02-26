@@ -9,6 +9,7 @@ import { DateTimePickerBaseProps } from './common'
 
 export default function PlatformDateTimePicker({
   defaultValue,
+  clearable = !defaultValue,
   value,
   open,
   onClose = noop,
@@ -25,16 +26,19 @@ export default function PlatformDateTimePicker({
         {...props} />
       
       <Box flexDirection="row" justifyContent="center">
-        <Button
-          variant="secondary"
-          mx="l"
-          width={120}
-          size="s"
-          title={t('actions.clear')} 
-          onPress={() => {
-            onChange(null)
-            onClose()
-          }} />
+        {clearable && (
+          <Button
+            variant="secondary"
+            mx="l"
+            width={120}
+            size="s"
+            title={t('actions.clear')} 
+            onPress={() => {
+              onChange(null)
+              onClose()
+            }} />
+        )}
+        
 
         <Button
           mx="l"

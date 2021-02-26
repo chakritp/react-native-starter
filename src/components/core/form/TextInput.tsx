@@ -68,13 +68,13 @@ export const TextInput = forwardRef<NativeMethods, TextInputProps>(({
   const defaultInputProps = type ? DEFAULT_INPUT_PROPS[type] : undefined
 
   if (leftIcon) {
-    leftIcon = renderIcon(leftIcon, { color: 'mainForegroundMuted', size: 'l' })
+    leftIcon = renderIcon(leftIcon, { color: 'inputForegroundMuted', size: 'l' })
   }
 
   if (hasError) {
     rightIcon = <InputErrorIcon onPress={onShowError} />
   } else if (rightIcon) {
-    rightIcon = renderIcon(rightIcon, { color: 'mainForegroundMuted', size: 'l' })
+    rightIcon = renderIcon(rightIcon, { color: 'inputForegroundMuted', size: 'l' })
   }
 
   return (
@@ -90,7 +90,7 @@ export const TextInput = forwardRef<NativeMethods, TextInputProps>(({
           disabled && styles.disabled,
           inputStyle
         ]}
-        placeholderTextColor={theme.colors.mainForegroundSoft}
+        placeholderTextColor={theme.colors.inputForegroundSoft}
         placeholder={placeholder}
         editable={editable}
         autoCorrect={autoCorrect}
@@ -114,13 +114,13 @@ const themedStyles = createThemedStyles((theme: Theme) => ({
   input: {
     flex: 0,
     flexDirection: 'row',
-    color: theme.colors.mainForegroundRegular,
+    color: theme.colors.inputForegroundRegular,
     padding: theme.spacing.m,
     minHeight: theme.sizes.m,
     ...theme.fonts.bodyRegular,
     fontSize: theme.fontSizes.s,
-    backgroundColor: theme.colors.mainBackgroundHeavy,
-    borderColor: theme.colors.mainForegroundSoft,
+    backgroundColor: theme.colors.inputBackgroundRegular,
+    borderColor: theme.colors.inputForegroundSoft,
     borderWidth: 1,
     borderRadius: theme.borderRadii.m
   },

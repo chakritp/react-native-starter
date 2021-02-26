@@ -10,6 +10,7 @@ export type DateTimePickerBaseProps = {
   minimimDate?: Date
   minuteInterval?: IOSNativeProps['minuteInterval']
   defaultValue: Date
+  clearable?: boolean
   value?: Date
   open?: boolean
   onChange?: (value?: Date | null) => void

@@ -27,14 +27,13 @@ export function PickerButton({
 
   return (
     <Button
+      variant="input"
       flex={1}
       paddingLeft="m"
       paddingRight={icon ? 'xs' : 'm'}
-      backgroundColor="mainBackgroundHeavy"
-      borderRadius="m"
       style={[embedded && styles.containerEmbedded, style]}
       contentContainerStyle={styles.contentContainer}
-      titleStyle={[hasValue ? styles.value : styles.placeholder, titleStyle]}
+      titleStyle={[!hasValue && styles.placeholder, titleStyle]}
       title={hasValue ? String(value) : placeholder}
       accessibilityLabel={placeholder}
       disabled={disabled}
@@ -42,7 +41,7 @@ export function PickerButton({
         Keyboard.dismiss()
         onPress(ev)
       }) : undefined}
-      icon={icon && renderIcon(icon, { size: 'l', color: 'mainForegroundSoft', position: 'absolute', right: 0 })}
+      icon={icon && renderIcon(icon, { size: 'l', color: 'inputForegroundSoft', position: 'absolute', right: 0 })}
       iconPlacement="right"
       {...props} />
   )
@@ -63,9 +62,6 @@ const themedStyles = createThemedStyles((theme: Theme) => ({
     width: '100%'
   },
   placeholder: {
-    color: theme.colors.mainForegroundSoft
-  },
-  value: {
-    color: theme.colors.mainForegroundRegular
+    color: theme.colors.inputForegroundSoft
   }
 }))

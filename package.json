@@ -41,7 +41,7 @@
     "moment": "^2.29.1",
     "query-string": "^6.13.7",
     "react": "16.13.1",
-    "react-hook-form": "^6.12.2",
+    "react-hook-form": "^6.15.4",
     "react-native": "0.63.4",
     "react-native-config": "^1.4.1",
     "react-native-device-info": "^7.2.1",

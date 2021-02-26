@@ -52,6 +52,7 @@ export function useForm<TFieldValues extends FieldValues = FieldValues, TContext
   const submitErrorRef = useRef<Error | ApiNetworkError | ApiServerError>()
   const onSubmitRef = useRef<UseFormOptions<TFieldValues, TContext>['onSubmit']>()
   const onSuccessRef = useRef<UseFormOptions<TFieldValues, TContext>['onSuccess']>()
+  const submitCountRef = useRef(0)
 
   onSubmitRef.current = onSubmit
   onSuccessRef.current = onSuccess
@@ -108,14 +109,17 @@ export function useForm<TFieldValues extends FieldValues = FieldValues, TContext
   }, [])
 
   useEffect(() => {
-    const { errors } = form
-    if (errors && _showValidationError) {
-      const field = Object.keys(errors)[0]
-      if (field && errors[field]) {
-        _showValidationError(errors[field] as FieldError, field)
+    if (submitCountRef.current !== form.formState.submitCount) {
+      const { errors } = form
+      if (errors && _showValidationError) {
+        const field = Object.keys(errors)[0]
+        if (field && errors[field]) {
+          _showValidationError(errors[field] as FieldError, field)
+        }
       }
     }
-  }, [form.errors, form.formState.isSubmitting, _showValidationError])
+    submitCountRef.current = form.formState.submitCount
+  }, [form.formState.submitCount])
 
   return {
     ...form,

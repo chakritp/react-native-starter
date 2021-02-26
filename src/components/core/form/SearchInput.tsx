@@ -26,8 +26,8 @@ const themedStyles = createThemedStyles((theme: Theme) => ({
   input: {
     height: 38,
     minHeight: 38,
-    color: theme.colors.mainForegroundRegular,
-    backgroundColor: theme.colors.mainBackgroundMuted,
+    color: theme.colors.inputForegroundRegular,
+    backgroundColor: theme.colors.inputBackgroundMuted,
     borderRadius: theme.borderRadii.l
   }
 }))

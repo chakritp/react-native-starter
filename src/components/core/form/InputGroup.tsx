@@ -75,7 +75,7 @@ export const InputGroup = ({
                 style={infoTextStyle}
                 variant="c2"
                 font="bodyRegular"
-                color="mainForegroundMuted"
+                color="inputForegroundMuted"
               >
                 {info}
               </Text>
