@@ -99,6 +99,7 @@ export const Button = ({
 
   if (icon) {
     icon = renderIcon(icon, {
+      style: title != null && { [iconPlacement === 'right' ? 'marginLeft' : 'marginRight']: size === 's' ? 4 : 6 },
       size: size === 's' ? 'xs' : size === 'l' ? 'l' : 'm',
       color: foregroundColor
     })

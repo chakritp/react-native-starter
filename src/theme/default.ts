@@ -4,13 +4,16 @@ import fonts from './fonts'
 import palette from './palette'
 
 const fontSizes = {
-  xxs: 14,
-  xs: 16,
-  s: 18,
-  m: 20,
-  l: 26,
-  xl: 32,
-  xxl: 48
+  xxxs: 10,
+  xxs: 12,
+  xs: 14,
+  s: 16,
+  m: 18,
+  xm: 20,
+  l: 24,
+  xl: 28,
+  xxl: 36,
+  xxxl: 48
 }
 
 export default createTheme({
@@ -65,9 +68,9 @@ export default createTheme({
     // Nav
     navBackgroundRegular: palette.white,
     navBorderRegular: palette.gray200,
-    navTintRegular: palette.white,
-    navTintMuted: palette.gray200,
-    navPrimary: palette.white,
+    navPrimary: palette.blue500,
+    navNotification: palette.red500,
+    navText: palette.gray500,
 
     // Other
     link: palette.blue500
@@ -97,10 +100,12 @@ export default createTheme({
     xxxl: 64
   },
   sizes: {
+    xxxs: 10,
     xxs: 16,
     xs: 24,
     s: 32,
     m: 44,
+    xm: 48,
     l: 56,
     xl: 80,
     xxl: 100

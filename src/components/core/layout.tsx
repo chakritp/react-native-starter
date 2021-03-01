@@ -143,17 +143,17 @@ export const ScrollContainer = ({
   )
 }
 
-export const KeyboardAvoidingContainer = ({ style, ...props }: ViewProps) => {
+export const KeyboardAvoidingContainer = ({ children, ...props }: BoxProps) => {
   const headerHeight = useHeaderHeight()
+  const { style } = useRestyle(boxRestyleFunctions, { flex: 1, ...props }) as any
   return (
     <KeyboardAvoidingView
-      style={[
-        styles.container,
-        style
-      ]}
+      style={style}
       keyboardVerticalOffset={headerHeight}
       behavior="padding"
-      {...props} />
+    >
+      {children}
+    </KeyboardAvoidingView>
   )
 }
 
@@ -205,9 +205,6 @@ export const SafeArea = ({ safe = true, children }: SafeAreaProps) => {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1
-  },
   center: {
     flexGrow: 1,
     justifyContent: 'center'

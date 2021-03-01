@@ -52,7 +52,7 @@ export default () => {
       <ListSection topSpacing>
         <ListItem
           style={{ paddingLeft: 0 }}
-          leftContent={<Avatar size={60} source={{ uri: IMAGE_URI_1 }} />}
+          leftContent={<Avatar size="l" source={{ uri: IMAGE_URI_1 }} />}
           title="Title"
           subtitle="Subtitle"
           chevron
@@ -60,7 +60,7 @@ export default () => {
           onPress={noop} />
         <ListItem
           style={{ paddingLeft: 0 }}
-          leftContent={<Avatar size={60} source={{ uri: IMAGE_URI_2 }} />}
+          leftContent={<Avatar size="l" source={{ uri: IMAGE_URI_2 }} />}
           title="Title"
           subtitle="Subtitle"
           chevron

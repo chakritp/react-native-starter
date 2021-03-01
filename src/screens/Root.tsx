@@ -5,7 +5,7 @@ import { NavigationContainer, NavigationState } from '@react-navigation/native'
 import { ThemeProvider } from '@shopify/restyle'
 import { observer } from 'mobx-react-lite'
 import { useStore, mergeSnapshot, useMSTFastRefresh } from 'lib/mst'
-import { Toast, createStackNavigator } from 'components/core'
+import { Toast, PartialNavigationState, createStackNavigator } from 'components/core'
 import { AppUpgradeRequiredNotice } from 'components/AppUpgradeRequiredNotice'
 import { api, rootNavigation } from 'services'
 import { defaultTheme, createNavigationTheme } from 'theme'
@@ -16,7 +16,7 @@ const Stack = createStackNavigator()
 
 export const Root = observer((props: {
   snapshot?: object,
-  initialNavigationState?: NavigationState
+  initialNavigationState?: PartialNavigationState
 }) => {
   const { snapshot, initialNavigationState } = props
   const theme = defaultTheme

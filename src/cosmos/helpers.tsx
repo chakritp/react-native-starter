@@ -1,5 +1,6 @@
-import React, { ReactElement, useEffect, useMemo, useRef } from 'react'
-import { NavigationState } from '@react-navigation/native'
+import React, { PropsWithChildren, useEffect, useMemo, useRef } from 'react'
+import { PartialState } from '@react-navigation/native'
+import { PartialNavigationState } from 'components/core'
 import { mockApi, mockLocalStorage } from 'mocks'
 import { Root as $Root } from 'screens/Root'
 
@@ -77,7 +78,7 @@ export function useMockApi(callback: (params: {
 
 interface RootProps {
   snapshot?: object
-  navState?: NavigationState
+  navState?: PartialNavigationState
 }
 
 export function createRoot(propsCallback?: () => RootProps) {
@@ -103,9 +104,9 @@ export function createSignedInDecorator() {
   }
 }
 
-export const SignedInDecorator = (props: { children: ReactElement }) => {
+export const SignedInDecorator = (props: PropsWithChildren<any>) => {
   useMocks(({ localStorage }) => {
-    localStorage.set('/appStore/deviceId', 'test-device-id')
+    localStorage.set('/authStore/deviceRegistered', true)
     localStorage.set('/authStore/accessToken', 'test-token')
   })
   return props.children

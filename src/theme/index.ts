@@ -19,7 +19,9 @@ export function createNavigationTheme(theme: Theme) {
       background: theme.colors.navBackgroundRegular,
       border: theme.colors.navBorderRegular,
       card: theme.colors.mainBackgroundRegular,
-      primary: theme.colors.navPrimary
+      primary: theme.colors.navPrimary,
+      notification: theme.colors.navNotification,
+      text: theme.colors.navText
     }
   }
 }

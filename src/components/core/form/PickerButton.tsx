@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Keyboard } from 'react-native'
+import { Keyboard } from 'react-native'
 import { createThemedStyles, useThemedStyles } from 'lib/restyle'
 import { Theme } from 'theme'
 import { renderIcon } from 'helpers/ui'
