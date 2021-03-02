@@ -23,6 +23,7 @@ export interface AutocompletePickerProps<T, P> extends Omit<SelectionListProps<T
 export const AutocompletePicker = <T, P>({
   style,
   embedded,
+  refreshControl = true,
   placeholder,
   itemLabelExtractor,
   itemValueExtractor,
@@ -82,6 +83,7 @@ export const AutocompletePicker = <T, P>({
         <SelectionList
           safe="top"
           searchBar
+          refreshControl={refreshControl}
           itemPropsExtractor={itemPropsExtractor}
           items={items}
           onSelect={item => onChange(itemValueExtractor!(item))}

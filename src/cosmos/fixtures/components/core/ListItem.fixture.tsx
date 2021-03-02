@@ -18,7 +18,7 @@ export default () => {
     <ScrollContainer safe="top" keyboardShouldPersistTaps="handled">
       <ListSection>
         <ListItem title="Title" bottomDivider onPress={noop} />
-        <ListItem title="Title" subtitle="Subtitle" chevron bottomDivider onPress={noop} />
+        <ListItem title="Title" subtitle="Subtitle that is a decently long length with tons of detail about things" chevron bottomDivider onPress={noop} />
         <ListItem title="Title" rightIcon={{ name: 'info', color: 'infoRegular' }} bottomDivider onPress={noop}>
           <Text variant="p3" color="mainForegroundMuted">Children</Text>
         </ListItem>

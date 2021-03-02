@@ -66,6 +66,8 @@ export interface FlatListProps<T> extends $FlatListProps<T> {
 export const FlatList = forwardRef(<T, >(props: FlatListProps<T>, ref: any) => {
   const {
     refreshControlColor = 'mainForegroundMuted',
+    keyboardShouldPersistTaps = 'always',
+    keyExtractor = defaultKeyExtractor,
     data,
     emptyText,
     itemSeparator,
@@ -76,26 +78,27 @@ export const FlatList = forwardRef(<T, >(props: FlatListProps<T>, ref: any) => {
   } = props
 
   const theme = useTheme<Theme>()
-  const refreshRef = useRef(false)
+  const refreshingRef = useRef(false)
 
   useEffect(() => {
     if (!refreshing) {
-      refreshRef.current = false
+      refreshingRef.current = false
     }
   }, [refreshing])
   
   return (
     <$FlatList
       ref={ref}
-      keyboardShouldPersistTaps="always"
+      keyboardShouldPersistTaps={keyboardShouldPersistTaps}
+      keyExtractor={keyExtractor}
       ItemSeparatorComponent={itemSeparator ? ItemSeparator : undefined}
       ListEmptyComponent={data && !loading ? <ListEmpty text={emptyText || t('messages.noResults')} /> : null}
       refreshControl={onRefresh ? (
         <RefreshControl
-          refreshing={refreshRef.current && !!refreshing}
+          refreshing={refreshingRef.current && !!refreshing}
           tintColor={theme.colors[refreshControlColor]}
           onRefresh={() => {
-            refreshRef.current = true
+            refreshingRef.current = true
             onRefresh()
           }} />
       ) : undefined}

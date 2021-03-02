@@ -168,12 +168,13 @@ const themedStyles = createThemedStyles((theme: Theme) => ({
     paddingRight: theme.spacing.m
   },
   titleContainer: {
+    flexShrink: 1,
     justifyContent: 'center',
     marginRight: theme.spacing.m,
-    paddingVertical: 8,
+    paddingVertical: 8
   },
   title: {
-    color: theme.colors.mainForegroundRegular
+    color: theme.colors.mainForegroundRegular,
   },
   subtitle: {
     marginTop: theme.spacing.xxs,
@@ -188,7 +189,6 @@ const themedStyles = createThemedStyles((theme: Theme) => ({
   rightContentContainer: {
     alignItems: 'flex-end',
     justifyContent: 'center',
-    minWidth: 34,
-    paddingLeft: theme.spacing.m,
+    minWidth: 24
   }
 }))

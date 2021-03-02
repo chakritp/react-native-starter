@@ -76,7 +76,7 @@ export function apiErrorMessage(error: any, options: { scope?: string } = {}) {
   })
 }
 
-export function validationMessage(
+export function validationErrorMessage(
   error: ValidationError | FieldError,
   options: { form?: string, field?: string, label?: string } = {}
 ) {

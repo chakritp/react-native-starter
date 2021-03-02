@@ -16,7 +16,7 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import { AnyObjectSchema } from 'yup'
 import i18n from 'i18n-js'
 import { ApiNetworkError, ApiServerError } from 'lib/api'
-import { translateForm, validationMessage } from 'helpers/i18n'
+import { translateForm, validationErrorMessage } from 'helpers/i18n'
 import { UseErrorAlertOptions, useBackHandler, useErrorAlert } from '../hooks'
 import { Toast } from '../Toast'
 
@@ -68,7 +68,7 @@ export function useForm<TFieldValues extends FieldValues = FieldValues, TContext
   form.defaultValues = _defaultValues
 
   const defaultShowValidationError = useCallback((error: FieldError, field: string) => {
-    Toast.danger(validationMessage(error, { form: name, field }))
+    Toast.danger(validationErrorMessage(error, { form: name, field }))
   }, [name])
 
   const _showValidationError = showValidationError === undefined

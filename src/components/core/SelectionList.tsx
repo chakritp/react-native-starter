@@ -9,10 +9,9 @@ import { ListItem, ListItemProps } from './ListItem'
 import { SearchBar, SearchBarProps } from './SearchBar'
 import { FlatListElement } from './lists'
 
-export interface SelectionListProps<T> extends Omit<SearchBarProps, 'value' | 'onChange' | 'onChangeText'>, Pick<Omit<InfiniteListProps<T>, 'onLoadMore' | 'onRefresh'>,
+export interface SelectionListProps<T> extends Omit<SearchBarProps, 'value' | 'onChange' | 'onChangeText'>, Pick<Omit<InfiniteListProps<T>, 'onLoadMore' | 'onRefresh' | 'refreshing'>,
   'total' |
   'loading' |
-  'refreshing' |
   'canLoadMore' |
   'keyExtractor' |
   'itemSeparator' |
@@ -26,9 +25,9 @@ export interface SelectionListProps<T> extends Omit<SearchBarProps, 'value' | 'o
   placeholder?: string
   items?: T[]
   itemPropsExtractor: (item: T) => ListItemProps
+  refreshControl?: boolean
   onLoad?: (query: string) => void
   onLoadMore?: (query: string) => void
-  onRefresh?: (query: string) => void
   onSelect?: (item: T) => void
   onDone?: () => void
 }
@@ -42,25 +41,29 @@ export const SelectionList = <T, >({
   itemSeparator = true,
   placeholder,
   loading,
-  refreshing,
   items,
   total,
   canLoadMore,
+  refreshControl,
   emptyText,
   keyExtractor,
   itemPropsExtractor,
   onLoadMore,
-  onRefresh,
   onLoad = noop,
   onSelect = noop,
   onDone = noop,
   ...searchBarProps
 }: SelectionListProps<T>) => {
   const list = useRef<FlatListElement | null>(null)
+  const refreshingRef = useRef(false)
   const [query, setQuery] = useState('')
   const done = () => {
     setQuery('')
     onDone()
+  }
+
+  if (!loading) {
+    refreshingRef.current = false
   }
 
   return (
@@ -91,7 +94,7 @@ export const SelectionList = <T, >({
             style={Platform.OS === 'android' && { minHeight: '100%' }}
             itemSeparator={itemSeparator}
             loading={onLoadMore ? loading : false}
-            refreshing={refreshing}
+            refreshing={refreshingRef.current}
             data={items}
             total={total}
             canLoadMore={canLoadMore}
@@ -104,7 +107,10 @@ export const SelectionList = <T, >({
                   onSelect(item)
                 }} />
             )}
-            onRefresh={onRefresh && (() => onRefresh(query))}
+            onRefresh={refreshControl ? () => {
+              refreshingRef.current = true
+              onLoad(query)
+            } : undefined}
             onLoadMore={onLoadMore ? () => onLoadMore(query) : undefined}
             emptyText={emptyText} />
 

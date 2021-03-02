@@ -12,7 +12,7 @@ export interface InfiniteListProps<T> extends FlatListProps<T> {
 export const InfiniteList = forwardRef(<T, >(props: InfiniteListProps<T>, ref: any) => {
   const {
     loading = false,
-    refreshing = loading,
+    refreshing = false,
     data,
     offset,
     total,
@@ -23,47 +23,71 @@ export const InfiniteList = forwardRef(<T, >(props: InfiniteListProps<T>, ref: a
     ...listProps
   } = props
 
-  const list = useRef<FlatListElement | null>(null)
+  const listRef = useRef<FlatListElement | null>(null)
+  const loadMoreRef = useRef(false)
+  const loadMoreEnabledRef = useRef(false)
+
+  if (!loading) {
+    loadMoreRef.current = false
+  }
 
   useEffect(() => {
-    if (list.current && offset === 0) {
-      list.current.scrollToOffset({ offset: 0 })
+    if (listRef.current && offset === 0) {
+      listRef.current.scrollToOffset({ offset: 0 })
     }
   }, [offset])
 
-  const [onEndReachedCalledDuringScroll, setOnEndReachedCalledDuringScroll] = useState(false)
+  useEffect(() => {
+    if (refreshing) {
+      loadMoreEnabledRef.current = false
+    }
+  }, [refreshing])
+
   const [counter, setCounter] = useState(1)
+  const showLoadingIndicator = (!data?.length && loading && !refreshing) || loadMoreRef.current
 
   return (
     <FlatList<T>
       ref={el => {
-        list.current = el
-        if (ref) ref(el)
+        listRef.current = el
+        if (typeof ref === 'function') {
+          ref(el)
+        } else if (ref) {
+          ref.current = el
+        }
       }}
-      ListFooterComponent={<ListFooter data={data} loading={loading} />}
       loading={loading}
       refreshing={refreshing}
       data={data}
       extraData={counter}
+      ListFooterComponent={<ListFooter loading={showLoadingIndicator} />}
       onEndReachedThreshold={onEndReachedThreshold}
       onEndReached={({ distanceFromEnd }) => {
         if (loading || refreshing) return
-        if (onEndReachedCalledDuringScroll === false) {
-          setOnEndReachedCalledDuringScroll(true)
+        if (loadMoreEnabledRef.current) {
+          loadMoreEnabledRef.current = false
           if (onEndReached) onEndReached({ distanceFromEnd })
-          if (canLoadMore && onLoadMore) onLoadMore()
+          if (canLoadMore && onLoadMore) {
+            loadMoreRef.current = true
+            onLoadMore()
+          }
         }
       }}
-      onScrollBeginDrag={() => setOnEndReachedCalledDuringScroll(false)}
-      onMomentumScrollEnd={() => setCounter(counter + 1)}
+      onScrollBeginDrag={() => {
+        loadMoreEnabledRef.current = true
+      }}
+      onMomentumScrollEnd={() => {
+        loadMoreEnabledRef.current = false
+        setCounter(counter + 1)
+      }}
       {...listProps} />
   )
 }) as <T>(p: InfiniteListProps<T> & { ref?: Ref<FlatListElement> }) => ReactElement
 
-const ListFooter = ({ data, loading }: { data: any, loading: boolean }) => {
+const ListFooter = ({ loading }: { loading: boolean }) => {
   return (
     <Box alignItems="center" justifyContent="center" p="l">
-      {data && data.length && loading ? (
+      {loading ? (
         <ActivityIndicator p="xl" animating size="large" />
       ) : null}
     </Box>

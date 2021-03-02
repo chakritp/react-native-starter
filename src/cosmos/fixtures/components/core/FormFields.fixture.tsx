@@ -1,5 +1,6 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useMemo, useRef, useState } from 'react'
 import { KeyboardAvoidingView, NativeMethods } from 'react-native'
+import Chance from 'chance'
 import * as yup from 'yup'
 import { useValue } from 'react-cosmos/fixture'
 import {
@@ -19,6 +20,8 @@ import {
   useForm
 } from 'components/core'
 
+const chance = new Chance(1)
+
 const schema = yup.object().shape({
   textInput1: yup.string().required(),
   textInput2: yup.string().required()
@@ -29,15 +32,14 @@ const defaultValues = {
   textInput2: '',
   formattedTextInput: 327450,
   picker: null,
-  datePicker: null as Date | null,
-  timePicker: null as Date | null,
   autocompletePicker: null,
   localAutocompletePicker: null,
+  datePicker: null as Date | null,
+  timePicker: null as Date | null,
   switch: false
 }
 
 type FormValues = typeof defaultValues
-
 interface AutocompleteItem {
   id: number
   name: string
@@ -46,44 +48,42 @@ interface AutocompleteItem {
 
 interface AutocompleteState {
   loading: boolean
-  offset: number
+  page: number
   items: AutocompleteItem[]
 }
 
-const pickerItems = new Array(10).fill(1).map((n, i) => ({ label: `Option ${i + 1}`, value: i + 1 }))
-const defaultAutocompleteState: AutocompleteState = { loading: false, offset: 0, items: [] }
-
 export default () => {
   const [disabled] = useValue('disabled', { defaultValue: false })
-  let [autocompleteState, setAutocompleteState] = useState(defaultAutocompleteState)
+  const pickerItems = useMemo(() => (
+    new Array(10).fill(0).map((_, i) => ({ label: chance.name(), value: i + 1 }))
+  ), [])
+  const autocompletePickerItems = useMemo(() => (
+    new Array(50).fill(0).map((_, i) => ({ id: i + 1, name: chance.city(), description: chance.sentence() }))
+  ), [])
+
+  let [autocompleteState, setAutocompleteState] = useState<AutocompleteState>({ loading: false, page: 1, items: [] })
 
   const resetAutocompleteItems = () => {
-    autocompleteState = defaultAutocompleteState
-    setAutocompleteState(defaultAutocompleteState)
+    autocompleteState = { loading: false, page: 1, items: [] }
+    setAutocompleteState(autocompleteState)
     loadAutocompleteItems('')
   }
 
-  const loadAutocompleteItems = (query: string, offset = 0) => {
+  const loadAutocompleteItems = (query: string, page = 1) => {
+    const queryLc = query.toLowerCase()
     autocompleteState = { ...autocompleteState, loading: true }
     setAutocompleteState(autocompleteState)
     setTimeout(() => {
-      let { items } = autocompleteState
-      const newItems = new Array(20).fill(0).map((_, i) => {
-        const id = i + offset + 1
-        return { id, name: `${query || 'Item'} ${id}`, description: `Description` }
-      })
-      if (offset === 0) {
-        items = newItems
-      } else {
-        items = [...items, ...newItems]
-      }
-      autocompleteState = { loading: false, items, offset }
+      const newItems = query
+        ? autocompletePickerItems.filter(item => item.name.toLowerCase().indexOf(queryLc) > -1)
+        : autocompletePickerItems
+      autocompleteState = { loading: false, items: newItems.slice(0, page * 20), page }
       setAutocompleteState(autocompleteState)
-    }, 500)
+    }, 300)
   }
 
   const loadMoreAutocompleteItems = (query: string) => {
-    loadAutocompleteItems(query, autocompleteState.offset + 20)
+    loadAutocompleteItems(query, autocompleteState.page + 1)
   }
 
   const form = useForm<FormValues>({
@@ -160,32 +160,6 @@ export default () => {
             )} />
 
           <Field<FormValues>
-            name="datePicker"
-            render={props => (
-              <InputGroup label="DateTimePicker (date)">
-                <DateTimePicker
-                  {...props}
-                  clearable
-                  format="MM/DD/Y"
-                  placeholder="--/--/----"
-                  disabled={disabled} />
-              </InputGroup>
-            )} />
-
-          <Field<FormValues>
-            name="timePicker"
-            render={props => (
-              <InputGroup label="DateTimePicker (time)">
-                <DateTimePicker
-                  {...props}
-                  mode="time"
-                  disabled={disabled}
-                  format="hh:mm A"
-                  placeholder="--:--" />
-              </InputGroup>
-            )} />
-
-          <Field<FormValues>
             name="autocompletePicker"
             render={props => (
               <InputGroup label="AutocompletePicker">
@@ -215,12 +189,33 @@ export default () => {
                   loading={autocompleteState.loading}
                   itemLabelExtractor={item => item.name}
                   disabled={disabled}
-                  items={[
-                    { id: 1, name: 'Austin' },
-                    { id: 2, name: 'Los Angeles' },
-                    { id: 3, name: 'New York' },
-                    { id: 4, name: 'San Francisco' }
-                  ]}/>
+                  items={autocompletePickerItems}/>
+              </InputGroup>
+            )} />
+
+          <Field<FormValues>
+            name="datePicker"
+            render={props => (
+              <InputGroup label="DateTimePicker (date)">
+                <DateTimePicker
+                  {...props}
+                  clearable
+                  format="MM/DD/Y"
+                  placeholder="--/--/----"
+                  disabled={disabled} />
+              </InputGroup>
+            )} />
+
+          <Field<FormValues>
+            name="timePicker"
+            render={props => (
+              <InputGroup label="DateTimePicker (time)">
+                <DateTimePicker
+                  {...props}
+                  mode="time"
+                  disabled={disabled}
+                  format="hh:mm A"
+                  placeholder="--:--" />
               </InputGroup>
             )} />
 

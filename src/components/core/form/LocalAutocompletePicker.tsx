@@ -23,6 +23,7 @@ export const LocalAutocompletePicker = <T, P>({
 
   return (
     <AutocompletePicker
+      refreshControl={false}
       itemLabelExtractor={itemLabelExtractor}
       items={filteredItems}
       value={value}
