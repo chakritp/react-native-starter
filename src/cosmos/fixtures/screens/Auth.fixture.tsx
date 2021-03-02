@@ -3,7 +3,9 @@ import { createRoot } from 'cosmos/helpers'
 
 export default {
   Landing: createRoot(),
-  SignUp: createRoot(() => ({ navState: getNavState({ routes: [{ name: 'SignUp' }] }) })),
+  SignUp: createRoot(() => ({
+    navState: getNavState({ routes: [{ name: 'SignUp' }] })
+  })),
   SignIn: createRoot(() => ({
     snapshot: {
       authStore: { deviceRegistered: true }

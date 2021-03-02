@@ -1,4 +1,4 @@
-import { Instance, types, flow, onAction } from 'mobx-state-tree'
+import { Instance, SnapshotIn, types, flow, onAction } from 'mobx-state-tree'
 import migrateLocalStorage from 'lib/migrateLocalStorage'
 import { LocalStorageSyncManager } from 'lib/mst'
 import { localStorage } from 'services'
@@ -71,3 +71,4 @@ export const RootStore = types
   })
 
 export interface IRootStore extends Instance<typeof RootStore> {}
+export interface IRootStoreSnapshotIn extends SnapshotIn<typeof RootStore> {}

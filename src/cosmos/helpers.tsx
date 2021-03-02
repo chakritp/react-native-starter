@@ -1,7 +1,6 @@
 import React, { PropsWithChildren, useEffect, useMemo, useRef } from 'react'
-import { PartialNavigationState } from 'components/core'
 import { mockApi, mockLocalStorage } from 'mocks'
-import { Root as $Root } from 'screens/Root'
+import { Root as $Root, RootProps as $RootProps } from 'screens/Root'
 
 let mocks: {
   localStorage: ReturnType<typeof mockLocalStorage>
@@ -76,8 +75,8 @@ export function useMockApi(callback: (params: {
 }
 
 interface RootProps {
-  snapshot?: object
-  navState?: PartialNavigationState
+  snapshot?: $RootProps['snapshot']
+  navState?: $RootProps['initialNavigationState']
 }
 
 export function createRoot(propsCallback?: () => RootProps) {

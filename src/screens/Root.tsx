@@ -8,16 +8,19 @@ import { useStore, mergeSnapshot, useMSTFastRefresh } from 'lib/mst'
 import { Toast, PartialNavigationState, createStackNavigator } from 'components/core'
 import { AppUpgradeRequiredNotice } from 'components/AppUpgradeRequiredNotice'
 import { api, rootNavigation } from 'services'
+import { IRootStoreSnapshotIn } from 'stores'
 import { defaultTheme, createNavigationTheme } from 'theme'
 import { Auth } from './Auth'
 import { Main } from './Main'
 
 const Stack = createStackNavigator()
 
-export const Root = observer((props: {
-  snapshot?: object,
+export interface RootProps {
+  snapshot?: IRootStoreSnapshotIn,
   initialNavigationState?: PartialNavigationState
-}) => {
+}
+
+export const Root = observer((props: RootProps) => {
   const { snapshot, initialNavigationState } = props
   const theme = defaultTheme
   const navigationTheme = useMemo(() => createNavigationTheme(theme), [theme])
