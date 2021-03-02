@@ -4,13 +4,13 @@ import { observer } from 'mobx-react-lite'
 import { useStore } from 'lib/mst'
 import { TERMS_OF_SERVICE_URL, PRIVACY_POLICY_URL } from 'config'
 import { ListSection, ListItem } from 'components/core'
-import { useTranslate } from 'helpers/i18n'
+import { scopedTranslate } from 'helpers/i18n'
 import { SettingsScreenProps } from 'screens/types'
 import { SettingsContainer } from './common'
 
 export const MainMenu = observer(({ navigation: { navigate } }: SettingsScreenProps<'MainMenu'>) => {
-  const t = useTranslate('screens.settings')
   const { authStore: { signOut } } = useStore()
+  const t = scopedTranslate('screens.settings')
 
   return (
     <SettingsContainer>

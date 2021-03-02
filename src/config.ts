@@ -7,7 +7,7 @@ let apiUrl = Config.API_URL
 // If we're on an Android emulator and API_URL points to localhost,
 // change the host to 10.0.2.2.
 if (Platform.OS === 'android' && DeviceInfo.isEmulatorSync()) {
-  const portIndex = apiUrl.lastIndexOf(':');
+  const portIndex = apiUrl.lastIndexOf(':')
   if (portIndex > 5 && apiUrl.slice(0, 5) === 'http:') {
     apiUrl = `http://10.0.2.2:${apiUrl.slice(portIndex + 1)}`
   }

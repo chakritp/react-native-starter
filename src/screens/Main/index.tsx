@@ -1,7 +1,9 @@
 import React from 'react'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
-import { Box, Icon, IconProps, Badge } from 'components/core'
+import { createThemedStyles, useThemedStyles } from 'lib/restyle'
+import { Icon, IconProps } from 'components/core'
 import { t } from 'helpers/i18n'
+import { Theme } from 'theme'
 import { Home } from './Home'
 import { History } from './History'
 import { Updates } from './Updates'
@@ -10,11 +12,16 @@ import { Settings } from './Settings'
 const Tab = createBottomTabNavigator()
 
 export const Main = () => {
+  const styles = useThemedStyles(themedStyles)
+  
   return (
     <Tab.Navigator
+      tabBarOptions={{
+        labelStyle: styles.tabBarLabel
+      }}
       screenOptions={({ route }) => ({
-        tabBarIcon: ({ focused: _, color, size }) => {
-          const props: TabBarIconProps = { name: 'unknown', size, style: { color } }
+        tabBarIcon: ({ color, size }) => {
+          const props: IconProps = { name: 'unknown', size, style: { color } }
 
           switch (route.name) {
             case 'Home':
@@ -24,7 +31,6 @@ export const Main = () => {
               props.name = 'list-alt'
               break
             case 'Updates':
-              props.badgeCount = 1
               props.name = 'notifications'
               break
             case 'Settings':
@@ -32,18 +38,20 @@ export const Main = () => {
               break
           }
 
-          return <TabBarIcon {...props} />
+          return <Icon {...props} />
         },
+        tabBarBadgeStyle: styles.tabBarBadge
       })}
     >
       <Tab.Screen name="Home" component={Home} options={{
         title: t('screens.home.title')
       }} />
       <Tab.Screen name="History" component={History} options={{
-        title: t('screens.history.title')
+        title: t('screens.history.title'),
       }} />
       <Tab.Screen name="Updates" component={Updates} options={{
-        title: t('screens.updates.title')
+        title: t('screens.updates.title'),
+        tabBarBadge: 99
       }} />
       <Tab.Screen name="Settings" component={Settings} options={{
         title: t('screens.settings.title')
@@ -52,21 +60,17 @@ export const Main = () => {
   )
 }
 
-interface TabBarIconProps extends IconProps {
-  badgeCount?: number
-}
-
-const TabBarIcon = ({ badgeCount, ...iconProps }: TabBarIconProps) => {
-  return (
-    <>
-      <Icon {...iconProps} />
-      {badgeCount && (
-        <Box position="absolute" top={5}>
-          <Badge size="xxxs" color="navNotification" ml="l">
-            {`${badgeCount}`}
-          </Badge>
-        </Box>
-      )}
-    </>
-  )
-}
+const themedStyles = createThemedStyles((theme: Theme) => ({
+  tabBarLabel: {
+    ...theme.fonts.bodyRegular,
+    fontSize: theme.fontSizes.xxxs,
+    letterSpacing: 0.5
+  },
+  tabBarBadge: {
+    height: 16,
+    minWidth: 16,
+    fontSize: theme.fontSizes.xxs,
+    lineHeight: theme.fontSizes.xxs * 1.25,
+    borderRadius: 8
+  }
+}))

@@ -1,5 +1,4 @@
 import React, { PropsWithChildren, useEffect, useMemo, useRef } from 'react'
-import { PartialState } from '@react-navigation/native'
 import { PartialNavigationState } from 'components/core'
 import { mockApi, mockLocalStorage } from 'mocks'
 import { Root as $Root } from 'screens/Root'
@@ -73,7 +72,7 @@ export function useMockApi(callback: (params: {
     }
   })
 
-  useEffect(() => resetMocks)
+  useEffect(() => resetMocks, [])
 }
 
 interface RootProps {

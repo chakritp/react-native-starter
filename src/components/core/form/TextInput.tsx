@@ -1,4 +1,4 @@
-import React, { Component, ComponentPropsWithRef, ComponentType, forwardRef } from 'react'
+import React, { ComponentPropsWithRef, ComponentType, forwardRef } from 'react'
 import {
   View,
   TextInput as $TextInput,

@@ -2,10 +2,10 @@ import React from 'react'
 import {  Platform, Linking } from 'react-native'
 import DeviceInfo from 'react-native-device-info'
 import { Box, Container, Heading, Button } from 'components/core'
-import { useTranslate } from 'helpers/i18n'
+import { scopedTranslate } from 'helpers/i18n'
 
 export const AppUpgradeRequiredNotice = () => {
-  const t = useTranslate('screens.appUpdateRequired')
+  const t = scopedTranslate('screens.appUpdateRequired')
 
   const goToAppStore = () => {
     const url = Platform.select({

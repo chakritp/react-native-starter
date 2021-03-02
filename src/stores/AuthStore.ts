@@ -51,7 +51,6 @@ export const AuthStore = types
 
       signUp: ({ phoneNumber }: { phoneNumber: string }) => runTask(self.signUpTask, function*({ exec }) {
         yield self.registerDevice()
-        
         const { data } = yield api.auth.signUp({
           phoneNumber
         })
@@ -61,7 +60,6 @@ export const AuthStore = types
 
       requestCode: ({ phoneNumber }: { phoneNumber?: string } = {}) => runTask(self.requestCodeTask, function*() {
         yield self.registerDevice()
-        
         const { data } = yield api.auth.requestCode({
           phoneNumber: phoneNumber || self.phoneNumber
         })
@@ -71,13 +69,11 @@ export const AuthStore = types
 
       signIn: ({ code }: { code: string }) => runTask(self.signInTask, function*() {
         yield self.registerDevice()
-
         const { data } = yield api.auth.signIn({
           phoneNumber: self.phoneNumber || self.user!.phoneNumber,
           token: self.verificationToken,
           code
         })
-
         api.client.authToken = data.accessToken
         self.accessToken = data.accessToken
       }),

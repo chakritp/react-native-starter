@@ -1,7 +1,7 @@
 import { chance, factory } from './factory'
 
 factory.define('api.user', Object, {
-  id: factory.seqId('api.user.id'),
+  id: '1',
   phoneNumber: () => `+1${chance.phone({ formatted: false })}`,
   phoneNumberVerified: true,
   isVerified: true,

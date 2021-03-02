@@ -10,8 +10,9 @@ export type MainTabs = {
 
 export type AuthStack = {
   Landing: undefined
-  SignUp: undefined
-  SignIn: undefined
+  SignUp?: { defaultValues?: { phoneNumber?: string }}
+  SignIn?: { defaultValues?: { phoneNumber?: string }}
+  VerifyCode: undefined
 }
 
 export type AuthScreenProps<T extends keyof AuthStack> = StackScreenProps<AuthStack, T>

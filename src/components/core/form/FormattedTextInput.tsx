@@ -10,11 +10,14 @@ import React, {
 import { TextInput as RNTextInput, StyleSheet, NativeMethods } from 'react-native'
 import { TextInput, TextInputProps } from './TextInput'
 
-export interface FormattedTextInputProps<T> extends Omit<TextInputProps, 'value'> {
-  format: (value: T) => string,
-  parse: (text: string) => T,
+export interface BaseFormattedTextInputProps<T> extends Omit<TextInputProps, 'value'> {
   value?: T | null,
   onChangeValue?: (value: T) => void
+}
+
+export interface FormattedTextInputProps<T> extends BaseFormattedTextInputProps<T> {
+  format: (value: T) => string,
+  parse: (text: string) => T
 }
 
 export const FormattedTextInput = forwardRef(<T, >(props: FormattedTextInputProps<T>, ref: any) => {

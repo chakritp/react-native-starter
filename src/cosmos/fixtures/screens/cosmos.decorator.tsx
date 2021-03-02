@@ -19,17 +19,27 @@ export default (props: { children: ReactNode }) => {
   }, [])
 
   useMockApi(({ success }) => {
-    success(api.auth, 'requestCode')
+    success(api.auth, 'requestCode', {
+      data: { token: 'xxx' }
+    })
 
-    success(api.auth, 'signIn', () => ({
+    success(api.auth, 'signIn', {
       data: { accessToken: 'text-token' }
-    }))
+    })
 
     success(api.auth, 'signOut')
 
     success(api.auth, 'signUp', () => ({
       data: factory.build('api.user')
     }))
+
+    success(api.devices, 'create')
+
+    success(api.devices, 'update')
+
+    success(api.users, 'getProfile', () => ({
+      data: factory.build('api.user')
+    }), { delay: 0 })
   })
 
   return (

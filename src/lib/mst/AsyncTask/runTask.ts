@@ -121,7 +121,6 @@ export function runTask(
 
     try {
       yield flow(generator)({ signal, exec })
-
       if (signal.aborted) {
         const abortError = new AsyncTaskAbortError()
         task.status = AsyncTaskStatus.ABORTED

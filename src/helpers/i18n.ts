@@ -41,7 +41,7 @@ export const toCurrency = i18n.toCurrency.bind(i18n)
 export const toPercentage = i18n.toPercentage.bind(i18n)
 export const toHumanSize = i18n.toHumanSize.bind(i18n)
 
-export function useTranslate(baseScope: string) {
+export function scopedTranslate(baseScope: string) {
   return (scope: string, options?: i18n.TranslateOptions) => t(`${baseScope}.${scope}`, {
     defaults: [{ scope }],
     ...options

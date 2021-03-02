@@ -15,6 +15,7 @@
     "continue": "Continue",
     "createAccount": "Create account",
     "done": "Done",
+    "getCode": "Get code",
     "getStarted": "Get Started",
     "go": "Go",
     "goBack": "Go back",
@@ -22,12 +23,14 @@
     "ok": "Ok",
     "save": "Save",
     "search": "Search",
+    "sendNewCode": "Send new code",
     "signIn": "Sign in",
     "signOut": "Sign out",
     "signUp": "Sign up",
     "submit": "Submit",
     "tryAgain": "Try again",
-    "update": "Update"
+    "update": "Update",
+    "verifyCode": "Verify code"
   },
   "messages": {
     "api": {
@@ -51,7 +54,7 @@
     "requestFailed": "Request could not be completed at this time.",
     "validation": {
       "default": "%{label} is invalid",
-      "postalCode": "Postal code is invalid"
+      "required": "%{label} is required"
     }
   },
   "forms": {
@@ -72,6 +75,9 @@
         "phoneNumber": {
           "label": "Phone number",
           "placeholder": "Enter phone number"
+        },
+        "verificationCode": {
+          "placeholder": "- - - - - -"
         }
       },
       "info": {

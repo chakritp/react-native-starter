@@ -1,5 +1,5 @@
 import jest from 'jest-mock'
-import React, { ReactNode, useEffect } from 'react'
+import React, { ReactNode, useLayoutEffect } from 'react'
 import { View } from 'react-native'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
 import { ThemeProvider } from '@shopify/restyle'
@@ -12,7 +12,7 @@ export default ({ children } : { children: ReactNode }) => {
   factory.cleanUp()
   useMocks()
 
-  useEffect(() => () => {
+  useLayoutEffect(() => () => {
     jest.resetAllMocks()
     jest.restoreAllMocks()
   }, [])
