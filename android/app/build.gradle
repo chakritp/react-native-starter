@@ -135,6 +135,7 @@ android {
         versionCode 1
         versionName "1.0"
     }
+
     splits {
         abi {
             reset()
@@ -143,6 +144,7 @@ android {
             include "armeabi-v7a", "x86", "arm64-v8a", "x86_64"
         }
     }
+    
     signingConfigs {
         debug {
             storeFile file('debug.keystore')
@@ -151,6 +153,7 @@ android {
             keyPassword 'android'
         }
     }
+
     buildTypes {
         debug {
             signingConfig signingConfigs.debug
@@ -161,6 +164,26 @@ android {
             signingConfig signingConfigs.debug
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+        }
+    }
+
+    flavorDimensions 'env'
+
+    productFlavors {
+        local {
+            dimension 'env'
+            applicationId 'com.typescriptstarter.local'
+            resValue "string", "app_name", "TypescriptStarter Local"
+        }
+        dev {
+            dimension 'env'
+            applicationId 'com.typescriptstarter.dev'
+            resValue "string", "app_name", "TypescriptStarter Dev"
+        }
+        prod {
+            dimension 'env'
+            applicationId 'com.typescriptstarter'
+            resValue "string", "app_name", "TypescriptStarter"
         }
     }
 

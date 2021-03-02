@@ -9,7 +9,7 @@
     "android:reload": "adb shell input text 'RR'",
     "android:bundle": "cd android && ./gradlew bundleRelease",
     "ios": "react-native run-ios",
-    "ios:sim": "react-native run-ios --simulator 'iPhone 12'",
+    "ios:sim": "react-native run-ios --simulator 'iPhone 11'",
     "ios:install": "cd ios && pod install",
     "assets:link": "react-native link",
     "entry": "node scripts/generate-entry",
