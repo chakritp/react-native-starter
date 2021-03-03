@@ -3,6 +3,14 @@ require_relative '../node_modules/@react-native-community/cli-platform-ios/nativ
 
 platform :ios, '10.0'
 
+project 'TypescriptStarter',
+  'Local.Debug' => :debug,
+  'Local.Release' => :release,
+  'Dev.Debug' => :debug,
+  'Dev.Release' => :release,
+  'Prod.Debug' => :debug,
+  'Prod.Release' => :release
+
 target 'TypescriptStarter' do
   config = use_native_modules!
 
@@ -17,7 +25,7 @@ target 'TypescriptStarter' do
   #
   # Note that if you have use_frameworks! enabled, Flipper will not work and
   # you should disable these next few lines.
-  use_flipper!
+  use_flipper!(configurations: ['Local.Debug', 'Dev.Debug', 'Prod.Debug', 'Local.Release', 'Dev.Release', 'Prod.Release'])
   post_install do |installer|
     flipper_post_install(installer)
   end
