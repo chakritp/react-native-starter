@@ -17,7 +17,6 @@ export default async function grab(url: string, options: GrabOptions = {}) {
   }
 
   if (timeout) {
-    /* eslint-disable-next-line no-undef */
     const abortController = new AbortController()
 
     if (signal) {

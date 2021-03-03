@@ -4,6 +4,9 @@ module.exports = {
   ignorePatterns: [
     'cosmos.userdeps.js'
   ],
+  globals: {
+    AbortController: 'readonly'
+  },
   rules: {
     'comma-dangle': 0,
     'curly': 0,
