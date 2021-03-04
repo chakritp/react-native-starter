@@ -177,8 +177,8 @@ export default createTheme({
     },
     p1: {
       ...fonts.bodyRegular,
-      fontSize: fontSizes.l,
-      lineHeight: fontSizes.l * 1.2,
+      fontSize: fontSizes.xm,
+      lineHeight: fontSizes.xm * 1.2,
       color: 'mainForegroundRegular'
     },
     p2: {

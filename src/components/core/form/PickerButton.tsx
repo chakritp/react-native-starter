@@ -35,7 +35,7 @@ export function PickerButton({
       style={[embedded && styles.containerEmbedded, style]}
       contentContainerStyle={styles.contentContainer}
       titleStyle={[{ flex: 1 }, !hasValue && styles.placeholder, titleStyle]}
-      title={hasValue ? String(value) : placeholder}
+      title={hasValue ? String(value) : placeholder || ''}
       accessibilityLabel={placeholder}
       disabled={disabled}
       onPress={!disabled ? ((ev) => {
