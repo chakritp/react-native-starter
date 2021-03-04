@@ -34,7 +34,7 @@ export function PickerButton({
       borderWidth={1}
       style={[embedded && styles.containerEmbedded, style]}
       contentContainerStyle={styles.contentContainer}
-      titleStyle={[!hasValue && styles.placeholder, titleStyle]}
+      titleStyle={[{ flex: 1 }, !hasValue && styles.placeholder, titleStyle]}
       title={hasValue ? String(value) : placeholder}
       accessibilityLabel={placeholder}
       disabled={disabled}
@@ -42,7 +42,7 @@ export function PickerButton({
         Keyboard.dismiss()
         onPress(ev)
       }) : undefined}
-      icon={icon && renderIcon(icon, { size: 'l', color: 'inputForegroundSoft', position: 'absolute', right: 0 })}
+      icon={icon && renderIcon(icon, { size: 'l', color: 'inputForegroundSoft' })}
       iconPlacement="right"
       {...props} />
   )
@@ -57,8 +57,6 @@ const themedStyles = createThemedStyles((theme: Theme) => ({
     borderWidth: 0
   },
   contentContainer: {
-    backgroundColor: 'transparent',
-    alignItems: 'flex-start',
     justifyContent: 'flex-start',
     width: '100%'
   },
