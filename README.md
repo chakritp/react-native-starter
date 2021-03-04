@@ -7,64 +7,75 @@ TypescriptStarter
 - Android Studio
 - XCode 12 + Command Line Tools (iOS devs)
 - Node.js
+- Yarn
+- Fastlane
 
 #### Install dependencies
 ```
-npm install
-# iOS only
-cd ios && pod install
-cd ..
+yarn
+yarn ios:install
 ```
 
-#### Launch App
+### Launch App
 
 Run metro bundler and cosmos server (Keep this process running).
 ```
-npm run dev
+yarn dev
 ```
 
 Run on iOS Simulator
 ```
 # Use default simulator
-npm run ios
+yarn ios
 
 # Specify simulator
-npm run ios -- --simulator "iPhone 8"
+yarn ios -- --simulator "iPhone 8"
 ```
 
 Run on iOS Device
 1. Plug device into your workstation
-2. `npm run ios -- --device "My Device"`
+2. `yarn ios --device "My Device"`
 
 Run on Android Emulator
 1. Open the repo in Android Studio
 2. Open the AVD Manager and launch an emulator
-3. `npm run android`
+3. `yarn android`
 
 Run on Android Device
 1. Plug device into your workstation
 2. Make sure device has USB debugging enabled
 3. Setup debugger proxy: `adb reverse tcp:8081 tcp:8081`
 4. Setup api proxy: `adb reverse tcp:3000 tcp:3000`
-5. `npm run android`
+5. `yarn android`
 
-#### Cosmos
+### Cosmos
 Cosmos UI is available at http://localhost:5000
 
 Switch entrypoint between the app and Cosmos:
 ```
-npm run entry:switch
+yarn entry:switch
 ```
 Set entrypoint:
 ```
-npm run entry <app|cosmos>
+yarn entry <app|cosmos>
+```
+
+### Deployment
+Deploy Beta
+```
+fastlane <ios|android> beta_dev
+```
+
+Deploy Prod Release
+```
+fastlane <ios|android> release_prod
 ```
 
 #### Other Scripts
 ```
 # Show Android debug menu
-npm run android:menu
+yarn android:menu
 
 # Reload Android app
-npm run android:reload
+yarn android:reload
 ```

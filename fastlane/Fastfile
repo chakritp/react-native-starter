@@ -1,0 +1,114 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+# For a list of all available plugins, check out
+#
+#     https://docs.fastlane.tools/plugins/available-plugins
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
+@package = load_json(json_path: "./package.json")
+
+desc "Android: Increment versionCode and set versionName to package.json version."
+private_lane :update_android_version do
+  increment_version_code(
+    gradle_file_path: "./android/app/build.gradle",
+  )
+
+  increment_version_name(
+    gradle_file_path: "./android/app/build.gradle",
+    version_name: @package['version']
+  )
+end
+
+desc "iOS: Increment build number and set the version to package.json version."
+private_lane :update_ios_version do
+  increment_build_number(
+    xcodeproj: "./ios/#{@package['name']}.xcodeproj"
+  )
+  increment_version_number(
+    xcodeproj: "./ios/#{@package['name']}.xcodeproj",
+    version_number: @package['version']
+  )
+end
+
+desc "Update entry file to point to app"
+private_lane :update_entry_file do
+  sh("yarn", "entry", "app")
+end
+
+desc "Increment build numbers and set the version to match the package.json version."
+lane :update_version do
+  update_android_version
+  update_ios_version
+end
+
+platform :android do
+  desc "Deploy dev build to Google Play internal track"
+  lane :beta_dev do
+    _build_android("DevRelease")
+    _deploy_android('internal')
+  end
+
+  desc "Deploy prod build to Google Play internal track"
+  lane :beta_prod do
+    _build_android("ProdRelease")
+    _deploy_android('internal')
+  end
+
+  desc "Deploy prod build to Google Play production track"
+  lane :release_prod do
+    _build_android("ProdRelease")
+    _deploy_android('production')
+  end
+
+  def _build_android(variant)
+    update_entry_file
+    gradle(project_dir: './android', task: "assemble#{variant}")
+  end
+
+  def _deploy_android(track)
+    upload_to_play_store(
+      track: track,
+      skip_upload_images: true,
+      skip_upload_screenshots: true
+    )
+  end
+end
+
+platform :ios do
+  desc "Deploy dev build to TestFlight"
+  lane :beta_dev do
+    _build_ios("Dev")
+    upload_to_testflight
+  end
+  
+  desc "Deploy prod build to TestFlight"
+  lane :beta_prod do
+    _build_ios("Prod")
+    upload_to_testflight
+  end
+
+  desc "Deploy prod build to the App Store"
+  lane :release_prod do
+    _build_ios("Prod")
+    upload_to_app_store(force: true, skip_screenshots: true)
+  end
+
+  def _build_ios(scheme)
+    update_entry_file
+    build_app(
+      workspace: "./ios/#{@package['name']}.xcworkspace",
+      scheme: scheme,
+      clean: false,
+      export_xcargs: "-allowProvisioningUpdates",
+      suppress_xcode_output: true
+    )
+  end
+end

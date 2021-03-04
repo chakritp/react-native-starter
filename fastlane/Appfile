@@ -1,0 +1,30 @@
+# For more information about the Appfile, see:
+# https://docs.fastlane.tools/advanced/#appfile
+
+for_platform :android do
+  json_key_file("google-service-account.json") # Path to the json secret file - Follow https://docs.fastlane.tools/actions/supply/#setup to get one
+end
+
+for_platform :ios do
+  apple_id("jesse@iterate.co") # Your Apple email address
+  itc_team_id("2063621") # App Store Connect Team ID
+  team_id("U52JQ2VP7C") # Developer Portal Team ID
+end
+
+for_lane :beta_dev do
+  _set_package_name("dev")
+end
+
+for_lane :beta_prod do
+  _set_package_name("prod")
+end
+
+for_lane :release_prod do
+  _set_package_name("prod")
+end
+
+def _set_package_name(env)
+  pkg_name = "com.typescriptstarter#{env == 'prod' ? '' : ".#{env}"}"
+  package_name pkg_name
+  app_identifier pkg_name
+end
