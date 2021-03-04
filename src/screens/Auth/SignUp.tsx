@@ -23,7 +23,7 @@ interface FormValues {
 }
 
 const schema = yup.object().shape({
-  phoneNumber: yup.string().required().min(10)
+  phoneNumber: yup.string().min(10)
 })
 
 export const SignUp = observer(({ route, navigation }: AuthScreenProps<'SignUp'>) => {
@@ -52,7 +52,8 @@ export const SignUp = observer(({ route, navigation }: AuthScreenProps<'SignUp'>
       <FormProvider {...form}>
         <Field<FormValues>
           name="phoneNumber"
-          render={({ onChange, ...props }) => (
+          label={form.translate('fields.phoneNumber.label')}
+          render={({ label: _, onChange, ...props }) => (
             <InputGroup
               info={
                 <Text variant="c2" color="mainForegroundMuted" textAlign="center" lineHeight={20}>

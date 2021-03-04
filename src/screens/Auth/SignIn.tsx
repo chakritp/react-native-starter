@@ -20,7 +20,7 @@ interface FormValues {
 }
 
 const schema = yup.object().shape({
-  phoneNumber: yup.string().required().min(10)
+  phoneNumber: yup.string().min(10)
 })
 
 export const SignIn = observer(({ navigation, route }: AuthScreenProps<'SignIn'>) => {
@@ -51,13 +51,14 @@ export const SignIn = observer(({ navigation, route }: AuthScreenProps<'SignIn'>
       <FormProvider {...form}>
         <Field
           name="phoneNumber"
-          render={({ onChange, ...props }) => (
+          label={form.translate('fields.phoneNumber.label')}
+          render={({ label: _, onChange, ...props }) => (
             <InputGroup>
               <USPhoneNumberInput
                 {...props}
                 center
                 autoFocus={!defaultValues.phoneNumber}
-                placeholder={form.translate('fields.phoneNumber.label')}
+                placeholder={form.translate('fields.phoneNumber.placeholder')}
                 returnKeyType="done"
                 onChangeValue={onChange}
                 onSubmitEditing={form.submit} />

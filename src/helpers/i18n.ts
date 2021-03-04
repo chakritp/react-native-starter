@@ -1,10 +1,8 @@
-import upperFirst from 'lodash/upperFirst'
 import moment from 'moment'
 import { I18nManager } from 'react-native'
 import * as RNLocalize from 'react-native-localize'
-import { FieldError } from 'react-hook-form'
-import { ValidationError } from 'yup'
 import i18n from 'i18n-js'
+import { FieldError } from 'lib/form'
 
 const locales = {
   en: () => require('locales/en.json')
@@ -76,31 +74,32 @@ export function apiErrorMessage(error: any, options: { scope?: string } = {}) {
   })
 }
 
-export function validationErrorMessage(
-  error: ValidationError | FieldError,
+export function fieldErrorMessage(
+  error: FieldError,
   options: { form?: string, field?: string, label?: string } = {}
 ) {
-  if (error.message) {
-    return upperFirst(error.message)
+  if (typeof error.message === 'string') {
+    return error.message
   }
 
+  const { type, params } = error.message
   const { form, field, ...translationOptions } = options
   const scopes = [
-    `messages.validation.${error.type}`,
+    `messages.validation.${type}`,
     'messages.validation.default'
   ]
-
+  
   if (field) {
     const commonScope = `forms.common.fields.${field}.validation`
     scopes.unshift(
-      `${commonScope}.${error.type}`,
+      `${commonScope}.${type}`,
       `${commonScope}.default`
     )
     
     if (form) {
       const formScope = `forms.${form}.fields.${field}.validation`
       scopes.unshift(
-        `${formScope}.${error.type}`,
+        `${formScope}.${type}`,
         `${formScope}.default`
       )
     }
@@ -112,6 +111,7 @@ export function validationErrorMessage(
 
   return t(scopes.shift()!, {
     ...translationOptions,
+    ...params,
     defaults: scopes.map(scope => ({ scope }))
   })
 }

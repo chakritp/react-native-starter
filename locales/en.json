@@ -56,7 +56,29 @@
     "requestFailed": "Request could not be completed at this time.",
     "validation": {
       "default": "%{label} is invalid",
-      "required": "%{label} is required"
+      "mixed": {
+        "default": "%{label} is invalid",
+        "required": "%{label} is required",
+        "oneOf": "%{label} must be one of (%{values})",
+        "notOneOf": "%{label} must not be one of (%{values})"
+      },
+      "string": {
+        "length": "%{label} must be exactly %{length} characters",
+        "min": "%{label} must be at least %{min} characters",
+        "max": "%{label} must be at most %{max} characters",
+        "email": "%{label} must be a valid email address",
+        "url": "%{label} must be a valid URL"
+      },
+      "number": {
+        "min": "%{label} must be at least %{min}",
+        "max": "%{label} must be at most %{max}",
+        "lessThan": "%{label} must be less than %{less}",
+        "moreThan": "%{label} must be greater than %{more}"
+      },
+      "date": {
+        "min": "%{label} must be later than %{min}",
+        "max": "%{label} must be at earlier than %{max}"
+      }
     }
   },
   "forms": {
@@ -78,7 +100,7 @@
           "label": "Phone number",
           "placeholder": "Enter phone number"
         },
-        "verificationCode": {
+        "code": {
           "label": "Verification code",
           "placeholder": "- - - - - -"
         }

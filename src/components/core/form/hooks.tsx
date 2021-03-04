@@ -7,7 +7,6 @@ import {
   UseFormOptions as $UseFormOptions,
   UseFormMethods as $UseFormMethods,
   SubmitHandler,
-  FieldError,
   useForm as $useForm,
   useFormContext as $useFormContext,
 } from 'react-hook-form'
@@ -16,7 +15,8 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import { AnyObjectSchema } from 'yup'
 import i18n from 'i18n-js'
 import { ApiNetworkError, ApiServerError } from 'lib/api'
-import { translateForm, validationErrorMessage } from 'helpers/i18n'
+import { FieldError } from 'lib/form'
+import { translateForm, fieldErrorMessage } from 'helpers/i18n'
 import { UseErrorAlertOptions, useBackHandler, useErrorAlert } from '../hooks'
 import { Toast } from '../Toast'
 
@@ -31,6 +31,7 @@ export interface UseFormOptions<TFieldValues extends FieldValues = FieldValues, 
 export interface UseFormMethods<TFieldValues extends FieldValues = FieldValues> extends $UseFormMethods<TFieldValues> {
   defaultValues: UseFormOptions<TFieldValues>['defaultValues']
   submitError?: Error | ApiNetworkError | ApiServerError
+  registerFieldLabel: (field: string, label: string) => void
   translate: (scope: string, options?: i18n.TranslateOptions) => string
   submit: () => void
   showValidationError?: UseFormOptions['showValidationError']
@@ -49,6 +50,7 @@ export function useForm<TFieldValues extends FieldValues = FieldValues, TContext
   } = options
 
   const _defaultValues = useMemo(() => formOptions.defaultValues, [])
+  const fieldLabels = useMemo<{[key: string]: string}>(() => ({}), [])
   const submitErrorRef = useRef<Error | ApiNetworkError | ApiServerError>()
   const onSubmitRef = useRef<UseFormOptions<TFieldValues, TContext>['onSubmit']>()
   const onSuccessRef = useRef<UseFormOptions<TFieldValues, TContext>['onSuccess']>()
@@ -61,14 +63,21 @@ export function useForm<TFieldValues extends FieldValues = FieldValues, TContext
     formOptions.resolver = yupResolver(schema)
   }
 
-  // Add a scoped translation helper to props.
+  const registerFieldLabel = useCallback((field: string, label: string) => {
+    fieldLabels[field] = label
+  }, [])
+
+  // Scoped translation helper.
   const translate = useCallback((scope: string, options?: i18n.TranslateOptions) => translateForm(name, scope, options), [name])
 
   const form = $useForm(formOptions) as UseFormMethods<TFieldValues>
   form.defaultValues = _defaultValues
 
   const defaultShowValidationError = useCallback((error: FieldError, field: string) => {
-    Toast.danger(validationErrorMessage(error, { form: name, field }))
+
+    console.log('error', error, JSON.stringify(error))
+    const label = fieldLabels[field]
+    Toast.danger(fieldErrorMessage(error, { form: name, field, label }))
   }, [name])
 
   const _showValidationError = showValidationError === undefined
@@ -124,6 +133,7 @@ export function useForm<TFieldValues extends FieldValues = FieldValues, TContext
   return {
     ...form,
     name,
+    registerFieldLabel,
     submitError: submitErrorRef.current,
     showValidationError: _showValidationError,
     translate,

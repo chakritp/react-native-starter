@@ -17,14 +17,19 @@ import {
   AutocompletePicker,
   LocalAutocompletePicker,
   Button,
+  Toast,
   useForm
 } from 'components/core'
 
 const chance = new Chance(1)
 
 const schema = yup.object().shape({
-  textInput1: yup.string().required(),
-  textInput2: yup.string().required()
+  textInput1: yup.string().min(3).max(5).required(),
+  textInput2: yup.string().required(),
+  formattedTextInput: yup.number().max(300000, ({ max }) => ({
+    type: 'number.max', params: { max: `$${(max * 0.01).toFixed(2)}` }
+  })),
+  picker: yup.string().nullable().required("Gotta pick one")
 })
 
 const defaultValues = {
@@ -92,7 +97,8 @@ export default () => {
     onSubmit: async (values: FormValues) => {
       await new Promise(r => setTimeout(r, 500))
       console.log(values)
-    }
+    },
+    onSuccess: () => Toast.success("You did it!")
   })
   const lastNameRef = useRef<NativeMethods>(null)
 
@@ -106,8 +112,9 @@ export default () => {
         <FormProvider {...form}>
           <Field<FormValues>
             name="textInput1"
-            render={({ onChange, ...props }) => (
-              <InputGroup label="TextInput" info="Info">
+            label="TextInput"
+            render={({ label, onChange, ...props }) => (
+              <InputGroup label={label} info="Info">
                 <TextInput
                   {...props}
                   leftIcon="lightbulb"
@@ -122,8 +129,9 @@ export default () => {
           
           <Field<FormValues>
             name="textInput2"
-            render={({ onChange, ...props }) => (
-              <InputGroup label="TextInput (with error)">
+            label="TextInput (with error)"
+            render={({ label, onChange, ...props }) => (
+              <InputGroup label={label}>
                 <TextInput
                   {...props}
                   type="password"
@@ -135,8 +143,9 @@ export default () => {
 
           <Field<FormValues>
             name="formattedTextInput"
-            render={({ onChange, ...props }) => (
-              <InputGroup label="FormattedTextInput">
+            label="FormattedTextInput"
+            render={({ label, onChange, ...props }) => (
+              <InputGroup label={label}>
                 <FormattedTextInput<number>
                   {...props}
                   format={value => `$${(value * 0.01).toFixed(2)}`}
@@ -148,8 +157,9 @@ export default () => {
 
           <Field<FormValues>
             name="picker"
-            render={({ onChange, ...props }) => (
-              <InputGroup label="Picker">
+            label="Picker"
+            render={({ label, onChange, ...props }) => (
+              <InputGroup label={label}>
                 <Picker
                   {...props}
                   items={pickerItems}
@@ -161,8 +171,9 @@ export default () => {
 
           <Field<FormValues>
             name="autocompletePicker"
-            render={props => (
-              <InputGroup label="AutocompletePicker">
+            label="AutocompletePicker"
+            render={({ label, ...props }) => (
+              <InputGroup label={label}>
                 <AutocompletePicker<AutocompleteItem, number>
                   {...props}
                   placeholder="Search"
@@ -180,8 +191,9 @@ export default () => {
 
           <Field<FormValues>
             name="localAutocompletePicker"
-            render={props => (
-              <InputGroup label="LocalAutocompletePicker">
+            label="LocalAutocompletePicker"
+            render={({ label, ...props }) => (
+              <InputGroup label={label}>
                 <LocalAutocompletePicker
                   {...props}
                   placeholder="Search"
@@ -195,8 +207,9 @@ export default () => {
 
           <Field<FormValues>
             name="datePicker"
-            render={props => (
-              <InputGroup label="DateTimePicker (date)">
+            label="DateTimePicker (date)"
+            render={({ label, ...props }) => (
+              <InputGroup label={label}>
                 <DateTimePicker
                   {...props}
                   clearable
@@ -208,8 +221,9 @@ export default () => {
 
           <Field<FormValues>
             name="timePicker"
-            render={props => (
-              <InputGroup label="DateTimePicker (time)">
+            label="DateTimePicker (time)"
+            render={({ label, ...props }) => (
+              <InputGroup label={label}>
                 <DateTimePicker
                   {...props}
                   mode="time"
@@ -221,8 +235,9 @@ export default () => {
 
           <Field<FormValues>
             name="switch"
-            render={({ onChange, ...props }) => (
-              <InputGroup inline={{ justifyContent: 'flex-end' }} label="Switch">
+            label="Switch"
+            render={({ label, onChange, ...props }) => (
+              <InputGroup label={label} inline={{ justifyContent: 'flex-end' }}>
                 <Switch
                   {...props}
                   disabled={disabled}

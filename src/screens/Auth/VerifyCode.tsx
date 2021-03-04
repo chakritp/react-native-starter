@@ -19,7 +19,7 @@ import { t } from 'helpers/i18n'
 const CODE_LENGTH = 6
 
 const schema = yup.object().shape({
-  code: yup.string().required()
+  code: yup.string().min(CODE_LENGTH)
 })
 
 export const VerifyCode = observer(() => {
@@ -50,13 +50,14 @@ export const VerifyCode = observer(() => {
       <FormProvider {...form}>
         <Field
           name="code"
-          render={({ onChange, ...props }) => (
+          label={form.translate('fields.code.label')}
+          render={({ label, onChange, ...props }) => (
             <InputGroup>
               <TextInput
                 {...props}
                 center
-                placeholder={form.translate('fields.verificationCode.placeholder')}
-                accessibilityLabel={form.translate('fields.verificationCode.label')}
+                placeholder={form.translate('fields.code.placeholder')}
+                accessibilityLabel={label}
                 autoFocus
                 maxLength={CODE_LENGTH}
                 keyboardType="number-pad"
