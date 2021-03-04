@@ -10,7 +10,7 @@ TypescriptStarter
 - Yarn
 - Fastlane
 
-#### Install dependencies
+### Install dependencies
 ```
 yarn
 yarn ios:install

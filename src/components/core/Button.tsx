@@ -152,7 +152,7 @@ export const Button = ({
         {children}
       </Animated.View>
 
-      <Animated.View style={{ position: 'absolute', paddingTop: 2, opacity: indicatorOpacity }}>
+      <Animated.View style={{ position: 'absolute', paddingTop: size === 's' ? 0 : 2, opacity: indicatorOpacity }}>
         {(indicatorTransition || loading) && (
           <ActivityIndicator size={size === 's' ? 'small' : 'large'} color={foregroundColor} />
         )}

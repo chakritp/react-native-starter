@@ -1,5 +1,7 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+import { observer } from 'mobx-react-lite'
+import { useStore } from 'lib/mst'
 import { createThemedStyles, useThemedStyles } from 'lib/restyle'
 import { Icon, IconProps } from 'components/core'
 import { t } from 'helpers/i18n'
@@ -11,8 +13,21 @@ import { Settings } from './Settings'
 
 const Tab = createBottomTabNavigator()
 
-export const Main = () => {
+export const Main = observer(() => {
   const styles = useThemedStyles(themedStyles)
+  const {
+    authStore: { authenticated },
+    reset
+  } = useStore()
+
+  useEffect(() => {
+    // Reset root store state when unmounted after auth is revoked.
+    return () => {
+      if (!authenticated) {
+        reset()
+      }
+    }
+  }, [authenticated])
   
   return (
     <Tab.Navigator
@@ -58,7 +73,7 @@ export const Main = () => {
       }} />
     </Tab.Navigator>
   )
-}
+})
 
 const themedStyles = createThemedStyles((theme: Theme) => ({
   tabBarLabel: {
