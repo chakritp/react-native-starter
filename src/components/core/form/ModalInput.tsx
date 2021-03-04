@@ -8,6 +8,7 @@ import {
 } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { Box } from '../common'
+import { t } from 'helpers/i18n'
 
 interface ModalInputProps extends ModalProps {
   children?: ReactNode
@@ -27,7 +28,11 @@ export function ModalInput({
       {...props}
     >
       <Box flex={1}>
-        <TouchableWithoutFeedback onPress={onClose}>
+        <TouchableWithoutFeedback
+          accessible
+          accessibilityLabel={t('actions.dismiss')}
+          onPress={onClose}
+        >
           <View style={StyleSheet.absoluteFill} />
         </TouchableWithoutFeedback>
         

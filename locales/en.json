@@ -12,8 +12,10 @@
     "cancel": "Cancel",
     "change": "Change",
     "clear": "Clear",
+    "clearInput": "Clear %{label}",
     "continue": "Continue",
     "createAccount": "Create account",
+    "dismiss": "Dismiss",
     "done": "Done",
     "getCode": "Get code",
     "getStarted": "Get Started",
@@ -77,6 +79,7 @@
           "placeholder": "Enter phone number"
         },
         "verificationCode": {
+          "label": "Verification code",
           "placeholder": "- - - - - -"
         }
       },

@@ -115,7 +115,7 @@ export const ListItem = ({
       <TouchableHighlight
         accessible
         accessibilityRole="menuitem"
-        accessibilityLabel={accessibilityLabel}
+        accessibilityLabel={accessibilityLabel || (typeof title === 'string' ? title : undefined)}
         underlayColor="mainBackgroundMedium"
         onPress={onPress}
         onLongPress={onLongPress}

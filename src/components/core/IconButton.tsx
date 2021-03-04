@@ -14,7 +14,13 @@ export const IconButton = ({
   ...props
 } : IconButtonProps) => {
   return (
-    <TouchableOpacity hitSlop={DEFAULT_HIT_SLOP} activeOpacity={0.6} {...props}>
+    <TouchableOpacity
+      hitSlop={DEFAULT_HIT_SLOP}
+      activeOpacity={0.6}
+      accessible
+      accessibilityRole="button"
+      {...props}
+    >
       <Icon type={type} name={name} size={size} color={color} />
     </TouchableOpacity>
   )

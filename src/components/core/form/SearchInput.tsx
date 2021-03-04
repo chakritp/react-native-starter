@@ -8,6 +8,7 @@ import { AutocompleteInput, AutocompleteInputProps } from './AutocompleteInput'
 export const SearchInput = forwardRef<NativeMethods, AutocompleteInputProps>(({
   inputStyle,
   placeholder = t('actions.search'),
+  accessibilityLabel = t('actions.search'),
   ...props
 }: AutocompleteInputProps, ref: any) => {
   const styles = useThemedStyles(themedStyles)
@@ -18,6 +19,7 @@ export const SearchInput = forwardRef<NativeMethods, AutocompleteInputProps>(({
       inputStyle={[styles.input, inputStyle]}
       leftIcon="search"
       placeholder={placeholder}
+      accessibilityLabel={accessibilityLabel}
       {...props} />
   )
 })

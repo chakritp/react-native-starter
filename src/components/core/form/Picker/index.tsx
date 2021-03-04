@@ -18,6 +18,7 @@ export const Picker = ({
   style,
   itemStyle,
   embedded,
+  placeholder,
   items = [],
   value,
   disabled,
@@ -40,6 +41,7 @@ export const Picker = ({
         disabled={disabled}
         accessible
         accessibilityRole="spinbutton"
+        accessibilityLabel={placeholder}
         onValueChange={onChange}
         {...props} />
     </View>

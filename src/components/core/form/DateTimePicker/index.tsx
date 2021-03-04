@@ -14,6 +14,7 @@ export interface DateTimePickerProps extends Partial<DateTimePickerBaseProps> {
   disabled?: boolean
   format?: string
   placeholder?: string
+  accessibilityLabel?: string
 }
 
 export const DateTimePicker = ({
@@ -24,6 +25,7 @@ export const DateTimePicker = ({
   mode = 'date',
   format = 'll',
   placeholder,
+  accessibilityLabel = placeholder,
   defaultValue = moment().startOf('day').toDate(),
   value,
   onChange = () => {},
@@ -40,6 +42,7 @@ export const DateTimePicker = ({
         titleStyle={titleStyle}
         embedded={embedded}
         placeholder={placeholder}
+        accessibilityLabel={accessibilityLabel}
         value={value ? moment(value).format(format) : ''}
         disabled={disabled}
         onPress={() => setOpen(true)} />

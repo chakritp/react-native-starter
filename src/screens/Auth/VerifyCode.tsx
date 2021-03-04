@@ -56,6 +56,7 @@ export const VerifyCode = observer(() => {
                 {...props}
                 center
                 placeholder={form.translate('fields.verificationCode.placeholder')}
+                accessibilityLabel={form.translate('fields.verificationCode.label')}
                 autoFocus
                 maxLength={CODE_LENGTH}
                 keyboardType="number-pad"

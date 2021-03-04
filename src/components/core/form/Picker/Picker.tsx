@@ -11,6 +11,7 @@ export default function PickerIOS({
   style,
   embedded,
   placeholder,
+  accessibilityLabel,
   prompt,
   items,
   selectedItem,
@@ -34,6 +35,7 @@ export default function PickerIOS({
         style={style}
         embedded={embedded}
         placeholder={placeholder}
+        accessibilityLabel={accessibilityLabel}
         value={selectedItem && selectedItem.label}
         disabled={disabled}
         onPress={() => setOpen(true)} />

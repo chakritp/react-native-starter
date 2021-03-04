@@ -4,6 +4,7 @@ import React, { forwardRef, useRef, useCallback } from 'react'
 import { TextInput as $TextInput } from 'react-native'
 import { IconButton } from '../IconButton'
 import { TextInput, TextInputProps } from './TextInput'
+import { t } from 'helpers/i18n'
 
 export interface AutocompleteInputProps extends TextInputProps {
   submitDelay?: number
@@ -13,6 +14,7 @@ export interface AutocompleteInputProps extends TextInputProps {
 export const AutocompleteInput = forwardRef<typeof $TextInput, TextInputProps>(({
   submitDelay,
   value,
+  accessibilityLabel,
   onChangeText = noop,
   onSubmit = noop,
   ...props
@@ -46,7 +48,12 @@ export const AutocompleteInput = forwardRef<typeof $TextInput, TextInputProps>((
     <TextInput
       ref={ref}
       rightIcon={value !== '' ? (
-        <IconButton name="clear" size="s" color="inputForegroundMuted" onPress={onClear} />
+        <IconButton
+          name="clear"
+          size="s"
+          color="inputForegroundMuted"
+          accessibilityLabel={accessibilityLabel ? t('clearInput', { label: accessibilityLabel }) : t('clear')}
+          onPress={onClear} />
       ) : undefined}
       accessibilityRole="search"
       autoCapitalize="none"
