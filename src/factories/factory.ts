@@ -14,9 +14,9 @@ class CustomFactoryGirl extends FactoryGirl {
     return this.seq(id, (n: any) => `${n}`)
   }
 
-  buildPaginated(name: string, { page = 1, limit = 20 } = {}, total = 100, ...args: any[]) {
+  buildPaginated(name: string, { page = 1, limit = 20 } = {}, total = 100, attrs?: any, buildOptions?: {}) {
     const count = Math.min(total - (page - 1) * limit, limit)
-    const data = count > 0 ? factory.buildMany(name, count, ...args) : []
+    const data = count > 0 ? factory.buildMany(name, count, attrs, buildOptions) : []
     return {
       data: data,
       pagination: {

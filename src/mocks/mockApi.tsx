@@ -67,7 +67,7 @@ export const mockApi = {
           }
         }
       })
-    }))
+    }) as any)
   }
 }
 

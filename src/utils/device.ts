@@ -1,7 +1,8 @@
 import DeviceInfo from 'react-native-device-info'
 import RNSimpleCrypto from 'react-native-simple-crypto'
 
-let deviceKeyPromise
+let deviceKeyPromise: Promise<string>
+
 export async function getDeviceKey() {
   if (!deviceKeyPromise) {
     deviceKeyPromise = new Promise(async (resolve, reject) => {
