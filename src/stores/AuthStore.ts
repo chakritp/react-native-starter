@@ -32,6 +32,10 @@ export const AuthStore = types
     return {
       initialize() {
         api.client.authToken = self.accessToken
+
+        if (self.authenticated) {
+          self.loadUser()
+        }
       },
 
       registerDevice: flow(function*() {
