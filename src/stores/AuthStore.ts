@@ -1,5 +1,5 @@
 import { Instance, types, applySnapshot, flow } from 'mobx-state-tree'
-import { AsyncTask, runTask } from 'lib/mst'
+import { AsyncTask, runTask } from 'mst-async-task'
 import { AuthUser } from 'models'
 import { api } from 'services'
 import { getDeviceKey } from 'utils/device'
