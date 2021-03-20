@@ -17,7 +17,6 @@
     "createAccount": "Create account",
     "dismiss": "Dismiss",
     "done": "Done",
-    "getCode": "Get code",
     "getStarted": "Get Started",
     "go": "Go",
     "goBack": "Go back",
@@ -25,10 +24,8 @@
     "ok": "Ok",
     "save": "Save",
     "search": "Search",
-    "sendNewCode": "Send new code",
-    "signIn": "Sign in",
+    "resendEmail": "Resend email",
     "signOut": "Sign out",
-    "signUp": "Sign up",
     "submit": "Submit",
     "tryAgain": "Try again",
     "update": "Update",
@@ -108,12 +105,6 @@
       "info": {
         "maxLength": "Max %{maxLength} characters"
       }
-    },
-    "signIn": {
-      "noAccount": "Don't have an account?"
-    },
-    "signUp": {
-      "hasAccount": "Already have an account?"
     }
   },
   "screens": {
@@ -122,23 +113,23 @@
       "subtitle": "We've made some changes that require the latest version of the app.\n\nPlease go to the %{store} and install %{brand} again.",
       "goToAppStore": "Go to the %{store}" 
     },
-    "login": {
-      "title": "Log In"
-    },
-    "signUp": {
-      "title": "Sign Up",
+    "signIn": {
+      "title": "Enter your email address",
+      "subtitle": "We’ll send you a confirmation message with a link to sign in.",
       "agreeTerms": [
-        "By signing up, you agree to our\n",
+        "By signing in, you agree to our\n",
         "Terms of Service",
         " and ",
         "Privacy Policy"
       ]
     },
-    "signIn": {
-      "title": "Sign In"
-    },
     "verifyCode": {
-      "title": "Verify Code"
+      "title": "We sent you an email to",
+      "subtitle": [
+        "Please check your email and click the ",
+        "Sign In",
+        " button or enter the verification code below:"
+      ]
     },
     "home": {
       "title": "Home"

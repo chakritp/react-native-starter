@@ -3,9 +3,6 @@ import { createRoot } from 'cosmos/helpers'
 
 export default {
   Landing: createRoot(),
-  SignUp: createRoot(() => ({
-    navState: getNavState({ routes: [{ name: 'SignUp' }] })
-  })),
   SignIn: createRoot(() => ({
     snapshot: {
       authStore: { deviceRegistered: true }
@@ -14,10 +11,10 @@ export default {
   VerifyCode: createRoot(() => ({
     snapshot: {
       authStore: {
-        phoneNumber: '+132316425489'
+        email: 'tester@iterate.co'
       }
     },
-    navState: getNavState({ index: 1, routes: [{ name: 'SignUp' }, { name: 'VerifyCode' }] })
+    navState: getNavState({ index: 1, routes: [{ name: 'VerifyCode' }] })
   })),
 }
 

@@ -7,11 +7,10 @@ import { getDeviceKey } from 'utils/device'
 export const AuthStore = types
   .model({
     deviceRegistered: types.optional(types.boolean, false),
-    phoneNumber: types.maybe(types.string),
+    email: types.maybe(types.string),
     verificationToken: types.maybe(types.string),
     accessToken: types.maybe(types.string),
     user: types.maybe(AuthUser),
-    signUpTask: types.optional(AsyncTask, {}),
     requestCodeTask: types.optional(AsyncTask, {}),
     signInTask: types.optional(AsyncTask, {}),
     loadUserTask: types.optional(AsyncTask, {}),
@@ -53,33 +52,24 @@ export const AuthStore = types
         }
       }),
 
-      signUp: ({ phoneNumber }: { phoneNumber: string }) => runTask(self.signUpTask, function*({ exec }) {
+      requestCode: (params: { email?: string } = {}) => runTask(self.requestCodeTask, function*() {
         yield self.registerDevice()
-        const { data } = yield api.auth.signUp({
-          phoneNumber
-        })
-        self.user = AuthUser.create(data)
-        yield exec(self.requestCode, { phoneNumber: data.phoneNumber })
-      }),
-
-      requestCode: ({ phoneNumber }: { phoneNumber?: string } = {}) => runTask(self.requestCodeTask, function*() {
-        yield self.registerDevice()
-        const { data } = yield api.auth.requestCode({
-          phoneNumber: phoneNumber || self.phoneNumber
-        })
-        self.phoneNumber = phoneNumber
+        const email = params.email || self.email
+        const { data } = yield api.auth.requestCode({ email })
+        self.email = email
         self.verificationToken = data.token
       }),
 
-      signIn: ({ code }: { code: string }) => runTask(self.signInTask, function*() {
+      signIn: (params: { code: string }) => runTask(self.signInTask, function*() {
         yield self.registerDevice()
         const { data } = yield api.auth.signIn({
-          phoneNumber: self.phoneNumber || self.user!.phoneNumber,
+          email: self.email,
           token: self.verificationToken,
-          code
+          ...params
         })
-        api.client.authToken = data.accessToken
         self.accessToken = data.accessToken
+        self.user = AuthUser.create(data.user)
+        api.client.authToken = data.accessToken
       }),
 
       loadUser: () => runTask(self.loadUserTask, function*() {

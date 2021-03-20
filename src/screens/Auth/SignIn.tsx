@@ -1,43 +1,41 @@
 import React from 'react'
+import { Linking } from 'react-native'
 import * as yup from 'yup'
 import { observer } from 'mobx-react-lite'
 import { useStore } from 'lib/mst'
+import { TERMS_OF_SERVICE_URL, PRIVACY_POLICY_URL } from 'config'
 import {
+  Text,
   Field,
   InputGroup,
+  TextInput,
   FormProvider,
   Heading,
   useFormScreen,
   useFormErrorAlert
 } from 'components/core'
-import { WizardContainer, SubmitButton, SecondaryButton } from 'components/wizard'
-import { USPhoneNumberInput } from 'components/USPhoneNumberInput'
+import { WizardContainer, SubmitButton } from 'components/wizard'
 import { scopedTranslate } from 'helpers/i18n'
 import { AuthScreenProps } from 'screens/types'
 
 interface FormValues {
-  phoneNumber: string
+  email: string
 }
 
 const schema = yup.object().shape({
-  phoneNumber: yup.string().min(10)
+  email: yup.string().email().required()
 })
 
-export const SignIn = observer(({ navigation, route }: AuthScreenProps<'SignIn'>) => {
-  const { defaultValues = {} } = route.params || {}
-  const { authStore: { phoneNumber, requestCode } } = useStore()
+export const SignIn = observer(({ navigation }: AuthScreenProps<'SignIn'>) => {
+  const { authStore: { email, requestCode } } = useStore()
   const t = scopedTranslate('screens.signIn')
-
-  if (!defaultValues.phoneNumber && phoneNumber) {
-    defaultValues.phoneNumber = phoneNumber
-  }
+  const agreeTerms = t('agreeTerms')
 
   const form = useFormScreen<FormValues>({
     name: 'signIn',
     schema,
     defaultValues: {
-      phoneNumber: '',
-      ...defaultValues
+      email: email || ''
     },
     onSubmit: requestCode,
     onSuccess: () => navigation.navigate('VerifyCode')
@@ -50,29 +48,39 @@ export const SignIn = observer(({ navigation, route }: AuthScreenProps<'SignIn'>
       <Heading title={t('screens.signIn.title')} />
       <FormProvider {...form}>
         <Field
-          name="phoneNumber"
-          label={form.translate('fields.phoneNumber.label')}
-          render={({ label: _, onChange, ...props }) => (
-            <InputGroup>
-              <USPhoneNumberInput
+          name="email"
+          label={form.translate('fields.email.label')}
+          render={({ label, onChange, ...props }) => (
+            <InputGroup
+              info={
+                <Text variant="c2" color="mainForegroundMuted" textAlign="center" lineHeight={20}>
+                  {agreeTerms[0]}
+                  <Text font="bodyBold" onPress={() => Linking.openURL(TERMS_OF_SERVICE_URL)}>
+                    {agreeTerms[1]}
+                  </Text>
+                  {agreeTerms[2]}
+                  <Text font="bodyBold" onPress={() => Linking.openURL(PRIVACY_POLICY_URL)}>
+                    {agreeTerms[3]}
+                  </Text>
+                </Text>
+              }
+              infoPlacement="center"
+            >
+              <TextInput
                 {...props}
+                type="email"
                 center
-                autoFocus={!defaultValues.phoneNumber}
-                placeholder={form.translate('fields.phoneNumber.placeholder')}
+                autoFocus
+                placeholder={label}
                 returnKeyType="done"
-                onChangeValue={onChange}
+                onChangeText={onChange}
                 onSubmitEditing={form.submit} />
             </InputGroup>
           )} />
 
         <SubmitButton
-          title={form.translate('actions.getCode')}
+          title={form.translate('actions.next')}
           form={form} />
-
-        <SecondaryButton
-          title={form.translate('noAccount')}
-          disabled={form.formState.isSubmitting}
-          onPress={() => navigation.replace('SignUp', { defaultValues: form.getValues() })} />
       </FormProvider>
     </WizardContainer>
   )

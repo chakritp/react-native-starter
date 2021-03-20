@@ -10,8 +10,7 @@ export type MainTabs = {
 
 export type AuthStack = {
   Landing: undefined
-  SignUp?: { defaultValues?: { phoneNumber?: string }}
-  SignIn?: { defaultValues?: { phoneNumber?: string }}
+  SignIn: undefined
   VerifyCode: undefined
 }
 

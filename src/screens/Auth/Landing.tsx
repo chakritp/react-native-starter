@@ -16,7 +16,7 @@ export const Landing = ({ navigation }: AuthScreenProps<'Landing'>) => {
         size="l"
         icon={{ name: 'chevron-right', size: "xl" }}
         iconPlacement="right"
-        onPress={() => navigation.replace('SignUp')} />
+        onPress={() => navigation.replace('SignIn')} />
     </ScrollContainer>
   )
 }

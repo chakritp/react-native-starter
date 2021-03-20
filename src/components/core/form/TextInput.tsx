@@ -15,7 +15,7 @@ import { IconProp, renderIcon } from 'helpers/ui'
 import { Theme } from 'theme'
 import { InputErrorIcon } from './InputErrorIcon'
 
-const DEFAULT_INPUT_PROPS: { [key: string]: Partial<$TextInputProps> } = {
+const DEFAULT_INPUT_PROPS = {
   email: {
     keyboardType: 'email-address',
     textContentType: 'emailAddress',
@@ -65,7 +65,9 @@ export const TextInput = forwardRef<NativeMethods, TextInputProps>(({
   const styles = useThemedStyles(themedStyles)
   const theme = useTheme<Theme>()
 
-  const defaultInputProps = type ? DEFAULT_INPUT_PROPS[type] : undefined
+  const defaultInputProps = type
+    ? DEFAULT_INPUT_PROPS[type] as { [key: string]: Partial<$TextInputProps> }
+    : undefined
 
   if (leftIcon) {
     leftIcon = renderIcon(leftIcon, { color: 'inputForegroundMuted', size: 'l' })

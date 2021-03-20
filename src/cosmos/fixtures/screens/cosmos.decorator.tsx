@@ -23,15 +23,14 @@ export default (props: { children: ReactNode }) => {
       data: { token: 'xxx' }
     })
 
-    success(api.auth, 'signIn', {
-      data: { accessToken: 'text-token' }
-    })
+    success(api.auth, 'signIn', () => ({
+      data: {
+        accessToken: 'test-token',
+        user: factory.build('api.user')
+      }
+    }))
 
     success(api.auth, 'signOut')
-
-    success(api.auth, 'signUp', () => ({
-      data: factory.build('api.user')
-    }))
 
     success(api.devices, 'create')
 
@@ -39,7 +38,7 @@ export default (props: { children: ReactNode }) => {
 
     success(api.users, 'getProfile', () => ({
       data: factory.build('api.user')
-    }), { delay: 0 })
+    }))
   })
 
   return (

@@ -158,8 +158,8 @@ export const KeyboardAvoidingContainer = ({ children, ...props }: BoxProps) => {
 
 export interface HeadingProps extends BoxProps {
   icon?: IconProp
-  title?: string
-  subtitle?: string
+  title?: string | ReactNode
+  subtitle?: string | ReactNode
   children?: ReactNode
 }
 

@@ -4,6 +4,7 @@ import { observer } from 'mobx-react-lite'
 import { ApiServerError } from 'lib/api'
 import { useStore } from 'lib/mst'
 import {
+  Text,
   Field,
   InputGroup,
   TextInput,
@@ -13,8 +14,8 @@ import {
   useErrorAlert,
   Heading
 } from 'components/core'
-import { WizardContainer, SubmitButton, SecondaryButton } from 'components/wizard'
-import { t } from 'helpers/i18n'
+import { WizardContainer, SecondaryButton } from 'components/wizard'
+import { scopedTranslate } from 'helpers/i18n'
 
 const CODE_LENGTH = 6
 
@@ -23,7 +24,8 @@ const schema = yup.object().shape({
 })
 
 export const VerifyCode = observer(() => {
-  const { authStore: { requestCode, requestCodeTask, signIn } } = useStore()
+  const { authStore: { email, requestCode, requestCodeTask, signIn } } = useStore()
+  const t = scopedTranslate('screens.verifyCode')
 
   const form = useFormScreen({
     name: 'verifyCode',
@@ -42,11 +44,23 @@ export const VerifyCode = observer(() => {
       }
     }
   })
+
   useErrorAlert(requestCodeTask)
+
+  const subtitle = t('subtitle')
 
   return (
     <WizardContainer>
-      <Heading title={t('screens.verifyCode.title')} />
+      <Heading title={t('title')}>
+        <Text variant="s1" numberOfLines={1} mt="s">{email}</Text>
+        <Text variant="s3" textAlign="center" mt="l" lineHeight={24}>
+          <>
+            <Text>{subtitle[0]}</Text>
+            <Text font="bodyBold">{subtitle[1]}</Text>
+            <Text>{subtitle[2]}</Text>
+          </>
+        </Text>
+      </Heading>
       <FormProvider {...form}>
         <Field
           name="code"
@@ -71,18 +85,13 @@ export const VerifyCode = observer(() => {
           )} />
 
         <SecondaryButton
-          title={form.translate('actions.sendNewCode')}
+          title={form.translate('actions.resendEmail')}
           disabled={form.formState.isSubmitting}
           loading={requestCodeTask.pending}
           onPress={() => {
             form.setValue('code', '')
             requestCode()
           }} />
-
-        <SubmitButton
-          style={{ marginTop: 40 }}
-          form={form}
-          title={form.translate('actions.verifyCode')} />
       </FormProvider>
     </WizardContainer>
   )

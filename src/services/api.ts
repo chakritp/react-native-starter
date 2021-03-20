@@ -24,8 +24,7 @@ export const api = {
   auth: {
     requestCode: (data: object) => client.post('/auth/code', data),
     signIn: (data: object) => client.post('/auth/signin', data),
-    signOut: () => client.post('/auth/signout'),
-    signUp: (data: object) => client.post('/auth/signup', data),
+    signOut: () => client.post('/auth/signout')
   },
   devices: {
     create: (data: object) => client.post('/devices', data),

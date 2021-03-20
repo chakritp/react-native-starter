@@ -4,8 +4,7 @@ import { customTypes } from 'lib/mst'
 export const AuthUser = types
   .model({
     id: types.identifier,
-    phoneNumber: types.string,
-    phoneNumberVerified: types.boolean,
+    email: types.string,
     isVerified: types.boolean,
     createdAt: customTypes.isoDate
   })
