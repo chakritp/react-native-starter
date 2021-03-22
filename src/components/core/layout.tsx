@@ -22,21 +22,36 @@ import { Theme } from 'theme'
 import { Box, BoxProps } from './common'
 import { Text } from './Text'
 
-export interface ContainerProps extends BoxProps {
+export interface SafeAreaProps extends BoxProps {
+  safe?: boolean | 'top' | 'bottom'
+}
+
+export const SafeArea = ({ safe = true, style, ...props }: SafeAreaProps) => {
+  const insets = useSafeAreaInsets()
+  const containerStyle: any = { flex: 1 }
+  
+  if (safe === true || safe === 'top') {
+    containerStyle.paddingTop = insets.top
+  }
+  if (safe === true || safe === 'bottom') {
+    containerStyle.paddingBottom = insets.bottom
+  }
+
+  return <Box flex={1} style={[containerStyle, style]} {...props} />
+}
+
+export interface ContainerProps extends SafeAreaProps {
   center?: boolean
   keyboard?: boolean
-  safe?: SafeAreaProps['safe']
 }
 
 export const Container = ({
   style,
   center,
   keyboard,
-  safe,
   children,
   ...props
 }: ContainerProps) => {
-
   if (keyboard) {
     children = (
       <View style={{ marginBottom: Math.round(Dimensions.get('window').height * 0.33) }}>
@@ -46,15 +61,16 @@ export const Container = ({
   }
 
   return (
-    <Box
+    <SafeArea
       flex={1}
       style={[
         center ? styles.center : null,
         style
       ]}
-      {...props}>
-      {safe ? <SafeArea safe={safe}>{children}</SafeArea> : children}
-    </Box>
+      {...props}
+    >
+      {children}
+    </SafeArea>
   )
 }
 
@@ -177,29 +193,6 @@ export const Heading = ({ icon, title, subtitle, children, ...props }: HeadingPr
       {subtitle ? <Text variant="s3" textAlign="center" mt="l" lineHeight={theme.spacing.xl}>{subtitle}</Text> : null}
       {children}
     </Box>
-  )
-}
-
-export interface SafeAreaProps {
-  safe?: boolean | 'top' | 'bottom'
-  children?: ReactNode
-}
-
-export const SafeArea = ({ safe = true, children }: SafeAreaProps) => {
-  const insets = useSafeAreaInsets()
-  const containerStyle: any = { flex: 1 }
-  
-  if (safe === true || safe === 'top') {
-    containerStyle.paddingTop = insets.top
-  }
-  if (safe === true || safe === 'bottom') {
-    containerStyle.paddingBottom = insets.bottom
-  }
-
-  return (
-    <View style={containerStyle}>
-      {children}
-    </View>
   )
 }
 

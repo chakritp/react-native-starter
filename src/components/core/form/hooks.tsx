@@ -74,8 +74,6 @@ export function useForm<TFieldValues extends FieldValues = FieldValues, TContext
   form.defaultValues = _defaultValues
 
   const defaultShowValidationError = useCallback((error: FieldError, field: string) => {
-
-    console.log('error', error, JSON.stringify(error))
     const label = fieldLabels[field]
     Toast.danger(fieldErrorMessage(error, { form: name, field, label }))
   }, [name])
