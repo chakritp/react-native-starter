@@ -8,13 +8,13 @@ export default {
       authStore: { deviceRegistered: true }
     }
   })),
-  VerifyCode: createRoot(() => ({
+  Verify: createRoot(() => ({
     snapshot: {
       authStore: {
         email: 'tester@iterate.co'
       }
     },
-    navState: getNavState({ index: 1, routes: [{ name: 'VerifyCode' }] })
+    navState: getNavState({ index: 1, routes: [{ name: 'Verify' }] })
   })),
 }
 

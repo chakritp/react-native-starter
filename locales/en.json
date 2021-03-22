@@ -29,7 +29,7 @@
     "submit": "Submit",
     "tryAgain": "Try again",
     "update": "Update",
-    "verifyCode": "Verify code"
+    "verify": "Verify code"
   },
   "messages": {
     "api": {
@@ -123,7 +123,7 @@
         "Privacy Policy"
       ]
     },
-    "verifyCode": {
+    "verify": {
       "title": "We sent you an email to",
       "subtitle": [
         "Please check your email and click the ",

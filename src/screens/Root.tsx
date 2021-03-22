@@ -7,7 +7,7 @@ import { observer } from 'mobx-react-lite'
 import { useStore, mergeSnapshot, useMSTFastRefresh } from 'lib/mst'
 import { Toast, PartialNavigationState, createStackNavigator } from 'components/core'
 import { AppUpgradeRequiredNotice } from 'components/AppUpgradeRequiredNotice'
-import { api, rootNavigation } from 'services'
+import { rootNavigation } from 'services'
 import { IRootStoreSnapshotIn } from 'stores'
 import { defaultTheme, createNavigationTheme } from 'theme'
 import { Auth } from './Auth'
@@ -20,12 +20,10 @@ export interface RootProps {
   initialNavigationState?: PartialNavigationState
 }
 
-export const Root = observer((props: RootProps) => {
-  const { snapshot, initialNavigationState } = props
+export const Root = observer(({ snapshot, initialNavigationState }: RootProps) => {
   const theme = defaultTheme
   const navigationTheme = useMemo(() => createNavigationTheme(theme), [theme])
   const [initialized, setInitialized] = useState(false)
-  const [appUpgradeRequired, setAppUpgradeRequired] = useState(false)
   const rootStore = useStore()
 
   if (__DEV__) {
@@ -33,8 +31,8 @@ export const Root = observer((props: RootProps) => {
   }
   
   const {
-    appStore: { handleInitialDeepLink },
-    authStore: { authenticated, revokeAuth }
+    appStore: { navigationReady, upgradeRequired, start },
+    authStore: { authenticated }
   } = rootStore
 
   useLayoutEffect(() => {
@@ -67,25 +65,10 @@ export const Root = observer((props: RootProps) => {
 
   useEffect(() => {
     if (initialized) {
-      handleInitialDeepLink()
+      start()
     }
   }, [initialized])
   
-  useEffect(() => {
-    const apiErrorListener = ({ error }: { error: any }) => {
-      if (error.status == 401 && authenticated) {
-        revokeAuth()
-      } else if (error.code === 'app_upgrade_required') {
-        setAppUpgradeRequired(true)
-      }
-    }
-
-    api.client.on('error', apiErrorListener)
-    return () => {
-      api.client.off('error', apiErrorListener)
-    }
-  }, [authenticated])
-
   const onNavigationStateChange = useCallback((navState?: NavigationState) => {
     if (navState) {
       Toast.handleNavigationStateChange(navState)
@@ -95,12 +78,13 @@ export const Root = observer((props: RootProps) => {
 
   return (
     <ThemeProvider theme={theme}>
-      {initialized && (
+      {navigationReady && (
         <NavigationContainer
           ref={nav => rootNavigation.setNavigator(nav)} 
           theme={navigationTheme}
           initialState={initialNavigationState} 
-          onStateChange={onNavigationStateChange}>
+          onStateChange={onNavigationStateChange}
+        >
           <Stack.Navigator>
             {authenticated ? (
               <Stack.Screen name="Main" component={Main} options={{
@@ -115,7 +99,7 @@ export const Root = observer((props: RootProps) => {
         </NavigationContainer>
       )}
 
-      {appUpgradeRequired && (
+      {upgradeRequired && (
         <Modal animationType="slide" visible>
           <AppUpgradeRequiredNotice />
         </Modal>

@@ -11,7 +11,7 @@ export type MainTabs = {
 export type AuthStack = {
   Landing: undefined
   SignIn: undefined
-  VerifyCode: undefined
+  Verify: { code: string } | undefined
 }
 
 export type AuthScreenProps<T extends keyof AuthStack> = StackScreenProps<AuthStack, T>

@@ -38,7 +38,7 @@ export const SignIn = observer(({ navigation }: AuthScreenProps<'SignIn'>) => {
       email: email || ''
     },
     onSubmit: requestCode,
-    onSuccess: () => navigation.navigate('VerifyCode')
+    onSuccess: () => navigation.navigate('Verify')
   })
 
   useFormErrorAlert(form, { ignoreUnauthorized: false })

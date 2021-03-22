@@ -1,71 +1,134 @@
-import { AppState, Linking } from 'react-native'
+import { AppState, AppStateStatus, Linking } from 'react-native'
 import { URL } from 'react-native-url-polyfill'
-import { Instance, types, flow } from 'mobx-state-tree'
+import { Instance, types, getParent, flow } from 'mobx-state-tree'
+import { api, rootNavigation } from 'services'
+import { IRootStore } from './RootStore'
 
 export const AppStore = types
-  .model({})
-  .actions(_self => {
-    const self = _self as IAppStore
+  .model({
+    navigationReady: types.optional(types.boolean, false),
+    upgradeRequired: types.optional(types.boolean, false)
+  })
+  .actions(self => {
+    const initialize = () => {
+      AppState.addEventListener('change', handleAppStateChange)
+
+      const urlListener = ({ url } : { url: string }) => handleDeepLink(url)
+      Linking.addEventListener('url', urlListener)
+
+      api.client.on('error', handleApiError)
+
+      return () => {
+        AppState.removeEventListener('change', handleAppStateChange)
+        Linking.removeEventListener('url', urlListener)
+        api.client.off('error', handleApiError)
+      }
+    }
+    
+    const start = flow(function*() {
+      const { authStore } = getParent<IRootStore>(self)
+      const initialUrl = yield Linking.getInitialURL()
+
+      if (initialUrl) {
+        yield waitForActiveAppState()
+        self.navigationReady = true
+        handleDeepLink(initialUrl)
+      } else {
+        self.navigationReady = true
+      }
+      
+      if (authStore.authenticated) {
+        authStore.loadUser()
+      }
+    })
+
+    const setUpgradeRequired = (value: boolean) => {
+      self.upgradeRequired = value
+    }
+
+    const handleDeepLink = async (url: string) => {
+      // Workaround for an error that may occur on iOS devices when
+      // a network request is attempted while handling a universal link
+      // and the app is in an inactive state.
+      // https://github.com/AFNetworking/AFNetworking/issues/4279
+      await waitForActiveAppState()
+
+      try {
+        const { pathname, params } = parseDeepLink(url)
+        const { authStore } = getParent<IRootStore>(self)
+
+        switch (pathname) {
+          case '/auth/verify': {
+            const { email, code } = params
+            if (email && code && !authStore.authenticated) {
+              authStore.setEmail(email)
+              rootNavigation.reset({
+                routes: [{
+                  name: 'Auth',
+                  state: {
+                    index: 1,
+                    routes: [{ name: 'SignIn' }, { name: 'Verify', params: { code } }]
+                  } 
+                }]
+              })
+            }
+            break
+          }
+        }
+      } catch (error) {
+        console.warn(error)
+      }
+    }
+
+    const handleAppStateChange = (nextAppState: AppStateStatus) => {
+      if (nextAppState === 'active') {
+        // ...
+      }
+    }
+
+    const handleApiError = ({ error }: { error: any }) => {
+      const { authStore } = getParent<IRootStore>(self)
+      if (error.status == 401 && authStore.authenticated) {
+        authStore.revokeAuth()
+      } else if (error.code === 'app_upgrade_required') {
+        setUpgradeRequired(true)
+      }
+    }
     
     return {
-      initialize() {
-        AppState.addEventListener('change', self.onAppStateChange)
-
-        const urlListener = ({ url } : { url: string }) => self.handleDeepLink(url)
-        Linking.addEventListener('url', urlListener)
-
-        return () => {
-          AppState.removeEventListener('change', self.onAppStateChange)
-          Linking.removeEventListener('url', urlListener)
-        }
-      },
-      
-      handleInitialDeepLink: flow(function*() {
-        try {
-          const initialUrl = yield Linking.getInitialURL()
-          if (initialUrl) {
-            self.handleDeepLink(initialUrl)
-          }
-        } catch (error) {
-          console.warn(error)
-        }
-      }),
-
-      handleDeepLink(url: string) {
-        try {
-          const deepLink = parseDeepLink(url)
-          if (deepLink) {
-            const { path, params } = deepLink
-            console.log("Received deep link", { path, params })
-          }
-        } catch (error) {
-          console.warn(error)
-        }
-      },
-
-      onAppStateChange(nextAppState: string) {
-        if (nextAppState === 'active') {
-          
-        }
-      }
+      initialize,
+      start,
+      setUpgradeRequired
     }
   })
 
+async function waitForActiveAppState() {
+  return new Promise<void>((resolve) => {
+    if (AppState.currentState === 'active') {
+      return resolve()
+    }
+  
+    const onChange = (nextAppState: AppStateStatus) => {
+      if (nextAppState === 'active') {
+        AppState.removeEventListener('change', onChange)
+        resolve()
+      }
+    }
+  
+    AppState.addEventListener('change', onChange)
+  })
+}
+
 function parseDeepLink(url: string) {
   try {
-    const { protocol, host, pathname, searchParams } = new URL(url)
-
-    if (protocol !== 'typescript-starter:') {
-      return undefined
-    }
-
+    const { host, pathname, searchParams } = new URL(url)
     const params: { [key: string]: string } = {}
 
     for (const [name, value] of searchParams) {
       params[name] = value
     }
 
-    return { path: `/${host}${pathname}`, params }
+    return { host, pathname, params }
   } catch (error) {
     throw new Error(`Unable to parse url '${url}': ${error}`)
   }

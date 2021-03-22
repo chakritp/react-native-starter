@@ -44,14 +44,10 @@ export function useMockApi(callback: (params: {
 }) => void) {
   const spies: any[] = useMemo(() => ([]), [])
   
-  const resetMocks = () => {
-    for (const spy of spies) {
-      spy.mockReset()
-      spies.length = 0
-    }
+  for (const spy of spies) {
+    spy.mockRestore()
   }
-  
-  resetMocks()
+  spies.length = 0
 
   callback({
     success(...args) {
@@ -70,8 +66,6 @@ export function useMockApi(callback: (params: {
       return spy
     }
   })
-
-  useEffect(() => resetMocks, [])
 }
 
 interface RootProps {

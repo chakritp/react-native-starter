@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import * as yup from 'yup'
 import { observer } from 'mobx-react-lite'
 import { ApiServerError } from 'lib/api'
@@ -16,6 +16,7 @@ import {
 } from 'components/core'
 import { WizardContainer, SecondaryButton } from 'components/wizard'
 import { scopedTranslate } from 'helpers/i18n'
+import { AuthScreenProps } from 'screens/types'
 
 const CODE_LENGTH = 6
 
@@ -23,15 +24,16 @@ const schema = yup.object().shape({
   code: yup.string().min(CODE_LENGTH)
 })
 
-export const VerifyCode = observer(() => {
+export const Verify = observer(({ route }: AuthScreenProps<'Verify'>) => {
+  const { params } = route
   const { authStore: { email, requestCode, requestCodeTask, signIn } } = useStore()
-  const t = scopedTranslate('screens.verifyCode')
+  const t = scopedTranslate('screens.verify')
 
   const form = useFormScreen({
-    name: 'verifyCode',
+    name: 'verify',
     schema,
     defaultValues: {
-      code: ''
+      code: params?.code || ''
     },
     onSubmit: signIn
   })
@@ -46,6 +48,12 @@ export const VerifyCode = observer(() => {
   })
 
   useErrorAlert(requestCodeTask)
+
+  useEffect(() => {
+    if (params?.code) {
+      form.submit()
+    }
+  }, [])
 
   const subtitle = t('subtitle')
 

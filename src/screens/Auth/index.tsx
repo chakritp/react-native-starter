@@ -4,7 +4,7 @@ import { useStore } from 'lib/mst'
 import { createStackNavigator } from 'components/core'
 import { Landing } from './Landing'
 import { SignIn } from './SignIn'
-import { VerifyCode } from './VerifyCode'
+import { Verify } from './Verify'
 
 const Stack = createStackNavigator()
 
@@ -20,7 +20,7 @@ export const Auth = observer(() => {
     >
       <Stack.Screen name="Landing" component={Landing} />
       <Stack.Screen name="SignIn" component={SignIn} />
-      <Stack.Screen name="VerifyCode" component={VerifyCode} />
+      <Stack.Screen name="Verify" component={Verify} />
     </Stack.Navigator>
   )
 })

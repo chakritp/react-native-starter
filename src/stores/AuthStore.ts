@@ -31,10 +31,6 @@ export const AuthStore = types
     return {
       initialize() {
         api.client.authToken = self.accessToken
-
-        if (self.authenticated) {
-          self.loadUser()
-        }
       },
 
       registerDevice: flow(function*() {
@@ -52,9 +48,13 @@ export const AuthStore = types
         }
       }),
 
+      setEmail(value: string) {
+        self.email = value
+      },
+
       requestCode: (params: { email?: string } = {}) => runTask(self.requestCodeTask, function*() {
+        const email = params.email || self.email!
         yield self.registerDevice()
-        const email = params.email || self.email
         const { data } = yield api.auth.requestCode({ email })
         self.email = email
         self.verificationToken = data.token
