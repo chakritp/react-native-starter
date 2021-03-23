@@ -190,7 +190,11 @@ export const Heading = ({ icon, title, subtitle, children, ...props }: HeadingPr
         </Box>
       )}
       {title ? <Text variant="h1" textAlign="center">{title}</Text> : null}
-      {subtitle ? <Text variant="s3" textAlign="center" mt="l" lineHeight={theme.spacing.xl}>{subtitle}</Text> : null}
+      {subtitle ? (
+        <Text variant="s3" textAlign="center" mt="l" lineHeight={theme.spacing.xl} color="mainForegroundMuted">
+          {subtitle}
+        </Text>
+      ) : null}
       {children}
     </Box>
   )

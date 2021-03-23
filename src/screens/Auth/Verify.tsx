@@ -7,7 +7,7 @@ import {
   Text,
   Field,
   InputGroup,
-  TextInput,
+  CodeInput,
   FormProvider,
   useFormScreen,
   useFormErrorAlert,
@@ -61,7 +61,7 @@ export const Verify = observer(({ route }: AuthScreenProps<'Verify'>) => {
     <WizardContainer>
       <Heading title={t('title')}>
         <Text variant="s1" numberOfLines={1} mt="s">{email}</Text>
-        <Text variant="s3" textAlign="center" mt="l" lineHeight={24}>
+        <Text variant="s3" textAlign="center" mt="l" lineHeight={24} color="mainForegroundMuted">
           <>
             <Text>{subtitle[0]}</Text>
             <Text font="bodyBold">{subtitle[1]}</Text>
@@ -74,15 +74,12 @@ export const Verify = observer(({ route }: AuthScreenProps<'Verify'>) => {
           name="code"
           label={form.translate('fields.code.label')}
           render={({ label, onChange, ...props }) => (
-            <InputGroup>
-              <TextInput
+            <InputGroup alignSelf="center" mb="l">
+              <CodeInput
                 {...props}
-                center
-                placeholder={form.translate('fields.code.placeholder')}
                 accessibilityLabel={label}
                 autoFocus
-                maxLength={CODE_LENGTH}
-                keyboardType="number-pad"
+                length={6}
                 onChangeText={value => {
                   onChange(value)
                   if (value.length === CODE_LENGTH) {

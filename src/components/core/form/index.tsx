@@ -1,6 +1,7 @@
 export { FormProvider } from 'react-hook-form'
 export * from './AutocompleteInput'
 export * from './AutocompletePicker'
+export * from './CodeInput'
 export * from './DateTimePicker'
 export * from './Field'
 export * from './FormattedTextInput'

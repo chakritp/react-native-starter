@@ -27,6 +27,11 @@ const DEFAULT_INPUT_PROPS = {
     textContentType: 'password',
     autoCapitalize: 'none',
     autoCorrect: false
+  },
+  phone: {
+    keyboardType: 'number-pad',
+    dataDetectorTypes: 'phoneNumber',
+    textContentType: 'telephoneNumber'
   }
 }
 

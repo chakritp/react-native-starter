@@ -98,8 +98,7 @@
           "placeholder": "Enter phone number"
         },
         "code": {
-          "label": "Verification code",
-          "placeholder": "- - - - - -"
+          "label": "Verification code"
         }
       },
       "info": {

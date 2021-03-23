@@ -1,6 +1,9 @@
 import fontFamilies from './fontFamilies'
 
 export default {
+  bodyLight: {
+    fontFamily: `${fontFamilies.body}-Light`
+  },
   bodyRegular: {
     fontFamily: `${fontFamilies.body}-Regular`
   },
@@ -9,6 +12,9 @@ export default {
   },
   bodyBold: {
     fontFamily: `${fontFamilies.body}-Bold`
+  },
+  headingLight: {
+    fontFamily: `${fontFamilies.heading}-Light`
   },
   headingRegular: {
     fontFamily: `${fontFamilies.heading}-Regular`
