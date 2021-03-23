@@ -141,8 +141,11 @@ android {
         applicationId "com.typescriptstarter"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
+        multiDexEnabled true
         versionCode 1
         versionName "1.0"
+        // react-native-config
+        resValue "string", "build_config_package", "com.typescriptstarter"
     }
 
     splits {
@@ -181,17 +184,16 @@ android {
     productFlavors {
         local {
             dimension 'env'
-            applicationId 'com.typescriptstarter.local'
+            applicationIdSuffix '.local'
             resValue "string", "app_name", "TypescriptStarter Local"
         }
         dev {
             dimension 'env'
-            applicationId 'com.typescriptstarter.dev'
+            applicationIdSuffix '.dev'
             resValue "string", "app_name", "TypescriptStarter Dev"
         }
         prod {
             dimension 'env'
-            applicationId 'com.typescriptstarter'
             resValue "string", "app_name", "TypescriptStarter"
         }
     }
@@ -239,6 +241,8 @@ dependencies {
     } else {
         implementation jscFlavor
     }
+
+    implementation "androidx.multidex:multidex:2.0.1"
 }
 
 // Run this once to be able to run the application with BUCK
