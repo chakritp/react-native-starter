@@ -20,6 +20,7 @@ export const InfiniteList = forwardRef(<T, >(props: InfiniteListProps<T>, ref: a
     onEndReachedThreshold = 0.5,
     onEndReached,
     onLoadMore,
+    onScrollBeginDrag,
     ...listProps
   } = props
 
@@ -73,8 +74,9 @@ export const InfiniteList = forwardRef(<T, >(props: InfiniteListProps<T>, ref: a
           }
         }
       }}
-      onScrollBeginDrag={() => {
+      onScrollBeginDrag={ev => {
         loadMoreEnabledRef.current = true
+        onScrollBeginDrag?.(ev)
       }}
       onMomentumScrollEnd={() => {
         loadMoreEnabledRef.current = false

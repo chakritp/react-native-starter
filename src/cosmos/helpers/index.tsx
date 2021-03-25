@@ -2,6 +2,8 @@ import React, { PropsWithChildren, useEffect, useMemo, useRef } from 'react'
 import { mockApi, mockLocalStorage } from 'mocks'
 import { Root as $Root, RootProps as $RootProps } from 'screens/Root'
 
+export * from './useMockCollection'
+
 let mocks: {
   localStorage: ReturnType<typeof mockLocalStorage>
 } | undefined

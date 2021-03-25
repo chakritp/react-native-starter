@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react'
+import React, { useEffect, useMemo, useRef } from 'react'
 import { KeyboardAvoidingView, NativeMethods } from 'react-native'
 import Chance from 'chance'
 import * as yup from 'yup'
@@ -20,6 +20,7 @@ import {
   Toast,
   useForm
 } from 'components/core'
+import { useMockCollection } from 'cosmos/helpers'
 
 const chance = new Chance(1)
 
@@ -45,51 +46,15 @@ const defaultValues = {
 }
 
 type FormValues = typeof defaultValues
-interface AutocompleteItem {
-  id: number
-  name: string
-  description: string
-}
-
-interface AutocompleteState {
-  loading: boolean
-  page: number
-  items: AutocompleteItem[]
-}
 
 export default () => {
   const [disabled] = useValue('disabled', { defaultValue: false })
+  
   const pickerItems = useMemo(() => (
     new Array(10).fill(0).map((_, i) => ({ label: chance.name(), value: i + 1 }))
   ), [])
-  const autocompletePickerItems = useMemo(() => (
-    new Array(50).fill(0).map((_, i) => ({ id: i + 1, name: chance.city(), description: chance.sentence() }))
-  ), [])
 
-  let [autocompleteState, setAutocompleteState] = useState<AutocompleteState>({ loading: false, page: 1, items: [] })
-
-  const resetAutocompleteItems = () => {
-    autocompleteState = { loading: false, page: 1, items: [] }
-    setAutocompleteState(autocompleteState)
-    loadAutocompleteItems('')
-  }
-
-  const loadAutocompleteItems = (query: string, page = 1) => {
-    const queryLc = query.toLowerCase()
-    autocompleteState = { ...autocompleteState, loading: true }
-    setAutocompleteState(autocompleteState)
-    setTimeout(() => {
-      const newItems = query
-        ? autocompletePickerItems.filter(item => item.name.toLowerCase().indexOf(queryLc) > -1)
-        : autocompletePickerItems
-      autocompleteState = { loading: false, items: newItems.slice(0, page * 20), page }
-      setAutocompleteState(autocompleteState)
-    }, 300)
-  }
-
-  const loadMoreAutocompleteItems = (query: string) => {
-    loadAutocompleteItems(query, autocompleteState.page + 1)
-  }
+  const mockCollection = useMockCollection()
 
   const form = useForm<FormValues>({
     schema,
@@ -174,18 +139,18 @@ export default () => {
             label="AutocompletePicker"
             render={({ label, ...props }) => (
               <InputGroup label={label}>
-                <AutocompletePicker<AutocompleteItem, number>
+                <AutocompletePicker
                   {...props}
-                  placeholder="Search"
+                  placeholder="Choose location"
                   clearable
-                  loading={autocompleteState.loading}
+                  loading={mockCollection.loading}
                   itemLabelExtractor={item => item.name}
                   itemPropsExtractor={item => ({ title: item.name, subtitle: item.description })}
-                  items={autocompleteState.items}
+                  items={mockCollection.items}
                   disabled={disabled}
-                  onOpen={() => !autocompleteState.items && resetAutocompleteItems()}
-                  onLoad={loadAutocompleteItems}
-                  onLoadMore={loadMoreAutocompleteItems} />
+                  onOpen={() => !mockCollection.items && mockCollection.reset()}
+                  onLoad={mockCollection.load}
+                  onLoadMore={mockCollection.loadMore} />
               </InputGroup>
             )} />
 
@@ -196,12 +161,11 @@ export default () => {
               <InputGroup label={label}>
                 <LocalAutocompletePicker
                   {...props}
-                  placeholder="Search"
+                  placeholder="Choose location"
                   clearable
-                  loading={autocompleteState.loading}
                   itemLabelExtractor={item => item.name}
-                  disabled={disabled}
-                  items={autocompletePickerItems}/>
+                  items={mockCollection.allItems}
+                  disabled={disabled} />
               </InputGroup>
             )} />
 

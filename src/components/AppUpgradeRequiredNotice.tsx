@@ -21,7 +21,7 @@ export const AppUpgradeRequiredNotice = () => {
       justifyContent="center"
       padding="xxl"
       paddingBottom="xxxl"
-      backgroundColor="mainBackgroundRegular"
+      bg="mainBackgroundRegular"
     >
       <Box>
         <Heading

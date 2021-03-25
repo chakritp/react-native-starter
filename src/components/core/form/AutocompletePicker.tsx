@@ -83,6 +83,8 @@ export const AutocompletePicker = <T, P>({
         <SelectionList
           safe="top"
           searchBar
+          searchBarAutoFocus
+          showCancelButton="always"
           refreshControl={refreshControl}
           itemPropsExtractor={itemPropsExtractor}
           items={items}

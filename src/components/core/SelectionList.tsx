@@ -9,7 +9,7 @@ import { ListItem, ListItemProps } from './ListItem'
 import { SearchBar, SearchBarProps } from './SearchBar'
 import { FlatListElement } from './lists'
 
-export interface SelectionListProps<T> extends Omit<SearchBarProps, 'value' | 'onChange' | 'onChangeText'>, Pick<Omit<InfiniteListProps<T>, 'onLoadMore' | 'onRefresh' | 'refreshing'>,
+export interface SelectionListProps<T> extends Pick<Omit<InfiniteListProps<T>, 'onLoadMore' | 'onRefresh' | 'refreshing'>,
   'total' |
   'loading' |
   'canLoadMore' |
@@ -18,10 +18,12 @@ export interface SelectionListProps<T> extends Omit<SearchBarProps, 'value' | 'o
   'emptyText'
 > {
   style?: StyleProp<ViewStyle>
-  backgroundColor?: ThemeColor
   bg?: ThemeColor
   safe?: ContainerProps['safe']
   searchBar?: boolean
+  searchBarAutoFocus?: boolean
+  showCancelButton?: SearchBarProps['showCancelButton']
+  submitDelay?: number
   placeholder?: string
   items?: T[]
   itemPropsExtractor: (item: T) => ListItemProps
@@ -34,10 +36,12 @@ export interface SelectionListProps<T> extends Omit<SearchBarProps, 'value' | 'o
 
 export const SelectionList = <T, >({
   style,
-  backgroundColor = "mainBackgroundMuted",
-  bg,
+  bg = "mainBackgroundMuted",
   safe = 'bottom',
   searchBar,
+  searchBarAutoFocus,
+  showCancelButton,
+  submitDelay,
   itemSeparator = true,
   placeholder,
   loading,
@@ -51,38 +55,35 @@ export const SelectionList = <T, >({
   onLoadMore,
   onLoad = noop,
   onSelect = noop,
-  onDone = noop,
-  ...searchBarProps
+  onDone = noop
 }: SelectionListProps<T>) => {
   const list = useRef<FlatListElement | null>(null)
-  const refreshingRef = useRef(false)
+  const searchBarRef = useRef<any>(null)
   const [query, setQuery] = useState('')
   const done = () => {
     setQuery('')
     onDone()
   }
 
-  if (!loading) {
-    refreshingRef.current = false
-  }
-
   return (
-    <Container style={style} flex={1} backgroundColor={backgroundColor} bg={bg} safe={safe}>
+    <Container style={style} flex={1} bg={bg} safe={safe}>
       {searchBar && (
         <SearchBar
-          autoFocus
-          showCancel
+          ref={searchBarRef}
+          autoFocus={searchBarAutoFocus}
+          showCancelButton={showCancelButton}
+          submitDelay={submitDelay}
           placeholder={placeholder}
           value={query}
           onChangeText={setQuery}
           onSubmit={query => {
             onLoad(query)
             if (items) {
-              list.current!.scrollToOffset({ offset: 0 })
+              list.current?.scrollToOffset({ offset: 0 })
             }
           }}
           onCancel={done}
-          {...searchBarProps} />
+        />
       )}
 
       <KeyboardAvoidingView style={{ flex: 1 }} behavior="padding" enabled>
@@ -94,7 +95,6 @@ export const SelectionList = <T, >({
             style={Platform.OS === 'android' && { minHeight: '100%' }}
             itemSeparator={itemSeparator}
             loading={onLoadMore ? loading : false}
-            refreshing={refreshingRef.current}
             data={items}
             total={total}
             canLoadMore={canLoadMore}
@@ -108,13 +108,13 @@ export const SelectionList = <T, >({
                 }} />
             )}
             onRefresh={refreshControl ? () => {
-              refreshingRef.current = true
               onLoad(query)
             } : undefined}
             onLoadMore={onLoadMore ? () => onLoadMore(query) : undefined}
+            onScrollBeginDrag={() => searchBarRef.current?.blur()}
             emptyText={emptyText} />
 
-          <LoadingOverlay backgroundColor={backgroundColor} bg={bg} show={!items && loading} />
+          <LoadingOverlay bg={bg} show={!items && loading} />
         </View>
       </KeyboardAvoidingView>
     </Container>

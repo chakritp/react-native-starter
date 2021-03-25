@@ -1,4 +1,4 @@
-import React, { Ref, ReactElement, forwardRef, useEffect, useRef } from 'react'
+import React, { Ref, ReactElement, forwardRef, useRef } from 'react'
 import {
   View,
   FlatList as $FlatList,
@@ -80,12 +80,10 @@ export const FlatList = forwardRef(<T, >(props: FlatListProps<T>, ref: any) => {
   const theme = useTheme<Theme>()
   const refreshingRef = useRef(false)
 
-  useEffect(() => {
-    if (!refreshing) {
-      refreshingRef.current = false
-    }
-  }, [refreshing])
-  
+  if (!loading) {
+    refreshingRef.current = false
+  }
+
   return (
     <$FlatList
       ref={ref}
@@ -95,7 +93,7 @@ export const FlatList = forwardRef(<T, >(props: FlatListProps<T>, ref: any) => {
       ListEmptyComponent={data && !loading ? <ListEmpty text={emptyText || t('messages.noResults')} /> : null}
       refreshControl={onRefresh ? (
         <RefreshControl
-          refreshing={refreshingRef.current && !!refreshing}
+          refreshing={refreshing || refreshingRef.current}
           tintColor={theme.colors[refreshControlColor]}
           onRefresh={() => {
             refreshingRef.current = true

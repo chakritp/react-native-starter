@@ -119,11 +119,9 @@ const themedStyles = createThemedStyles((theme: Theme) => ({
     flex: 1
   },
   input: {
-    flex: 0,
-    flexDirection: 'row',
     color: theme.colors.inputForegroundRegular,
     padding: theme.spacing.m,
-    minHeight: theme.sizes.m,
+    height: theme.sizes.m,
     ...theme.fonts.bodyRegular,
     fontSize: theme.fontSizes.s,
     backgroundColor: theme.colors.inputBackgroundRegular,

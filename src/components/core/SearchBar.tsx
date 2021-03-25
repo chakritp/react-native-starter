@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import {
-  LayoutAnimation,
-  UIManager,
+  Animated,
   View,
   StyleSheet,
   NativeMethods
@@ -11,81 +10,80 @@ import { Button } from './Button'
 import { AutocompleteInputProps } from './form/AutocompleteInput'
 import { SearchInput } from './form/SearchInput'
 
-// Android support.
-UIManager.setLayoutAnimationEnabledExperimental && UIManager.setLayoutAnimationEnabledExperimental(true)
-
 export interface SearchBarProps extends AutocompleteInputProps {
   cancelButtonTitle?: string
-  showCancel?: boolean
-  onClear?: () => void
-  onCancel?: () => void
+  showCancelButton?: 'onfocus' | 'always' | 'never'
   onFocus?: () => void
   onBlur?: () => void
-  onChangeText?: AutocompleteInputProps['onChangeText']
+  onCancel?: () => void
 }
 
 interface SearchBarState {
+  cancelButtonWidth: number
   hasFocus: boolean
-  cancelButtonWidth: number | null
 }
 
 export class SearchBar extends Component<SearchBarProps, SearchBarState> {
   input: NativeMethods | null = null
+  animatedCancel: Animated.Value
   
   static defaultProps = {
-    cancelButtonTitle: t('actions.cancel'),
-    showCancel: false,
-    onClear: () => {},
-    onCancel: () => {},
-    onFocus: () => {},
-    onBlur: () => {},
-    onChangeText: () => {}
+    showCancelButton: 'onfocus'
+  }
+  
+  constructor(props: SearchBarProps) {
+    super(props)
+    this.animatedCancel = new Animated.Value(props.showCancelButton === 'always' ? 1 : 0)
   }
 
   state = {
-    hasFocus: false,
-    cancelButtonWidth: 0
+    cancelButtonWidth: 0,
+    hasFocus: false
   }
 
   focus = () => {
-    this.input!.focus()
+    this.input?.focus()
   }
 
   blur = () => {
-    this.input!.blur()
+    this.input?.blur()
   }
 
   cancel = () => {
-    if (this.props.showCancel) {
-      UIManager.setLayoutAnimationEnabledExperimental && LayoutAnimation.easeInEaseOut()
-      this.setState({ hasFocus: false })
-    }
-
-    setTimeout(() => {
-      this.blur()
-      this.props.onCancel!()
-    }, 0)
+    this.blur()
+    this.props.onCancel?.()
   }
 
   onFocus = () => {
-    this.props.onFocus!()
-    UIManager.setLayoutAnimationEnabledExperimental && LayoutAnimation.easeInEaseOut()
+    this.props.onFocus?.()
     this.setState({ hasFocus: true })
-  }
-
-  onBlur = () => {
-    this.props.onBlur!()
-    UIManager.setLayoutAnimationEnabledExperimental && LayoutAnimation.easeInEaseOut()
-
-    if (!this.props.showCancel) {
-      this.setState({
-        hasFocus: false,
-      })
+    if (this.props.showCancelButton === 'onfocus') {
+      this.startCancelAnimation(1)
     }
   }
 
-  onChangeText = (text: string) => {
-    this.props.onChangeText!(text)
+  onBlur = () => {
+    this.props.onBlur?.()
+    this.setState({ hasFocus: false })
+    if (this.props.showCancelButton === 'onfocus') {
+      this.startCancelAnimation(0)
+    }
+  }
+
+  startCancelAnimation(toValue: number) {
+    Animated.timing(this.animatedCancel, {
+      toValue: toValue,
+      duration: 300,
+      useNativeDriver: false
+    }).start()
+  }
+
+  UNSAFE_componentWillReceiveProps({ showCancelButton }: SearchBarProps) {
+    if (showCancelButton !== this.props.showCancelButton) {
+      this.startCancelAnimation(
+        showCancelButton === 'always' || showCancelButton === 'onfocus' && this.state.hasFocus ? 1 : 0
+      )
+    }
   }
 
   render() {
@@ -93,49 +91,61 @@ export class SearchBar extends Component<SearchBarProps, SearchBarState> {
       cancelButtonTitle,
       style,
       inputStyle,
-      showCancel,
+      showCancelButton,
+      onChangeText,
       onSubmit,
       ...props
     } = this.props
-    const { hasFocus } = this.state
 
     return (
       <View style={[styles.container, style]}>
-        <SearchInput
-          {...props}
-          ref={input => {
-            this.input = input
-          }}
+        <Animated.View
           style={[
-            styles.input,
-            hasFocus && { marginRight: this.state.cancelButtonWidth }
+            {
+              flex: 1,
+              marginRight: this.animatedCancel.interpolate({
+                inputRange: [0, 1],
+                outputRange: [0, this.state.cancelButtonWidth]
+              })
+            }
           ]}
-          inputStyle={inputStyle}
-          onFocus={this.onFocus}
-          onBlur={this.onBlur}
-          onChangeText={this.onChangeText}
-          onSubmit={onSubmit}
-        />
+        >
+          <SearchInput
+            {...props}
+            ref={(input: NativeMethods) => {
+              this.input = input
+            }}
+            style={{ flex: 0 }}
+            inputStyle={inputStyle}
+            onFocus={this.onFocus}
+            onBlur={this.onBlur}
+            onChangeText={onChangeText}
+            onSubmit={onSubmit}
+          />
+        </Animated.View>
 
-        {showCancel && (
-          <View
+        {showCancelButton !== 'never' && (
+          <Animated.View
             style={[
               styles.cancelButtonContainer,
               {
-                opacity: this.state.cancelButtonWidth === 0 ? 0 : 1,
-                right: hasFocus ? 0 : -this.state.cancelButtonWidth,
+                opacity: this.animatedCancel,
+                right: this.animatedCancel.interpolate({
+                  inputRange: [0, 1],
+                  outputRange: [-this.state.cancelButtonWidth, 0]
+                })
               },
             ]}
-            onLayout={event =>
+            onLayout={event => {
               this.setState({ cancelButtonWidth: event.nativeEvent.layout.width })
-            }
+            }}
           >
             <Button
               variant="primaryTransparent"
               style={styles.cancelButton}
-              title={cancelButtonTitle}
+              title={cancelButtonTitle || t('actions.cancel')}
               onPress={this.cancel} />
-          </View>
+          </Animated.View>
         )}
       </View>
     )
@@ -148,9 +158,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     overflow: 'hidden',
     padding: 10
-  },
-  input: {
-    flex: 1,
   },
   cancelButtonContainer: {
     position: 'absolute',
