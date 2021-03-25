@@ -26,7 +26,7 @@ export const FormattedTextInput = forwardRef(<T, >(props: FormattedTextInputProp
     parse,
     value,
     onChangeText: _onChangeText,
-    onChangeValue = () => {},
+    onChangeValue,
     ...inputProps
   } = props
 
@@ -34,7 +34,7 @@ export const FormattedTextInput = forwardRef(<T, >(props: FormattedTextInputProp
 
   const onChangeText = useCallback((text: string) => {
     if (_onChangeText) _onChangeText(text)
-    onChangeValue(parse(text))
+    onChangeValue?.(parse(text))
   }, [onChangeValue, parse])
 
   return (

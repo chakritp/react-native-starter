@@ -1,4 +1,3 @@
-import noop from 'lodash/noop'
 import React, { useCallback, useMemo, useState } from 'react'
 import { Modal, StyleProp, ViewStyle } from 'react-native'
 import { IconButton } from '../IconButton'
@@ -35,9 +34,9 @@ export const AutocompletePicker = <T, P>({
   clearable,
   disabled,
   hasError: _hasError,
-  onOpen = noop,
-  onLoad = noop,
-  onChange = noop,
+  onOpen,
+  onLoad,
+  onChange,
   ...props
 }: AutocompletePickerProps<T, P>) => {
   const [open, setOpen] = useState(false)
@@ -48,8 +47,8 @@ export const AutocompletePicker = <T, P>({
 
   const handleOpen = useCallback(() => {
     setOpen(true)
-    onLoad('')
-    onOpen()
+    onLoad?.('')
+    onOpen?.()
   }, [onOpen])
 
   const close = () => {
@@ -72,7 +71,7 @@ export const AutocompletePicker = <T, P>({
             mr="xs"
             right={0}
             size="m"
-            onPress={() => onChange(null)} />
+            onPress={() => onChange?.(null)} />
         ) : undefined}
         onPress={handleOpen} />
 
@@ -87,7 +86,7 @@ export const AutocompletePicker = <T, P>({
           refreshControl={refreshControl}
           itemPropsExtractor={itemPropsExtractor}
           items={items}
-          onSelect={item => onChange(itemValueExtractor!(item))}
+          onSelect={item => onChange?.(itemValueExtractor!(item))}
           onDone={close}
           onLoad={onLoad}
           {...props} />

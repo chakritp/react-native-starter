@@ -1,4 +1,3 @@
-import noop from 'lodash/noop'
 import React from 'react'
 import DateTimePicker from '@react-native-community/datetimepicker'
 import { t } from 'helpers/i18n'
@@ -12,8 +11,8 @@ export default function PlatformDateTimePicker({
   clearable = !defaultValue,
   value,
   open,
-  onClose = noop,
-  onChange = noop,
+  onClose,
+  onChange,
   ...props
 }: DateTimePickerBaseProps) {
   return (
@@ -22,7 +21,7 @@ export default function PlatformDateTimePicker({
       onClose={onClose}>
       <DateTimePicker
         value={value || defaultValue!}
-        onChange={(_ev, value) => onChange(value || null)}
+        onChange={(_ev, value) => onChange?.(value || null)}
         {...props} />
       
       <Box flexDirection="row" justifyContent="center">
@@ -34,8 +33,8 @@ export default function PlatformDateTimePicker({
             size="s"
             title={t('actions.clear')} 
             onPress={() => {
-              onChange(null)
-              onClose()
+              onChange?.(null)
+              onClose?.()
             }} />
         )}
         
@@ -46,9 +45,9 @@ export default function PlatformDateTimePicker({
           title={t('actions.done')} 
           onPress={() => {
             if (!value) {
-              onChange(defaultValue!)
+              onChange?.(defaultValue!)
             }
-            onClose()
+            onClose?.()
           }} />
       </Box>
     </ModalInput>

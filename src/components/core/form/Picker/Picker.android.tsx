@@ -11,7 +11,7 @@ export default function PickerAndroid({
   items,
   placeholder,
   selectedItem,
-  onValueChange = () => {},
+  onValueChange,
   ...props
 }: PlatformPickerProps) {
   const styles = useThemedStyles(themedStyles)
@@ -26,7 +26,7 @@ export default function PickerAndroid({
       style={[styles.container, style]}
       dropdownIconColor={theme.colors.inputForegroundRegular}
       items={items}
-      onValueChange={(value, index) => value !== PLACEHOLDER_VALUE && onValueChange(value, index)}
+      onValueChange={(value, index) => value !== PLACEHOLDER_VALUE && onValueChange?.(value, index)}
       {...props} />
   )
 }

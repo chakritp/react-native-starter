@@ -19,7 +19,7 @@ export function PickerButton({
   value,
   disabled,
   icon = 'arrow-drop-down',
-  onPress = () => {},
+  onPress,
   ...props
 }: PickerButtonProps) {
   const styles = useThemedStyles(themedStyles)
@@ -40,7 +40,7 @@ export function PickerButton({
       disabled={disabled}
       onPress={!disabled ? ((ev) => {
         Keyboard.dismiss()
-        onPress(ev)
+        onPress?.(ev)
       }) : undefined}
       icon={icon && renderIcon(icon, { size: 'l', color: 'inputForegroundSoft' })}
       iconPlacement="right"

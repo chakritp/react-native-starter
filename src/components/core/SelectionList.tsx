@@ -1,4 +1,3 @@
-import noop from 'lodash/noop'
 import React, { useRef, useState } from 'react'
 import { StyleProp, ViewStyle } from 'react-native'
 import { ThemeColor } from 'theme'
@@ -52,16 +51,16 @@ export const SelectionList = <T, >({
   keyExtractor,
   itemPropsExtractor,
   onLoadMore,
-  onLoad = noop,
-  onSelect = noop,
-  onDone = noop
+  onLoad,
+  onSelect,
+  onDone
 }: SelectionListProps<T>) => {
   const listRef = useRef<FlatListElement | null>(null)
   const searchBarRef = useRef<any>(null)
   const [query, setQuery] = useState('')
   const done = () => {
     setQuery('')
-    onDone()
+    onDone?.()
   }
 
   return (
@@ -76,7 +75,7 @@ export const SelectionList = <T, >({
           value={query}
           onChangeText={setQuery}
           onSubmit={query => {
-            onLoad(query)
+            onLoad?.(query)
             if (items) {
               listRef.current?.scrollToOffset({ offset: 0 })
             }
@@ -98,11 +97,11 @@ export const SelectionList = <T, >({
             {...itemPropsExtractor!(item)}
             onPress={() => {
               done()
-              onSelect(item)
+              onSelect?.(item)
             }} />
         )}
         onRefresh={refreshControl ? () => {
-          onLoad(query)
+          onLoad?.(query)
         } : undefined}
         onLoadMore={onLoadMore ? () => onLoadMore(query) : undefined}
         onScrollBeginDrag={() => searchBarRef.current?.blur()}

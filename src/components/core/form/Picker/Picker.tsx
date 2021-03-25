@@ -16,7 +16,7 @@ export default function PickerIOS({
   items,
   selectedItem,
   disabled,
-  onValueChange = () => {},
+  onValueChange,
   ...props
 }: PlatformPickerProps) {
   const theme = useTheme<Theme>()
@@ -47,7 +47,7 @@ export default function PickerIOS({
           onValueChange={(value, index) => {
             if (value !== PROMPT_VALUE) {
               close()
-              onValueChange(value, index)
+              onValueChange?.(value, index)
             }
           }}
           style={{ backgroundColor: theme.colors.modalInputBackground }}

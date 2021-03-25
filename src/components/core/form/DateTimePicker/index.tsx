@@ -28,7 +28,7 @@ export const DateTimePicker = ({
   accessibilityLabel = placeholder,
   defaultValue = moment().startOf('day').toDate(),
   value,
-  onChange = () => {},
+  onChange,
   ...props
 }: DateTimePickerProps) => {
   const theme = useTheme<Theme>()

@@ -38,7 +38,7 @@ export function showAlert(options: ShowAlertOptions = {}) {
   let {
     title = '',
     message,
-    onDismiss = () => {},
+    onDismiss,
     defaultAction = { text: t('actions.ok') },
     actions = [{ onPress: onDismiss, ...defaultAction }],
     extraActions = [],

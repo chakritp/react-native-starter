@@ -1,5 +1,4 @@
 import debounce from 'lodash/debounce'
-import noop from 'lodash/noop'
 import React, { forwardRef, useRef, useCallback } from 'react'
 import { TextInput as $TextInput } from 'react-native'
 import { IconButton } from '../IconButton'
@@ -15,8 +14,8 @@ export const AutocompleteInput = forwardRef<typeof $TextInput, TextInputProps>((
   submitDelay,
   value,
   accessibilityLabel,
-  onChangeText = noop,
-  onSubmit = noop,
+  onChangeText,
+  onSubmit,
   ...props
 }: AutocompleteInputProps, ref: any) => {
   const submittedValueRef = useRef('')
@@ -26,7 +25,7 @@ export const AutocompleteInput = forwardRef<typeof $TextInput, TextInputProps>((
 
     if (value !== submittedValueRef.current) {
       submittedValueRef.current = value
-      onSubmit(value)
+      onSubmit?.(value)
     }
   }, [onSubmit])
 
@@ -34,13 +33,13 @@ export const AutocompleteInput = forwardRef<typeof $TextInput, TextInputProps>((
 
   const onChange = useCallback((value: string) => {
     value = value.trimLeft()
-    onChangeText(value)
+    onChangeText?.(value)
     debouncedSubmit(value)
   }, [debouncedSubmit, onChangeText])
 
   const onClear = useCallback(() => {
     debouncedSubmit.cancel()
-    onChangeText('')
+    onChangeText?.('')
     submit('')
   }, [debouncedSubmit, submit, onChangeText])
 

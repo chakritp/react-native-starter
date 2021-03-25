@@ -17,7 +17,7 @@ interface ModalInputProps extends ModalProps {
 
 export function ModalInput({
   children,
-  onClose = () => {},
+  onClose,
   ...props
 }: ModalInputProps) {
   return (
