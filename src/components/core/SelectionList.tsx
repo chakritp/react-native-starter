@@ -1,6 +1,6 @@
 import noop from 'lodash/noop'
 import React, { useRef, useState } from 'react'
-import { View, KeyboardAvoidingView, Platform, StyleProp, ViewStyle } from 'react-native'
+import { View, Platform, StyleProp, ViewStyle } from 'react-native'
 import { ThemeColor } from 'theme'
 import { Container, ContainerProps } from './layout'
 import { InfiniteListProps, InfiniteList } from './InfiniteList'
@@ -86,37 +86,35 @@ export const SelectionList = <T, >({
         />
       )}
 
-      <KeyboardAvoidingView style={{ flex: 1 }} behavior="padding" enabled>
-        <View style={{ flex: 1 }}>
-          <InfiniteList
-            ref={el => {
-              list.current = el
-            }}
-            style={Platform.OS === 'android' && { minHeight: '100%' }}
-            itemSeparator={itemSeparator}
-            loading={onLoadMore ? loading : false}
-            data={items}
-            total={total}
-            canLoadMore={canLoadMore}
-            keyExtractor={keyExtractor}
-            renderItem={({ item }) => (
-              <ListItem
-                {...itemPropsExtractor!(item)}
-                onPress={() => {
-                  done()
-                  onSelect(item)
-                }} />
-            )}
-            onRefresh={refreshControl ? () => {
-              onLoad(query)
-            } : undefined}
-            onLoadMore={onLoadMore ? () => onLoadMore(query) : undefined}
-            onScrollBeginDrag={() => searchBarRef.current?.blur()}
-            emptyText={emptyText} />
+      <View style={{ flex: 1 }}>
+        <InfiniteList
+          ref={el => {
+            list.current = el
+          }}
+          style={Platform.OS === 'android' && { minHeight: '100%' }}
+          itemSeparator={itemSeparator}
+          loading={onLoadMore ? loading : false}
+          data={items}
+          total={total}
+          canLoadMore={canLoadMore}
+          keyExtractor={keyExtractor}
+          renderItem={({ item }) => (
+            <ListItem
+              {...itemPropsExtractor!(item)}
+              onPress={() => {
+                done()
+                onSelect(item)
+              }} />
+          )}
+          onRefresh={refreshControl ? () => {
+            onLoad(query)
+          } : undefined}
+          onLoadMore={onLoadMore ? () => onLoadMore(query) : undefined}
+          onScrollBeginDrag={() => searchBarRef.current?.blur()}
+          emptyText={emptyText} />
 
-          <LoadingOverlay bg={bg} show={!items && loading} />
-        </View>
-      </KeyboardAvoidingView>
+        <LoadingOverlay bg={bg} show={!items && loading} />
+      </View>
     </Container>
   )
 }

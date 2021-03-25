@@ -79,11 +79,10 @@ export const AutocompletePicker = <T, P>({
       <Modal
         animationType="slide"
         visible={open}
-        onRequestClose={close}>    
+        onRequestClose={close}>
         <SelectionList
           safe="top"
           searchBar
-          searchBarAutoFocus
           showCancelButton="always"
           refreshControl={refreshControl}
           itemPropsExtractor={itemPropsExtractor}
