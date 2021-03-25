@@ -1,10 +1,9 @@
 import noop from 'lodash/noop'
 import React, { useRef, useState } from 'react'
-import { View, Platform, StyleProp, ViewStyle } from 'react-native'
+import { StyleProp, ViewStyle } from 'react-native'
 import { ThemeColor } from 'theme'
 import { Container, ContainerProps } from './layout'
 import { InfiniteListProps, InfiniteList } from './InfiniteList'
-import { LoadingOverlay } from './LoadingOverlay'
 import { ListItem, ListItemProps } from './ListItem'
 import { SearchBar, SearchBarProps } from './SearchBar'
 import { FlatListElement } from './lists'
@@ -57,7 +56,7 @@ export const SelectionList = <T, >({
   onSelect = noop,
   onDone = noop
 }: SelectionListProps<T>) => {
-  const list = useRef<FlatListElement | null>(null)
+  const listRef = useRef<FlatListElement | null>(null)
   const searchBarRef = useRef<any>(null)
   const [query, setQuery] = useState('')
   const done = () => {
@@ -79,42 +78,35 @@ export const SelectionList = <T, >({
           onSubmit={query => {
             onLoad(query)
             if (items) {
-              list.current?.scrollToOffset({ offset: 0 })
+              listRef.current?.scrollToOffset({ offset: 0 })
             }
           }}
           onCancel={done}
         />
       )}
 
-      <View style={{ flex: 1 }}>
-        <InfiniteList
-          ref={el => {
-            list.current = el
-          }}
-          style={Platform.OS === 'android' && { minHeight: '100%' }}
-          itemSeparator={itemSeparator}
-          loading={onLoadMore ? loading : false}
-          data={items}
-          total={total}
-          canLoadMore={canLoadMore}
-          keyExtractor={keyExtractor}
-          renderItem={({ item }) => (
-            <ListItem
-              {...itemPropsExtractor!(item)}
-              onPress={() => {
-                done()
-                onSelect(item)
-              }} />
-          )}
-          onRefresh={refreshControl ? () => {
-            onLoad(query)
-          } : undefined}
-          onLoadMore={onLoadMore ? () => onLoadMore(query) : undefined}
-          onScrollBeginDrag={() => searchBarRef.current?.blur()}
-          emptyText={emptyText} />
-
-        <LoadingOverlay bg={bg} show={!items && loading} />
-      </View>
+      <InfiniteList
+        ref={listRef}
+        itemSeparator={itemSeparator}
+        loading={onLoadMore ? loading : false}
+        data={items}
+        total={total}
+        canLoadMore={canLoadMore}
+        keyExtractor={keyExtractor}
+        renderItem={({ item }) => (
+          <ListItem
+            {...itemPropsExtractor!(item)}
+            onPress={() => {
+              done()
+              onSelect(item)
+            }} />
+        )}
+        onRefresh={refreshControl ? () => {
+          onLoad(query)
+        } : undefined}
+        onLoadMore={onLoadMore ? () => onLoadMore(query) : undefined}
+        onScrollBeginDrag={() => searchBarRef.current?.blur()}
+        emptyText={emptyText} />
     </Container>
   )
 }
