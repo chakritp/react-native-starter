@@ -4,8 +4,8 @@ import DeviceInfo from 'react-native-device-info'
 import { Box, Container, Heading, Button } from 'components/core'
 import { scopedTranslate } from 'helpers/i18n'
 
-export const AppUpgradeRequiredNotice = () => {
-  const t = scopedTranslate('screens.appUpdateRequired')
+export const AppUpgradeRequired = () => {
+  const t = scopedTranslate('screens.appUpgradeRequired')
 
   const goToAppStore = () => {
     const url = Platform.select({
@@ -33,7 +33,8 @@ export const AppUpgradeRequiredNotice = () => {
           })} />
 
         <Button
-          style={{ marginTop: 24 }}
+          mt="xl"
+          alignSelf="center"
           title={t('goToAppStore', {
             store: t(`terms.appStore.${Platform.OS}`)
           })}

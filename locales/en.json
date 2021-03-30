@@ -107,7 +107,7 @@
     }
   },
   "screens": {
-    "appUpdateRequired": {
+    "appUpgradeRequired": {
       "title": "App Upgrade Required",
       "subtitle": "We've made some changes that require the latest version of the app.\n\nPlease go to the %{store} and install %{brand} again.",
       "goToAppStore": "Go to the %{store}" 

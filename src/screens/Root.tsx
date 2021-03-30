@@ -1,17 +1,17 @@
 import React, { useCallback, useEffect, useLayoutEffect, useMemo, useState } from 'react'
-import { Modal } from 'react-native'
 import SplashScreen from 'react-native-splash-screen'
 import { NavigationContainer, NavigationState } from '@react-navigation/native'
+import { StackCardStyleInterpolator } from '@react-navigation/stack'
 import { ThemeProvider } from '@shopify/restyle'
 import { observer } from 'mobx-react-lite'
 import { useStore, mergeSnapshot, useMSTFastRefresh } from 'lib/mst'
 import { Toast, PartialNavigationState, createStackNavigator } from 'components/core'
-import { AppUpgradeRequiredNotice } from 'components/AppUpgradeRequiredNotice'
 import { rootNavigation } from 'services'
 import { IRootStoreSnapshotIn } from 'stores'
 import { defaultTheme, createNavigationTheme } from 'theme'
 import { Auth } from './Auth'
 import { Main } from './Main'
+import { AppUpgradeRequired } from './AppUpgradeRequired'
 
 const Stack = createStackNavigator()
 
@@ -85,27 +85,28 @@ export const Root = observer(({ snapshot, initialNavigationState }: RootProps) =
           initialState={initialNavigationState} 
           onStateChange={onNavigationStateChange}
         >
-          <Stack.Navigator>
-            {authenticated ? (
-              <Stack.Screen name="Main" component={Main} options={{
-                headerShown: false
-              }} />
+          <Stack.Navigator screenOptions={{
+            headerShown: false,
+            cardStyleInterpolator: forFade
+          }}>
+            {upgradeRequired ? (
+              <Stack.Screen name="AppUpgradeRequired" component={AppUpgradeRequired} />
+            ) : authenticated ? (
+              <Stack.Screen name="Main" component={Main} />
             ) : (
-              <Stack.Screen name="Auth" component={Auth} options={{
-                headerShown: false
-              }} />
+              <Stack.Screen name="Auth" component={Auth} />
             )}
           </Stack.Navigator>
         </NavigationContainer>
       )}
 
-      {upgradeRequired && (
-        <Modal animationType="slide" visible>
-          <AppUpgradeRequiredNotice />
-        </Modal>
-      )}
-
       <Toast />
     </ThemeProvider>
   )
+})
+
+const forFade: StackCardStyleInterpolator = ({ current }) => ({
+  cardStyle: {
+    opacity: current.progress,
+  },
 })
