@@ -126,6 +126,7 @@ export const Button = ({
       accessible={interactive}
       accessibilityLabel={accessibilityLabel}
       accessibilityRole="button"
+      accessibilityState={{ disabled }}
       {...props}
     >
       <Animated.View style={[

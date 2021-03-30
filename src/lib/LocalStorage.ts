@@ -1,4 +1,4 @@
-import AsyncStorage, { AsyncStorageStatic } from '@react-native-community/async-storage'
+import AsyncStorage, { AsyncStorageStatic } from '@react-native-async-storage/async-storage'
 
 export default class LocalStorage {
   storage: AsyncStorageStatic

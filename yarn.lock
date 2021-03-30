@@ -707,10 +707,10 @@
   dependencies:
     "@hapi/hoek" "^8.3.0"
 
-"@hookform/resolvers@^1.1.1":
-  version "1.3.4"
-  resolved "https://registry.yarnpkg.com/@hookform/resolvers/-/resolvers-1.3.4.tgz#3129243180a5ecc4347b9e66ad693148215c2986"
-  integrity sha512-K56VLSInXNIT/r14pkzRn1FJclqzGOWqpe3Bf0kz2Hf98ZOmRRFh4fhB7F3ofqCQ03CEQQkV44CTg7ql6nEvEg==
+"@hookform/resolvers@^1.3.7":
+  version "1.3.7"
+  resolved "https://registry.yarnpkg.com/@hookform/resolvers/-/resolvers-1.3.7.tgz#7c164d438b788cc625e46c22885ca6edc254350b"
+  integrity sha512-gC06h1hky7gM31UO4Y7DrUQjgZyNIKA3s0/TxXbdeurwhOj07l8Zx8Pomjt93ANOKoZOU2rcHKaZtrEJx1w7tg==
 
 "@istanbuljs/load-nyc-config@^1.0.0":
   version "1.1.0"
@@ -941,10 +941,21 @@
     "@types/yargs" "^15.0.0"
     chalk "^3.0.0"
 
-"@react-native-community/async-storage@^1.12.1":
-  version "1.12.1"
-  resolved "https://registry.yarnpkg.com/@react-native-community/async-storage/-/async-storage-1.12.1.tgz#25f821b4f6b13abe005ad67e47c6f1cee9f27b24"
-  integrity sha512-70WGaH3PKYASi4BThuEEKMkyAgE9k7VytBqmgPRx3MzJx9/MkspwqJGmn3QLCgHLIFUgF1pit2mWICbRJ3T3lg==
+"@jest/types@^26.6.2":
+  version "26.6.2"
+  resolved "https://registry.yarnpkg.com/@jest/types/-/types-26.6.2.tgz#bef5a532030e1d88a2f5a6d933f84e97226ed48e"
+  integrity sha512-fC6QCp7Sc5sX6g8Tvbmj4XUTbyrik0akgRy03yjXbQaBWWNWGE7SGtJk98m0N8nzegD/7SggrUlivxo5ax4KWQ==
+  dependencies:
+    "@types/istanbul-lib-coverage" "^2.0.0"
+    "@types/istanbul-reports" "^3.0.0"
+    "@types/node" "*"
+    "@types/yargs" "^15.0.0"
+    chalk "^4.0.0"
+
+"@react-native-async-storage/async-storage@^1.14.1":
+  version "1.14.1"
+  resolved "https://registry.yarnpkg.com/@react-native-async-storage/async-storage/-/async-storage-1.14.1.tgz#3c2ff2b1a312df3b1c809a60fa88665e50a095b8"
+  integrity sha512-UkLUox2q5DKNYB6IMUzsuwrTJeXGLySvtQlnrqd3fd+96JErCT4X3xD+W1cvQjes0nm0LbaELbwObKc+Tea7wA==
   dependencies:
     deep-assign "^3.0.0"
 
@@ -1182,6 +1193,13 @@
     querystring "^0.2.0"
     strip-ansi "^3.0.0"
 
+"@testing-library/react-native@^7.2.0":
+  version "7.2.0"
+  resolved "https://registry.yarnpkg.com/@testing-library/react-native/-/react-native-7.2.0.tgz#e5ec5b0974e4e5f525f8057563417d1e9f820d96"
+  integrity sha512-rDKzJjAAeGgyoJT0gFQiMsIL09chdWcwZyYx6WZHMgm2c5NDqY52hUuyTkzhqddMYWmSRklFphSg7B2HX+246Q==
+  dependencies:
+    pretty-format "^26.0.1"
+
 "@types/babel__core@^7.1.7":
   version "7.1.12"
   resolved "https://registry.yarnpkg.com/@types/babel__core/-/babel__core-7.1.12.tgz#4d8e9e51eb265552a7e4f1ff2219ab6133bdfb2d"
@@ -1232,7 +1250,7 @@
   dependencies:
     "@types/node" "*"
 
-"@types/hammerjs@^2.0.36", "@types/hammerjs@^2.0.38":
+"@types/hammerjs@^2.0.36":
   version "2.0.38"
   resolved "https://registry.yarnpkg.com/@types/hammerjs/-/hammerjs-2.0.38.tgz#44fdab66fb960fc7002f4a9e54d91545f0bf9448"
   integrity sha512-wuwDzWW1JWh3BZoRftBlKcctjNzR75QFY4/b4zAz7sH1EesA8HBJzke+bF5dxCATNdHHs3X1P5UWanbbUT6chw==
@@ -1272,6 +1290,13 @@
   integrity sha512-P/W9yOX/3oPZSpaYOCQzGqgCQRXn0FFO/V8bWrCQs+wLmvVVxk6CRBXALEvNs9OHIatlnlFokfhuDo2ug01ciw==
   dependencies:
     "@types/istanbul-lib-coverage" "*"
+    "@types/istanbul-lib-report" "*"
+
+"@types/istanbul-reports@^3.0.0":
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/@types/istanbul-reports/-/istanbul-reports-3.0.0.tgz#508b13aa344fa4976234e75dddcc34925737d821"
+  integrity sha512-nwKNbvnwJ2/mndE9ItP/zc2TCzw6uuodnF4EHYWD+gCQDVBuRQL5UzbZD0/ezy1iKsFU2ZQiDqg4M9dN4+wZgA==
+  dependencies:
     "@types/istanbul-lib-report" "*"
 
 "@types/jest@^25.2.3":
@@ -1328,9 +1353,9 @@
     "@types/react" "*"
 
 "@types/react-test-renderer@^16.9.2":
-  version "16.9.4"
-  resolved "https://registry.yarnpkg.com/@types/react-test-renderer/-/react-test-renderer-16.9.4.tgz#377ccf51ea25c656b08aa474fb8194661009b865"
-  integrity sha512-ZcnGz4O5I6C/gA7V8SInBDrUdhUwjc9C4n3hyeciwTc0oGYi0efYxxD0M0ASiN5SZzCBGGwb9tGtIk7270BqsQ==
+  version "16.9.5"
+  resolved "https://registry.yarnpkg.com/@types/react-test-renderer/-/react-test-renderer-16.9.5.tgz#edab67da470f7c3e997f58d55dcfe2643cc30a68"
+  integrity sha512-C4cN7C2uSSGOYelp2XfdtJb5TsCP+QiZ+0Bm4U3ZfUswN8oN9O/l86XO/OvBSFCmWY7w75fzsQvZ50eGkFN34A==
   dependencies:
     "@types/react" "^16"
 
@@ -1343,12 +1368,18 @@
     csstype "^3.0.2"
 
 "@types/react@^16":
-  version "16.14.3"
-  resolved "https://registry.yarnpkg.com/@types/react/-/react-16.14.3.tgz#f5210f5deecf35d8794845549c93c2c3ad63aa9c"
-  integrity sha512-zPrXn03hmPYqh9DznqSFQsoRtrQ4aHgnZDO+hMGvsE/PORvDTdJCHQ6XvJV31ic+0LzF73huPFXUb++W6Kri0Q==
+  version "16.14.5"
+  resolved "https://registry.yarnpkg.com/@types/react/-/react-16.14.5.tgz#2c39b5cadefaf4829818f9219e5e093325979f4d"
+  integrity sha512-YRRv9DNZhaVTVRh9Wmmit7Y0UFhEVqXqCSw3uazRWMxa2x85hWQZ5BN24i7GXZbaclaLXEcodEeIHsjBA8eAMw==
   dependencies:
     "@types/prop-types" "*"
+    "@types/scheduler" "*"
     csstype "^3.0.2"
+
+"@types/scheduler@*":
+  version "0.16.1"
+  resolved "https://registry.yarnpkg.com/@types/scheduler/-/scheduler-0.16.1.tgz#18845205e86ff0038517aab7a18a62a6b9f71275"
+  integrity sha512-EaCxbanVeyxDRTQBkdLb3Bvl/HK7PBK6UJjsSixB0iHKoWxE5uu2Q/DgtpOhPIojN0Zl1whvOd7PoHs2P0s5eA==
 
 "@types/stack-utils@^1.0.1":
   version "1.0.1"
@@ -2152,7 +2183,7 @@ chalk@^3.0.0:
     ansi-styles "^4.1.0"
     supports-color "^7.1.0"
 
-chalk@^4.1.0:
+chalk@^4.0.0, chalk@^4.1.0:
   version "4.1.0"
   resolved "https://registry.yarnpkg.com/chalk/-/chalk-4.1.0.tgz#4e14870a618d9e2edd97dd8345fd9d9dc315646a"
   integrity sha512-qwx12AxXe2Q5xQ43Ac//I6v5aXTipYrSESdOgzrN+9XjgEpyjpKuvSGaN4qE93f7TQTlerQQ8S+EQ0EyDoVL1A==
@@ -4729,6 +4760,11 @@ jest-snapshot@^25.5.1:
     pretty-format "^25.5.0"
     semver "^6.3.0"
 
+jest-transform-stub@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/jest-transform-stub/-/jest-transform-stub-2.0.0.tgz#19018b0851f7568972147a5d60074b55f0225a7d"
+  integrity sha512-lspHaCRx/mBbnm3h4uMMS3R5aZzMwyNpNIJLXj4cEsV0mIUtS4IjYJLSoyjRCtnxb6RIGJ4NL2quZzfIeNhbkg==
+
 jest-util@^24.9.0:
   version "24.9.0"
   resolved "https://registry.yarnpkg.com/jest-util/-/jest-util-24.9.0.tgz#7396814e48536d2e85a37de3e4c431d7cb140162"
@@ -6198,6 +6234,16 @@ pretty-format@^25.1.0, pretty-format@^25.2.0, pretty-format@^25.2.1, pretty-form
     ansi-styles "^4.0.0"
     react-is "^16.12.0"
 
+pretty-format@^26.0.1:
+  version "26.6.2"
+  resolved "https://registry.yarnpkg.com/pretty-format/-/pretty-format-26.6.2.tgz#e35c2705f14cb7fe2fe94fa078345b444120fc93"
+  integrity sha512-7AeGuCYNGmycyQbCqd/3PWH4eOoX/OiCa0uphp57NVTeAGdJGaAliecxwBDHYQCIvrW7aDBZCYeNTP/WX69mkg==
+  dependencies:
+    "@jest/types" "^26.6.2"
+    ansi-regex "^5.0.0"
+    ansi-styles "^4.0.0"
+    react-is "^17.0.1"
+
 process-nextick-args@~2.0.0:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/process-nextick-args/-/process-nextick-args-2.0.1.tgz#7820d9b16120cc55ca9ae7792680ae7dba6d7fe2"
@@ -6394,6 +6440,15 @@ react-devtools-core@^4.6.0:
     shell-quote "^1.6.1"
     ws "^7"
 
+react-dom@^17.0.2:
+  version "17.0.2"
+  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-17.0.2.tgz#ecffb6845e3ad8dbfcdc498f0d0a939736502c23"
+  integrity sha512-s4h96KtLDUQlsENhMn1ar8t2bEa+q/YAtj8pPPdIjPDGBDIVNsrD9aXNWqspUe6AzKCIG0C1HZZLqLV7qpOBGA==
+  dependencies:
+    loose-envify "^1.1.0"
+    object-assign "^4.1.1"
+    scheduler "^0.20.2"
+
 react-element-to-jsx-string@^14.3.1:
   version "14.3.2"
   resolved "https://registry.yarnpkg.com/react-element-to-jsx-string/-/react-element-to-jsx-string-14.3.2.tgz#c0000ed54d1f8b4371731b669613f2d4e0f63d5c"
@@ -6407,10 +6462,10 @@ react-error-overlay@^6.0.8:
   resolved "https://registry.yarnpkg.com/react-error-overlay/-/react-error-overlay-6.0.9.tgz#3c743010c9359608c375ecd6bc76f35d93995b0a"
   integrity sha512-nQTTcUu+ATDbrSD1BZHr5kgSD4oF8OFjxun8uAaL8RwPBacGBNPf/yAuVVdx17N8XNzRDMrZ9XcKZHCjPW+9ew==
 
-react-hook-form@^6.15.4:
-  version "6.15.4"
-  resolved "https://registry.yarnpkg.com/react-hook-form/-/react-hook-form-6.15.4.tgz#328003e1ccc096cd158899ffe7e3b33735a9b024"
-  integrity sha512-K+Sw33DtTMengs8OdqFJI3glzNl1wBzSefD/ksQw/hJf9CnOHQAU6qy82eOrh0IRNt2G53sjr7qnnw1JDjvx1w==
+react-hook-form@^6.15.5:
+  version "6.15.5"
+  resolved "https://registry.yarnpkg.com/react-hook-form/-/react-hook-form-6.15.5.tgz#c2578f9ce6a6df7b33015587d40cd880dc13e2db"
+  integrity sha512-so2jEPYKdVk1olMo+HQ9D9n1hVzaPPFO4wsjgSeZ964R7q7CHsYRbVF0PGBi83FcycA5482WHflasdwLIUVENg==
 
 react-is@^16.12.0, react-is@^16.13.0, react-is@^16.7.0, react-is@^16.8.1, react-is@^16.8.4, react-is@^16.8.6:
   version "16.13.1"
@@ -6432,13 +6487,12 @@ react-native-device-info@^7.2.1:
   resolved "https://registry.yarnpkg.com/react-native-device-info/-/react-native-device-info-7.4.0.tgz#694deddfc6de0ff7268ff463d84693ee980c683c"
   integrity sha512-n5mrUuwUcPXAspLZcAOE+Q087yq+Gfvo8+soZIg1l7rUZUrLNWlFxFgOo/DMPNZA5vcBSv1TSGFFdiAZVHalLw==
 
-react-native-gesture-handler@^1.9.0:
-  version "1.10.0"
-  resolved "https://registry.yarnpkg.com/react-native-gesture-handler/-/react-native-gesture-handler-1.10.0.tgz#74387a9d56bd192e32ca7a4892b1580e37d66ad4"
-  integrity sha512-ezqA2Hyy6pFF7uxRZA8TeRUZs4zMo5DQQjo0UfFVJyAqjMraDkbz+t/uCfyBowrnOyOiNAhPHB85k6vgPvlZ+g==
+react-native-gesture-handler@^1.10.3:
+  version "1.10.3"
+  resolved "https://registry.yarnpkg.com/react-native-gesture-handler/-/react-native-gesture-handler-1.10.3.tgz#942bbf2963bbf49fa79593600ee9d7b5dab3cfc0"
+  integrity sha512-cBGMi1IEsIVMgoox4RvMx7V2r6bNKw0uR1Mu1o7NbuHS6BRSVLq0dP34l2ecnPlC+jpWd3le6Yg1nrdCjby2Mw==
   dependencies:
     "@egjs/hammerjs" "^2.0.17"
-    "@types/hammerjs" "^2.0.38"
     fbjs "^3.0.0"
     hoist-non-react-statics "^3.3.0"
     invariant "^2.2.4"
@@ -6941,6 +6995,14 @@ scheduler@0.19.1, scheduler@^0.19.1:
   version "0.19.1"
   resolved "https://registry.yarnpkg.com/scheduler/-/scheduler-0.19.1.tgz#4f3e2ed2c1a7d65681f4c854fa8c5a1ccb40f196"
   integrity sha512-n/zwRWRYSUj0/3g/otKDRPMh6qv2SYMWNq85IEa8iZyAv8od9zDYpGSnpBEjNgcMNq6Scbu5KfIPxNF72R/2EA==
+  dependencies:
+    loose-envify "^1.1.0"
+    object-assign "^4.1.1"
+
+scheduler@^0.20.2:
+  version "0.20.2"
+  resolved "https://registry.yarnpkg.com/scheduler/-/scheduler-0.20.2.tgz#4baee39436e34aa93b4874bddcbf0fe8b8b50e91"
+  integrity sha512-2eWfGgAqqWFGqtdMmcL5zCMK1U8KlXv8SQFGglL3CEtd0aDVDWgeF/YoCmvln55m5zSk3J/20hTaSBeSObsQDQ==
   dependencies:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
