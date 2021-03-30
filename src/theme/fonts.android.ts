@@ -1,4 +1,7 @@
-import fontFamilies from './fontFamilies'
+const fontFamilies =  {
+  body: 'SFProDisplay',
+  heading: 'SFProDisplay'
+}
 
 export default {
   bodyLight: {

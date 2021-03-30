@@ -1,8 +1,12 @@
 import { TextStyle } from 'react-native'
-import fontFamilies from './fontFamilies'
 
 type Fonts<T> = {
   [P in keyof T]: { fontFamily: string, fontWeight: TextStyle['fontWeight'] }
+}
+
+const fontFamilies =  {
+  body: 'SF Pro Display',
+  heading: 'SF Pro Display'
 }
 
 const fonts = {
