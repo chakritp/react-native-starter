@@ -13,7 +13,7 @@ export class LocalStorageSyncManager {
   async loadStoredState(node: IStateTreeNode) {
     const kvPairs = await this.localStorage.multiGet(Object.keys(this.schema))
 
-    if (__DEV__) {
+    if (__DEV__ && !global.test) {
       console.log(`Applying stored state:\n${JSON.stringify(mapKvPairs(kvPairs), null, 2)}`)
     }
 

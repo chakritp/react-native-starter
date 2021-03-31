@@ -1,11 +1,12 @@
 import React, { PropsWithChildren, useEffect, useMemo, useRef } from 'react'
-import { mockApi, mockLocalStorage } from 'mocks'
+import { MockLocalStorageWrapper, apiMocker, mockLocalStorage } from 'mocks'
 import { Root as $Root, RootProps as $RootProps } from 'screens/Root'
+import { factory } from 'factories'
 
 export * from './useMockCollection'
 
 let mocks: {
-  localStorage: ReturnType<typeof mockLocalStorage>
+  localStorage: MockLocalStorageWrapper
 } | undefined
 let useMocksCount = 0
 
@@ -29,7 +30,7 @@ export function useMocks(callback?: (mocks: any) => void) {
     return () => {
       if (--useMocksCount === 0) {
         for (const mock of Object.values(mocks!)) {
-          mock.unmock()
+          mock.restore()
         }
         mocks = undefined
       }
@@ -39,10 +40,10 @@ export function useMocks(callback?: (mocks: any) => void) {
   return mocks
 }
 
-export function useMockApi(callback: (params: {
-  success: typeof mockApi.success,
-  error: typeof mockApi.error,
-  resolve: typeof mockApi.resolve
+export function useApiMocker(callback: (params: {
+  success: typeof apiMocker.success,
+  error: typeof apiMocker.error,
+  resolve: typeof apiMocker.resolve
 }) => void) {
   const spies: any[] = useMemo(() => ([]), [])
   
@@ -53,17 +54,17 @@ export function useMockApi(callback: (params: {
 
   callback({
     success(...args) {
-      const spy = mockApi.success(...args)
+      const spy = apiMocker.success(...args)
       spies.push(spy)
       return spy
     },
     error(...args) {
-      const spy = mockApi.error(...args)
+      const spy = apiMocker.error(...args)
       spies.push(spy)
       return spy
     },
     resolve(...args) {
-      const spy = mockApi.resolve(...args)
+      const spy = apiMocker.resolve(...args)
       spies.push(spy)
       return spy
     }
@@ -100,8 +101,10 @@ export function createSignedInDecorator() {
 
 export const SignedInDecorator = (props: PropsWithChildren<any>) => {
   useMocks(({ localStorage }) => {
-    localStorage.set('/authStore/deviceRegistered', true)
-    localStorage.set('/authStore/accessToken', 'test-token')
+    localStorage
+      .set('/authStore/deviceRegistered', true)
+      .set('/authStore/accessToken', 'test-token')
+      .set('/authStore/user', factory.build('api.user'))
   })
   return props.children
 }

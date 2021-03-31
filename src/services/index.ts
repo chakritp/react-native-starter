@@ -1,7 +1,7 @@
 import LocalStorage from 'lib/LocalStorage'
-import RootNavigation from './RootNavigation'
+import RootNavigation from 'lib/RootNavigation'
 
-export * from './api'
+export { default as api } from './api'
 
 export const localStorage = new LocalStorage()
 

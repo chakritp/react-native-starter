@@ -7,9 +7,7 @@ export function mockLocalStorage() {
   const mockStorage = new MockAsyncStorage()
   localStorage.storage = mockStorage as any
 
-  mockStorage.store.set('_version', '9999999')
-
-  return {
+  const wrapper = {
     set(key: string, value: any) {
       mockStorage.store.set(key, JSON.stringify(value))
       return this
@@ -21,8 +19,17 @@ export function mockLocalStorage() {
       }
       return this.set(key, merge(JSON.parse(json), value))
     },
-    unmock() {
+    reset() {
+      mockStorage.store.clear()
+      mockStorage.store.set('_version', '9999999')
+      return this
+    },
+    restore() {
       localStorage.storage = storage
     }
   }
+
+  return wrapper.reset()
 }
+
+export type MockLocalStorageWrapper = ReturnType<typeof mockLocalStorage>

@@ -19,7 +19,7 @@ const client = new ApiClient({
   }
 })
 
-export const api = {
+export default {
   client,
   auth: {
     requestCode: (data: object) => client.post('/auth/code', data),
@@ -35,7 +35,7 @@ export const api = {
   }
 }
 
-if (__DEV__) {
+if (__DEV__ && !global.test) {
   client
     .on('success', ({ url, method, status, data, body }) => {
       console.log(

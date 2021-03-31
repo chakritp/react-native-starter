@@ -1,2 +1,2 @@
-export * from './mockApi'
+export * from './apiMocker'
 export * from './mockLocalStorage'

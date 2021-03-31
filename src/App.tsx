@@ -1,15 +1,17 @@
 import React from 'react'
-import { SafeAreaProvider } from 'react-native-safe-area-context'
+import { SafeAreaProvider, initialWindowMetrics } from 'react-native-safe-area-context'
 import { StoreProvider } from 'lib/mst'
 import { Root } from 'screens/Root'
-import { RootStore } from 'stores'
+import { IRootStore, RootStore } from 'stores'
 
-const rootStore = RootStore.create()
+export interface AppProps {
+  rootStore?: IRootStore
+}
 
-export const App = () => {
+export const App = ({ rootStore = RootStore.create() }: AppProps) => {
   return (
     <StoreProvider value={rootStore}>
-      <SafeAreaProvider>
+      <SafeAreaProvider initialMetrics={initialWindowMetrics}>
         <Root />
       </SafeAreaProvider>
     </StoreProvider>

@@ -1,5 +1,5 @@
 import React, { ReactNode, useEffect, useRef } from 'react'
-import { useMockApi } from 'cosmos/helpers'
+import { useApiMocker } from 'cosmos/helpers'
 import { StoreProvider } from 'lib/mst'
 import { factory } from 'factories'
 import { api } from 'services'
@@ -18,7 +18,7 @@ export default (props: { children: ReactNode }) => {
     }
   }, [])
 
-  useMockApi(({ success }) => {
+  useApiMocker(({ success }) => {
     success(api.auth, 'requestCode', {
       data: { token: 'xxx' }
     })

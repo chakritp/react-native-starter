@@ -3,7 +3,7 @@ import { ApiResponseBody, ApiServerError } from 'lib/api'
 import { api } from 'services'
 import { FunctionPropertyNames } from 'utils/types'
 
-interface MockApiOptions {
+interface ApiMockerOptions {
   delay?: number
 }
 
@@ -19,12 +19,12 @@ interface MockApiErrorResult {
 type MockApiSuccessResultParam = MockApiSuccessResult | ((...args: any[]) => MockApiSuccessResult)
 type MockApiErrorResultParam = MockApiErrorResult | ((...args: any[]) => MockApiErrorResult)
 
-export const mockApi = {
+export const apiMocker = {
   success<T extends {}, M extends FunctionPropertyNames<T>>(
     apiObj: T,
     methodName: M,
     result?: MockApiSuccessResultParam,
-    options?: MockApiOptions
+    options?: ApiMockerOptions
   ) {
     return jest.spyOn(apiObj, methodName).mockImplementation((...args) => (
       mockResponse('success', args, result, options)
@@ -35,7 +35,7 @@ export const mockApi = {
     apiObj: T,
     methodName: M,
     result?: MockApiErrorResultParam,
-    options?: MockApiOptions
+    options?: ApiMockerOptions
   ) {
     return jest.spyOn(apiObj, methodName).mockImplementation((...args) => (
       mockResponse('error', args, result, options)
@@ -75,7 +75,7 @@ async function mockResponse(
   type: string,
   args: any[],
   result?: MockApiSuccessResultParam | MockApiErrorResultParam,
-  options: MockApiOptions = {}
+  options: ApiMockerOptions = {}
 ) {
   const { delay = 300 } = options
   
@@ -83,7 +83,9 @@ async function mockResponse(
     result = result(...args)
   }
   
-  await new Promise(resolve => setTimeout(resolve, delay))
+  if (!global.test) {
+    await new Promise(resolve => setTimeout(resolve, delay))
+  }
   
   if (type === 'success') {
     return { status: 200, ...result }

@@ -1,3 +1,9 @@
-import { AppUpgradeRequired } from 'screens/AppUpgradeRequired'
+import { createRoot } from 'cosmos/helpers'
 
-export default AppUpgradeRequired
+export default createRoot(() => ({
+  snapshot: {
+    appStore: {
+      upgradeRequired: true
+    }
+  }
+}))

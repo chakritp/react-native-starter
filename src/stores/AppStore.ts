@@ -9,42 +9,8 @@ export const AppStore = types
     navigationReady: types.optional(types.boolean, false),
     upgradeRequired: types.optional(types.boolean, false)
   })
-  .actions(self => {
-    const initialize = () => {
-      AppState.addEventListener('change', handleAppStateChange)
-
-      const urlListener = ({ url } : { url: string }) => handleDeepLink(url)
-      Linking.addEventListener('url', urlListener)
-
-      api.client.on('error', handleApiError)
-
-      return () => {
-        AppState.removeEventListener('change', handleAppStateChange)
-        Linking.removeEventListener('url', urlListener)
-        api.client.off('error', handleApiError)
-      }
-    }
-    
-    const start = flow(function*() {
-      const { authStore } = getParent<IRootStore>(self)
-      const initialUrl = yield Linking.getInitialURL()
-
-      if (initialUrl) {
-        yield waitForActiveAppState()
-        self.navigationReady = true
-        handleDeepLink(initialUrl)
-      } else {
-        self.navigationReady = true
-      }
-      
-      if (authStore.authenticated) {
-        authStore.loadUser()
-      }
-    })
-
-    const setUpgradeRequired = (value: boolean) => {
-      self.upgradeRequired = value
-    }
+  .actions(_self => {
+    const self = _self as IAppStore
 
     const handleDeepLink = async (url: string) => {
       // Workaround for an error that may occur on iOS devices when
@@ -91,14 +57,46 @@ export const AppStore = types
       if (error.status == 401 && authStore.authenticated) {
         authStore.revokeAuth()
       } else if (error.code === 'app_upgrade_required') {
-        setUpgradeRequired(true)
+        self.setUpgradeRequired(true)
       }
     }
-    
+
     return {
-      initialize,
-      start,
-      setUpgradeRequired
+      initialize() {
+        AppState.addEventListener('change', handleAppStateChange)
+
+        const urlListener = ({ url } : { url: string }) => handleDeepLink(url)
+        Linking.addEventListener('url', urlListener)
+
+        api.client.on('error', handleApiError)
+
+        return () => {
+          AppState.removeEventListener('change', handleAppStateChange)
+          Linking.removeEventListener('url', urlListener)
+          api.client.off('error', handleApiError)
+        }
+      },
+      
+      start: flow(function*() {
+        const { authStore } = getParent<IRootStore>(self)
+        const initialUrl = yield Linking.getInitialURL()
+
+        if (initialUrl) {
+          yield waitForActiveAppState()
+          self.navigationReady = true
+          handleDeepLink(initialUrl)
+        } else {
+          self.navigationReady = true
+        }
+        
+        if (authStore.authenticated) {
+          authStore.loadUser()
+        }
+      }),
+
+      setUpgradeRequired(value: boolean) {
+        self.upgradeRequired = value
+      }
     }
   })
 

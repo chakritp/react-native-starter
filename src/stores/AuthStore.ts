@@ -73,15 +73,11 @@ export const AuthStore = types
       }),
 
       loadUser: () => runTask(self.loadUserTask, function*() {
-        try {
-          const { data } = yield api.users.getProfile()
-          if (self.user) {
-            Object.assign(self.user, data)
-          } else {
-            self.user = AuthUser.create(data)
-          }
-        } catch (error) {
-          console.log('error', error)
+        const { data } = yield api.users.getProfile()
+        if (self.user) {
+          Object.assign(self.user, data)
+        } else {
+          self.user = AuthUser.create(data)
         }
       }),
 

@@ -29,7 +29,7 @@ export const Root = observer(({ snapshot, initialNavigationState }: RootProps) =
   if (__DEV__) {
     useMSTFastRefresh(rootStore)
   }
-  
+
   const {
     appStore: { navigationReady, upgradeRequired, start },
     authStore: { authenticated }
@@ -39,8 +39,8 @@ export const Root = observer(({ snapshot, initialNavigationState }: RootProps) =
     let dispose
 
     const init = async () => {
-      console.log('\n\n\n\nInitializing root store...\n')
-
+      if (__DEV__ && !global.test) console.log('\n\n\n\nInitializing root store...\n')
+      
       if (!initialized) {
         try {
           await rootStore.loadStoredState()
@@ -107,6 +107,6 @@ export const Root = observer(({ snapshot, initialNavigationState }: RootProps) =
 
 const forFade: StackCardStyleInterpolator = ({ current }) => ({
   cardStyle: {
-    opacity: current.progress,
-  },
+    opacity: current.progress
+  }
 })
