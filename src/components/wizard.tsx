@@ -9,7 +9,7 @@ import {
   Text,
   Button,
   ButtonProps,
-  UseFormMethods
+  useFormContext
 } from 'components/core'
 import { t } from 'helpers/i18n'
 
@@ -57,19 +57,18 @@ export const SectionHeader = ({ title, ...props }: SectionHeaderProps) => (
   </Box>
 )
 
-export interface SubmitButtonProps extends ButtonProps {
-  form?: UseFormMethods
+export const SubmitButton = ({ title = t('actions.submit'), ...props }: ButtonProps) => {
+  const form = useFormContext()
+  return (
+    <Button
+      mt="l"
+      mb="xl"
+      title={title}
+      loading={form && form.formState.isSubmitting}
+      onPress={form && form.submit}
+      {...props} />
+  )
 }
-
-export const SubmitButton = ({ form, title = t('actions.submit'), ...props }: SubmitButtonProps) => (
-  <Button
-    mt="l"
-    mb="xl"
-    title={title}
-    loading={form && form.formState.isSubmitting}
-    onPress={form && form.submit}
-    {...props} />
-)
 
 export const SecondaryButton = (props: ButtonProps) => (
   <Button

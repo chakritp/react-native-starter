@@ -36,7 +36,7 @@ export const Root = observer(({ snapshot, initialNavigationState }: RootProps) =
   } = rootStore
 
   useLayoutEffect(() => {
-    let dispose
+    let dispose: () => void
 
     const init = async () => {
       if (__DEV__ && !global.test) console.log('\n\n\n\nInitializing root store...\n')
@@ -59,8 +59,7 @@ export const Root = observer(({ snapshot, initialNavigationState }: RootProps) =
     }
 
     init()
-
-    return dispose
+    return () => dispose?.()
   }, [rootStore])
 
   useEffect(() => {

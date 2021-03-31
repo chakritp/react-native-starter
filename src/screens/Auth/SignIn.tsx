@@ -80,7 +80,7 @@ export const SignIn = observer(({ navigation }: AuthScreenProps<'SignIn'>) => {
 
         <SubmitButton
           title={form.translate('actions.next')}
-          form={form} />
+          disabled={!form.formState.isDirty} />
       </FormProvider>
     </WizardContainer>
   )

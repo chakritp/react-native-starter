@@ -12,6 +12,12 @@ export const AppStore = types
   .actions(_self => {
     const self = _self as IAppStore
 
+    const handleAppStateChange = (nextAppState: AppStateStatus) => {
+      if (nextAppState === 'active') {
+        // ...
+      }
+    }
+
     const handleDeepLink = async (url: string) => {
       // Workaround for an error that may occur on iOS devices when
       // a network request is attempted while handling a universal link
@@ -43,12 +49,6 @@ export const AppStore = types
         }
       } catch (error) {
         console.warn(error)
-      }
-    }
-
-    const handleAppStateChange = (nextAppState: AppStateStatus) => {
-      if (nextAppState === 'active') {
-        // ...
       }
     }
 
