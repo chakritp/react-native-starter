@@ -1,4 +1,3 @@
-
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef } from 'react'
 import { Keyboard } from 'react-native'
 import {
@@ -15,10 +14,12 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import { AnyObjectSchema } from 'yup'
 import i18n from 'i18n-js'
 import { ApiNetworkError, ApiServerError } from 'lib/api'
-import { FieldError } from 'lib/form'
+import { FieldError, configureYup } from 'lib/form'
 import { translateForm, fieldErrorMessage } from 'helpers/i18n'
 import { UseErrorAlertOptions, useBackHandler, useErrorAlert } from '../hooks'
 import { Toast } from '../Toast'
+
+configureYup()
 
 export interface UseFormOptions<TFieldValues extends FieldValues = FieldValues, TContext extends object = object> extends $UseFormOptions<TFieldValues, TContext> {
   name?: string
@@ -116,9 +117,9 @@ export function useForm<TFieldValues extends FieldValues = FieldValues, TContext
   }, [])
 
   useEffect(() => {
-    if (submitCountRef.current !== form.formState.submitCount) {
+    if (submitCountRef.current !== form.formState.submitCount && _showValidationError) {
       const { errors } = form
-      if (errors && _showValidationError) {
+      if (errors) {
         const field = Object.keys(errors)[0]
         if (field && errors[field]) {
           _showValidationError(errors[field] as FieldError, field)

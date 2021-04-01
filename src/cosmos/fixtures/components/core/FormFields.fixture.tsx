@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useRef } from 'react'
 import { KeyboardAvoidingView, NativeMethods } from 'react-native'
 import Chance from 'chance'
 import * as yup from 'yup'
+import { configureYup } from 'lib/form'
 import { useValue } from 'react-cosmos/fixture'
 import {
   Text,
@@ -21,6 +22,7 @@ import {
   useForm
 } from 'components/core'
 import { useMockCollection } from 'cosmos/helpers'
+configureYup()
 
 const chance = new Chance(1)
 

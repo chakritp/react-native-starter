@@ -32,7 +32,7 @@ export const Toast = ({ offset = 0 }) => {
   const controller = useMemo<ToastController>(() => ({
     show(config: ToastConfig) {
       setConfig(config)
-      if (dismissTimer.current !== undefined) {
+      if (dismissTimer.current) {
         clearTimeout(dismissTimer.current)
       }
       dismissCallback.current = config.onHide
@@ -42,7 +42,7 @@ export const Toast = ({ offset = 0 }) => {
       if (dismissCallback.current) dismissCallback.current()
       dismissCallback.current = null
       setConfig(null)
-      if (dismissTimer.current !== undefined) {
+      if (dismissTimer.current) {
         clearTimeout(dismissTimer.current)
       }
     }
@@ -68,7 +68,12 @@ export const Toast = ({ offset = 0 }) => {
       nextKeyboardOffsetRef.current = 0
     }))
 
-    return () => subscriptions.forEach(s => s.remove ? s.remove() : s())
+    return () => {
+      subscriptions.forEach(s => s.remove ? s.remove() : s())
+      if (dismissTimer.current) {
+        clearTimeout(dismissTimer.current)
+      }
+    }
   }, [])
 
   useEffect(() => {

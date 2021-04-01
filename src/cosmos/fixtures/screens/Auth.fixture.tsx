@@ -1,12 +1,10 @@
 import { PartialNavigationState } from 'components/core'
-import { createRoot } from 'cosmos/helpers'
+import { createRoot, Root } from 'cosmos/helpers'
 
 export default {
   Landing: createRoot(),
   SignIn: createRoot(() => ({
-    snapshot: {
-      authStore: { deviceRegistered: true }
-    }
+    navState: getNavState({ routes: [{ name: 'SignIn' }] })
   })),
   Verify: createRoot(() => ({
     snapshot: {
@@ -15,7 +13,7 @@ export default {
         verificationToken: 'test-token'
       }
     },
-    navState: getNavState({ index: 1, routes: [{ name: 'Verify' }] })
+    navState: getNavState({ index: 1, routes: [{ name: 'SignIn' }, { name: 'Verify' }] })
   })),
 }
 

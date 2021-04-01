@@ -1,48 +1,11 @@
 import React from 'react'
-import { AppState, Linking } from 'react-native'
 import 'abortcontroller-polyfill/dist/abortcontroller-polyfill-only'
 import mockAsyncStorage from '@react-native-async-storage/async-storage/jest/async-storage-mock'
 import mockRNDeviceInfo from 'react-native-device-info/jest/react-native-device-info-mock'
 
-//-- React Native --//
-
 // Step 2 of fix for "You called act(async () => ...) without await" error:
 // https://github.com/callstack/react-native-testing-library/issues/379#issuecomment-714341282
-// @ts-ignore
 global.Promise = global.originalPromise
-
-// AppState
-;(() => {
-  let listeners = []
-  AppState.currentState = 'active'
-  AppState.addEventListener = (type, handler) => {
-    listeners.push({ type, handler })
-  }
-  AppState.removeEventListener = (type, handler) => {
-    listeners = listeners.filter(l => l.type === type && l.handler === handler)
-  }
-  AppState.emit = (type, props) => {
-    listeners.filter(l => l.type === type).forEach(l => l.handler(props))
-  }
-  AppState.change = (state) => {
-    AppState.currentState = state
-    AppState.emit('change', state)
-  }
-})()
-
-// Linking
-;(() => {
-  let listeners = []
-  Linking.addEventListener = (type, handler) => {
-    listeners.push({ type, handler })
-  }
-  Linking.removeEventListener = (type, handler) => {
-    listeners = listeners.filter(l => l.type === type && l.handler === handler)
-  }
-  Linking.emit = (type, props) => {
-    listeners.filter(l => l.type === type).forEach(l => l.handler(props))
-  }
-})()
 
 //-- Libraries --//
 

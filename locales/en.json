@@ -37,7 +37,6 @@
         "default": "Request could not be completed at this time.",
         "too_many_requests": "Request limit reached",
         "unauthorized_device": "Your device is unauthorized.",
-        "user_already_exists": "A user already exists with this phone number.",
         "verification_token_expired": "Verification code expired. Please request a new code.",
         "verfication_code_invalid": "Verification code is incorrect. Please try again.",
         "0": "Looks like you aren't online. Please check your network settings.",

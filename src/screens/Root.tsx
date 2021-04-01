@@ -17,10 +17,10 @@ const Stack = createStackNavigator()
 
 export interface RootProps {
   snapshot?: IRootStoreSnapshotIn,
-  initialNavigationState?: PartialNavigationState
+  initialNavState?: PartialNavigationState
 }
 
-export const Root = observer(({ snapshot, initialNavigationState }: RootProps) => {
+export const Root = observer(({ snapshot, initialNavState }: RootProps) => {
   const theme = defaultTheme
   const navigationTheme = useMemo(() => createNavigationTheme(theme), [theme])
   const [initialized, setInitialized] = useState(false)
@@ -81,7 +81,7 @@ export const Root = observer(({ snapshot, initialNavigationState }: RootProps) =
         <NavigationContainer
           ref={nav => rootNavigation.setNavigator(nav)} 
           theme={navigationTheme}
-          initialState={initialNavigationState} 
+          initialState={initialNavState} 
           onStateChange={onNavigationStateChange}
         >
           <Stack.Navigator screenOptions={{

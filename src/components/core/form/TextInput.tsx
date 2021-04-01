@@ -92,8 +92,8 @@ export const TextInput = forwardRef<NativeMethods, TextInputProps>(({
           styles.input,
           embedded && styles.embedded,
           center && { textAlign: 'center' },
-          leftIcon && !center ? { paddingLeft: (embedded ? theme.sizes.m - theme.spacing.m : theme.sizes.m) - 5 } : null,
-          rightIcon && !center ? { paddingRight: (embedded ? theme.sizes.m - theme.spacing.m : theme.sizes.m) - 5 } : null,
+          leftIcon ? { [center ? 'paddingHorizontal' : 'paddingLeft']: (embedded ? theme.sizes.m - theme.spacing.m : theme.sizes.m) - 5 } : null,
+          rightIcon ? { [center ? 'paddingHorizontal' : 'paddingRight']: (embedded ? theme.sizes.m - theme.spacing.m : theme.sizes.m) - 5 } : null,
           disabled && styles.disabled,
           inputStyle
         ]}

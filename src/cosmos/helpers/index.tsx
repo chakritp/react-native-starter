@@ -47,10 +47,14 @@ export function useApiMocker(callback: (params: {
 }) => void) {
   const spies: any[] = useMemo(() => ([]), [])
   
-  for (const spy of spies) {
-    spy.mockRestore()
+  const reset = () => {
+    for (const spy of spies) {
+      spy.mockRestore()
+    }
+    spies.length = 0
   }
-  spies.length = 0
+
+  reset()
 
   callback({
     success(...args) {
@@ -69,11 +73,13 @@ export function useApiMocker(callback: (params: {
       return spy
     }
   })
+
+  useEffect(() => reset, [])
 }
 
 interface RootProps {
   snapshot?: $RootProps['snapshot']
-  navState?: $RootProps['initialNavigationState']
+  navState?: $RootProps['initialNavState']
 }
 
 export function createRoot(propsCallback?: () => RootProps) {
@@ -89,7 +95,7 @@ export function createRoot(propsCallback?: () => RootProps) {
 
 export const Root = ({ snapshot, navState } : RootProps) => {
   return (
-    <$Root snapshot={snapshot} initialNavigationState={navState} />
+    <$Root snapshot={snapshot} initialNavState={navState} />
   )
 }
 
