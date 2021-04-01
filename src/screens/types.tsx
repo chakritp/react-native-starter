@@ -1,5 +1,6 @@
-import { CompositeNavigationProp, NavigatorScreenParams } from '@react-navigation/native'
-import { StackScreenProps, StackNavigationProp } from '@react-navigation/stack'
+// import { CompositeNavigationProp, NavigatorScreenParams } from '@react-navigation/native'
+// import { StackNavigationProp } from '@react-navigation/stack'
+import { StackScreenProps } from '@react-navigation/stack'
 
 export type MainTabs = {
   Home: undefined

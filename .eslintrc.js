@@ -2,11 +2,11 @@ module.exports = {
   root: true,
   extends: '@react-native-community',
   ignorePatterns: [
-    'cosmos.userdeps.js',
-    'jest.setup.js'
+    'cosmos.userdeps.js'
   ],
   globals: {
-    AbortController: 'readonly'
+    AbortController: 'readonly',
+    jest: 'readonly'
   },
   rules: {
     'comma-dangle': 0,

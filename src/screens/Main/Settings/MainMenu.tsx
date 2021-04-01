@@ -8,9 +8,10 @@ import { scopedTranslate } from 'helpers/i18n'
 import { SettingsScreenProps } from 'screens/types'
 import { SettingsContainer } from './common'
 
-export const MainMenu = observer(({ navigation: { navigate } }: SettingsScreenProps<'MainMenu'>) => {
+export const MainMenu = observer(({ navigation: { navigate: _ } }: SettingsScreenProps<'MainMenu'>) => {
   const { authStore: { signOut } } = useStore()
   const t = scopedTranslate('screens.settings')
+  
 
   return (
     <SettingsContainer>

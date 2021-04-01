@@ -13,7 +13,7 @@ jest.mock('jest-mock', () => jest)
 
 jest.mock('@react-native-async-storage/async-storage', () => mockAsyncStorage)
 
-jest.mock('react-native-device-info', () => mockRNDeviceInfo);
+jest.mock('react-native-device-info', () => mockRNDeviceInfo)
 
 jest.mock('react-native-localize', () => ({
   findBestAvailableLanguage: jest.fn(),

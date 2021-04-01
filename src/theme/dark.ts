@@ -7,5 +7,6 @@ export default {
   keyboardAppearance: 'dark',
   colors: {
     ...defaultTheme.colors,
+    mainBackgroundRegular: palette.black
   }
 }
