@@ -27,7 +27,7 @@ const schema = yup.object().shape({
 })
 
 export const SignIn = observer(({ navigation }: AuthScreenProps<'SignIn'>) => {
-  const { authStore: { email, requestCode } } = useStore()
+  const { authStore: { requestCode } } = useStore()
   const t = scopedTranslate('screens.signIn')
   const agreeTerms = t('agreeTerms')
 
@@ -35,7 +35,7 @@ export const SignIn = observer(({ navigation }: AuthScreenProps<'SignIn'>) => {
     name: 'signIn',
     schema,
     defaultValues: {
-      email: email || ''
+      email: ''
     },
     onSubmit: requestCode,
     onSuccess: () => navigation.navigate('Verify')

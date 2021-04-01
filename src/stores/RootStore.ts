@@ -8,6 +8,7 @@ import localStorageMigrations from './localStorageMigrations'
 
 const LOCAL_STORAGE_SCHEMA = {
   '/authStore/deviceRegistered': true,
+  '/authStore/verificationToken': true,
   '/authStore/accessToken': true,
   '/authStore/user': true
 }

@@ -35,7 +35,6 @@
     "api": {
       "common": {
         "default": "Request could not be completed at this time.",
-        "check_scan_failed": "We were unable to read your check. Please take new photos.",
         "too_many_requests": "Request limit reached",
         "unauthorized_device": "Your device is unauthorized.",
         "user_already_exists": "A user already exists with this phone number.",
@@ -49,8 +48,6 @@
         "500": "An unexpected error occurred."
       }
     },
-    "noResults": "No Results",
-    "requestFailed": "Request could not be completed at this time.",
     "validation": {
       "default": "%{label} is invalid",
       "mixed": {
@@ -76,7 +73,8 @@
         "min": "%{label} must be later than %{min}",
         "max": "%{label} must be at earlier than %{max}"
       }
-    }
+    },
+    "noResults": "No Results"
   },
   "forms": {
     "common": {

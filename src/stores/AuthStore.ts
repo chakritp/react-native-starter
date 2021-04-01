@@ -7,9 +7,9 @@ import { getDeviceKey } from 'utils/device'
 export const AuthStore = types
   .model({
     deviceRegistered: types.optional(types.boolean, false),
-    email: types.maybe(types.string),
     verificationToken: types.maybe(types.string),
     accessToken: types.maybe(types.string),
+    email: types.maybe(types.string),
     user: types.maybe(AuthUser),
     requestCodeTask: types.optional(AsyncTask, {}),
     signInTask: types.optional(AsyncTask, {}),
@@ -61,12 +61,16 @@ export const AuthStore = types
       }),
 
       signIn: (params: { code: string }) => runTask(self.signInTask, function*() {
+        if (!self.verificationToken) {
+          throw new Error('Verification token missing')
+        }
         yield self.registerDevice()
         const { data } = yield api.auth.signIn({
           email: self.email,
           token: self.verificationToken,
           ...params
         })
+        self.verificationToken = undefined
         self.accessToken = data.accessToken
         self.user = AuthUser.create(data.user)
         api.client.authToken = data.accessToken

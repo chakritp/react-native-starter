@@ -27,8 +27,8 @@ describe('Auth', () => {
         user: factory.build('api.user')
       }
     })
+
     const q = render(<App />)
-    
     const startBtn = await q.findByLabelText('Get Started')
     fireEvent.press(startBtn)
     
@@ -41,13 +41,36 @@ describe('Auth', () => {
     await waitFor(() => expect(requestCodeSpy).toHaveBeenCalledWith({ email: 'tester@iterate.co' }))
     
     expect(getCurrentRouteName()).toBe('Verify')
+    expect(q.queryByText('tester@iterate.co')).toBeTruthy()
+    fireEvent.press(q.getByLabelText('Resend email'))
+    await waitFor(() => expect(requestCodeSpy).toHaveBeenCalledWith({ email: 'tester@iterate.co' }))
+    AppState.currentState = 'inactive'
     Linking.emit('url', { url: 'https://typescriptstarter.com/auth/verify?email=tester@iterate.co&code=123456' })
     // @ts-ignore
-    AppState.emit('change', 'active')
+    AppState.change('active')
     await waitFor(() => (
       expect(signInSpy).toHaveBeenCalledWith({ email: 'tester@iterate.co', token: 'test-token', code: '123456' })
     ))
 
+    expect(getCurrentRouteName()).toBe('Home')
+  })
+
+  it('signs in when app is launched with initial verify url', async () => {
+    localStorageMock.set('/authStore/verificationToken', 'test-token')
+    const signInSpy = apiMocker.success(api.auth, 'signIn', {
+      data: {
+        accessToken: 'test-token',
+        user: factory.build('api.user')
+      }
+    })
+    const getInitialURLSpy = jest.spyOn(Linking, 'getInitialURL')
+      .mockResolvedValue('https://typescriptstarter.com/auth/verify?email=tester@iterate.co&code=123456')
+
+    render(<App />)
+    await waitFor(() => expect(getInitialURLSpy).toHaveBeenCalled())
+    // @ts-ignore
+    AppState.change('active')
+    expect(signInSpy).toHaveBeenCalledWith({ email: 'tester@iterate.co', token: 'test-token', code: '123456' })
     expect(getCurrentRouteName()).toBe('Home')
   })
 })

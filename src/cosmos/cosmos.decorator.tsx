@@ -1,7 +1,7 @@
-import jest from 'jest-mock'
+import jestMock from 'jest-mock'
 import React, { ReactNode, useLayoutEffect } from 'react'
 import { View } from 'react-native'
-import { SafeAreaProvider } from 'react-native-safe-area-context'
+import { SafeAreaProvider, initialWindowMetrics } from 'react-native-safe-area-context'
 import { ThemeProvider } from '@shopify/restyle'
 import { Toast } from 'components/core'
 import { factory } from 'factories'
@@ -13,12 +13,12 @@ export default ({ children } : { children: ReactNode }) => {
   useMocks()
 
   useLayoutEffect(() => () => {
-    jest.resetAllMocks()
-    jest.restoreAllMocks()
+    jestMock.resetAllMocks()
+    jestMock.restoreAllMocks()
   }, [])
 
   return (
-    <SafeAreaProvider>
+    <SafeAreaProvider initialMetrics={initialWindowMetrics}>
       <ThemeProvider theme={defaultTheme}>
         <View style={{ flex: 1, backgroundColor: '#eee' }}>
           {children}

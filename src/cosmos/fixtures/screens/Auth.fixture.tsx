@@ -11,7 +11,8 @@ export default {
   Verify: createRoot(() => ({
     snapshot: {
       authStore: {
-        email: 'tester@iterate.co'
+        email: 'tester@iterate.co',
+        verificationToken: 'test-token'
       }
     },
     navState: getNavState({ index: 1, routes: [{ name: 'Verify' }] })

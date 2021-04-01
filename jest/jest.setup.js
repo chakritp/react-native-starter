@@ -14,6 +14,7 @@ global.Promise = global.originalPromise
 // AppState
 ;(() => {
   let listeners = []
+  AppState.currentState = 'active'
   AppState.addEventListener = (type, handler) => {
     listeners.push({ type, handler })
   }
@@ -22,6 +23,10 @@ global.Promise = global.originalPromise
   }
   AppState.emit = (type, props) => {
     listeners.filter(l => l.type === type).forEach(l => l.handler(props))
+  }
+  AppState.change = (state) => {
+    AppState.currentState = state
+    AppState.emit('change', state)
   }
 })()
 
