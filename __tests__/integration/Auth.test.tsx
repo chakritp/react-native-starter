@@ -4,8 +4,9 @@ import { render, waitFor, fireEvent } from '@testing-library/react-native'
 import { factory } from 'factories'
 import { apiMocker } from 'mocks'
 import { api } from 'services'
-import { getCurrentRouteName, localStorageMock } from '../testHelpers'
+import { RootStore } from 'stores'
 import { App } from 'App'
+import { getCurrentRouteName, localStorageMock } from '../testHelpers'
 
 describe('Auth', () => {
   beforeEach(() => {
@@ -19,11 +20,11 @@ describe('Auth', () => {
 
   it('completes sign in flow', async () => {
     const requestCodeSpy = apiMocker.success(api.auth, 'requestCode', {
-      data: { token: 'test-token' }
+      data: { token: 'verification-token' }
     })
     const signInSpy = apiMocker.success(api.auth, 'signIn', {
       data: {
-        accessToken: 'test-token',
+        accessToken: 'access-token',
         user: factory.build('api.user')
       }
     })
@@ -48,7 +49,7 @@ describe('Auth', () => {
     Linking.emit('url', { url: 'https://typescriptstarter.com/auth/verify?email=test@test.com&code=123456' })
     AppState.change('active')
     await waitFor(() => (
-      expect(signInSpy).toHaveBeenCalledWith({ email: 'test@test.com', token: 'test-token', code: '123456' })
+      expect(signInSpy).toHaveBeenCalledWith({ email: 'test@test.com', token: 'verification-token', code: '123456' })
     ))
 
     expect(getCurrentRouteName()).toBe('Home')
@@ -79,11 +80,34 @@ describe('Auth', () => {
     await waitFor(() => expect(q.queryByText('Server validation error')).toBeTruthy())
   })
 
-  it('signs in when app is launched with initial verify url', async () => {
-    localStorageMock.set('/authStore/verificationToken', 'test-token')
+  it('signs in by entering verification code', async () => {
     const signInSpy = apiMocker.success(api.auth, 'signIn', {
       data: {
-        accessToken: 'test-token',
+        accessToken: 'access-token',
+        user: factory.build('api.user')
+      }
+    })
+    const rootStore = RootStore.create({
+      authStore: { email: 'test@test.com', verificationToken: 'verification-token' }
+    })
+    const q = render(
+      <App rootStore={rootStore} initialNavState={{
+        routes: [{ name: 'Auth', state: { routes: [{ name: 'Verify' }] } }]
+      }} />
+    )
+    const codeInput = await q.findByLabelText(/code/)
+    fireEvent.changeText(codeInput, '123456')
+    await waitFor(() => (
+      expect(signInSpy).toHaveBeenCalledWith({ email: 'test@test.com', token: 'verification-token', code: '123456' })
+    ))
+  })
+
+  it('signs in when app is launched with initial verify url', async () => {
+    AppState.currentState = 'inactive'
+    localStorageMock.set('/authStore/verificationToken', 'verification-token')
+    const signInSpy = apiMocker.success(api.auth, 'signIn', {
+      data: {
+        accessToken: 'access-token',
         user: factory.build('api.user')
       }
     })
@@ -93,7 +117,9 @@ describe('Auth', () => {
     render(<App />)
     await waitFor(() => expect(getInitialURLSpy).toHaveBeenCalled())
     AppState.change('active')
-    expect(signInSpy).toHaveBeenCalledWith({ email: 'test@test.com', token: 'test-token', code: '123456' })
+    await waitFor(() => (
+      expect(signInSpy).toHaveBeenCalledWith({ email: 'test@test.com', token: 'verification-token', code: '123456' })
+    ))
     expect(getCurrentRouteName()).toBe('Home')
   })
 })

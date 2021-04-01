@@ -3,8 +3,8 @@ import { render, waitFor } from '@testing-library/react-native'
 import { factory } from 'factories'
 import { apiMocker } from 'mocks'
 import { api } from 'services'
-import { getCurrentRouteName, localStorageMock } from '../testHelpers'
 import { App } from 'App'
+import { getCurrentRouteName, localStorageMock } from '../testHelpers'
 
 describe('App', () => {
   afterEach(() => {

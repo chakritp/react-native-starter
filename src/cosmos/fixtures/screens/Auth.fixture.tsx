@@ -1,5 +1,5 @@
 import { PartialNavigationState } from 'components/core'
-import { createRoot, Root } from 'cosmos/helpers'
+import { createRoot } from 'cosmos/helpers'
 
 export default {
   Landing: createRoot(),
