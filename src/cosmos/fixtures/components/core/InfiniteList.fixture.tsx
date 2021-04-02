@@ -15,7 +15,7 @@ export default () => {
       <InfiniteList
         ref={listRef}
         loading={collection.loading}
-        total={collection.allItems.length}
+        total={collection.total}
         data={collection.items}
         itemSeparator
         renderItem={({ item }) => <ListItem title={item.name} subtitle={item.description} chevron />}

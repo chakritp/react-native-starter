@@ -14,8 +14,8 @@ describe('App', () => {
 
   describe('when signed out', () => {
     it('renders Landing screen', async () => {
-      await waitFor(() => render(<App />))
-      expect(getCurrentRouteName()).toBe('Landing')
+      render(<App />)
+      await waitFor(() => expect(getCurrentRouteName()).toBe('Landing'))
     })
   })
 
@@ -31,8 +31,8 @@ describe('App', () => {
       const getProfileSpy = apiMocker.success(api.users, 'getProfile', {
         data: factory.build('api.user')
       })
-      await waitFor(() => render(<App />))
-      expect(getProfileSpy).toHaveBeenCalled()
+      render(<App />)
+      await waitFor(() => expect(getProfileSpy).toHaveBeenCalled())
       expect(getCurrentRouteName()).toBe('Home')
     })
 
@@ -40,8 +40,8 @@ describe('App', () => {
       apiMocker.error(api.users, 'getProfile', {
         code: 'app_upgrade_required'
       })
-      await waitFor(() => render(<App />))
-      expect(getCurrentRouteName()).toBe('AppUpgradeRequired')
+      render(<App />)
+      await waitFor(() => expect(getCurrentRouteName()).toBe('AppUpgradeRequired'))
     })
   })
 })
