@@ -28,8 +28,8 @@ export default function PlatformDateTimePicker({
         {clearable && (
           <Button
             variant="secondary"
-            mx="l"
-            width={120}
+            mx="m"
+            width={125}
             size="s"
             title={t('actions.clear')} 
             onPress={() => {
@@ -39,8 +39,8 @@ export default function PlatformDateTimePicker({
         )}
         
         <Button
-          mx="l"
-          width={120}
+          mx="m"
+          width={125}
           size="s"
           title={t('actions.done')} 
           onPress={() => {

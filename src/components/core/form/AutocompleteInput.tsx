@@ -1,6 +1,6 @@
 import debounce from 'lodash/debounce'
-import React, { forwardRef, useRef, useCallback } from 'react'
-import { TextInput as $TextInput } from 'react-native'
+import React, { forwardRef, useMemo, useRef, useCallback } from 'react'
+import { NativeMethods } from 'react-native'
 import { IconButton } from '../IconButton'
 import { TextInput, TextInputProps } from './TextInput'
 import { t } from 'helpers/i18n'
@@ -10,24 +10,34 @@ export interface AutocompleteInputProps extends TextInputProps {
   onSubmit?: (value: string) => void
 }
 
-export const AutocompleteInput = forwardRef<typeof $TextInput, TextInputProps>(({
-  submitDelay,
+export interface AutocompleteInputMethods {
+  focus: () => void
+  blur: () => void
+  cancel: () => void
+}
+
+export const AutocompleteInput = forwardRef<NativeMethods, TextInputProps>(({
+  submitDelay = 300,
   value,
   accessibilityLabel,
   onChangeText,
   onSubmit,
   ...props
 }: AutocompleteInputProps, ref: any) => {
+  const inputRef = useRef<NativeMethods | null>(null)
   const submittedValueRef = useRef('')
+  const onSubmitRef = useRef(onSubmit)
+
+  onSubmitRef.current = onSubmit
 
   const submit = useCallback((value: string) => {
     value = value.trim()
 
     if (value !== submittedValueRef.current) {
       submittedValueRef.current = value
-      onSubmit?.(value)
+      onSubmitRef.current?.(value)
     }
-  }, [onSubmit])
+  }, [])
 
   const debouncedSubmit = useCallback(debounce(submit, submitDelay), [submit, submitDelay])
 
@@ -43,9 +53,30 @@ export const AutocompleteInput = forwardRef<typeof $TextInput, TextInputProps>((
     submit('')
   }, [debouncedSubmit, submit, onChangeText])
 
+  const controller: AutocompleteInputMethods = useMemo(() =>({
+    cancel: () => {
+      debouncedSubmit.cancel()
+    },
+    focus: () => {
+      inputRef.current?.focus()
+    },
+    blur: () => {
+      inputRef.current?.blur()
+    }
+  }), [debouncedSubmit])
+
   return (
     <TextInput
-      ref={ref}
+      ref={el => {
+        inputRef.current = el
+        if (ref) {
+          if (typeof ref === 'function') {
+            ref(controller)
+          } else {
+            ref.current = controller
+          }
+        }
+      }}
       rightIcon={value !== '' ? (
         <IconButton
           name="clear"

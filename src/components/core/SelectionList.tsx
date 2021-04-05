@@ -29,7 +29,7 @@ export interface SelectionListProps<T> extends Pick<Omit<InfiniteListProps<T>, '
   onLoad?: (query: string) => void
   onLoadMore?: (query: string) => void
   onSelect?: (item: T) => void
-  onDone?: () => void
+  onCancel?: () => void
 }
 
 export const SelectionList = <T, >({
@@ -53,15 +53,11 @@ export const SelectionList = <T, >({
   onLoadMore,
   onLoad,
   onSelect,
-  onDone
+  onCancel,
 }: SelectionListProps<T>) => {
   const listRef = useRef<FlatListElement | null>(null)
   const searchBarRef = useRef<any>(null)
   const [query, setQuery] = useState('')
-  const done = () => {
-    setQuery('')
-    onDone?.()
-  }
 
   return (
     <Container style={style} flex={1} bg={bg} safe={safe}>
@@ -80,7 +76,10 @@ export const SelectionList = <T, >({
               listRef.current?.scrollToOffset({ offset: 0 })
             }
           }}
-          onCancel={done}
+          onCancel={() => {
+            setQuery('')
+            onCancel?.()
+          }}
         />
       )}
 
@@ -94,11 +93,8 @@ export const SelectionList = <T, >({
         keyExtractor={keyExtractor}
         renderItem={({ item }) => (
           <ListItem
-            {...itemPropsExtractor!(item)}
-            onPress={() => {
-              done()
-              onSelect?.(item)
-            }} />
+            {...itemPropsExtractor(item)}
+            onPress={() => onSelect?.(item)} />
         )}
         onRefresh={refreshControl ? () => {
           onLoad?.(query)

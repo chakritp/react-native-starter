@@ -150,7 +150,6 @@ export default () => {
                   itemPropsExtractor={item => ({ title: item.name, subtitle: item.description })}
                   items={mockCollection.items}
                   disabled={disabled}
-                  onOpen={() => !mockCollection.items && mockCollection.reset()}
                   onLoad={mockCollection.load}
                   onLoadMore={mockCollection.loadMore} />
               </InputGroup>

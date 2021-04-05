@@ -109,8 +109,11 @@ export type FlatListElement = $FlatList
 
 export const ListEmpty = ({ text }: { text: string }) => {
   return (
-    <Box 
-      flex={1}
+    <Box
+      position="absolute"
+      top={10}
+      left={0}
+      right={0}
       alignItems="center"
       justifyContent="center"
       padding="xxl"

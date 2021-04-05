@@ -1,11 +1,10 @@
 import React, { forwardRef } from 'react'
-import { NativeMethods } from 'react-native'
 import { createThemedStyles, useThemedStyles } from 'lib/restyle'
 import { t } from 'helpers/i18n'
 import { Theme } from 'theme'
-import { AutocompleteInput, AutocompleteInputProps } from './AutocompleteInput'
+import { AutocompleteInput, AutocompleteInputProps, AutocompleteInputMethods } from './AutocompleteInput'
 
-export const SearchInput = forwardRef<NativeMethods, AutocompleteInputProps>(({
+export const SearchInput = forwardRef<AutocompleteInputMethods, AutocompleteInputProps>(({
   inputStyle,
   placeholder = t('actions.search'),
   accessibilityLabel = t('actions.search'),

@@ -88,6 +88,7 @@ export const Toast = ({ offset = 0 }) => {
   const modal = (
     <Transition
       property="opacity"
+      animateOnMount
       hideWhen="out"
       snapshotChildren
       style={keyboardOffset ? null : { marginBottom: offset }}

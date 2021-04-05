@@ -13,29 +13,27 @@ interface MockCollectionState {
   items: MockCollectionItem[]
 }
 
-export const useMockCollection = () => {
+export const useMockCollection = (total = 50) => {
   const chance = useMemo(() => new Chance(1), [])
 
   const allItems = useMemo(() => (
-    new Array(50).fill(0).map((_, i) => ({
+    new Array(total).fill(0).map((_, i) => ({
       id: i + 1,
       name: chance.city(),
       description: chance.sentence()
     }))
-  ), [])
+  ), [total])
 
   let [collectionState, setCollectionState] = useState<MockCollectionState>({ loading: false, page: 1, items: [] })
   
   const load = (query: string = '', page = 1) => {
     const queryLc = query.toLowerCase()
-    collectionState = { ...collectionState, loading: true }
-    setCollectionState(collectionState)
+    setCollectionState({ ...collectionState, loading: true })
     setTimeout(() => {
       const newItems = query
         ? allItems.filter(item => item.name.toLowerCase().indexOf(queryLc) > -1)
         : allItems
-      collectionState = { loading: false, items: newItems.slice(0, page * 20), page }
-      setCollectionState(collectionState)
+      setCollectionState({ loading: false, items: newItems.slice(0, page * 20), page })
     }, 500)
   }
 
@@ -52,6 +50,7 @@ export const useMockCollection = () => {
   return {
     ...collectionState,
     allItems,
+    total: allItems.length,
     load,
     loadMore,
     reset

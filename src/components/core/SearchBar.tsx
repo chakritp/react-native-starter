@@ -1,13 +1,8 @@
 import React, { Component } from 'react'
-import {
-  Animated,
-  View,
-  StyleSheet,
-  NativeMethods
-} from 'react-native'
+import { Animated, View, StyleSheet } from 'react-native'
 import { t } from 'helpers/i18n'
 import { Button } from './Button'
-import { AutocompleteInputProps } from './form/AutocompleteInput'
+import { AutocompleteInputMethods, AutocompleteInputProps } from './form/AutocompleteInput'
 import { SearchInput } from './form/SearchInput'
 
 export interface SearchBarProps extends AutocompleteInputProps {
@@ -24,7 +19,7 @@ interface SearchBarState {
 }
 
 export class SearchBar extends Component<SearchBarProps, SearchBarState> {
-  input: NativeMethods | null = null
+  input: AutocompleteInputMethods | null = null
   animatedCancel: Animated.Value
   
   static defaultProps = {
@@ -51,6 +46,8 @@ export class SearchBar extends Component<SearchBarProps, SearchBarState> {
 
   cancel = () => {
     this.blur()
+    this.input?.cancel()
+    this.props.onChangeText?.('')
     this.props.onCancel?.()
   }
 
@@ -112,7 +109,7 @@ export class SearchBar extends Component<SearchBarProps, SearchBarState> {
         >
           <SearchInput
             {...props}
-            ref={(input: NativeMethods) => {
+            ref={input => {
               this.input = input
             }}
             style={{ flex: 0 }}

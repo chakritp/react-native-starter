@@ -25,6 +25,7 @@ export default () => {
       itemPropsExtractor={item => ({ title: item.name, subtitle: item.description })}
       onLoad={collection.load}
       onLoadMore={collection.loadMore}
-      onSelect={item => Toast.info(`Selected "${item.name}"`)} />
+      onSelect={item => Toast.info(`Selected "${item.name}"`)}
+      onCancel={() => collection.load('')} />
   )
 }

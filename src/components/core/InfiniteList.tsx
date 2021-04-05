@@ -1,6 +1,7 @@
 import React, { Ref, ReactElement, forwardRef, useEffect, useRef, useState } from 'react'
 import { Box, ActivityIndicator } from './common'
 import { FlatList, FlatListProps, FlatListElement } from './lists'
+import { Transition } from './Transition'
 
 export interface InfiniteListProps<T> extends FlatListProps<T> {
   offset?: number
@@ -89,9 +90,9 @@ export const InfiniteList = forwardRef(<T, >(props: InfiniteListProps<T>, ref: a
 const ListFooter = ({ loading }: { loading: boolean }) => {
   return (
     <Box alignItems="center" justifyContent="center" p="l">
-      {loading ? (
-        <ActivityIndicator p="xl" animating size="large" />
-      ) : null}
+      <Transition property="opacity" animateOnMount hideWhen="out" in={loading}>
+        {() => <ActivityIndicator p="xl" animating size="large" />}
+      </Transition>
     </Box>
   )
 }

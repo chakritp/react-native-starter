@@ -68,7 +68,7 @@ export class Transition extends PureComponent<TransitionProps, TransitionState> 
   }
 
   getDirection(props = this.props) {
-    return props.animateOnMount || props.in ? 'in' : 'out'
+    return props.in ? 'in' : 'out'
   }
 
   animate(props: PropsInternal) {
