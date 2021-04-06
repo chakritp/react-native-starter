@@ -77,6 +77,7 @@ export const AutocompletePicker = <T, P>({
 
       <Modal
         animationType="slide"
+        presentationStyle="pageSheet"
         visible={open}
         onRequestClose={close}
       >
