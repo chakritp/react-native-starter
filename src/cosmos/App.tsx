@@ -5,15 +5,10 @@ import { NativeFixtureLoader } from 'react-cosmos/native'
 import SplashScreen from 'react-native-splash-screen'
 import { ThemeProvider } from '@shopify/restyle'
 import { Toast } from 'components/core'
-import { factory } from 'factories'
 import { defaultTheme } from 'theme'
-import { useMocks } from 'cosmos/helpers'
 import { rendererConfig, fixtures, decorators } from '../../cosmos.userdeps'
 
 export const App = () => {
-  factory.cleanUp()
-  useMocks()
-
   useEffect(() => {
     SplashScreen.hide()
   }, [])
