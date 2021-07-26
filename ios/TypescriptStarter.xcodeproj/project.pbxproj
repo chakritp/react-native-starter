@@ -3,31 +3,25 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		004B62156CD7561E03C3EA2C /* libPods-TypescriptStarter.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A3425D7BC1452E4BB0C8497 /* libPods-TypescriptStarter.a */; };
 		00E356F31AD99517003FC87E /* TypescriptStarterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* TypescriptStarterTests.m */; };
-		021B809F074E40DEB664E14F /* SFProDisplay-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E7E0689DE7504A0EBFBAC89A /* SFProDisplay-Black.ttf */; };
+		0D414D35E34446C188E51E25 /* SFProDisplay-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 26124BB3AB8A457BB8EBD25E /* SFProDisplay-SemiBold.ttf */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-		2889F79F632044C18C4D3A9F /* SFProDisplay-Heavy.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D820E99ECDA5490EAC7ED2DC /* SFProDisplay-Heavy.ttf */; };
-		2D02E4BC1E0B4A80006451C7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
-		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
-		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-		2DCD954D1E0B4F2C00145EB5 /* TypescriptStarterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* TypescriptStarterTests.m */; };
-		4BA419073F2A477594D42311 /* SFProDisplay-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E24D72F9EFBE4667B6F3AB15 /* SFProDisplay-Bold.ttf */; };
-		51BA0B4F59664E81B4E8492E /* SFProDisplay-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 064D20EE543B455B895C5499 /* SFProDisplay-Thin.ttf */; };
-		5208CB60C2C74D97B8AE8DF9 /* libPods-TypescriptStarter.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9808BDD860903376CE9A285D /* libPods-TypescriptStarter.a */; };
-		60EEB6D1DC3C65F27E67EDB5 /* libPods-TypescriptStarter-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F5090C25BBE6429B5A70C4E /* libPods-TypescriptStarter-tvOS.a */; };
-		78D15E95F1A8368ED2FBDB15 /* libPods-TypescriptStarter-TypescriptStarterTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4373690FD167617116618E0B /* libPods-TypescriptStarter-TypescriptStarterTests.a */; };
+		2E631716C2144C7085A46A44 /* SFProDisplay-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C82AB9EF54414A23BEE89A78 /* SFProDisplay-Medium.ttf */; };
+		5EB320CBCD4B41D0B37E2EED /* SFProDisplay-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2C00AF051A6D4D70B3D53B2F /* SFProDisplay-Black.ttf */; };
+		698EC24F03864AF4AA9DCE7F /* SFProDisplay-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0D2EE2F82389452EA151C453 /* SFProDisplay-Thin.ttf */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
-		97EE4533446D417B8CA3D334 /* SFProDisplay-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1EE1C79B964C481EAC89FC93 /* SFProDisplay-Light.ttf */; };
-		B310CBDB07C2EEA611F9AF1F /* libPods-TypescriptStarter-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E3A7C3E4F6B81434A4921363 /* libPods-TypescriptStarter-tvOSTests.a */; };
-		D4D3CEBBEC124E28819A416C /* SFProDisplay-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B120BF93D7044350AF79C6A3 /* SFProDisplay-Regular.ttf */; };
-		DA3641D892D44CA0A4B08B27 /* SFProDisplay-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4ADFA2FDBB814D9BA7BFD546 /* SFProDisplay-SemiBold.ttf */; };
-		F34DBCDE12A24F09AD7694FD /* SFProDisplay-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2F4E08D048D240DD94791A43 /* SFProDisplay-Medium.ttf */; };
+		98DE55D072F44A38AB54B65C /* SFProDisplay-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 307C63C5BB9640549F9AA899 /* SFProDisplay-Regular.ttf */; };
+		9917D287972D4AC7B844CBF0 /* SFProDisplay-Heavy.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B27F6351A41046B3AE8D0099 /* SFProDisplay-Heavy.ttf */; };
+		A1E9CC4B8AA61B6332B841F1 /* libPods-TypescriptStarter-TypescriptStarterTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FDFD6D27D86BE8A71BEBAE87 /* libPods-TypescriptStarter-TypescriptStarterTests.a */; };
+		BA88E85C97E741CD9D3DFEBE /* SFProDisplay-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C382AF0418864FA78DE5886F /* SFProDisplay-Light.ttf */; };
+		DF18D37A1BB64046AAEF0179 /* SFProDisplay-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7447428276324245B00D103E /* SFProDisplay-Bold.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,91 +32,62 @@
 			remoteGlobalIDString = 13B07F861A680F5B00A75B9A;
 			remoteInfo = TypescriptStarter;
 		};
-		2D02E4911E0B4A5D006451C7 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 2D02E47A1E0B4A5D006451C7;
-			remoteInfo = "TypescriptStarter-tvOS";
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		008F07F21AC5B25A0029DE68 /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
 		00E356EE1AD99517003FC87E /* TypescriptStarterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TypescriptStarterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* TypescriptStarterTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TypescriptStarterTests.m; sourceTree = "<group>"; };
-		0100AA68BECD4B4344F10FB8 /* Pods-TypescriptStarter-tvOSTests.prod.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TypescriptStarter-tvOSTests.prod.release.xcconfig"; path = "Target Support Files/Pods-TypescriptStarter-tvOSTests/Pods-TypescriptStarter-tvOSTests.prod.release.xcconfig"; sourceTree = "<group>"; };
-		010F0438FAC315AE3759817D /* Pods-TypescriptStarter-TypescriptStarterTests.local.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TypescriptStarter-TypescriptStarterTests.local.release.xcconfig"; path = "Target Support Files/Pods-TypescriptStarter-TypescriptStarterTests/Pods-TypescriptStarter-TypescriptStarterTests.local.release.xcconfig"; sourceTree = "<group>"; };
-		0571F3E8FA4537DE3A0A062D /* Pods-TypescriptStarter.local.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TypescriptStarter.local.release.xcconfig"; path = "Target Support Files/Pods-TypescriptStarter/Pods-TypescriptStarter.local.release.xcconfig"; sourceTree = "<group>"; };
-		064D20EE543B455B895C5499 /* SFProDisplay-Thin.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SFProDisplay-Thin.ttf"; path = "../assets/fonts/SFProDisplay-Thin.ttf"; sourceTree = "<group>"; };
-		0796D0CA224E3AEAC8CE2647 /* Pods-TypescriptStarter-TypescriptStarterTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TypescriptStarter-TypescriptStarterTests.release.xcconfig"; path = "Target Support Files/Pods-TypescriptStarter-TypescriptStarterTests/Pods-TypescriptStarter-TypescriptStarterTests.release.xcconfig"; sourceTree = "<group>"; };
-		0C5A6538F266938102070FB7 /* Pods-TypescriptStarter-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TypescriptStarter-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-TypescriptStarter-tvOS/Pods-TypescriptStarter-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
-		0F319083DDF34D3697CF10FB /* EvilIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = EvilIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; };
-		1374FB7B5ECE4DB88B14233F /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = SimpleLineIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; };
+		02E59270AFB7413C8917FBE8 /* Ionicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Ionicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
+		05BFD396AA9D4E71A80EF02B /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
+		08918E26D2C343B4BBBB60B2 /* FontAwesome5_Brands.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Brands.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Brands.ttf"; sourceTree = "<group>"; };
+		0BD83960EECEE95E1EFD94A4 /* Pods-TypescriptStarter.dev.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TypescriptStarter.dev.release.xcconfig"; path = "Target Support Files/Pods-TypescriptStarter/Pods-TypescriptStarter.dev.release.xcconfig"; sourceTree = "<group>"; };
+		0D2EE2F82389452EA151C453 /* SFProDisplay-Thin.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SFProDisplay-Thin.ttf"; path = "../assets/fonts/SFProDisplay-Thin.ttf"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* TypescriptStarter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TypescriptStarter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = TypescriptStarter/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = TypescriptStarter/AppDelegate.m; sourceTree = "<group>"; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = TypescriptStarter/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = TypescriptStarter/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = TypescriptStarter/main.m; sourceTree = "<group>"; };
-		140BCB41ACC8CC1471584BD2 /* Pods-TypescriptStarter-TypescriptStarterTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TypescriptStarter-TypescriptStarterTests.debug.xcconfig"; path = "Target Support Files/Pods-TypescriptStarter-TypescriptStarterTests/Pods-TypescriptStarter-TypescriptStarterTests.debug.xcconfig"; sourceTree = "<group>"; };
-		17150FF090B2157DA9EA805A /* Pods-TypescriptStarter-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TypescriptStarter-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-TypescriptStarter-tvOSTests/Pods-TypescriptStarter-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
-		1EE1C79B964C481EAC89FC93 /* SFProDisplay-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SFProDisplay-Light.ttf"; path = "../assets/fonts/SFProDisplay-Light.ttf"; sourceTree = "<group>"; };
-		1F5090C25BBE6429B5A70C4E /* libPods-TypescriptStarter-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TypescriptStarter-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		260AB9B3EF3A4AA1964B4727 /* Pods-TypescriptStarter-tvOS.prod.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TypescriptStarter-tvOS.prod.release.xcconfig"; path = "Target Support Files/Pods-TypescriptStarter-tvOS/Pods-TypescriptStarter-tvOS.prod.release.xcconfig"; sourceTree = "<group>"; };
-		28746DCEFE088C78BE822B1C /* Pods-TypescriptStarter-tvOSTests.prod.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TypescriptStarter-tvOSTests.prod.debug.xcconfig"; path = "Target Support Files/Pods-TypescriptStarter-tvOSTests/Pods-TypescriptStarter-tvOSTests.prod.debug.xcconfig"; sourceTree = "<group>"; };
-		2D02E47B1E0B4A5D006451C7 /* TypescriptStarter-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TypescriptStarter-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		2D02E4901E0B4A5D006451C7 /* TypescriptStarter-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "TypescriptStarter-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		2F4E08D048D240DD94791A43 /* SFProDisplay-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SFProDisplay-Medium.ttf"; path = "../assets/fonts/SFProDisplay-Medium.ttf"; sourceTree = "<group>"; };
-		306E2F0237F5CCCF633601B6 /* Pods-TypescriptStarter.dev.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TypescriptStarter.dev.debug.xcconfig"; path = "Target Support Files/Pods-TypescriptStarter/Pods-TypescriptStarter.dev.debug.xcconfig"; sourceTree = "<group>"; };
-		328A02B1E80C4DC68B249C4B /* Zocial.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Zocial.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
-		3380EEAE429C6A7D7B33B1B4 /* Pods-TypescriptStarter-tvOSTests.dev.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TypescriptStarter-tvOSTests.dev.release.xcconfig"; path = "Target Support Files/Pods-TypescriptStarter-tvOSTests/Pods-TypescriptStarter-tvOSTests.dev.release.xcconfig"; sourceTree = "<group>"; };
-		36482ADF556F253B938CE127 /* Pods-TypescriptStarter.prod.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TypescriptStarter.prod.debug.xcconfig"; path = "Target Support Files/Pods-TypescriptStarter/Pods-TypescriptStarter.prod.debug.xcconfig"; sourceTree = "<group>"; };
-		3ED553B371935AC823783122 /* Pods-TypescriptStarter-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TypescriptStarter-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-TypescriptStarter-tvOSTests/Pods-TypescriptStarter-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
-		4373690FD167617116618E0B /* libPods-TypescriptStarter-TypescriptStarterTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TypescriptStarter-TypescriptStarterTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		464BDA9D971D4C2D921CDE19 /* Octicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Octicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
-		4ADFA2FDBB814D9BA7BFD546 /* SFProDisplay-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SFProDisplay-SemiBold.ttf"; path = "../assets/fonts/SFProDisplay-SemiBold.ttf"; sourceTree = "<group>"; };
-		57B703A68B364EE2B3F28D37 /* AntDesign.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = AntDesign.ttf; path = "../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf"; sourceTree = "<group>"; };
-		584B989829134371808023D9 /* FontAwesome.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
-		59914B9272EB4959B4EDA89A /* Ionicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Ionicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
-		59E44F1D38DE628CAAEA0884 /* Pods-TypescriptStarter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TypescriptStarter.release.xcconfig"; path = "Target Support Files/Pods-TypescriptStarter/Pods-TypescriptStarter.release.xcconfig"; sourceTree = "<group>"; };
-		5CF6467DC642FACC9A5CF3BB /* Pods-TypescriptStarter-TypescriptStarterTests.local.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TypescriptStarter-TypescriptStarterTests.local.debug.xcconfig"; path = "Target Support Files/Pods-TypescriptStarter-TypescriptStarterTests/Pods-TypescriptStarter-TypescriptStarterTests.local.debug.xcconfig"; sourceTree = "<group>"; };
-		685E38DFA069FC92B2421058 /* Pods-TypescriptStarter.prod.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TypescriptStarter.prod.release.xcconfig"; path = "Target Support Files/Pods-TypescriptStarter/Pods-TypescriptStarter.prod.release.xcconfig"; sourceTree = "<group>"; };
-		7532269FD83B4EC4D913A1A7 /* Pods-TypescriptStarter-tvOSTests.local.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TypescriptStarter-tvOSTests.local.release.xcconfig"; path = "Target Support Files/Pods-TypescriptStarter-tvOSTests/Pods-TypescriptStarter-tvOSTests.local.release.xcconfig"; sourceTree = "<group>"; };
-		7593044F543D4B3DB1BCABAF /* MaterialIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
-		7D696657DF542191F30E618A /* Pods-TypescriptStarter-tvOSTests.local.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TypescriptStarter-tvOSTests.local.debug.xcconfig"; path = "Target Support Files/Pods-TypescriptStarter-tvOSTests/Pods-TypescriptStarter-tvOSTests.local.debug.xcconfig"; sourceTree = "<group>"; };
+		166EC0C1783688EF482F005C /* Pods-TypescriptStarter-TypescriptStarterTests.prod.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TypescriptStarter-TypescriptStarterTests.prod.release.xcconfig"; path = "Target Support Files/Pods-TypescriptStarter-TypescriptStarterTests/Pods-TypescriptStarter-TypescriptStarterTests.prod.release.xcconfig"; sourceTree = "<group>"; };
+		1AE86B6EDE872DDEBBD7FB2E /* Pods-TypescriptStarter-TypescriptStarterTests.dev.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TypescriptStarter-TypescriptStarterTests.dev.debug.xcconfig"; path = "Target Support Files/Pods-TypescriptStarter-TypescriptStarterTests/Pods-TypescriptStarter-TypescriptStarterTests.dev.debug.xcconfig"; sourceTree = "<group>"; };
+		26124BB3AB8A457BB8EBD25E /* SFProDisplay-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SFProDisplay-SemiBold.ttf"; path = "../assets/fonts/SFProDisplay-SemiBold.ttf"; sourceTree = "<group>"; };
+		2C00AF051A6D4D70B3D53B2F /* SFProDisplay-Black.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SFProDisplay-Black.ttf"; path = "../assets/fonts/SFProDisplay-Black.ttf"; sourceTree = "<group>"; };
+		307C63C5BB9640549F9AA899 /* SFProDisplay-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SFProDisplay-Regular.ttf"; path = "../assets/fonts/SFProDisplay-Regular.ttf"; sourceTree = "<group>"; };
+		313014A8C2804A5D912A75A9 /* Octicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Octicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
+		31912417342645399699B208 /* AntDesign.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = AntDesign.ttf; path = "../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf"; sourceTree = "<group>"; };
+		3A3425D7BC1452E4BB0C8497 /* libPods-TypescriptStarter.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TypescriptStarter.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4F9B55ED690BFF77998081F3 /* Pods-TypescriptStarter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TypescriptStarter.release.xcconfig"; path = "Target Support Files/Pods-TypescriptStarter/Pods-TypescriptStarter.release.xcconfig"; sourceTree = "<group>"; };
+		5907C90D7DA440F18B94D45F /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = SimpleLineIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; };
+		5F8708722F65235166A7BF34 /* Pods-TypescriptStarter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TypescriptStarter.debug.xcconfig"; path = "Target Support Files/Pods-TypescriptStarter/Pods-TypescriptStarter.debug.xcconfig"; sourceTree = "<group>"; };
+		6516346FECC047B5B616243A /* Feather.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Feather.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Feather.ttf"; sourceTree = "<group>"; };
+		720076A54B9C43BC9024807B /* FontAwesome5_Solid.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Solid.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Solid.ttf"; sourceTree = "<group>"; };
+		7447428276324245B00D103E /* SFProDisplay-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SFProDisplay-Bold.ttf"; path = "../assets/fonts/SFProDisplay-Bold.ttf"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = TypescriptStarter/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		853199A7B91E4D5C97C9A499 /* FontAwesome5_Solid.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Solid.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Solid.ttf"; sourceTree = "<group>"; };
-		8D0CA62125433390770436F3 /* Pods-TypescriptStarter-TypescriptStarterTests.dev.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TypescriptStarter-TypescriptStarterTests.dev.debug.xcconfig"; path = "Target Support Files/Pods-TypescriptStarter-TypescriptStarterTests/Pods-TypescriptStarter-TypescriptStarterTests.dev.debug.xcconfig"; sourceTree = "<group>"; };
-		90B51DB207D8D4506671FEE6 /* Pods-TypescriptStarter-tvOS.dev.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TypescriptStarter-tvOS.dev.release.xcconfig"; path = "Target Support Files/Pods-TypescriptStarter-tvOS/Pods-TypescriptStarter-tvOS.dev.release.xcconfig"; sourceTree = "<group>"; };
-		90C0F465CC0B88BD3319521A /* Pods-TypescriptStarter-tvOS.prod.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TypescriptStarter-tvOS.prod.debug.xcconfig"; path = "Target Support Files/Pods-TypescriptStarter-tvOS/Pods-TypescriptStarter-tvOS.prod.debug.xcconfig"; sourceTree = "<group>"; };
-		920902B581974F6483065AC5 /* FontAwesome5_Brands.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Brands.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Brands.ttf"; sourceTree = "<group>"; };
-		9808BDD860903376CE9A285D /* libPods-TypescriptStarter.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TypescriptStarter.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		989D8B54833D179CCE29D309 /* Pods-TypescriptStarter.local.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TypescriptStarter.local.debug.xcconfig"; path = "Target Support Files/Pods-TypescriptStarter/Pods-TypescriptStarter.local.debug.xcconfig"; sourceTree = "<group>"; };
-		A001BDA941EF92453B4F077F /* Pods-TypescriptStarter-tvOS.local.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TypescriptStarter-tvOS.local.debug.xcconfig"; path = "Target Support Files/Pods-TypescriptStarter-tvOS/Pods-TypescriptStarter-tvOS.local.debug.xcconfig"; sourceTree = "<group>"; };
-		A40A470F5F514E5FA0D3C8C8 /* Fontisto.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Fontisto.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Fontisto.ttf"; sourceTree = "<group>"; };
-		AC48112B5D867153F6F3559E /* Pods-TypescriptStarter-tvOS.dev.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TypescriptStarter-tvOS.dev.debug.xcconfig"; path = "Target Support Files/Pods-TypescriptStarter-tvOS/Pods-TypescriptStarter-tvOS.dev.debug.xcconfig"; sourceTree = "<group>"; };
-		B120BF93D7044350AF79C6A3 /* SFProDisplay-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SFProDisplay-Regular.ttf"; path = "../assets/fonts/SFProDisplay-Regular.ttf"; sourceTree = "<group>"; };
-		B7554A9F6D11085C4409FBDF /* Pods-TypescriptStarter-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TypescriptStarter-tvOS.release.xcconfig"; path = "Target Support Files/Pods-TypescriptStarter-tvOS/Pods-TypescriptStarter-tvOS.release.xcconfig"; sourceTree = "<group>"; };
-		BBCCB56F37537B38DC91A5F0 /* Pods-TypescriptStarter.dev.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TypescriptStarter.dev.release.xcconfig"; path = "Target Support Files/Pods-TypescriptStarter/Pods-TypescriptStarter.dev.release.xcconfig"; sourceTree = "<group>"; };
-		BF449E22C7E6B5A3F2CBB71F /* Pods-TypescriptStarter-TypescriptStarterTests.dev.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TypescriptStarter-TypescriptStarterTests.dev.release.xcconfig"; path = "Target Support Files/Pods-TypescriptStarter-TypescriptStarterTests/Pods-TypescriptStarter-TypescriptStarterTests.dev.release.xcconfig"; sourceTree = "<group>"; };
-		C3F59C94FB2441A29C78E98F /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialCommunityIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf"; sourceTree = "<group>"; };
-		CB5C9E80C38A4D348131DAF0 /* Entypo.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Entypo.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Entypo.ttf"; sourceTree = "<group>"; };
-		CFE8B4EA0906DAD8E912DD33 /* Pods-TypescriptStarter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TypescriptStarter.debug.xcconfig"; path = "Target Support Files/Pods-TypescriptStarter/Pods-TypescriptStarter.debug.xcconfig"; sourceTree = "<group>"; };
-		D0E7F7737EC749F78E0C5572 /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
-		D40423C65129E7CEC33C9577 /* Pods-TypescriptStarter-TypescriptStarterTests.prod.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TypescriptStarter-TypescriptStarterTests.prod.release.xcconfig"; path = "Target Support Files/Pods-TypescriptStarter-TypescriptStarterTests/Pods-TypescriptStarter-TypescriptStarterTests.prod.release.xcconfig"; sourceTree = "<group>"; };
-		D820E99ECDA5490EAC7ED2DC /* SFProDisplay-Heavy.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SFProDisplay-Heavy.ttf"; path = "../assets/fonts/SFProDisplay-Heavy.ttf"; sourceTree = "<group>"; };
-		DE3D3F5A4171A6740D41A6B2 /* Pods-TypescriptStarter-TypescriptStarterTests.prod.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TypescriptStarter-TypescriptStarterTests.prod.debug.xcconfig"; path = "Target Support Files/Pods-TypescriptStarter-TypescriptStarterTests/Pods-TypescriptStarter-TypescriptStarterTests.prod.debug.xcconfig"; sourceTree = "<group>"; };
-		E24D72F9EFBE4667B6F3AB15 /* SFProDisplay-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SFProDisplay-Bold.ttf"; path = "../assets/fonts/SFProDisplay-Bold.ttf"; sourceTree = "<group>"; };
-		E3A7C3E4F6B81434A4921363 /* libPods-TypescriptStarter-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TypescriptStarter-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		E68CDC25228F7C8A80FBB6D0 /* Pods-TypescriptStarter-tvOSTests.dev.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TypescriptStarter-tvOSTests.dev.debug.xcconfig"; path = "Target Support Files/Pods-TypescriptStarter-tvOSTests/Pods-TypescriptStarter-tvOSTests.dev.debug.xcconfig"; sourceTree = "<group>"; };
-		E7E0689DE7504A0EBFBAC89A /* SFProDisplay-Black.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SFProDisplay-Black.ttf"; path = "../assets/fonts/SFProDisplay-Black.ttf"; sourceTree = "<group>"; };
-		E8D61A00E7B66942CB1FA6CB /* Pods-TypescriptStarter-tvOS.local.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TypescriptStarter-tvOS.local.release.xcconfig"; path = "Target Support Files/Pods-TypescriptStarter-tvOS/Pods-TypescriptStarter-tvOS.local.release.xcconfig"; sourceTree = "<group>"; };
-		E947BEE82696461C893C11FB /* Feather.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Feather.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Feather.ttf"; sourceTree = "<group>"; };
+		825D0298A47BB7270AC35CF4 /* Pods-TypescriptStarter-TypescriptStarterTests.local.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TypescriptStarter-TypescriptStarterTests.local.debug.xcconfig"; path = "Target Support Files/Pods-TypescriptStarter-TypescriptStarterTests/Pods-TypescriptStarter-TypescriptStarterTests.local.debug.xcconfig"; sourceTree = "<group>"; };
+		8592B28B15234125B425395F /* FontAwesome5_Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Regular.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Regular.ttf"; sourceTree = "<group>"; };
+		861EA93628AAF35449765ADB /* Pods-TypescriptStarter-TypescriptStarterTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TypescriptStarter-TypescriptStarterTests.release.xcconfig"; path = "Target Support Files/Pods-TypescriptStarter-TypescriptStarterTests/Pods-TypescriptStarter-TypescriptStarterTests.release.xcconfig"; sourceTree = "<group>"; };
+		9470C3EADA4E436B9470C3DE /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialCommunityIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf"; sourceTree = "<group>"; };
+		9E3264C96EF4A230898C9E33 /* Pods-TypescriptStarter.prod.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TypescriptStarter.prod.debug.xcconfig"; path = "Target Support Files/Pods-TypescriptStarter/Pods-TypescriptStarter.prod.debug.xcconfig"; sourceTree = "<group>"; };
+		9F55DFB41CEDC0DD16433BF9 /* Pods-TypescriptStarter-TypescriptStarterTests.prod.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TypescriptStarter-TypescriptStarterTests.prod.debug.xcconfig"; path = "Target Support Files/Pods-TypescriptStarter-TypescriptStarterTests/Pods-TypescriptStarter-TypescriptStarterTests.prod.debug.xcconfig"; sourceTree = "<group>"; };
+		A068510DDF4005C30A23BB10 /* Pods-TypescriptStarter-TypescriptStarterTests.dev.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TypescriptStarter-TypescriptStarterTests.dev.release.xcconfig"; path = "Target Support Files/Pods-TypescriptStarter-TypescriptStarterTests/Pods-TypescriptStarter-TypescriptStarterTests.dev.release.xcconfig"; sourceTree = "<group>"; };
+		A11CD8B66AAAF9CE7BB0D284 /* Pods-TypescriptStarter-TypescriptStarterTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TypescriptStarter-TypescriptStarterTests.debug.xcconfig"; path = "Target Support Files/Pods-TypescriptStarter-TypescriptStarterTests/Pods-TypescriptStarter-TypescriptStarterTests.debug.xcconfig"; sourceTree = "<group>"; };
+		A38F34B88609AFD6BA286DDC /* Pods-TypescriptStarter.local.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TypescriptStarter.local.debug.xcconfig"; path = "Target Support Files/Pods-TypescriptStarter/Pods-TypescriptStarter.local.debug.xcconfig"; sourceTree = "<group>"; };
+		B1643F624A3B4EC9A58C0B72 /* MaterialIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
+		B27F6351A41046B3AE8D0099 /* SFProDisplay-Heavy.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SFProDisplay-Heavy.ttf"; path = "../assets/fonts/SFProDisplay-Heavy.ttf"; sourceTree = "<group>"; };
+		B60649EDAE82477E87DEA70D /* Entypo.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Entypo.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Entypo.ttf"; sourceTree = "<group>"; };
+		C382AF0418864FA78DE5886F /* SFProDisplay-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SFProDisplay-Light.ttf"; path = "../assets/fonts/SFProDisplay-Light.ttf"; sourceTree = "<group>"; };
+		C82AB9EF54414A23BEE89A78 /* SFProDisplay-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SFProDisplay-Medium.ttf"; path = "../assets/fonts/SFProDisplay-Medium.ttf"; sourceTree = "<group>"; };
+		CAD6BD516DEB400981B4CEF0 /* FontAwesome.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
+		E42DBCF6ACD3D7B24779C772 /* Pods-TypescriptStarter.dev.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TypescriptStarter.dev.debug.xcconfig"; path = "Target Support Files/Pods-TypescriptStarter/Pods-TypescriptStarter.dev.debug.xcconfig"; sourceTree = "<group>"; };
+		E8550BCC30DCC2EA9017AA30 /* Pods-TypescriptStarter-TypescriptStarterTests.local.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TypescriptStarter-TypescriptStarterTests.local.release.xcconfig"; path = "Target Support Files/Pods-TypescriptStarter-TypescriptStarterTests/Pods-TypescriptStarter-TypescriptStarterTests.local.release.xcconfig"; sourceTree = "<group>"; };
+		E9A39B00BD80436AA8B7FCF0 /* EvilIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = EvilIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
-		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
-		F69A918E973C405E8AC9EB5D /* FontAwesome5_Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Regular.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Regular.ttf"; sourceTree = "<group>"; };
+		EDC9265EB62545F3AC5CFCD1 /* Zocial.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Zocial.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
+		F04D8C014ABF5D6A731462E5 /* Pods-TypescriptStarter.local.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TypescriptStarter.local.release.xcconfig"; path = "Target Support Files/Pods-TypescriptStarter/Pods-TypescriptStarter.local.release.xcconfig"; sourceTree = "<group>"; };
+		F62FED316797C63D32D8631B /* Pods-TypescriptStarter.prod.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TypescriptStarter.prod.release.xcconfig"; path = "Target Support Files/Pods-TypescriptStarter/Pods-TypescriptStarter.prod.release.xcconfig"; sourceTree = "<group>"; };
+		FC654960E4A64B71B3F71EDE /* Fontisto.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Fontisto.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Fontisto.ttf"; sourceTree = "<group>"; };
+		FDFD6D27D86BE8A71BEBAE87 /* libPods-TypescriptStarter-TypescriptStarterTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TypescriptStarter-TypescriptStarterTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,7 +95,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				78D15E95F1A8368ED2FBDB15 /* libPods-TypescriptStarter-TypescriptStarterTests.a in Frameworks */,
+				A1E9CC4B8AA61B6332B841F1 /* libPods-TypescriptStarter-TypescriptStarterTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,23 +103,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5208CB60C2C74D97B8AE8DF9 /* libPods-TypescriptStarter.a in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		2D02E4781E0B4A5D006451C7 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				60EEB6D1DC3C65F27E67EDB5 /* libPods-TypescriptStarter-tvOS.a in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		2D02E48D1E0B4A5D006451C7 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				B310CBDB07C2EEA611F9AF1F /* libPods-TypescriptStarter-tvOSTests.a in Frameworks */,
+				004B62156CD7561E03C3EA2C /* libPods-TypescriptStarter.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -178,80 +127,9 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		01BD5CF5E4ED4820B4F9565F /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				57B703A68B364EE2B3F28D37 /* AntDesign.ttf */,
-				CB5C9E80C38A4D348131DAF0 /* Entypo.ttf */,
-				0F319083DDF34D3697CF10FB /* EvilIcons.ttf */,
-				E947BEE82696461C893C11FB /* Feather.ttf */,
-				584B989829134371808023D9 /* FontAwesome.ttf */,
-				920902B581974F6483065AC5 /* FontAwesome5_Brands.ttf */,
-				F69A918E973C405E8AC9EB5D /* FontAwesome5_Regular.ttf */,
-				853199A7B91E4D5C97C9A499 /* FontAwesome5_Solid.ttf */,
-				A40A470F5F514E5FA0D3C8C8 /* Fontisto.ttf */,
-				D0E7F7737EC749F78E0C5572 /* Foundation.ttf */,
-				59914B9272EB4959B4EDA89A /* Ionicons.ttf */,
-				C3F59C94FB2441A29C78E98F /* MaterialCommunityIcons.ttf */,
-				7593044F543D4B3DB1BCABAF /* MaterialIcons.ttf */,
-				464BDA9D971D4C2D921CDE19 /* Octicons.ttf */,
-				1374FB7B5ECE4DB88B14233F /* SimpleLineIcons.ttf */,
-				328A02B1E80C4DC68B249C4B /* Zocial.ttf */,
-				E7E0689DE7504A0EBFBAC89A /* SFProDisplay-Black.ttf */,
-				E24D72F9EFBE4667B6F3AB15 /* SFProDisplay-Bold.ttf */,
-				D820E99ECDA5490EAC7ED2DC /* SFProDisplay-Heavy.ttf */,
-				1EE1C79B964C481EAC89FC93 /* SFProDisplay-Light.ttf */,
-				2F4E08D048D240DD94791A43 /* SFProDisplay-Medium.ttf */,
-				B120BF93D7044350AF79C6A3 /* SFProDisplay-Regular.ttf */,
-				4ADFA2FDBB814D9BA7BFD546 /* SFProDisplay-SemiBold.ttf */,
-				064D20EE543B455B895C5499 /* SFProDisplay-Thin.ttf */,
-			);
-			name = Resources;
-			sourceTree = "<group>";
-		};
-		0C195B6A8DF12D2A2A167AA8 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				CFE8B4EA0906DAD8E912DD33 /* Pods-TypescriptStarter.debug.xcconfig */,
-				59E44F1D38DE628CAAEA0884 /* Pods-TypescriptStarter.release.xcconfig */,
-				140BCB41ACC8CC1471584BD2 /* Pods-TypescriptStarter-TypescriptStarterTests.debug.xcconfig */,
-				0796D0CA224E3AEAC8CE2647 /* Pods-TypescriptStarter-TypescriptStarterTests.release.xcconfig */,
-				0C5A6538F266938102070FB7 /* Pods-TypescriptStarter-tvOS.debug.xcconfig */,
-				B7554A9F6D11085C4409FBDF /* Pods-TypescriptStarter-tvOS.release.xcconfig */,
-				17150FF090B2157DA9EA805A /* Pods-TypescriptStarter-tvOSTests.debug.xcconfig */,
-				3ED553B371935AC823783122 /* Pods-TypescriptStarter-tvOSTests.release.xcconfig */,
-				989D8B54833D179CCE29D309 /* Pods-TypescriptStarter.local.debug.xcconfig */,
-				0571F3E8FA4537DE3A0A062D /* Pods-TypescriptStarter.local.release.xcconfig */,
-				5CF6467DC642FACC9A5CF3BB /* Pods-TypescriptStarter-TypescriptStarterTests.local.debug.xcconfig */,
-				010F0438FAC315AE3759817D /* Pods-TypescriptStarter-TypescriptStarterTests.local.release.xcconfig */,
-				A001BDA941EF92453B4F077F /* Pods-TypescriptStarter-tvOS.local.debug.xcconfig */,
-				E8D61A00E7B66942CB1FA6CB /* Pods-TypescriptStarter-tvOS.local.release.xcconfig */,
-				7D696657DF542191F30E618A /* Pods-TypescriptStarter-tvOSTests.local.debug.xcconfig */,
-				7532269FD83B4EC4D913A1A7 /* Pods-TypescriptStarter-tvOSTests.local.release.xcconfig */,
-				36482ADF556F253B938CE127 /* Pods-TypescriptStarter.prod.debug.xcconfig */,
-				306E2F0237F5CCCF633601B6 /* Pods-TypescriptStarter.dev.debug.xcconfig */,
-				685E38DFA069FC92B2421058 /* Pods-TypescriptStarter.prod.release.xcconfig */,
-				BBCCB56F37537B38DC91A5F0 /* Pods-TypescriptStarter.dev.release.xcconfig */,
-				DE3D3F5A4171A6740D41A6B2 /* Pods-TypescriptStarter-TypescriptStarterTests.prod.debug.xcconfig */,
-				8D0CA62125433390770436F3 /* Pods-TypescriptStarter-TypescriptStarterTests.dev.debug.xcconfig */,
-				D40423C65129E7CEC33C9577 /* Pods-TypescriptStarter-TypescriptStarterTests.prod.release.xcconfig */,
-				BF449E22C7E6B5A3F2CBB71F /* Pods-TypescriptStarter-TypescriptStarterTests.dev.release.xcconfig */,
-				90C0F465CC0B88BD3319521A /* Pods-TypescriptStarter-tvOS.prod.debug.xcconfig */,
-				AC48112B5D867153F6F3559E /* Pods-TypescriptStarter-tvOS.dev.debug.xcconfig */,
-				260AB9B3EF3A4AA1964B4727 /* Pods-TypescriptStarter-tvOS.prod.release.xcconfig */,
-				90B51DB207D8D4506671FEE6 /* Pods-TypescriptStarter-tvOS.dev.release.xcconfig */,
-				28746DCEFE088C78BE822B1C /* Pods-TypescriptStarter-tvOSTests.prod.debug.xcconfig */,
-				E68CDC25228F7C8A80FBB6D0 /* Pods-TypescriptStarter-tvOSTests.dev.debug.xcconfig */,
-				0100AA68BECD4B4344F10FB8 /* Pods-TypescriptStarter-tvOSTests.prod.release.xcconfig */,
-				3380EEAE429C6A7D7B33B1B4 /* Pods-TypescriptStarter-tvOSTests.dev.release.xcconfig */,
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
 		13B07FAE1A68108700A75B9A /* TypescriptStarter */ = {
 			isa = PBXGroup;
 			children = (
-				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
@@ -262,15 +140,35 @@
 			name = TypescriptStarter;
 			sourceTree = "<group>";
 		};
+		1AEF7B9BBE96487E96EA6637 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				5F8708722F65235166A7BF34 /* Pods-TypescriptStarter.debug.xcconfig */,
+				4F9B55ED690BFF77998081F3 /* Pods-TypescriptStarter.release.xcconfig */,
+				A11CD8B66AAAF9CE7BB0D284 /* Pods-TypescriptStarter-TypescriptStarterTests.debug.xcconfig */,
+				861EA93628AAF35449765ADB /* Pods-TypescriptStarter-TypescriptStarterTests.release.xcconfig */,
+				9E3264C96EF4A230898C9E33 /* Pods-TypescriptStarter.prod.debug.xcconfig */,
+				E42DBCF6ACD3D7B24779C772 /* Pods-TypescriptStarter.dev.debug.xcconfig */,
+				A38F34B88609AFD6BA286DDC /* Pods-TypescriptStarter.local.debug.xcconfig */,
+				F62FED316797C63D32D8631B /* Pods-TypescriptStarter.prod.release.xcconfig */,
+				0BD83960EECEE95E1EFD94A4 /* Pods-TypescriptStarter.dev.release.xcconfig */,
+				F04D8C014ABF5D6A731462E5 /* Pods-TypescriptStarter.local.release.xcconfig */,
+				9F55DFB41CEDC0DD16433BF9 /* Pods-TypescriptStarter-TypescriptStarterTests.prod.debug.xcconfig */,
+				1AE86B6EDE872DDEBBD7FB2E /* Pods-TypescriptStarter-TypescriptStarterTests.dev.debug.xcconfig */,
+				825D0298A47BB7270AC35CF4 /* Pods-TypescriptStarter-TypescriptStarterTests.local.debug.xcconfig */,
+				166EC0C1783688EF482F005C /* Pods-TypescriptStarter-TypescriptStarterTests.prod.release.xcconfig */,
+				A068510DDF4005C30A23BB10 /* Pods-TypescriptStarter-TypescriptStarterTests.dev.release.xcconfig */,
+				E8550BCC30DCC2EA9017AA30 /* Pods-TypescriptStarter-TypescriptStarterTests.local.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				ED2971642150620600B7C4FE /* JavaScriptCore.framework */,
-				9808BDD860903376CE9A285D /* libPods-TypescriptStarter.a */,
-				4373690FD167617116618E0B /* libPods-TypescriptStarter-TypescriptStarterTests.a */,
-				1F5090C25BBE6429B5A70C4E /* libPods-TypescriptStarter-tvOS.a */,
-				E3A7C3E4F6B81434A4921363 /* libPods-TypescriptStarter-tvOSTests.a */,
+				3A3425D7BC1452E4BB0C8497 /* libPods-TypescriptStarter.a */,
+				FDFD6D27D86BE8A71BEBAE87 /* libPods-TypescriptStarter-TypescriptStarterTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -290,8 +188,8 @@
 				00E356EF1AD99517003FC87E /* TypescriptStarterTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
-				0C195B6A8DF12D2A2A167AA8 /* Pods */,
-				01BD5CF5E4ED4820B4F9565F /* Resources */,
+				1AEF7B9BBE96487E96EA6637 /* Pods */,
+				F0D4AF42A7544EB88290B5CF /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -303,10 +201,39 @@
 			children = (
 				13B07F961A680F5B00A75B9A /* TypescriptStarter.app */,
 				00E356EE1AD99517003FC87E /* TypescriptStarterTests.xctest */,
-				2D02E47B1E0B4A5D006451C7 /* TypescriptStarter-tvOS.app */,
-				2D02E4901E0B4A5D006451C7 /* TypescriptStarter-tvOSTests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		F0D4AF42A7544EB88290B5CF /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				2C00AF051A6D4D70B3D53B2F /* SFProDisplay-Black.ttf */,
+				7447428276324245B00D103E /* SFProDisplay-Bold.ttf */,
+				B27F6351A41046B3AE8D0099 /* SFProDisplay-Heavy.ttf */,
+				C382AF0418864FA78DE5886F /* SFProDisplay-Light.ttf */,
+				C82AB9EF54414A23BEE89A78 /* SFProDisplay-Medium.ttf */,
+				307C63C5BB9640549F9AA899 /* SFProDisplay-Regular.ttf */,
+				26124BB3AB8A457BB8EBD25E /* SFProDisplay-SemiBold.ttf */,
+				0D2EE2F82389452EA151C453 /* SFProDisplay-Thin.ttf */,
+				31912417342645399699B208 /* AntDesign.ttf */,
+				B60649EDAE82477E87DEA70D /* Entypo.ttf */,
+				E9A39B00BD80436AA8B7FCF0 /* EvilIcons.ttf */,
+				6516346FECC047B5B616243A /* Feather.ttf */,
+				CAD6BD516DEB400981B4CEF0 /* FontAwesome.ttf */,
+				08918E26D2C343B4BBBB60B2 /* FontAwesome5_Brands.ttf */,
+				8592B28B15234125B425395F /* FontAwesome5_Regular.ttf */,
+				720076A54B9C43BC9024807B /* FontAwesome5_Solid.ttf */,
+				FC654960E4A64B71B3F71EDE /* Fontisto.ttf */,
+				05BFD396AA9D4E71A80EF02B /* Foundation.ttf */,
+				02E59270AFB7413C8917FBE8 /* Ionicons.ttf */,
+				9470C3EADA4E436B9470C3DE /* MaterialCommunityIcons.ttf */,
+				B1643F624A3B4EC9A58C0B72 /* MaterialIcons.ttf */,
+				313014A8C2804A5D912A75A9 /* Octicons.ttf */,
+				5907C90D7DA440F18B94D45F /* SimpleLineIcons.ttf */,
+				EDC9265EB62545F3AC5CFCD1 /* Zocial.ttf */,
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -316,11 +243,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "TypescriptStarterTests" */;
 			buildPhases = (
-				A64260546B4A7DB4D8014B6E /* [CP] Check Pods Manifest.lock */,
+				9FA59459C5EFBB9CD2049D2B /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
-				B921EC0F2279C9DC53FEE063 /* [CP] Copy Pods Resources */,
+				1F20CA3AD254AD31920A339D /* [CP] Embed Pods Frameworks */,
+				183F0B45ED4C8C690FAAEA2E /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -336,13 +264,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "TypescriptStarter" */;
 			buildPhases = (
-				773E637145BE7B413A2B25FF /* [CP] Check Pods Manifest.lock */,
+				E9EECF9319352805EFC08214 /* [CP] Check Pods Manifest.lock */,
 				FD10A7F022414F080027D42C /* Start Packager */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
-				874229C9D4AB09CC3230ADA9 /* [CP] Copy Pods Resources */,
+				32AAEC1B4B49BB0AA7EBA232 /* [CP] Embed Pods Frameworks */,
+				6829D444280DF2EE547302AF /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -353,52 +282,13 @@
 			productReference = 13B07F961A680F5B00A75B9A /* TypescriptStarter.app */;
 			productType = "com.apple.product-type.application";
 		};
-		2D02E47A1E0B4A5D006451C7 /* TypescriptStarter-tvOS */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 2D02E4BA1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "TypescriptStarter-tvOS" */;
-			buildPhases = (
-				2F33A13E48155FE1B1C1C360 /* [CP] Check Pods Manifest.lock */,
-				FD10A7F122414F3F0027D42C /* Start Packager */,
-				2D02E4771E0B4A5D006451C7 /* Sources */,
-				2D02E4781E0B4A5D006451C7 /* Frameworks */,
-				2D02E4791E0B4A5D006451C7 /* Resources */,
-				2D02E4CB1E0B4B27006451C7 /* Bundle React Native Code And Images */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "TypescriptStarter-tvOS";
-			productName = "TypescriptStarter-tvOS";
-			productReference = 2D02E47B1E0B4A5D006451C7 /* TypescriptStarter-tvOS.app */;
-			productType = "com.apple.product-type.application";
-		};
-		2D02E48F1E0B4A5D006451C7 /* TypescriptStarter-tvOSTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 2D02E4BB1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "TypescriptStarter-tvOSTests" */;
-			buildPhases = (
-				0E6DAD24FAC66C32B5A08E77 /* [CP] Check Pods Manifest.lock */,
-				2D02E48C1E0B4A5D006451C7 /* Sources */,
-				2D02E48D1E0B4A5D006451C7 /* Frameworks */,
-				2D02E48E1E0B4A5D006451C7 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				2D02E4921E0B4A5D006451C7 /* PBXTargetDependency */,
-			);
-			name = "TypescriptStarter-tvOSTests";
-			productName = "TypescriptStarter-tvOSTests";
-			productReference = 2D02E4901E0B4A5D006451C7 /* TypescriptStarter-tvOSTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		83CBB9F71A601CBA00E9B192 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1130;
+				LastUpgradeCheck = 1210;
 				TargetAttributes = {
 					00E356ED1AD99517003FC87E = {
 						CreatedOnToolsVersion = 6.2;
@@ -407,19 +297,10 @@
 					13B07F861A680F5B00A75B9A = {
 						LastSwiftMigration = 1120;
 					};
-					2D02E47A1E0B4A5D006451C7 = {
-						CreatedOnToolsVersion = 8.2.1;
-						ProvisioningStyle = Automatic;
-					};
-					2D02E48F1E0B4A5D006451C7 = {
-						CreatedOnToolsVersion = 8.2.1;
-						ProvisioningStyle = Automatic;
-						TestTargetID = 2D02E47A1E0B4A5D006451C7;
-					};
 				};
 			};
 			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "TypescriptStarter" */;
-			compatibilityVersion = "Xcode 3.2";
+			compatibilityVersion = "Xcode 12.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -433,8 +314,6 @@
 			targets = (
 				13B07F861A680F5B00A75B9A /* TypescriptStarter */,
 				00E356ED1AD99517003FC87E /* TypescriptStarterTests */,
-				2D02E47A1E0B4A5D006451C7 /* TypescriptStarter-tvOS */,
-				2D02E48F1E0B4A5D006451C7 /* TypescriptStarter-tvOSTests */,
 			);
 		};
 /* End PBXProject section */
@@ -453,29 +332,14 @@
 			files = (
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
-				021B809F074E40DEB664E14F /* SFProDisplay-Black.ttf in Resources */,
-				4BA419073F2A477594D42311 /* SFProDisplay-Bold.ttf in Resources */,
-				2889F79F632044C18C4D3A9F /* SFProDisplay-Heavy.ttf in Resources */,
-				97EE4533446D417B8CA3D334 /* SFProDisplay-Light.ttf in Resources */,
-				F34DBCDE12A24F09AD7694FD /* SFProDisplay-Medium.ttf in Resources */,
-				D4D3CEBBEC124E28819A416C /* SFProDisplay-Regular.ttf in Resources */,
-				DA3641D892D44CA0A4B08B27 /* SFProDisplay-SemiBold.ttf in Resources */,
-				51BA0B4F59664E81B4E8492E /* SFProDisplay-Thin.ttf in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		2D02E4791E0B4A5D006451C7 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		2D02E48E1E0B4A5D006451C7 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
+				5EB320CBCD4B41D0B37E2EED /* SFProDisplay-Black.ttf in Resources */,
+				DF18D37A1BB64046AAEF0179 /* SFProDisplay-Bold.ttf in Resources */,
+				9917D287972D4AC7B844CBF0 /* SFProDisplay-Heavy.ttf in Resources */,
+				BA88E85C97E741CD9D3DFEBE /* SFProDisplay-Light.ttf in Resources */,
+				2E631716C2144C7085A46A44 /* SFProDisplay-Medium.ttf in Resources */,
+				98DE55D072F44A38AB54B65C /* SFProDisplay-Regular.ttf in Resources */,
+				0D414D35E34446C188E51E25 /* SFProDisplay-SemiBold.ttf in Resources */,
+				698EC24F03864AF4AA9DCE7F /* SFProDisplay-Thin.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -494,139 +358,77 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh\n";
+			shellScript = "set -e\n\nexport NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh\n";
 		};
-		0E6DAD24FAC66C32B5A08E77 /* [CP] Check Pods Manifest.lock */ = {
+		183F0B45ED4C8C690FAAEA2E /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-TypescriptStarter-tvOSTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		2D02E4CB1E0B4B27006451C7 /* Bundle React Native Code And Images */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Bundle React Native Code And Images";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
-		};
-		2F33A13E48155FE1B1C1C360 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-TypescriptStarter-tvOS-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		773E637145BE7B413A2B25FF /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-TypescriptStarter-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		874229C9D4AB09CC3230ADA9 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-TypescriptStarter/Pods-TypescriptStarter-resources.sh",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Entypo.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Feather.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Brands.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Regular.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Solid.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Fontisto.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Foundation.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Octicons.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Zocial.ttf",
-				"${PODS_CONFIGURATION_BUILD_DIR}/React-Core/AccessibilityResources.bundle",
+				"${PODS_ROOT}/Target Support Files/Pods-TypescriptStarter-TypescriptStarterTests/Pods-TypescriptStarter-TypescriptStarterTests-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AntDesign.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Entypo.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/EvilIcons.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Feather.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome5_Brands.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome5_Regular.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome5_Solid.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Fontisto.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Foundation.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Ionicons.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MaterialCommunityIcons.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MaterialIcons.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Octicons.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/SimpleLineIcons.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Zocial.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AccessibilityResources.bundle",
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TypescriptStarter-TypescriptStarterTests/Pods-TypescriptStarter-TypescriptStarterTests-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TypescriptStarter-TypescriptStarterTests/Pods-TypescriptStarter-TypescriptStarterTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		1F20CA3AD254AD31920A339D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TypescriptStarter-TypescriptStarterTests/Pods-TypescriptStarter-TypescriptStarterTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TypescriptStarter-TypescriptStarterTests/Pods-TypescriptStarter-TypescriptStarterTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TypescriptStarter-TypescriptStarterTests/Pods-TypescriptStarter-TypescriptStarterTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		32AAEC1B4B49BB0AA7EBA232 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TypescriptStarter/Pods-TypescriptStarter-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TypescriptStarter/Pods-TypescriptStarter-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TypescriptStarter/Pods-TypescriptStarter-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6829D444280DF2EE547302AF /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TypescriptStarter/Pods-TypescriptStarter-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TypescriptStarter/Pods-TypescriptStarter-resources-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TypescriptStarter/Pods-TypescriptStarter-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		A64260546B4A7DB4D8014B6E /* [CP] Check Pods Manifest.lock */ = {
+		9FA59459C5EFBB9CD2049D2B /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -648,57 +450,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		B921EC0F2279C9DC53FEE063 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-TypescriptStarter-TypescriptStarterTests/Pods-TypescriptStarter-TypescriptStarterTests-resources.sh",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Entypo.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Feather.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Brands.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Regular.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Solid.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Fontisto.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Foundation.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Octicons.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Zocial.ttf",
-				"${PODS_CONFIGURATION_BUILD_DIR}/React-Core/AccessibilityResources.bundle",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AntDesign.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Entypo.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/EvilIcons.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Feather.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome5_Brands.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome5_Regular.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome5_Solid.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Fontisto.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Foundation.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Ionicons.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MaterialCommunityIcons.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MaterialIcons.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Octicons.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/SimpleLineIcons.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Zocial.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AccessibilityResources.bundle",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TypescriptStarter-TypescriptStarterTests/Pods-TypescriptStarter-TypescriptStarterTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		FD10A7F022414F080027D42C /* Start Packager */ = {
+		E9EECF9319352805EFC08214 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -706,18 +458,21 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
-			name = "Start Packager";
+			name = "[CP] Check Pods Manifest.lock";
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-TypescriptStarter-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "export RCT_METRO_PORT=\"${RCT_METRO_PORT:=8081}\"\necho \"export RCT_METRO_PORT=${RCT_METRO_PORT}\" > \"${SRCROOT}/../node_modules/react-native/scripts/.packager.env\"\nif [ -z \"${RCT_NO_LAUNCH_PACKAGER+xxx}\" ] ; then\n  if nc -w 5 -z localhost ${RCT_METRO_PORT} ; then\n    if ! curl -s \"http://localhost:${RCT_METRO_PORT}/status\" | grep -q \"packager-status:running\" ; then\n      echo \"Port ${RCT_METRO_PORT} already in use, packager is either not running or not running correctly\"\n      exit 2\n    fi\n  else\n    open \"$SRCROOT/../node_modules/react-native/scripts/launchPackager.command\" || echo \"Can't start packager automatically\"\n  fi\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		FD10A7F122414F3F0027D42C /* Start Packager */ = {
+		FD10A7F022414F080027D42C /* Start Packager */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -756,23 +511,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		2D02E4771E0B4A5D006451C7 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */,
-				2D02E4BC1E0B4A80006451C7 /* AppDelegate.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		2D02E48C1E0B4A5D006451C7 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				2DCD954D1E0B4F2C00145EB5 /* TypescriptStarterTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -781,17 +519,12 @@
 			target = 13B07F861A680F5B00A75B9A /* TypescriptStarter */;
 			targetProxy = 00E356F41AD99517003FC87E /* PBXContainerItemProxy */;
 		};
-		2D02E4921E0B4A5D006451C7 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 2D02E47A1E0B4A5D006451C7 /* TypescriptStarter-tvOS */;
-			targetProxy = 2D02E4911E0B4A5D006451C7 /* PBXContainerItemProxy */;
-		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Prod.Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DE3D3F5A4171A6740D41A6B2 /* Pods-TypescriptStarter-TypescriptStarterTests.prod.debug.xcconfig */;
+			baseConfigurationReference = 9F55DFB41CEDC0DD16433BF9 /* Pods-TypescriptStarter-TypescriptStarterTests.prod.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -800,13 +533,17 @@
 				);
 				INFOPLIST_FILE = TypescriptStarterTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lc++",
 					"$(inherited)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.typescriptstarter.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TypescriptStarter.app/TypescriptStarter";
 			};
@@ -814,19 +551,23 @@
 		};
 		00E356F71AD99517003FC87E /* Prod.Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D40423C65129E7CEC33C9577 /* Pods-TypescriptStarter-TypescriptStarterTests.prod.release.xcconfig */;
+			baseConfigurationReference = 166EC0C1783688EF482F005C /* Pods-TypescriptStarter-TypescriptStarterTests.prod.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
 				INFOPLIST_FILE = TypescriptStarterTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lc++",
 					"$(inherited)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.typescriptstarter.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TypescriptStarter.app/TypescriptStarter";
 			};
@@ -834,15 +575,17 @@
 		};
 		13B07F941A680F5B00A75B9A /* Prod.Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 36482ADF556F253B938CE127 /* Pods-TypescriptStarter.prod.debug.xcconfig */;
+			baseConfigurationReference = 9E3264C96EF4A230898C9E33 /* Pods-TypescriptStarter.prod.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = TypescriptStarter/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -858,14 +601,16 @@
 		};
 		13B07F951A680F5B00A75B9A /* Prod.Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 685E38DFA069FC92B2421058 /* Pods-TypescriptStarter.prod.release.xcconfig */;
+			baseConfigurationReference = F62FED316797C63D32D8631B /* Pods-TypescriptStarter.prod.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = TypescriptStarter/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -875,116 +620,6 @@
 				PRODUCT_NAME = TypescriptStarter;
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
-			};
-			name = Prod.Release;
-		};
-		2D02E4971E0B4A5E006451C7 /* Prod.Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 90C0F465CC0B88BD3319521A /* Pods-TypescriptStarter-tvOS.prod.debug.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				ENABLE_TESTABILITY = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "TypescriptStarter-tvOS/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					"-ObjC",
-					"-lc++",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.TypescriptStarter-tvOS";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = appletvos;
-				TARGETED_DEVICE_FAMILY = 3;
-				TVOS_DEPLOYMENT_TARGET = 10.0;
-			};
-			name = Prod.Debug;
-		};
-		2D02E4981E0B4A5E006451C7 /* Prod.Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 260AB9B3EF3A4AA1964B4727 /* Pods-TypescriptStarter-tvOS.prod.release.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "TypescriptStarter-tvOS/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					"-ObjC",
-					"-lc++",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.TypescriptStarter-tvOS";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = appletvos;
-				TARGETED_DEVICE_FAMILY = 3;
-				TVOS_DEPLOYMENT_TARGET = 10.0;
-			};
-			name = Prod.Release;
-		};
-		2D02E4991E0B4A5E006451C7 /* Prod.Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 28746DCEFE088C78BE822B1C /* Pods-TypescriptStarter-tvOSTests.prod.debug.xcconfig */;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				ENABLE_TESTABILITY = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "TypescriptStarter-tvOSTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					"-ObjC",
-					"-lc++",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.TypescriptStarter-tvOSTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = appletvos;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TypescriptStarter-tvOS.app/TypescriptStarter-tvOS";
-				TVOS_DEPLOYMENT_TARGET = 10.1;
-			};
-			name = Prod.Debug;
-		};
-		2D02E49A1E0B4A5E006451C7 /* Prod.Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0100AA68BECD4B4344F10FB8 /* Pods-TypescriptStarter-tvOSTests.prod.release.xcconfig */;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "TypescriptStarter-tvOSTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					"-ObjC",
-					"-lc++",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.TypescriptStarter-tvOSTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = appletvos;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TypescriptStarter-tvOS.app/TypescriptStarter-tvOS";
-				TVOS_DEPLOYMENT_TARGET = 10.1;
 			};
 			name = Prod.Release;
 		};
@@ -1012,6 +647,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -1021,6 +657,7 @@
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "arm64 ";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -1037,7 +674,10 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "/usr/lib/swift $(inherited)";
+				LD_RUNPATH_SEARCH_PATHS = (
+					/usr/lib/swift,
+					"$(inherited)",
+				);
 				LIBRARY_SEARCH_PATHS = (
 					"\"$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)\"",
 					"\"$(TOOLCHAIN_DIR)/usr/lib/swift-5.0/$(PLATFORM_NAME)\"",
@@ -1045,7 +685,6 @@
 				);
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.typescriptstarter;
 				SDKROOT = iphoneos;
 			};
 			name = Prod.Debug;
@@ -1074,6 +713,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -1083,6 +723,7 @@
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "arm64 ";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -1092,20 +733,248 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "/usr/lib/swift $(inherited)";
+				LD_RUNPATH_SEARCH_PATHS = (
+					/usr/lib/swift,
+					"$(inherited)",
+				);
 				LIBRARY_SEARCH_PATHS = (
 					"\"$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)\"",
 					"\"$(TOOLCHAIN_DIR)/usr/lib/swift-5.0/$(PLATFORM_NAME)\"",
 					"\"$(inherited)\"",
 				);
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.typescriptstarter;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Prod.Release;
 		};
-		88A0B85725EF05D10089A1B9 /* Local.Debug */ = {
+		881751FD26AF4BCE004527AC /* Dev.Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUNDLE_ID_SUFFIX = .dev;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "arm64 ";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					/usr/lib/swift,
+					"$(inherited)",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"\"$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)\"",
+					"\"$(TOOLCHAIN_DIR)/usr/lib/swift-5.0/$(PLATFORM_NAME)\"",
+					"\"$(inherited)\"",
+				);
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Dev.Debug;
+		};
+		881751FE26AF4BCE004527AC /* Dev.Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E42DBCF6ACD3D7B24779C772 /* Pods-TypescriptStarter.dev.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_BITCODE = NO;
+				INFOPLIST_FILE = TypescriptStarter/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-lc++",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.typescriptstarter;
+				PRODUCT_NAME = "TypescriptStarter Dev";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				VERSIONING_SYSTEM = "apple-generic";
+			};
+			name = Dev.Debug;
+		};
+		881751FF26AF4BCE004527AC /* Dev.Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1AE86B6EDE872DDEBBD7FB2E /* Pods-TypescriptStarter-TypescriptStarterTests.dev.debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = TypescriptStarterTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-lc++",
+					"$(inherited)",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.typescriptstarter.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TypescriptStarter.app/TypescriptStarter";
+			};
+			name = Dev.Debug;
+		};
+		8817520026AF4BDE004527AC /* Dev.Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUNDLE_ID_SUFFIX = .dev;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "arm64 ";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					/usr/lib/swift,
+					"$(inherited)",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"\"$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)\"",
+					"\"$(TOOLCHAIN_DIR)/usr/lib/swift-5.0/$(PLATFORM_NAME)\"",
+					"\"$(inherited)\"",
+				);
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Dev.Release;
+		};
+		8817520126AF4BDE004527AC /* Dev.Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0BD83960EECEE95E1EFD94A4 /* Pods-TypescriptStarter.dev.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				INFOPLIST_FILE = TypescriptStarter/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-lc++",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.typescriptstarter;
+				PRODUCT_NAME = "TypescriptStarter Dev";
+				SWIFT_VERSION = 5.0;
+				VERSIONING_SYSTEM = "apple-generic";
+			};
+			name = Dev.Release;
+		};
+		8817520226AF4BDE004527AC /* Dev.Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A068510DDF4005C30A23BB10 /* Pods-TypescriptStarter-TypescriptStarterTests.dev.release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COPY_PHASE_STRIP = NO;
+				INFOPLIST_FILE = TypescriptStarterTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-lc++",
+					"$(inherited)",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.typescriptstarter.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TypescriptStarter.app/TypescriptStarter";
+			};
+			name = Dev.Release;
+		};
+		8817520326AF4BF6004527AC /* Local.Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -1129,6 +998,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -1138,6 +1008,7 @@
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "arm64 ";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -1154,7 +1025,10 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "/usr/lib/swift $(inherited)";
+				LD_RUNPATH_SEARCH_PATHS = (
+					/usr/lib/swift,
+					"$(inherited)",
+				);
 				LIBRARY_SEARCH_PATHS = (
 					"\"$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)\"",
 					"\"$(TOOLCHAIN_DIR)/usr/lib/swift-5.0/$(PLATFORM_NAME)\"",
@@ -1162,22 +1036,23 @@
 				);
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.typescriptstarter;
 				SDKROOT = iphoneos;
 			};
 			name = Local.Debug;
 		};
-		88A0B85825EF05D10089A1B9 /* Local.Debug */ = {
+		8817520426AF4BF6004527AC /* Local.Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 989D8B54833D179CCE29D309 /* Pods-TypescriptStarter.local.debug.xcconfig */;
+			baseConfigurationReference = A38F34B88609AFD6BA286DDC /* Pods-TypescriptStarter.local.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = TypescriptStarter/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -1191,9 +1066,9 @@
 			};
 			name = Local.Debug;
 		};
-		88A0B85925EF05D10089A1B9 /* Local.Debug */ = {
+		8817520526AF4BF6004527AC /* Local.Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5CF6467DC642FACC9A5CF3BB /* Pods-TypescriptStarter-TypescriptStarterTests.local.debug.xcconfig */;
+			baseConfigurationReference = 825D0298A47BB7270AC35CF4 /* Pods-TypescriptStarter-TypescriptStarterTests.local.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -1202,74 +1077,23 @@
 				);
 				INFOPLIST_FILE = TypescriptStarterTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lc++",
 					"$(inherited)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.typescriptstarter.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TypescriptStarter.app/TypescriptStarter";
 			};
 			name = Local.Debug;
 		};
-		88A0B85A25EF05D10089A1B9 /* Local.Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = A001BDA941EF92453B4F077F /* Pods-TypescriptStarter-tvOS.local.debug.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				ENABLE_TESTABILITY = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "TypescriptStarter-tvOS/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					"-ObjC",
-					"-lc++",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.TypescriptStarter-tvOS";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = appletvos;
-				TARGETED_DEVICE_FAMILY = 3;
-				TVOS_DEPLOYMENT_TARGET = 10.0;
-			};
-			name = Local.Debug;
-		};
-		88A0B85B25EF05D10089A1B9 /* Local.Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7D696657DF542191F30E618A /* Pods-TypescriptStarter-tvOSTests.local.debug.xcconfig */;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				ENABLE_TESTABILITY = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "TypescriptStarter-tvOSTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					"-ObjC",
-					"-lc++",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.TypescriptStarter-tvOSTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = appletvos;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TypescriptStarter-tvOS.app/TypescriptStarter-tvOS";
-				TVOS_DEPLOYMENT_TARGET = 10.1;
-			};
-			name = Local.Debug;
-		};
-		88A0B85C25EF05D90089A1B9 /* Local.Release */ = {
+		8817520626AF4C02004527AC /* Local.Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -1293,6 +1117,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -1302,6 +1127,7 @@
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "arm64 ";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -1311,29 +1137,33 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "/usr/lib/swift $(inherited)";
+				LD_RUNPATH_SEARCH_PATHS = (
+					/usr/lib/swift,
+					"$(inherited)",
+				);
 				LIBRARY_SEARCH_PATHS = (
 					"\"$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)\"",
 					"\"$(TOOLCHAIN_DIR)/usr/lib/swift-5.0/$(PLATFORM_NAME)\"",
 					"\"$(inherited)\"",
 				);
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.typescriptstarter;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Local.Release;
 		};
-		88A0B85D25EF05D90089A1B9 /* Local.Release */ = {
+		8817520726AF4C02004527AC /* Local.Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0571F3E8FA4537DE3A0A062D /* Pods-TypescriptStarter.local.release.xcconfig */;
+			baseConfigurationReference = F04D8C014ABF5D6A731462E5 /* Pods-TypescriptStarter.local.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = TypescriptStarter/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -1346,398 +1176,29 @@
 			};
 			name = Local.Release;
 		};
-		88A0B85E25EF05D90089A1B9 /* Local.Release */ = {
+		8817520826AF4C02004527AC /* Local.Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 010F0438FAC315AE3759817D /* Pods-TypescriptStarter-TypescriptStarterTests.local.release.xcconfig */;
+			baseConfigurationReference = E8550BCC30DCC2EA9017AA30 /* Pods-TypescriptStarter-TypescriptStarterTests.local.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
 				INFOPLIST_FILE = TypescriptStarterTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lc++",
 					"$(inherited)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.typescriptstarter.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TypescriptStarter.app/TypescriptStarter";
 			};
 			name = Local.Release;
-		};
-		88A0B85F25EF05D90089A1B9 /* Local.Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = E8D61A00E7B66942CB1FA6CB /* Pods-TypescriptStarter-tvOS.local.release.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "TypescriptStarter-tvOS/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					"-ObjC",
-					"-lc++",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.TypescriptStarter-tvOS";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = appletvos;
-				TARGETED_DEVICE_FAMILY = 3;
-				TVOS_DEPLOYMENT_TARGET = 10.0;
-			};
-			name = Local.Release;
-		};
-		88A0B86025EF05D90089A1B9 /* Local.Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7532269FD83B4EC4D913A1A7 /* Pods-TypescriptStarter-tvOSTests.local.release.xcconfig */;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "TypescriptStarter-tvOSTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					"-ObjC",
-					"-lc++",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.TypescriptStarter-tvOSTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = appletvos;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TypescriptStarter-tvOS.app/TypescriptStarter-tvOS";
-				TVOS_DEPLOYMENT_TARGET = 10.1;
-			};
-			name = Local.Release;
-		};
-		88A0B8CA25EF0B140089A1B9 /* Dev.Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				BUNDLE_ID_SUFFIX = .dev;
-				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_COMMA = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
-				CLANG_WARN_STRICT_PROTOTYPES = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				COPY_PHASE_STRIP = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_TESTABILITY = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "/usr/lib/swift $(inherited)";
-				LIBRARY_SEARCH_PATHS = (
-					"\"$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)\"",
-					"\"$(TOOLCHAIN_DIR)/usr/lib/swift-5.0/$(PLATFORM_NAME)\"",
-					"\"$(inherited)\"",
-				);
-				MTL_ENABLE_DEBUG_INFO = YES;
-				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.typescriptstarter;
-				SDKROOT = iphoneos;
-			};
-			name = Dev.Debug;
-		};
-		88A0B8CB25EF0B140089A1B9 /* Dev.Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 306E2F0237F5CCCF633601B6 /* Pods-TypescriptStarter.dev.debug.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				BUNDLE_ID_SUFFIX = .dev;
-				CLANG_ENABLE_MODULES = YES;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
-				ENABLE_BITCODE = NO;
-				INFOPLIST_FILE = TypescriptStarter/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					"-ObjC",
-					"-lc++",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.typescriptstarter;
-				PRODUCT_NAME = "TypescriptStarter Dev";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
-				VERSIONING_SYSTEM = "apple-generic";
-			};
-			name = Dev.Debug;
-		};
-		88A0B8CC25EF0B140089A1B9 /* Dev.Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8D0CA62125433390770436F3 /* Pods-TypescriptStarter-TypescriptStarterTests.dev.debug.xcconfig */;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = TypescriptStarterTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				OTHER_LDFLAGS = (
-					"-ObjC",
-					"-lc++",
-					"$(inherited)",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TypescriptStarter.app/TypescriptStarter";
-			};
-			name = Dev.Debug;
-		};
-		88A0B8CD25EF0B140089A1B9 /* Dev.Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = AC48112B5D867153F6F3559E /* Pods-TypescriptStarter-tvOS.dev.debug.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				ENABLE_TESTABILITY = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "TypescriptStarter-tvOS/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					"-ObjC",
-					"-lc++",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.TypescriptStarter-tvOS";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = appletvos;
-				TARGETED_DEVICE_FAMILY = 3;
-				TVOS_DEPLOYMENT_TARGET = 10.0;
-			};
-			name = Dev.Debug;
-		};
-		88A0B8CE25EF0B140089A1B9 /* Dev.Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = E68CDC25228F7C8A80FBB6D0 /* Pods-TypescriptStarter-tvOSTests.dev.debug.xcconfig */;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				ENABLE_TESTABILITY = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "TypescriptStarter-tvOSTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					"-ObjC",
-					"-lc++",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.TypescriptStarter-tvOSTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = appletvos;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TypescriptStarter-tvOS.app/TypescriptStarter-tvOS";
-				TVOS_DEPLOYMENT_TARGET = 10.1;
-			};
-			name = Dev.Debug;
-		};
-		88A0B8CF25EF0B1F0089A1B9 /* Dev.Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				BUNDLE_ID_SUFFIX = .dev;
-				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_COMMA = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
-				CLANG_WARN_STRICT_PROTOTYPES = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				COPY_PHASE_STRIP = YES;
-				ENABLE_NS_ASSERTIONS = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "/usr/lib/swift $(inherited)";
-				LIBRARY_SEARCH_PATHS = (
-					"\"$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)\"",
-					"\"$(TOOLCHAIN_DIR)/usr/lib/swift-5.0/$(PLATFORM_NAME)\"",
-					"\"$(inherited)\"",
-				);
-				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.typescriptstarter;
-				SDKROOT = iphoneos;
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Dev.Release;
-		};
-		88A0B8D025EF0B1F0089A1B9 /* Dev.Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = BBCCB56F37537B38DC91A5F0 /* Pods-TypescriptStarter.dev.release.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				BUNDLE_ID_SUFFIX = .dev;
-				CLANG_ENABLE_MODULES = YES;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
-				INFOPLIST_FILE = TypescriptStarter/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					"-ObjC",
-					"-lc++",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.typescriptstarter;
-				PRODUCT_NAME = "TypescriptStarter Dev";
-				SWIFT_VERSION = 5.0;
-				VERSIONING_SYSTEM = "apple-generic";
-			};
-			name = Dev.Release;
-		};
-		88A0B8D125EF0B1F0089A1B9 /* Dev.Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = BF449E22C7E6B5A3F2CBB71F /* Pods-TypescriptStarter-TypescriptStarterTests.dev.release.xcconfig */;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				COPY_PHASE_STRIP = NO;
-				INFOPLIST_FILE = TypescriptStarterTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				OTHER_LDFLAGS = (
-					"-ObjC",
-					"-lc++",
-					"$(inherited)",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TypescriptStarter.app/TypescriptStarter";
-			};
-			name = Dev.Release;
-		};
-		88A0B8D225EF0B1F0089A1B9 /* Dev.Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 90B51DB207D8D4506671FEE6 /* Pods-TypescriptStarter-tvOS.dev.release.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "TypescriptStarter-tvOS/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					"-ObjC",
-					"-lc++",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.TypescriptStarter-tvOS";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = appletvos;
-				TARGETED_DEVICE_FAMILY = 3;
-				TVOS_DEPLOYMENT_TARGET = 10.0;
-			};
-			name = Dev.Release;
-		};
-		88A0B8D325EF0B1F0089A1B9 /* Dev.Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3380EEAE429C6A7D7B33B1B4 /* Pods-TypescriptStarter-tvOSTests.dev.release.xcconfig */;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "TypescriptStarter-tvOSTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					"-ObjC",
-					"-lc++",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.TypescriptStarter-tvOSTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = appletvos;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TypescriptStarter-tvOS.app/TypescriptStarter-tvOS";
-				TVOS_DEPLOYMENT_TARGET = 10.1;
-			};
-			name = Dev.Release;
 		};
 /* End XCBuildConfiguration section */
 
@@ -1746,11 +1207,11 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				00E356F61AD99517003FC87E /* Prod.Debug */,
-				88A0B8CC25EF0B140089A1B9 /* Dev.Debug */,
-				88A0B85925EF05D10089A1B9 /* Local.Debug */,
+				881751FF26AF4BCE004527AC /* Dev.Debug */,
+				8817520526AF4BF6004527AC /* Local.Debug */,
 				00E356F71AD99517003FC87E /* Prod.Release */,
-				88A0B8D125EF0B1F0089A1B9 /* Dev.Release */,
-				88A0B85E25EF05D90089A1B9 /* Local.Release */,
+				8817520226AF4BDE004527AC /* Dev.Release */,
+				8817520826AF4C02004527AC /* Local.Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Prod.Release;
@@ -1759,37 +1220,11 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				13B07F941A680F5B00A75B9A /* Prod.Debug */,
-				88A0B8CB25EF0B140089A1B9 /* Dev.Debug */,
-				88A0B85825EF05D10089A1B9 /* Local.Debug */,
+				881751FE26AF4BCE004527AC /* Dev.Debug */,
+				8817520426AF4BF6004527AC /* Local.Debug */,
 				13B07F951A680F5B00A75B9A /* Prod.Release */,
-				88A0B8D025EF0B1F0089A1B9 /* Dev.Release */,
-				88A0B85D25EF05D90089A1B9 /* Local.Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Prod.Release;
-		};
-		2D02E4BA1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "TypescriptStarter-tvOS" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				2D02E4971E0B4A5E006451C7 /* Prod.Debug */,
-				88A0B8CD25EF0B140089A1B9 /* Dev.Debug */,
-				88A0B85A25EF05D10089A1B9 /* Local.Debug */,
-				2D02E4981E0B4A5E006451C7 /* Prod.Release */,
-				88A0B8D225EF0B1F0089A1B9 /* Dev.Release */,
-				88A0B85F25EF05D90089A1B9 /* Local.Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Prod.Release;
-		};
-		2D02E4BB1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "TypescriptStarter-tvOSTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				2D02E4991E0B4A5E006451C7 /* Prod.Debug */,
-				88A0B8CE25EF0B140089A1B9 /* Dev.Debug */,
-				88A0B85B25EF05D10089A1B9 /* Local.Debug */,
-				2D02E49A1E0B4A5E006451C7 /* Prod.Release */,
-				88A0B8D325EF0B1F0089A1B9 /* Dev.Release */,
-				88A0B86025EF05D90089A1B9 /* Local.Release */,
+				8817520126AF4BDE004527AC /* Dev.Release */,
+				8817520726AF4C02004527AC /* Local.Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Prod.Release;
@@ -1798,11 +1233,11 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				83CBBA201A601CBA00E9B192 /* Prod.Debug */,
-				88A0B8CA25EF0B140089A1B9 /* Dev.Debug */,
-				88A0B85725EF05D10089A1B9 /* Local.Debug */,
+				881751FD26AF4BCE004527AC /* Dev.Debug */,
+				8817520326AF4BF6004527AC /* Local.Debug */,
 				83CBBA211A601CBA00E9B192 /* Prod.Release */,
-				88A0B8CF25EF0B1F0089A1B9 /* Dev.Release */,
-				88A0B85C25EF05D90089A1B9 /* Local.Release */,
+				8817520026AF4BDE004527AC /* Dev.Release */,
+				8817520626AF4C02004527AC /* Local.Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Prod.Release;

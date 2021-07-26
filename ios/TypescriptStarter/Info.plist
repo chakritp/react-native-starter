@@ -5,11 +5,11 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
-	<string>$(PRODUCT_NAME)</string>
+	<string>TypescriptStarter</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
-	<string>$(PRODUCT_BUNDLE_IDENTIFIER)$(BUNDLE_ID_SUFFIX)</string>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -22,14 +22,10 @@
 	<string>????</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
-	<key>ITSAppUsesNonExemptEncryption</key>
-	<false/>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
 	<dict>
-		<key>NSAllowsArbitraryLoads</key>
-		<true/>
 		<key>NSExceptionDomains</key>
 		<dict>
 			<key>localhost</key>
@@ -43,24 +39,14 @@
 	<string></string>
 	<key>UIAppFonts</key>
 	<array>
-		<string>Montserrat-Black.ttf</string>
-		<string>Montserrat-BlackItalic.ttf</string>
-		<string>Montserrat-Bold.ttf</string>
-		<string>Montserrat-BoldItalic.ttf</string>
-		<string>Montserrat-ExtraBold.ttf</string>
-		<string>Montserrat-ExtraBoldItalic.ttf</string>
-		<string>Montserrat-ExtraLight.ttf</string>
-		<string>Montserrat-ExtraLightItalic.ttf</string>
-		<string>Montserrat-Italic.ttf</string>
-		<string>Montserrat-Light.ttf</string>
-		<string>Montserrat-LightItalic.ttf</string>
-		<string>Montserrat-Medium.ttf</string>
-		<string>Montserrat-MediumItalic.ttf</string>
-		<string>Montserrat-Regular.ttf</string>
-		<string>Montserrat-SemiBold.ttf</string>
-		<string>Montserrat-SemiBoldItalic.ttf</string>
-		<string>Montserrat-Thin.ttf</string>
-		<string>Montserrat-ThinItalic.ttf</string>
+		<string>SFProDisplay-Black.ttf</string>
+		<string>SFProDisplay-Bold.ttf</string>
+		<string>SFProDisplay-Heavy.ttf</string>
+		<string>SFProDisplay-Light.ttf</string>
+		<string>SFProDisplay-Medium.ttf</string>
+		<string>SFProDisplay-Regular.ttf</string>
+		<string>SFProDisplay-SemiBold.ttf</string>
+		<string>SFProDisplay-Thin.ttf</string>
 		<string>AntDesign.ttf</string>
 		<string>Entypo.ttf</string>
 		<string>EvilIcons.ttf</string>
@@ -77,32 +63,6 @@
 		<string>Octicons.ttf</string>
 		<string>SimpleLineIcons.ttf</string>
 		<string>Zocial.ttf</string>
-		<string>WorkSans-Black.ttf</string>
-		<string>WorkSans-BlackItalic.ttf</string>
-		<string>WorkSans-Bold.ttf</string>
-		<string>WorkSans-BoldItalic.ttf</string>
-		<string>WorkSans-ExtraBold.ttf</string>
-		<string>WorkSans-ExtraBoldItalic.ttf</string>
-		<string>WorkSans-ExtraLight.ttf</string>
-		<string>WorkSans-ExtraLightItalic.ttf</string>
-		<string>WorkSans-Italic.ttf</string>
-		<string>WorkSans-Light.ttf</string>
-		<string>WorkSans-LightItalic.ttf</string>
-		<string>WorkSans-Medium.ttf</string>
-		<string>WorkSans-MediumItalic.ttf</string>
-		<string>WorkSans-Regular.ttf</string>
-		<string>WorkSans-SemiBold.ttf</string>
-		<string>WorkSans-SemiBoldItalic.ttf</string>
-		<string>WorkSans-Thin.ttf</string>
-		<string>WorkSans-ThinItalic.ttf</string>
-		<string>SFProDisplay-Black.ttf</string>
-		<string>SFProDisplay-Bold.ttf</string>
-		<string>SFProDisplay-Heavy.ttf</string>
-		<string>SFProDisplay-Light.ttf</string>
-		<string>SFProDisplay-Medium.ttf</string>
-		<string>SFProDisplay-Regular.ttf</string>
-		<string>SFProDisplay-SemiBold.ttf</string>
-		<string>SFProDisplay-Thin.ttf</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
@@ -113,6 +73,8 @@
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
