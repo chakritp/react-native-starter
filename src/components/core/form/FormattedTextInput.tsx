@@ -11,7 +11,7 @@ import { TextInput as RNTextInput, StyleSheet, NativeMethods } from 'react-nativ
 import { TextInput, TextInputProps } from './TextInput'
 
 export interface BaseFormattedTextInputProps<T> extends Omit<TextInputProps, 'value'> {
-  value?: T | null,
+  value?: T,
   onChangeValue?: (value: T) => void
 }
 

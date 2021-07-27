@@ -10,7 +10,7 @@ export type PickerItem = _PickerItem
 export interface PickerProps extends Omit<PlatformPickerProps, 'items'> {
   style?: StyleProp<ViewStyle>
   items?: _PickerItem[]
-  value?: number | string | null
+  value?: number | string
   onChange?: PlatformPickerProps['onValueChange']
 }
 

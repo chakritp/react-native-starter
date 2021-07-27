@@ -13,6 +13,6 @@ export type DateTimePickerBaseProps = {
   clearable?: boolean
   value?: Date
   open?: boolean
-  onChange?: (value?: Date | null) => void
+  onChange?: (value?: Date) => void
   onClose?: () => void
 }

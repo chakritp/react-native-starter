@@ -16,7 +16,7 @@ export interface AutocompletePickerProps<T, P> extends Omit<SelectionListProps<T
   itemPropsExtractor?: SelectionListProps<T>['itemPropsExtractor']
   value?: P
   onOpen?: () => void
-  onChange?: (value: P | null) => void
+  onChange?: (value?: P) => void
 }
 
 export const AutocompletePicker = <T, P>({
@@ -71,7 +71,7 @@ export const AutocompletePicker = <T, P>({
             mr="xs"
             right={0}
             size="m"
-            onPress={() => onChange?.(null)} />
+            onPress={() => onChange?.(undefined)} />
         ) : undefined}
         onPress={handleOpen} />
 

@@ -21,7 +21,7 @@ export default function PlatformDateTimePicker({
       onClose={onClose}>
       <DateTimePicker
         value={value || defaultValue!}
-        onChange={(_ev, value) => onChange?.(value || null)}
+        onChange={(_ev: any, value?: Date) => onChange?.(value)}
         {...props} />
       
       <Box flexDirection="row" justifyContent="center">
@@ -33,7 +33,7 @@ export default function PlatformDateTimePicker({
             size="s"
             title={t('actions.clear')} 
             onPress={() => {
-              onChange?.(null)
+              onChange?.(undefined)
               onClose?.()
             }} />
         )}
