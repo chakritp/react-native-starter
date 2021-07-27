@@ -35,19 +35,23 @@ const schema = yup.object().shape({
   picker: yup.string().nullable().required("Gotta pick one")
 })
 
-const defaultValues = {
-  textInput1: '',
-  textInput2: '',
-  formattedTextInput: 327450,
-  picker: null,
-  autocompletePicker: null,
-  localAutocompletePicker: null,
-  datePicker: null as Date | null,
-  timePicker: null as Date | null,
-  switch: false
+type FormValues = {
+  textInput1: string
+  textInput2: string
+  formattedTextInput: number
+  picker?: number
+  autocompletePicker?: number
+  localAutocompletePicker?: number
+  datePicker?: Date
+  timePicker?: Date
+  switch: boolean
 }
 
-type FormValues = typeof defaultValues
+const defaultValues: Partial<FormValues> = {
+  textInput1: '',
+  textInput2: '',
+  formattedTextInput: 327450
+}
 
 export default () => {
   const [disabled] = useValue('disabled', { defaultValue: false })

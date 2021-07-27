@@ -1,10 +1,9 @@
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef } from 'react'
 import { Keyboard } from 'react-native'
 import {
-  FieldName,
   FieldValues,
-  UseFormOptions as $UseFormOptions,
-  UseFormMethods as $UseFormMethods,
+  UseFormProps as $UseFormProps,
+  UseFormReturn as $UseFormReturn,
   SubmitHandler,
   useForm as $useForm,
   useFormContext as $useFormContext,
@@ -18,10 +17,11 @@ import { FieldError, configureYup } from 'lib/form'
 import { translateForm, fieldErrorMessage } from 'helpers/i18n'
 import { UseErrorAlertOptions, useBackHandler, useErrorAlert } from '../hooks'
 import { Toast } from '../Toast'
+import { Path } from 'react-hook-form'
 
 configureYup()
 
-export interface UseFormOptions<TFieldValues extends FieldValues = FieldValues, TContext extends object = object> extends $UseFormOptions<TFieldValues, TContext> {
+export interface UseFormProps<TFieldValues extends FieldValues = FieldValues, TContext extends object = object> extends $UseFormProps<TFieldValues, TContext> {
   name?: string
   schema?: AnyObjectSchema
   showValidationError?: (error: FieldError, field: string) => void
@@ -29,17 +29,17 @@ export interface UseFormOptions<TFieldValues extends FieldValues = FieldValues, 
   onSuccess?: () => void
 } 
 
-export interface UseFormMethods<TFieldValues extends FieldValues = FieldValues> extends $UseFormMethods<TFieldValues> {
-  defaultValues: UseFormOptions<TFieldValues>['defaultValues']
+export interface UseFormReturn<TFieldValues extends FieldValues = FieldValues> extends $UseFormReturn<TFieldValues> {
+  defaultValues: UseFormProps<TFieldValues>['defaultValues']
   submitError?: Error | ApiNetworkError | ApiServerError
   registerFieldLabel: (field: string, label: string) => void
   translate: (scope: string, options?: i18n.TranslateOptions) => string
   submit: () => void
-  showValidationError?: UseFormOptions['showValidationError']
+  showValidationError?: UseFormProps['showValidationError']
 }
 
 export function useForm<TFieldValues extends FieldValues = FieldValues, TContext extends object = object>(
-  options: UseFormOptions<TFieldValues, TContext>
+  options: UseFormProps<TFieldValues, TContext>
 ) {
   const {
     name = 'common',
@@ -53,8 +53,8 @@ export function useForm<TFieldValues extends FieldValues = FieldValues, TContext
   const _defaultValues = useMemo(() => formOptions.defaultValues, [])
   const fieldLabels = useMemo<{[key: string]: string}>(() => ({}), [])
   const submitErrorRef = useRef<Error | ApiNetworkError | ApiServerError>()
-  const onSubmitRef = useRef<UseFormOptions<TFieldValues, TContext>['onSubmit']>()
-  const onSuccessRef = useRef<UseFormOptions<TFieldValues, TContext>['onSuccess']>()
+  const onSubmitRef = useRef<UseFormProps<TFieldValues, TContext>['onSubmit']>()
+  const onSuccessRef = useRef<UseFormProps<TFieldValues, TContext>['onSuccess']>()
   const submitCountRef = useRef(0)
 
   onSubmitRef.current = onSubmit
@@ -71,7 +71,7 @@ export function useForm<TFieldValues extends FieldValues = FieldValues, TContext
   // Scoped translation helper.
   const translate = useCallback((scope: string, options?: i18n.TranslateOptions) => translateForm(name, scope, options), [name])
 
-  const form = $useForm(formOptions) as UseFormMethods<TFieldValues>
+  const form = $useForm(formOptions) as UseFormReturn<TFieldValues>
   form.defaultValues = _defaultValues
 
   const defaultShowValidationError = useCallback((error: FieldError, field: string) => {
@@ -107,7 +107,7 @@ export function useForm<TFieldValues extends FieldValues = FieldValues, TContext
         if (error.code === 'invalid_request' && error.parameters) {
           for (const fieldName of Object.keys(error.parameters)) {
             const message = error.parameters[fieldName][0]
-            form.setError(fieldName as FieldName<TFieldValues>, { message })
+            form.setError(fieldName as Path<TFieldValues>, { message })
           }
         }
       } else if (onSuccessRef.current) {
@@ -118,7 +118,7 @@ export function useForm<TFieldValues extends FieldValues = FieldValues, TContext
 
   useEffect(() => {
     if (submitCountRef.current !== form.formState.submitCount && _showValidationError) {
-      const { errors } = form
+      const { errors } = form.formState
       if (errors) {
         const field = Object.keys(errors)[0]
         if (field && errors[field]) {
@@ -140,7 +140,7 @@ export function useForm<TFieldValues extends FieldValues = FieldValues, TContext
   }
 }
 
-export function useFormErrorAlert(form: UseFormMethods, options: UseErrorAlertOptions) {
+export function useFormErrorAlert(form: UseFormReturn, options: UseErrorAlertOptions) {
   return useErrorAlert({
     error: form.submitError,
     ignoreValidationError: true,
@@ -149,7 +149,7 @@ export function useFormErrorAlert(form: UseFormMethods, options: UseErrorAlertOp
 }
 
 export function useFormScreen<TFieldValues extends FieldValues = FieldValues, TContext extends object = object>(
-  options: UseFormOptions<TFieldValues, TContext>
+  options: UseFormProps<TFieldValues, TContext>
 ) {
   const form = useForm<TFieldValues, TContext>(options)
   const { isSubmitting } = form.formState
@@ -167,4 +167,4 @@ export function useFormScreen<TFieldValues extends FieldValues = FieldValues, TC
   return form
 }
 
-export const useFormContext = $useFormContext as <TFieldValues extends Record<string, any>>() => UseFormMethods<TFieldValues>
+export const useFormContext = $useFormContext as <TFieldValues extends FieldValues>() => UseFormReturn<TFieldValues>
