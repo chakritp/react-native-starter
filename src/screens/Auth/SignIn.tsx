@@ -47,7 +47,7 @@ export const SignIn = observer(({ navigation }: AuthScreenProps<'SignIn'>) => {
     <WizardContainer>
       <Heading title={t('screens.signIn.title')} />
       <FormProvider {...form}>
-        <Field
+        <Field<FormValues>
           name="email"
           label={form.translate('fields.email.label')}
           render={({ label, onChange, ...props }) => (

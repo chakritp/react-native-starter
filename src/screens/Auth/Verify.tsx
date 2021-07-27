@@ -21,6 +21,10 @@ import { AuthScreenProps } from 'screens/types'
 
 const CODE_LENGTH = 6
 
+interface FormValues {
+  code: string
+}
+
 const schema = yup.object().shape({
   code: yup.string().min(CODE_LENGTH)
 })
@@ -73,7 +77,7 @@ export const Verify = observer(({ route }: AuthScreenProps<'Verify'>) => {
         </Heading>
 
         <FormProvider {...form}>
-          <Field
+          <Field<FormValues>
             name="code"
             label={form.translate('fields.code.label')}
             render={({ label, onChange, ...props }) => (

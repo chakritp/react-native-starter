@@ -140,7 +140,7 @@ export function useForm<TFieldValues extends FieldValues = FieldValues, TContext
   }
 }
 
-export function useFormErrorAlert(form: UseFormReturn, options: UseErrorAlertOptions) {
+export function useFormErrorAlert<TFieldValues>(form: UseFormReturn<TFieldValues>, options: UseErrorAlertOptions) {
   return useErrorAlert({
     error: form.submitError,
     ignoreValidationError: true,

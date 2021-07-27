@@ -20,7 +20,7 @@ export const textRestyleFunctions = [
   ...$textRestyleFunctions,
   layout,
   position
-] as []
+] as any[]
 
 const BaseText = createRestyleComponent<
   BaseTextProps & Omit<Props, keyof BaseTextProps>,

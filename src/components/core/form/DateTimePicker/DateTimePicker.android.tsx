@@ -14,7 +14,7 @@ export default function PlatformDateTimePicker({
     return (
       <DateTimePicker
         value={value || defaultValue}
-        onChange={(_ev, value) => {
+        onChange={(_ev: any, value?: Date) => {
           onChange?.(value)
           onClose?.()
         }}
