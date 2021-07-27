@@ -2,6 +2,7 @@ import React from 'react'
 import 'abortcontroller-polyfill/dist/abortcontroller-polyfill-only'
 import mockAsyncStorage from '@react-native-async-storage/async-storage/jest/async-storage-mock'
 import mockRNDeviceInfo from 'react-native-device-info/jest/react-native-device-info-mock'
+import 'react-native-gesture-handler/jestSetup'
 
 // Step 2 of fix for "You called act(async () => ...) without await" error:
 // https://github.com/callstack/react-native-testing-library/issues/379#issuecomment-714341282
@@ -20,7 +21,9 @@ jest.mock('react-native-localize', () => ({
   getLocales: jest.fn()
 }))
 
-jest.mock('react-native/Libraries/Animated/src/NativeAnimatedHelper')
+jest.mock('react-native/Libraries/Animated/NativeAnimatedHelper')
+
+jest.mock('react-native/Libraries/LogBox/LogBox')
 
 jest.mock('react-native-reanimated', () => {
   const Reanimated = require('react-native-reanimated/mock')
