@@ -9,7 +9,7 @@ export default {
   Verify: createRoot(() => ({
     snapshot: {
       authStore: {
-        email: 'tester@iterate.co',
+        email: 'tester@test.com',
         verificationToken: 'test-token'
       }
     },

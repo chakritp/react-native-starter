@@ -345,8 +345,14 @@ PODS:
   - RNScreens (3.4.0):
     - React-Core
     - React-RCTImage
+  - RNSentry (2.6.0):
+    - React-Core
+    - Sentry (= 7.0.0)
   - RNVectorIcons (8.1.0):
     - React-Core
+  - Sentry (7.0.0):
+    - Sentry/Core (= 7.0.0)
+  - Sentry/Core (7.0.0)
   - Yoga (1.14.0)
   - YogaKit (1.18.1):
     - Yoga (~> 1.14)
@@ -413,6 +419,7 @@ DEPENDENCIES:
   - RNLocalize (from `../node_modules/react-native-localize`)
   - RNReanimated (from `../node_modules/react-native-reanimated`)
   - RNScreens (from `../node_modules/react-native-screens`)
+  - "RNSentry (from `../node_modules/@sentry/react-native`)"
   - RNVectorIcons (from `../node_modules/react-native-vector-icons`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
@@ -429,6 +436,7 @@ SPEC REPOS:
     - FlipperKit
     - libevent
     - OpenSSL-Universal
+    - Sentry
     - YogaKit
 
 EXTERNAL SOURCES:
@@ -512,6 +520,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-reanimated"
   RNScreens:
     :path: "../node_modules/react-native-screens"
+  RNSentry:
+    :path: "../node_modules/@sentry/react-native"
   RNVectorIcons:
     :path: "../node_modules/react-native-vector-icons"
   Yoga:
@@ -569,7 +579,9 @@ SPEC CHECKSUMS:
   RNLocalize: 82a569022724d35461e2dc5b5d015a13c3ca995b
   RNReanimated: 514a11da3a2bcc6c3dfd9de32b38e2b9bf101926
   RNScreens: 21b73c94c9117e1110a79ee0ee80c93ccefed8ce
+  RNSentry: a2b02b326ae4fce91ce7c57d3f7dcf8df4f72269
   RNVectorIcons: 31cebfcf94e8cf8686eb5303ae0357da64d7a5a4
+  Sentry: 89d26e036063b9cb9caa59b6951dd2f8277aa13b
   Yoga: a7de31c64fe738607e7a3803e3f591a4b1df7393
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 
