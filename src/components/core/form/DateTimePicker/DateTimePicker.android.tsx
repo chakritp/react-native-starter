@@ -15,8 +15,13 @@ export default function PlatformDateTimePicker({
       <DateTimePicker
         value={value || defaultValue}
         onChange={(_ev: any, value?: Date) => {
-          onChange?.(value)
-          onClose?.()
+          // onClose() must be called before onChange() to prevent double-display bug.
+          if (open) {
+            onClose?.()
+          }
+          if (value) {
+            onChange?.(value)
+          }
         }}
         {...props} />
     )
