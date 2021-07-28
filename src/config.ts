@@ -16,5 +16,5 @@ if (Platform.OS === 'android' && DeviceInfo.isEmulatorSync()) {
 export const API_URL = apiUrl
 export const HTTP_SIGNATURE_KEY = Config.HTTP_SIGNATURE_KEY
 export const SENTRY_DSN = '' 
-export const TERMS_OF_SERVICE_URL = 'https://typescript-starter.com/terms-of-service'
-export const PRIVACY_POLICY_URL = 'https://typescript-starter.com/privacy-policy'
+export const TERMS_OF_SERVICE_URL = 'https://typescriptstarter.com/terms-of-service'
+export const PRIVACY_POLICY_URL = 'https://typescriptstarter.com/privacy-policy'
