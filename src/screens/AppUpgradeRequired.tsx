@@ -9,7 +9,7 @@ export const AppUpgradeRequired = () => {
 
   const goToAppStore = () => {
     const url = Platform.select({
-      ios: 'http://appstore.com/checkingcash',
+      ios: 'http://appstore.com/typescriptstarter',
       android: `http://play.google.com/store/apps/details?id=${DeviceInfo.getBundleId()}`
     })
     Linking.openURL(url!)

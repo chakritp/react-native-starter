@@ -2,23 +2,23 @@
 // import { StackNavigationProp } from '@react-navigation/stack'
 import { StackScreenProps } from '@react-navigation/stack'
 
-export type MainTabs = {
+export type AuthNav = {
+  Landing: undefined
+  SignIn: undefined
+  Verify: { code: string } | undefined
+}
+
+export type AuthScreenProps<T extends keyof AuthNav> = StackScreenProps<AuthNav, T>
+
+export type MainNav = {
   Home: undefined
   History: undefined
   Updates: undefined
   Settings: undefined
 }
 
-export type AuthStack = {
-  Landing: undefined
-  SignIn: undefined
-  Verify: { code: string } | undefined
-}
-
-export type AuthScreenProps<T extends keyof AuthStack> = StackScreenProps<AuthStack, T>
-
-export type SettingsStack = {
+export type SettingsNav = {
   MainMenu: undefined
 }
 
-export type SettingsScreenProps<T extends keyof SettingsStack> = StackScreenProps<SettingsStack, T>
+export type SettingsScreenProps<T extends keyof SettingsNav> = StackScreenProps<SettingsNav, T>
