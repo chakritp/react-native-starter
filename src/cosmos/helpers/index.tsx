@@ -11,7 +11,7 @@ let mocks: {
 let useMocksCount = 0
 
 export function useMocks(callback?: (mocks: any) => void) {
-  const callbackRef = useRef(false)
+  const firstRunRef = useRef(false)
 
   if (!mocks) {
     mocks = {
@@ -19,22 +19,23 @@ export function useMocks(callback?: (mocks: any) => void) {
     }
   }
 
-  if (!callbackRef.current && callback) {
-    callback(mocks)
-    callbackRef.current = true
+  if (!firstRunRef.current) {
+    useMocksCount++
+    firstRunRef.current = true
+    callback?.(mocks)
   }
 
-  useEffect(() => {
-    useMocksCount++
-
-    return () => {
+  useEffect(() => () => {
+    // TODO: Usage of setTimeout is a hack to prevent unwanted
+    // restoring of mocks on unmount. This should be handled differently.
+    setTimeout(() => {
       if (--useMocksCount === 0) {
         for (const mock of Object.values(mocks!)) {
           mock.restore()
         }
         mocks = undefined
       }
-    }
+    }, 0)
   }, [])
 
   return mocks
