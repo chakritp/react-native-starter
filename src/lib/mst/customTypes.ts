@@ -1,4 +1,4 @@
-import moment from 'moment'
+import { format as formatDate } from 'date-fns'
 import { types } from 'mobx-state-tree'
 
 export const isoDate = types.custom({
@@ -17,7 +17,7 @@ export const isoDate = types.custom({
 export const date = types.custom({
   name: 'date',
   fromSnapshot: value => new Date(value),
-  toSnapshot: (date: any) => moment(date).format('Y-MM-DD'),
+  toSnapshot: (date: any) => formatDate(date, 'Y-MM-dd'),
   isTargetType: value => value instanceof Date,
   getValidationMessage: (snapshot: any) => {
     if (isNaN(new Date(snapshot) as any)) {

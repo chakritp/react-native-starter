@@ -182,7 +182,7 @@ export default () => {
                 <DateTimePicker
                   {...props}
                   clearable
-                  format="MM/DD/Y"
+                  format="P"
                   placeholder="--/--/----"
                   disabled={disabled} />
               </InputGroup>
@@ -197,7 +197,6 @@ export default () => {
                   {...props}
                   mode="time"
                   disabled={disabled}
-                  format="hh:mm A"
                   placeholder="--:--" />
               </InputGroup>
             )} />

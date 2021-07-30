@@ -1,16 +1,22 @@
-import moment from 'moment'
 import { I18nManager } from 'react-native'
 import * as RNLocalize from 'react-native-localize'
 import i18n from 'i18n-js'
+import * as dateFns from 'date-fns'
 import { FieldError } from 'lib/form'
+
+declare module 'i18n-js' {
+  export function pluralize(count: string, scope?: string, options?: object): string
+}
 
 const locales = {
   en: () => require('locales/en.json')
 }
 
-declare module 'i18n-js' {
-  export function pluralize(count: string, scope?: string, options?: object): string
+const dateLocales: { [key: string]: dateFns.Locale } = {
+  // es: require('date-fns/locale/es')
 }
+
+let dateLocale: dateFns.Locale | undefined
 
 export default i18n
 
@@ -29,6 +35,9 @@ export function configureI18n() {
   i18n.fallbacks = true
   i18n.translations = { [languageTag]: locales[languageTag as keyof typeof locales]() }
   i18n.locale = languageTag
+
+  // Set dateLocale
+  dateLocale = dateLocales[languageTag]
 }
 
 export const t = i18n.t
@@ -44,10 +53,6 @@ export function scopedTranslate(baseScope: string) {
     defaults: [{ scope }],
     ...options
   })
-}
-
-export function formatDate(date: Date | string, format = 'll') {
-  return moment(date).format(format)
 }
 
 export function apiErrorMessage(error: any, options: { scope?: string } = {}) {
@@ -146,6 +151,10 @@ export function translateForm(form: string, scope: string, options?: i18n.Transl
     ],
     ...options
   })
+}
+
+export function formatDate(date: Date, format = 'PP') {
+  return dateFns.format(date, format, { locale: dateLocale })
 }
 
 configureI18n()

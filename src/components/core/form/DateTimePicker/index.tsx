@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
 import { StyleProp, ViewStyle, TextStyle } from 'react-native'
-import moment from 'moment'
+import { startOfDay } from 'date-fns'
 import { useTheme } from '@shopify/restyle'
+import { formatDate } from 'helpers/i18n'
+import { Theme } from 'theme'
 import { PickerButton } from '../PickerButton'
 import { DateTimePickerBaseProps } from './common'
 import PlatformDateTimePicker from './DateTimePicker'
-import { Theme } from 'theme'
 
 export interface DateTimePickerProps extends Partial<DateTimePickerBaseProps> {
   style?: StyleProp<ViewStyle>
@@ -23,10 +24,10 @@ export const DateTimePicker = ({
   embedded,
   disabled,
   mode = 'date',
-  format = 'll',
+  format = mode === 'time' ? 'p' : 'PP',
   placeholder,
   accessibilityLabel = placeholder,
-  defaultValue = moment().startOf('day').toDate(),
+  defaultValue = startOfDay(new Date()),
   value,
   onChange,
   ...props
@@ -43,7 +44,7 @@ export const DateTimePicker = ({
         embedded={embedded}
         placeholder={placeholder}
         accessibilityLabel={accessibilityLabel}
-        value={value ? moment(value).format(format) : ''}
+        value={value ? formatDate(value, format) : ''}
         disabled={disabled}
         onPress={() => setOpen(true)} />
 
