@@ -9,7 +9,7 @@ declare module 'i18n-js' {
 }
 
 const locales = {
-  en: () => require('locales/en.json')
+  en: require('locales/en.json')
 }
 
 const dateLocales: { [key: string]: dateFns.Locale } = {
@@ -33,7 +33,7 @@ export function configureI18n() {
 
   // Set i18n-js config
   i18n.fallbacks = true
-  i18n.translations = { [languageTag]: locales[languageTag as keyof typeof locales]() }
+  i18n.translations = { [languageTag]: locales[languageTag as keyof typeof locales] }
   i18n.locale = languageTag
 
   // Set dateLocale
